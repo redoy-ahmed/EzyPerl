@@ -1,4 +1,4 @@
-package com.example.redoyahmed.ezyperl;
+package com.example.redoyahmed.ezyperl.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
 import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
