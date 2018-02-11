@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/list_item_imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="list item imageView"
+        app:srcCompat="@drawable/tutorial"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/list_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="list item imageView"
+        android:gravity="center"
+        android:text="@string/item_name"
+        android:textColor="@color/textColor"
+        android:textSize="15sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="100dp" />
+</android.support.constraint.ConstraintLayout>
