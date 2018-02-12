@@ -1,8 +1,10 @@
-package com.example.redoyahmed.ezyperl;
+package com.example.redoyahmed.ezyperl.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,7 +18,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
 import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
@@ -118,17 +125,24 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
+        Fragment mFragment = null;
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+
         int id = item.getItemId();
 
         if (id == R.id.nav_tutorial) {
-            // Handle the Tutorial action
+            mFragment = new FragmentTutorial();
         } else if (id == R.id.nav_practise) {
-
+            mFragment = new FragmentPractise();
         } else if (id == R.id.nav_quiz) {
-
+            mFragment = new FragmentQuiz();
         } else if (id == R.id.nav_links) {
+            mFragment = new FragmentLinks();
+        }
 
+        if (mFragment != null) {
+            mFragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
