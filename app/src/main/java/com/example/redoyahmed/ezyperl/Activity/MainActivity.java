@@ -5,8 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,22 +15,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentHome;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
 import com.example.redoyahmed.ezyperl.R;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView homeRecyclerView;
     private FloatingActionButton fab;
-    private GridLayoutManager gridLayoutManager;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +37,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         initializeWidgets();
-        initializeData();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,36 +52,15 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_home));
     }
 
     private void initializeWidgets() {
-        homeRecyclerView = findViewById(R.id.recycler_view_home);
         fab = findViewById(R.id.fab);
-        gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        navigationView = findViewById(R.id.nav_view);
 
-        homeRecyclerView.setHasFixedSize(true);
-        homeRecyclerView.setLayoutManager(gridLayoutManager);
-    }
-
-    private void initializeData() {
-        ArrayList<HomeItemObject> rowListItem = getAllItemList();
-        gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-
-        RecyclerViewAdapterHome adapterHome = new RecyclerViewAdapterHome(MainActivity.this, rowListItem);
-        homeRecyclerView.setAdapter(adapterHome);
-    }
-
-    private ArrayList<HomeItemObject> getAllItemList() {
-
-        ArrayList<HomeItemObject> allItems = new ArrayList<HomeItemObject>();
-        allItems.add(new HomeItemObject("Tutorial", R.drawable.tutorial));
-        allItems.add(new HomeItemObject("practise", R.drawable.programming));
-        allItems.add(new HomeItemObject("Quiz", R.drawable.quiz));
-        allItems.add(new HomeItemObject("Links", R.drawable.link));
-
-        return allItems;
     }
 
     @Override
@@ -131,7 +104,9 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_tutorial) {
+        if (id == R.id.nav_home) {
+            mFragment = new FragmentHome();
+        } else if (id == R.id.nav_tutorial) {
             mFragment = new FragmentTutorial();
         } else if (id == R.id.nav_practise) {
             mFragment = new FragmentPractise();

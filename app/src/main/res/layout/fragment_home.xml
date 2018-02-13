@@ -5,9 +5,10 @@
     android:layout_gravity="center_horizontal">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="50dp"
-        android:id="@+id/recycler_view_tutorial"
+        android:id="@+id/recycler_view_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="120dp" />
 
 </RelativeLayout>
