@@ -24,13 +24,18 @@ public class FragmentPractise extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_practise, container, false);
+        initializeWidgets();
+
+        return rootView;
+    }
+
+    private void initializeWidgets() {
+        ((MainActivity) getActivity()).hideFloatingActionButton();
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Practise");
         MainActivity.navigationView.getMenu().getItem(2).setChecked(true);
 
         setHasOptionsMenu(true);
-
-        return rootView;
     }
 
     @Override

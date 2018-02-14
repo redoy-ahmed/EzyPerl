@@ -29,7 +29,7 @@ import angtrim.com.fivestarslibrary.ReviewListener;
 
 public class MainActivity extends AppCompatActivity implements NegativeReviewListener, ReviewListener, NavigationView.OnNavigationItemSelectedListener {
 
-    private FloatingActionButton fab;
+    private FloatingActionButton fabPractiseButton;
     public static NavigationView navigationView;
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
 
         initializeWidgets();
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabPractiseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new FragmentPractise()).commit();
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
     }
 
     private void initializeWidgets() {
-        fab = findViewById(R.id.fab);
+        fabPractiseButton = findViewById(R.id.fab_practise_button);
         navigationView = findViewById(R.id.nav_view);
 
     }
@@ -150,5 +150,13 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
     @Override
     public void onReview(int i) {
 
+    }
+
+    public void showFloatingActionButton() {
+        fabPractiseButton.show();
+    }
+
+    public void hideFloatingActionButton() {
+        fabPractiseButton.hide();
     }
 }

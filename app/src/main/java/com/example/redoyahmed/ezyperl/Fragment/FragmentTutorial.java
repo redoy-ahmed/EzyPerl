@@ -35,9 +35,6 @@ public class FragmentTutorial extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_tutorial, container, false);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Tutorial");
-        MainActivity.navigationView.getMenu().getItem(1).setChecked(true);
-
         initializeWidgets();
         initializeData();
 
@@ -45,6 +42,12 @@ public class FragmentTutorial extends Fragment {
     }
 
     private void initializeWidgets() {
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Tutorial");
+        MainActivity.navigationView.getMenu().getItem(1).setChecked(true);
+
+        ((MainActivity) getActivity()).showFloatingActionButton();
+
         tutorialRecyclerView = rootView.findViewById(R.id.recycler_view_tutorial);
         linearLayoutManager = new LinearLayoutManager(rootView.getContext());
 

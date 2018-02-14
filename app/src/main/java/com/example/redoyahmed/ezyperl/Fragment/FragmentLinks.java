@@ -23,9 +23,15 @@ public class FragmentLinks extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_links, container, false);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Links");
-        MainActivity.navigationView.getMenu().getItem(4).setChecked(true);
+        initializeWidgets();
 
         return rootView;
+    }
+
+    private void initializeWidgets() {
+        ((MainActivity) getActivity()).showFloatingActionButton();
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Links");
+        MainActivity.navigationView.getMenu().getItem(4).setChecked(true);
     }
 }

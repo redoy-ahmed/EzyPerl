@@ -23,9 +23,13 @@ public class FragmentQuiz extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Quiz");
-        MainActivity.navigationView.getMenu().getItem(3).setChecked(true);
+        initializeWidgets();
 
         return rootView;
+    }
+
+    private void initializeWidgets() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Quiz");
+        MainActivity.navigationView.getMenu().getItem(3).setChecked(true);
     }
 }

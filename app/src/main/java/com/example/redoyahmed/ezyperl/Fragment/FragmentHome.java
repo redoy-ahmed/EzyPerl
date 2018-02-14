@@ -32,7 +32,6 @@ public class FragmentHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        //setHasOptionsMenu(true);
 
         initializeWidgets();
         initializeData();
@@ -41,6 +40,8 @@ public class FragmentHome extends Fragment {
     }
 
     private void initializeWidgets() {
+        ((MainActivity) getActivity()).showFloatingActionButton();
+
         homeRecyclerView = rootView.findViewById(R.id.recycler_view_home);
         gridLayoutManager = new GridLayoutManager(rootView.getContext(), 2);
 
