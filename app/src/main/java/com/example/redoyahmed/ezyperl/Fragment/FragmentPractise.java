@@ -2,12 +2,14 @@ package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.R;
 
 /**
@@ -21,7 +23,11 @@ public class FragmentPractise extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_practise, null);
+        rootView = inflater.inflate(R.layout.fragment_practise, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Practise");
+        MainActivity.navigationView.getMenu().getItem(2).setChecked(true);
+
         setHasOptionsMenu(true);
 
         return rootView;

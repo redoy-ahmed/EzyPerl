@@ -2,6 +2,7 @@ package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewHolderTutorial;
@@ -31,7 +33,10 @@ public class FragmentTutorial extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_tutorial, null);
+        rootView = inflater.inflate(R.layout.fragment_tutorial, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Tutorial");
+        MainActivity.navigationView.getMenu().getItem(1).setChecked(true);
 
         initializeWidgets();
         initializeData();
