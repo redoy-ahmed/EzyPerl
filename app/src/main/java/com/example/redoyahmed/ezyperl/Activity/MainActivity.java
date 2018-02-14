@@ -1,8 +1,8 @@
 package com.example.redoyahmed.ezyperl.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -22,9 +22,12 @@ import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
 import com.example.redoyahmed.ezyperl.R;
 
+import angtrim.com.fivestarslibrary.FiveStarsDialog;
+import angtrim.com.fivestarslibrary.NegativeReviewListener;
+import angtrim.com.fivestarslibrary.ReviewListener;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements NegativeReviewListener, ReviewListener, NavigationView.OnNavigationItemSelectedListener {
 
     private FloatingActionButton fab;
     public static NavigationView navigationView;
@@ -114,6 +117,9 @@ public class MainActivity extends AppCompatActivity
             mFragment = new FragmentQuiz();
         } else if (id == R.id.nav_links) {
             mFragment = new FragmentLinks();
+        } else if (id == R.id.nav_rate_us) {
+            showRatingDialog();
+            onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_home));
         }
 
         if (mFragment != null) {
@@ -123,5 +129,26 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showRatingDialog() {
+        FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this, "redoyahmed@gmail.com");
+        fiveStarsDialog.setRateText("How is Ezy Perl?")
+                .setTitle("Rate US")
+                .setForceMode(false)
+                .setUpperBound(2)
+                .setNegativeReviewListener(MainActivity.this)
+                .setReviewListener(this)
+                .showAfter(0);
+    }
+
+    @Override
+    public void onNegativeReview(int i) {
+
+    }
+
+    @Override
+    public void onReview(int i) {
+
     }
 }

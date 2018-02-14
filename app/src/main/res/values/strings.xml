@@ -13,5 +13,7 @@
     <string name="nav_item_practise">Practise</string>
     <string name="nav_item_quiz">Quiz</string>
     <string name="nav_item_links">Links</string>
+    <string name="nav_item_share">Share</string>
+    <string name="nav_item_rate_us">Rate us</string>
 
 </resources>
