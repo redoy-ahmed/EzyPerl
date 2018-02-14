@@ -31,7 +31,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewHo
     @Override
     public RecyclerViewHolderHome onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_home, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_home, parent, false);
         RecyclerViewHolderHome rcv = new RecyclerViewHolderHome(layoutView, fragmentManager);
         return rcv;
     }
