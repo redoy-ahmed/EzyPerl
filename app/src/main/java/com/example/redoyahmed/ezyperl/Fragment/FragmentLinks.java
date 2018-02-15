@@ -67,6 +67,11 @@ public class FragmentLinks extends Fragment {
         allItems.add(new LinksItemObject("Perl Documentation", "https://learn.perl.org/tutorials/", 5));
         allItems.add(new LinksItemObject("Java-T-Point", "https://www.javatpoint.com/perl-tutorial", 5));
         allItems.add(new LinksItemObject("Perl Maven", "https://perlmaven.com/perl-tutorial", 5));
+        allItems.add(new LinksItemObject("Guru", "https://www.guru99.com/perl-tutorials.html", 5));
+        allItems.add(new LinksItemObject("Tizag Tutorial", "http://www.tizag.com/perlT/", 5));
+        allItems.add(new LinksItemObject("Perl Beginners", "http://perl-begin.org/tutorials/", 5));
+        allItems.add(new LinksItemObject("Perl Tutorial Hub", "http://perl-tutorial.org/", 5));
+        allItems.add(new LinksItemObject("Beginners Book", "https://beginnersbook.com/2017/02/perl-tutorial-for-beginners/", 5));
 
         return allItems;
     }
