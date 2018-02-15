@@ -1,6 +1,7 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.redoyahmed.ezyperl.Activity.LinkDetailsActivity;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
@@ -73,21 +75,7 @@ public class RecyclerViewAdapterLinks extends RecyclerView.Adapter<RecyclerViewA
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Fragment mFragment;
-
-                    if (getLayoutPosition() == 0) {
-                        mFragment = new FragmentTutorial();
-                    } else if (getLayoutPosition() == 1) {
-                        mFragment = new FragmentPractise();
-                    } else if (getLayoutPosition() == 1) {
-                        mFragment = new FragmentQuiz();
-                    } else {
-                        mFragment = new FragmentLinks();
-                    }
-
-                    if (mFragment != null) {
-                        fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
-                    }*/
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), LinkDetailsActivity.class));
                 }
             });
         }
