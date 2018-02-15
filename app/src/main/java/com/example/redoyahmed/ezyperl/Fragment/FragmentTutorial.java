@@ -3,7 +3,6 @@ package com.example.redoyahmed.ezyperl.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
-import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
-import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewHolderTutorial;
 import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
 import com.example.redoyahmed.ezyperl.R;
 
@@ -65,7 +62,7 @@ public class FragmentTutorial extends Fragment {
 
     private ArrayList<HomeItemObject> getAllItemList() {
 
-        ArrayList<HomeItemObject> allItems = new ArrayList<HomeItemObject>();
+        ArrayList<HomeItemObject> allItems = new ArrayList<>();
         allItems.add(new HomeItemObject("Tutorial one", R.drawable.tutorial));
         allItems.add(new HomeItemObject("Tutorial two", R.drawable.programming));
         allItems.add(new HomeItemObject("Tutorial three", R.drawable.quiz));
