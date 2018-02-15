@@ -32,19 +32,17 @@ public class RecyclerViewAdapterLinks extends RecyclerView.Adapter<RecyclerViewA
 
     private ArrayList<LinksItemObject> itemList;
     private Context context;
-    private FragmentManager fragmentManager;
 
     public RecyclerViewAdapterLinks(Context context, ArrayList<LinksItemObject> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
         this.context = context;
-        this.fragmentManager = fragmentManager;
     }
 
     @Override
     public RecyclerViewAdapterLinks.RecyclerViewHolderLinks onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_links, parent, false);
-        RecyclerViewAdapterLinks.RecyclerViewHolderLinks rcv = new RecyclerViewAdapterLinks.RecyclerViewHolderLinks(layoutView, fragmentManager);
+        RecyclerViewAdapterLinks.RecyclerViewHolderLinks rcv = new RecyclerViewAdapterLinks.RecyclerViewHolderLinks(layoutView, context, itemList);
         return rcv;
     }
 
@@ -59,15 +57,14 @@ public class RecyclerViewAdapterLinks extends RecyclerView.Adapter<RecyclerViewA
         return this.itemList.size();
     }
 
-    public static class RecyclerViewHolderLinks extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class RecyclerViewHolderLinks extends RecyclerView.ViewHolder {
 
         public TextView itemName;
         public ImageView itemPhoto;
         SimpleRatingBar itemRatingBar;
 
-        public RecyclerViewHolderLinks(final View itemView, final FragmentManager fragmentManager) {
+        public RecyclerViewHolderLinks(final View itemView, final Context context, final ArrayList<LinksItemObject> itemList1) {
             super(itemView);
-            itemView.setOnClickListener(this);
             itemName = itemView.findViewById(R.id.list_item_textView);
             itemPhoto = itemView.findViewById(R.id.list_item_imageView);
             itemRatingBar = itemView.findViewById(R.id.list_item__rating_bar);
@@ -75,14 +72,12 @@ public class RecyclerViewAdapterLinks extends RecyclerView.Adapter<RecyclerViewA
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemView.getContext().startActivity(new Intent(itemView.getContext(), LinkDetailsActivity.class));
+                    Intent intent = new Intent(context, LinkDetailsActivity.class);
+                    intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
+                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());
+                    context.startActivity(intent);
                 }
             });
-        }
-
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Clicked Country Position = " + getPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -28,7 +28,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
 
     private ArrayList<HomeItemObject> itemList;
     private Context context;
-    private FragmentManager fragmentManager;
+    private static FragmentManager fragmentManager;
 
     public RecyclerViewAdapterHome(Context context, ArrayList<HomeItemObject> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
@@ -55,14 +55,13 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
         return this.itemList.size();
     }
 
-    public static class RecyclerViewHolderHome extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class RecyclerViewHolderHome extends RecyclerView.ViewHolder {
 
         public TextView itemName;
         public ImageView itemPhoto;
 
         public RecyclerViewHolderHome(final View itemView, final FragmentManager fragmentManager) {
             super(itemView);
-            itemView.setOnClickListener(this);
             itemName = itemView.findViewById(R.id.list_item_textView);
             itemPhoto = itemView.findViewById(R.id.list_item_imageView);
 
@@ -70,12 +69,11 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
                 @Override
                 public void onClick(View v) {
                     Fragment mFragment;
-
-                    if (getLayoutPosition() == 0) {
+                    if (getAdapterPosition() == 0) {
                         mFragment = new FragmentTutorial();
-                    } else if (getLayoutPosition() == 1) {
+                    } else if (getAdapterPosition() == 1) {
                         mFragment = new FragmentPractise();
-                    } else if (getLayoutPosition() == 1) {
+                    } else if (getAdapterPosition() == 1) {
                         mFragment = new FragmentQuiz();
                     } else {
                         mFragment = new FragmentLinks();
@@ -86,11 +84,6 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
                     }
                 }
             });
-        }
-
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Clicked Country Position = " + getPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }

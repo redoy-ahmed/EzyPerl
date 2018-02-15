@@ -55,42 +55,31 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
         return this.itemList.size();
     }
 
-    public static class RecyclerViewHolderTutorial extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class RecyclerViewHolderTutorial extends RecyclerView.ViewHolder {
 
         public TextView itemName;
         public ImageView itemPhoto;
 
         public RecyclerViewHolderTutorial(final View itemView, final FragmentManager fragmentManager) {
             super(itemView);
-            itemView.setOnClickListener(this);
             itemName = itemView.findViewById(R.id.list_item_textView);
             itemPhoto = itemView.findViewById(R.id.list_item_imageView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment mFragment;
+            /*Fragment mFragment;
 
-                    /*if (getLayoutPosition() == 0) {
-                        mFragment = new FragmentTutorial();
-                    } else if (getLayoutPosition() == 1) {
-                        mFragment = new FragmentPractise();
-                    } else if (getLayoutPosition() == 1) {
-                        mFragment = new FragmentQuiz();
-                    } else {
-                        mFragment = new FragmentLinks();
-                    }
+            if (getAdapterPosition() == 0) {
+                mFragment = new FragmentTutorial();
+            } else if (getAdapterPosition() == 1) {
+                mFragment = new FragmentPractise();
+            } else if (getAdapterPosition() == 1) {
+                mFragment = new FragmentQuiz();
+            } else {
+                mFragment = new FragmentLinks();
+            }
 
-                    if (mFragment != null) {
-                        fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
-                    }*/
-                }
-            });
-        }
-
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Clicked Country Position = " + getPosition(), Toast.LENGTH_SHORT).show();
+            if (mFragment != null) {
+                fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
+            }*/
         }
     }
 }

@@ -20,4 +20,10 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
+    <WebView
+        android:id="@+id/tutorial_link_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar" />
+
 </android.support.constraint.ConstraintLayout>
