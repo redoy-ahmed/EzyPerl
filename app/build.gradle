@@ -42,5 +42,8 @@ dependencies {
     implementation 'com.iarcuschin:simpleratingbar:' + rootProject.simpleratingbarVersion
     implementation 'com.jakewharton:butterknife:' + rootProject.butterKnifeVersion
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.butterKnifeVersion
-    implementation 'com.github.apocalx:EasyTabs:0.2'
+    implementation 'com.github.apocalx:EasyTabs:' + rootProject.easyTabsVersion
+    implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
+    implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
+    implementation 'com.google.code.gson:gson:' + rootProject.gsonVersion
 }

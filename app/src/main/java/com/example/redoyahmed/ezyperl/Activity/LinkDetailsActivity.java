@@ -55,6 +55,8 @@ public class LinkDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(linkTitleString);
         linkWebView.setWebViewClient(new WebViewClient());
         linkWebView.getSettings().setJavaScriptEnabled(true);
+        linkWebView.getSettings().setBuiltInZoomControls(true);
+        linkWebView.getSettings().setDisplayZoomControls(false);
         linkWebView.loadUrl(urlString);
     }
 
