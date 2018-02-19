@@ -1,20 +1,20 @@
 package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.view.ViewPager;
+import android.widget.Toast;
+
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
-import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.Adapters.ViewPagerAdapter;
 import com.example.redoyahmed.ezyperl.R;
-
-import java.util.ArrayList;
+import com.loicteillard.easytabs.EasyTabs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +27,12 @@ public class FragmentTutorial extends Fragment {
 
     View rootView;
 
-    @BindView(R.id.recycler_view_tutorial)
-    public RecyclerView tutorialRecyclerView;
-    public LinearLayoutManager linearLayoutManager;
+    @BindView(R.id.viewpager)
+    public ViewPager viewPager;
+
+    @BindView(R.id.easytabs)
+    public EasyTabs easyTabs;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,29 +52,19 @@ public class FragmentTutorial extends Fragment {
         MainActivity.navigationView.getMenu().getItem(1).setChecked(true);
 
         ((MainActivity) getActivity()).showFloatingActionButton();
-
-        linearLayoutManager = new LinearLayoutManager(rootView.getContext());
-
-        tutorialRecyclerView.setHasFixedSize(true);
-        tutorialRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     private void initializeData() {
-        ArrayList<HomeItemObject> rowListItem = getAllItemList();
-        linearLayoutManager = new LinearLayoutManager(rootView.getContext());
+        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
 
-        RecyclerViewAdapterTutorial adapterTutorial = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem, getFragmentManager());
-        tutorialRecyclerView.setAdapter(adapterTutorial);
-    }
+        easyTabs.setViewPager(viewPager, 0); // Set viewPager to EasyTabs with default index
 
-    private ArrayList<HomeItemObject> getAllItemList() {
-
-        ArrayList<HomeItemObject> allItems = new ArrayList<>();
-        allItems.add(new HomeItemObject("Tutorial one", R.drawable.tutorial));
-        allItems.add(new HomeItemObject("Tutorial two", R.drawable.programming));
-        allItems.add(new HomeItemObject("Tutorial three", R.drawable.quiz));
-        allItems.add(new HomeItemObject("Tutorial four", R.drawable.link));
-
-        return allItems;
+        easyTabs.setPagerListener(new EasyTabs.PagerListener() { // Optional, add a listener
+            @Override
+            public void onTabSelected(int position) {
+                Toast.makeText(rootView.getContext(), "tab selected:"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

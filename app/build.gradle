@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.iarcuschin:simpleratingbar:' + rootProject.simpleratingbarVersion
     implementation 'com.jakewharton:butterknife:' + rootProject.butterKnifeVersion
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.butterKnifeVersion
+    implementation 'com.github.apocalx:EasyTabs:0.2'
 }
