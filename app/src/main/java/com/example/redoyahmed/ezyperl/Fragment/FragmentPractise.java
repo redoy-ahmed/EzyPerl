@@ -1,6 +1,7 @@
 package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,10 +21,12 @@ import com.example.redoyahmed.ezyperl.Model.OutputResponse;
 import com.example.redoyahmed.ezyperl.R;
 import com.example.redoyahmed.ezyperl.Services.ApiClient;
 import com.example.redoyahmed.ezyperl.Services.ApiInterface;
+import com.example.redoyahmed.ezyperl.Utils.CustomSweetAlertDialog;
 import com.example.redoyahmed.ezyperl.Utils.StatusCodes;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,6 +78,10 @@ public class FragmentPractise extends Fragment {
 
     private void runCode() {
 
+        CustomSweetAlertDialog customSweetAlertDialog = new CustomSweetAlertDialog();
+        final SweetAlertDialog dialog = customSweetAlertDialog.getProgressDialog(rootView.getContext(), "Running...");
+        dialog.show();
+
         codeString = codeEditText.getText().toString();
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
@@ -92,8 +99,22 @@ public class FragmentPractise extends Fragment {
             public void onResponse(Call<OutputResponse> call, Response<OutputResponse> response) {
                 int statusCode = response.code();
                 if (statusCode == StatusCodes.OK) {
-                    OutputResponse outputResponse = response.body();
-                    outputTextView.setText(outputResponse.getOutput());
+                    final OutputResponse outputResponse = response.body();
+
+                    final Handler handler = new Handler();
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            if (outputResponse.getStatusCode().equals(String.valueOf(StatusCodes.OK))) {
+                                dialog.dismiss();
+                                outputTextView.setText(outputResponse.getOutput());
+                                handler.removeCallbacksAndMessages(true);
+                            } else {
+                                handler.postDelayed(this, 100);
+                            }
+                        }
+                    };
+                    handler.postDelayed(runnable, 100);
                 }
             }
 
@@ -102,6 +123,8 @@ public class FragmentPractise extends Fragment {
                 Log.e(TAG, t.toString());
             }
         });
+
+
     }
 
     @Override
