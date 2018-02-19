@@ -17,6 +17,9 @@ import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 13-Feb-2018.
  */
@@ -25,13 +28,15 @@ public class FragmentHome extends Fragment {
 
     View rootView;
 
-    private RecyclerView homeRecyclerView;
-    private GridLayoutManager gridLayoutManager;
+    @BindView(R.id.recycler_view_home)
+    public RecyclerView homeRecyclerView;
+    GridLayoutManager gridLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, rootView);
 
         initializeWidgets();
         initializeData();
@@ -42,7 +47,6 @@ public class FragmentHome extends Fragment {
     private void initializeWidgets() {
         ((MainActivity) getActivity()).showFloatingActionButton();
 
-        homeRecyclerView = rootView.findViewById(R.id.recycler_view_home);
         gridLayoutManager = new GridLayoutManager(rootView.getContext(), 2);
 
         homeRecyclerView.setHasFixedSize(true);

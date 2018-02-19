@@ -16,6 +16,9 @@ import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 11-Feb-2018.
  */
@@ -24,13 +27,15 @@ public class FragmentTutorial extends Fragment {
 
     View rootView;
 
-    private RecyclerView tutorialRecyclerView;
-    private LinearLayoutManager linearLayoutManager;
+    @BindView(R.id.recycler_view_tutorial)
+    public RecyclerView tutorialRecyclerView;
+    public LinearLayoutManager linearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_tutorial, container, false);
+        ButterKnife.bind(this, rootView);
 
         initializeWidgets();
         initializeData();
@@ -45,7 +50,6 @@ public class FragmentTutorial extends Fragment {
 
         ((MainActivity) getActivity()).showFloatingActionButton();
 
-        tutorialRecyclerView = rootView.findViewById(R.id.recycler_view_tutorial);
         linearLayoutManager = new LinearLayoutManager(rootView.getContext());
 
         tutorialRecyclerView.setHasFixedSize(true);

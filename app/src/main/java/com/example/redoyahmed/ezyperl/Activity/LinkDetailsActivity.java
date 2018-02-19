@@ -14,10 +14,17 @@ import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LinkDetailsActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private WebView linkWebView;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
+    @BindView(R.id.tutorial_link_webView)
+    public WebView linkWebView;
+
     private String urlString, linkTitleString;
 
 
@@ -25,6 +32,7 @@ public class LinkDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_details);
+        ButterKnife.bind(this);
 
         initializeWidgets();
         initializeData();
@@ -33,13 +41,9 @@ public class LinkDetailsActivity extends AppCompatActivity {
 
     private void initializeWidgets() {
 
-        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        linkWebView = findViewById(R.id.tutorial_link_webView);
     }
 
     private void initializeData() {

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.R;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 11-Feb-2018.
  */
@@ -22,6 +24,8 @@ public class FragmentQuiz extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        ButterKnife.bind(this, rootView);
 
         initializeWidgets();
 

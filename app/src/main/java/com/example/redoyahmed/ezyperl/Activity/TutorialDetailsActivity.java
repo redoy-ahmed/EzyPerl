@@ -5,11 +5,15 @@ import android.os.Bundle;
 
 import com.example.redoyahmed.ezyperl.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TutorialDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_details);
+        ButterKnife.bind(this);
     }
 }

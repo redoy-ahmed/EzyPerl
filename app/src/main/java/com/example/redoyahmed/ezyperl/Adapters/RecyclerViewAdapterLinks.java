@@ -24,6 +24,9 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 15-Feb-2018.
  */
@@ -59,15 +62,18 @@ public class RecyclerViewAdapterLinks extends RecyclerView.Adapter<RecyclerViewA
 
     public static class RecyclerViewHolderLinks extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.list_item_textView)
         public TextView itemName;
+
+        @BindView(R.id.list_item_imageView)
         public ImageView itemPhoto;
+
+        @BindView(R.id.list_item__rating_bar)
         SimpleRatingBar itemRatingBar;
 
         public RecyclerViewHolderLinks(final View itemView, final Context context, final ArrayList<LinksItemObject> itemList1) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.list_item_textView);
-            itemPhoto = itemView.findViewById(R.id.list_item_imageView);
-            itemRatingBar = itemView.findViewById(R.id.list_item__rating_bar);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

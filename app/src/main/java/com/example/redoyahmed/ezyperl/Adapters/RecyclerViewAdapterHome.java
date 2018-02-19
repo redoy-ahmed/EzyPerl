@@ -20,6 +20,9 @@ import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 11-Feb-2018.
  */
@@ -57,13 +60,15 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
 
     public static class RecyclerViewHolderHome extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.list_item_textView)
         public TextView itemName;
+
+        @BindView(R.id.list_item_imageView)
         public ImageView itemPhoto;
 
         public RecyclerViewHolderHome(final View itemView, final FragmentManager fragmentManager) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.list_item_textView);
-            itemPhoto = itemView.findViewById(R.id.list_item_imageView);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

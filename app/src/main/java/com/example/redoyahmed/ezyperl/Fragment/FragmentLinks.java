@@ -20,6 +20,9 @@ import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by redoy.ahmed on 11-Feb-2018.
  */
@@ -27,13 +30,16 @@ import java.util.ArrayList;
 public class FragmentLinks extends Fragment {
 
     View rootView;
-    private RecyclerView linksRecyclerView;
-    private LinearLayoutManager linearLayoutManager;
+    @BindView(R.id.recycler_view_links)
+    public RecyclerView linksRecyclerView;
+    public LinearLayoutManager linearLayoutManager;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_links, container, false);
+
+        ButterKnife.bind(this, rootView);
 
         initializeWidgets();
         initializeData();
@@ -47,7 +53,6 @@ public class FragmentLinks extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Links");
         MainActivity.navigationView.getMenu().getItem(4).setChecked(true);
 
-        linksRecyclerView = rootView.findViewById(R.id.recycler_view_links);
         linearLayoutManager = new LinearLayoutManager(rootView.getContext());
 
         linksRecyclerView.setHasFixedSize(true);
