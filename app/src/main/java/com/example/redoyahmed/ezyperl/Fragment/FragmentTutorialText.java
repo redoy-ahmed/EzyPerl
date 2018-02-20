@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.Model.TutorialItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -52,20 +52,20 @@ public class FragmentTutorialText extends Fragment {
     }
 
     private void initializeData() {
-        ArrayList<HomeItemObject> rowListItem = getAllItemList();
+        ArrayList<TutorialItem> rowListItem = getAllItemList();
         linearLayoutManager = new LinearLayoutManager(rootView.getContext());
 
         RecyclerViewAdapterTutorial adapterTutorial = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem, getFragmentManager());
         tutorialTextRecyclerView.setAdapter(adapterTutorial);
     }
 
-    private ArrayList<HomeItemObject> getAllItemList() {
+    private ArrayList<TutorialItem> getAllItemList() {
 
-        ArrayList<HomeItemObject> allItems = new ArrayList<>();
-        allItems.add(new HomeItemObject("Tutorial one", R.drawable.tutorial));
-        allItems.add(new HomeItemObject("Tutorial two", R.drawable.programming));
-        allItems.add(new HomeItemObject("Tutorial three", R.drawable.quiz));
-        allItems.add(new HomeItemObject("Tutorial four", R.drawable.link));
+        ArrayList<TutorialItem> allItems = new ArrayList<>();
+        allItems.add(new TutorialItem("Tutorial one", R.drawable.tutorial));
+        allItems.add(new TutorialItem("Tutorial two", R.drawable.programming));
+        allItems.add(new TutorialItem("Tutorial three", R.drawable.quiz));
+        allItems.add(new TutorialItem("Tutorial four", R.drawable.link));
 
         return allItems;
     }

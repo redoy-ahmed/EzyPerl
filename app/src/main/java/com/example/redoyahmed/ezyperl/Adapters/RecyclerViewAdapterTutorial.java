@@ -1,7 +1,6 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,13 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
-import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
-import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
-import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.Model.HomeItem;
+import com.example.redoyahmed.ezyperl.Model.TutorialItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -29,11 +24,11 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial> {
 
-    private ArrayList<HomeItemObject> itemList;
+    private ArrayList<TutorialItem> itemList;
     private Context context;
     private FragmentManager fragmentManager;
 
-    public RecyclerViewAdapterTutorial(Context context, ArrayList<HomeItemObject> itemList, FragmentManager fragmentManager) {
+    public RecyclerViewAdapterTutorial(Context context, ArrayList<TutorialItem> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
         this.context = context;
         this.fragmentManager = fragmentManager;

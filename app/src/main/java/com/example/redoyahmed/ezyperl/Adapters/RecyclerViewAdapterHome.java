@@ -1,5 +1,6 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -8,14 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.Model.HomeItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -29,11 +30,11 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAdapterHome.RecyclerViewHolderHome> {
 
-    private ArrayList<HomeItemObject> itemList;
+    private ArrayList<HomeItem> itemList;
     private Context context;
     private static FragmentManager fragmentManager;
 
-    public RecyclerViewAdapterHome(Context context, ArrayList<HomeItemObject> itemList, FragmentManager fragmentManager) {
+    public RecyclerViewAdapterHome(Context context, ArrayList<HomeItem> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
         this.context = context;
         this.fragmentManager = fragmentManager;
@@ -51,6 +52,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
     public void onBindViewHolder(RecyclerViewHolderHome holder, int position) {
         holder.itemName.setText(itemList.get(position).getName());
         holder.itemPhoto.setImageResource(itemList.get(position).getPhoto());
+        holder.relativeLayout.setBackgroundColor(Color.parseColor(itemList.get(position).getColor()));
     }
 
     @Override
@@ -65,6 +67,8 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
 
         @BindView(R.id.list_item_imageView)
         public ImageView itemPhoto;
+        @BindView(R.id.relativeLayout)
+        public RelativeLayout relativeLayout;
 
         public RecyclerViewHolderHome(final View itemView, final FragmentManager fragmentManager) {
             super(itemView);

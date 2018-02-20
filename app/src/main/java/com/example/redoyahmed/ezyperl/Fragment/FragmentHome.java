@@ -2,17 +2,16 @@ package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
+import com.example.redoyahmed.ezyperl.Adapters.AutoFitGridLayoutManager;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
+import com.example.redoyahmed.ezyperl.Model.HomeItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class FragmentHome extends Fragment {
 
     @BindView(R.id.recycler_view_home)
     public RecyclerView homeRecyclerView;
-    GridLayoutManager gridLayoutManager;
+    public AutoFitGridLayoutManager layoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,29 +44,26 @@ public class FragmentHome extends Fragment {
     }
 
     private void initializeWidgets() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         ((MainActivity) getActivity()).showFloatingActionButton();
-
-        gridLayoutManager = new GridLayoutManager(rootView.getContext(), 2);
-
-        homeRecyclerView.setHasFixedSize(true);
-        homeRecyclerView.setLayoutManager(gridLayoutManager);
     }
 
     private void initializeData() {
-        ArrayList<HomeItemObject> rowListItem = getAllItemList();
-        gridLayoutManager = new GridLayoutManager(rootView.getContext(), 2);
-
+        ArrayList<HomeItem> rowListItem = getAllItemList();
         RecyclerViewAdapterHome adapterHome = new RecyclerViewAdapterHome(rootView.getContext(), rowListItem, getFragmentManager());
         homeRecyclerView.setAdapter(adapterHome);
+
+        layoutManager = new AutoFitGridLayoutManager(rootView.getContext(), 500);
+        homeRecyclerView.setLayoutManager(layoutManager);
     }
 
-    private ArrayList<HomeItemObject> getAllItemList() {
+    private ArrayList<HomeItem> getAllItemList() {
 
-        ArrayList<HomeItemObject> allItems = new ArrayList<>();
-        allItems.add(new HomeItemObject("Tutorial", R.drawable.tutorial));
-        allItems.add(new HomeItemObject("practise", R.drawable.programming));
-        allItems.add(new HomeItemObject("Quiz", R.drawable.quiz));
-        allItems.add(new HomeItemObject("Links", R.drawable.link));
+        ArrayList<HomeItem> allItems = new ArrayList<>();
+        allItems.add(new HomeItem("Tutorial", R.drawable.tutorial, "#09A9FF"));
+        allItems.add(new HomeItem("practise", R.drawable.programming, "#3E51B1"));
+        allItems.add(new HomeItem("Quiz", R.drawable.quiz, "#673BB7"));
+        allItems.add(new HomeItem("Links", R.drawable.link, "#4BAA50"));
 
         return allItems;
     }

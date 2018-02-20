@@ -4,12 +4,12 @@ package com.example.redoyahmed.ezyperl.Model;
  * Created by redoy.ahmed on 15-Feb-2018.
  */
 
-public class LinksItemObject {
+public class LinksItem {
     private String name;
     private String link;
     private int rating;
 
-    public LinksItemObject(String name, String link, int rating) {
+    public LinksItem(String name, String link, int rating) {
         this.name = name;
         this.link = link;
         this.rating = rating;

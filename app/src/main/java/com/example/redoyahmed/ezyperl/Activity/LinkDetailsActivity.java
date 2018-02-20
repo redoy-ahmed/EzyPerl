@@ -2,17 +2,12 @@ package com.example.redoyahmed.ezyperl.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
-import com.example.redoyahmed.ezyperl.Model.HomeItemObject;
 import com.example.redoyahmed.ezyperl.R;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
