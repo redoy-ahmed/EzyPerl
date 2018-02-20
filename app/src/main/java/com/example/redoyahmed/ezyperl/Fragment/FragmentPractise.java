@@ -84,7 +84,7 @@ public class FragmentPractise extends Fragment {
 
         codeString = codeEditText.getText().toString();
 
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getPractiseClient().create(ApiInterface.class);
 
         Data data = new Data();
         data.setScript(codeString);

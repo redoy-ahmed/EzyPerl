@@ -28,6 +28,7 @@ ext {
     retrofitVersion="2.3.0"
     gsonVersion="2.6.2"
     sweetAlertVersion="1.5.1"
+    picassoVersion="2.5.2"
 }
 
 allprojects {

@@ -1,16 +1,17 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.redoyahmed.ezyperl.Model.HomeItem;
-import com.example.redoyahmed.ezyperl.Model.TutorialItem;
+import com.example.redoyahmed.ezyperl.Model.VideoTutorialItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -22,13 +23,13 @@ import butterknife.ButterKnife;
  * Created by redoy.ahmed on 13-Feb-2018.
  */
 
-public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial> {
+public class RecyclerViewAdapterVideoTutorial extends RecyclerView.Adapter<RecyclerViewAdapterVideoTutorial.RecyclerViewHolderTutorial> {
 
-    private ArrayList<TutorialItem> itemList;
+    private ArrayList<VideoTutorialItem> itemList;
     private Context context;
     private FragmentManager fragmentManager;
 
-    public RecyclerViewAdapterTutorial(Context context, ArrayList<TutorialItem> itemList, FragmentManager fragmentManager) {
+    public RecyclerViewAdapterVideoTutorial(Context context, ArrayList<VideoTutorialItem> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
         this.context = context;
         this.fragmentManager = fragmentManager;
@@ -37,15 +38,17 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerViewHolderTutorial onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_tutorial, parent, false);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_video_tutorial, parent, false);
         RecyclerViewHolderTutorial rcv = new RecyclerViewHolderTutorial(layoutView, fragmentManager);
         return rcv;
     }
 
     @Override
     public void onBindViewHolder(RecyclerViewHolderTutorial holder, int position) {
-        holder.itemName.setText(itemList.get(position).getName());
-        holder.itemPhoto.setImageResource(itemList.get(position).getPhoto());
+        holder.itemName.setText(itemList.get(position).getName().substring(0, 17));
+        //Picasso.with(context).load(itemList.get(position).getPhoto()).into(holder.itemPhoto);
+        holder.itemPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.youtube_logo));
+        holder.relativeLayout.setBackgroundColor(Color.parseColor(itemList.get(position).getColor()));
     }
 
     @Override
@@ -60,6 +63,9 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
 
         @BindView(R.id.list_item_imageView)
         public ImageView itemPhoto;
+
+        @BindView(R.id.relativeLayout)
+        public RelativeLayout relativeLayout;
 
         public RecyclerViewHolderTutorial(final View itemView, final FragmentManager fragmentManager) {
             super(itemView);

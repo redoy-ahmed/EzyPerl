@@ -4,13 +4,16 @@ package com.example.redoyahmed.ezyperl.Model;
  * Created by redoy.ahmed on 20-Feb-2018.
  */
 
-public class TutorialItem {
+public class TextTutorialItem {
+
     private String name;
     private int photo;
+    private String color;
 
-    public TutorialItem(String name, int photo) {
+    public TextTutorialItem(String name, int photo, String color) {
         this.name = name;
         this.photo = photo;
+        this.color = color;
     }
 
     public String getName() {
@@ -27,5 +30,13 @@ public class TutorialItem {
 
     public void setPhoto(int photo) {
         this.photo = photo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
