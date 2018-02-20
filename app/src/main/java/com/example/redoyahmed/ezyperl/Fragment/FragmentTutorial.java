@@ -60,11 +60,11 @@ public class FragmentTutorial extends Fragment {
 
         easyTabs.setViewPager(viewPager, 0); // Set viewPager to EasyTabs with default index
 
-        easyTabs.setPagerListener(new EasyTabs.PagerListener() { // Optional, add a listener
+        /*easyTabs.setPagerListener(new EasyTabs.PagerListener() { // Optional, add a listener
             @Override
             public void onTabSelected(int position) {
                 Toast.makeText(rootView.getContext(), "tab selected:"+position, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 }

@@ -28,6 +28,7 @@ public class RecyclerViewAdapterVideoTutorial extends RecyclerView.Adapter<Recyc
     private ArrayList<VideoTutorialItem> itemList;
     private Context context;
     private FragmentManager fragmentManager;
+    int i = 1;
 
     public RecyclerViewAdapterVideoTutorial(Context context, ArrayList<VideoTutorialItem> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
@@ -45,7 +46,8 @@ public class RecyclerViewAdapterVideoTutorial extends RecyclerView.Adapter<Recyc
 
     @Override
     public void onBindViewHolder(RecyclerViewHolderTutorial holder, int position) {
-        holder.itemName.setText(itemList.get(position).getName().substring(0, 17));
+
+        holder.itemName.setText(itemList.get(position).getName().substring(0, 16) + String.valueOf(i++));
         //Picasso.with(context).load(itemList.get(position).getPhoto()).into(holder.itemPhoto);
         holder.itemPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.youtube_logo));
         holder.relativeLayout.setBackgroundColor(Color.parseColor(itemList.get(position).getColor()));
