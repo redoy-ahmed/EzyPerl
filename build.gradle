@@ -24,11 +24,9 @@ ext {
     fiveStarVersion = "v3.1"
     simpleratingbarVersion = "0.1.3"
     butterKnifeVersion = "8.8.1"
-    easyTabsVersion="0.2"
     retrofitVersion="2.3.0"
     gsonVersion="2.6.2"
     sweetAlertVersion="1.5.1"
-    picassoVersion="2.5.2"
 }
 
 allprojects {

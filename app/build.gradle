@@ -42,10 +42,8 @@ dependencies {
     implementation 'com.iarcuschin:simpleratingbar:' + rootProject.simpleratingbarVersion
     implementation 'com.jakewharton:butterknife:' + rootProject.butterKnifeVersion
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.butterKnifeVersion
-    implementation 'com.github.apocalx:EasyTabs:' + rootProject.easyTabsVersion
     implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
     implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
     implementation 'com.google.code.gson:gson:' + rootProject.gsonVersion
     implementation 'com.github.f0ris.sweetalert:library:' + rootProject.sweetAlertVersion
-    implementation 'com.squareup.picasso:picasso:' + rootProject.picassoVersion
 }

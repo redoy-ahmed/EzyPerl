@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
-    xmlns:easytabs="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_easy_tab_text"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -18,37 +16,12 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-
     </android.support.design.widget.AppBarLayout>
 
-    <com.loicteillard.easytabs.EasyTabs
-        android:id="@+id/easytabs"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        easytabs:etab_bold_for_selected="true"
-        easytabs:etab_selected_color="@color/md_white_1000"
-        easytabs:etab_separators="true"
-        easytabs:etab_unselected_color="@color/md_deep_orange_A200">
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/appbar"
+        android:id="@+id/recycler_view_tutorial_Text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
-        <com.loicteillard.easytabs.EasyTabTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="read"
-            android:textAllCaps="true" />
-
-        <com.loicteillard.easytabs.EasyTabTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="watch"
-            android:textAllCaps="true" />
-
-    </com.loicteillard.easytabs.EasyTabs>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+</RelativeLayout>

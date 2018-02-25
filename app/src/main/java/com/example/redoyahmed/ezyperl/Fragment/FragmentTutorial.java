@@ -1,43 +1,43 @@
 package com.example.redoyahmed.ezyperl.Fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.view.ViewPager;
-import android.widget.Toast;
-
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
-import com.example.redoyahmed.ezyperl.Adapters.ViewPagerAdapter;
+import com.example.redoyahmed.ezyperl.Adapters.AutoFitGridLayoutManager;
+import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
+import com.example.redoyahmed.ezyperl.Model.TextTutorialItem;
 import com.example.redoyahmed.ezyperl.R;
-import com.loicteillard.easytabs.EasyTabs;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.redoyahmed.ezyperl.Utils.Colors.colors;
+
 /**
- * Created by redoy.ahmed on 11-Feb-2018.
+ * Created by redoy.ahmed on 19-Feb-2018.
  */
 
 public class FragmentTutorial extends Fragment {
 
     View rootView;
-
-    @BindView(R.id.viewpager)
-    public ViewPager viewPager;
-
-    @BindView(R.id.easytabs)
-    public EasyTabs easyTabs;
-
+    @BindView(R.id.recycler_view_tutorial_Text)
+    public RecyclerView tutorialTextRecyclerView;
+    public AutoFitGridLayoutManager layoutManager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_tutorial, container, false);
+
         ButterKnife.bind(this, rootView);
 
         initializeWidgets();
@@ -47,24 +47,29 @@ public class FragmentTutorial extends Fragment {
     }
 
     private void initializeWidgets() {
-
+        ((MainActivity) getActivity()).showFloatingActionButton();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Tutorial");
         MainActivity.navigationView.getMenu().getItem(1).setChecked(true);
-
-        ((MainActivity) getActivity()).showFloatingActionButton();
     }
 
     private void initializeData() {
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
 
-        easyTabs.setViewPager(viewPager, 0); // Set viewPager to EasyTabs with default index
+        ArrayList<TextTutorialItem> rowListItem = getAllItemList();
+        RecyclerViewAdapterTutorial adapterHome = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem, getFragmentManager());
+        tutorialTextRecyclerView.setAdapter(adapterHome);
 
-        /*easyTabs.setPagerListener(new EasyTabs.PagerListener() { // Optional, add a listener
-            @Override
-            public void onTabSelected(int position) {
-                Toast.makeText(rootView.getContext(), "tab selected:"+position, Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        layoutManager = new AutoFitGridLayoutManager(rootView.getContext(), 500);
+        tutorialTextRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private ArrayList<TextTutorialItem> getAllItemList() {
+
+        ArrayList<TextTutorialItem> allItems = new ArrayList<>();
+        allItems.add(new TextTutorialItem("Tutorial one", R.drawable.tutorial, colors[new Random().nextInt(colors.length)]));
+        allItems.add(new TextTutorialItem("Tutorial two", R.drawable.programming, colors[new Random().nextInt(colors.length)]));
+        allItems.add(new TextTutorialItem("Tutorial three", R.drawable.quiz, colors[new Random().nextInt(colors.length)]));
+        allItems.add(new TextTutorialItem("Tutorial four", R.drawable.link, colors[new Random().nextInt(colors.length)]));
+
+        return allItems;
     }
 }
