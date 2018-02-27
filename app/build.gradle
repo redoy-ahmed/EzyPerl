@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
     implementation 'com.google.code.gson:gson:' + rootProject.gsonVersion
     implementation 'com.github.f0ris.sweetalert:library:' + rootProject.sweetAlertVersion
+    implementation 'com.vistrav:ask:2.5'
 }

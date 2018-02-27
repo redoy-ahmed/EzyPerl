@@ -21,10 +21,10 @@ public class CustomSweetAlertDialog {
         return pDialog;
     }
 
-    public void getAlertDialog(Context context, int dialogType, int titleText, int contextText) {
+    public void getAlertDialog(Context context, int dialogType, String titleText, String contextText) {
         SweetAlertDialog alertDialog = new SweetAlertDialog(context, dialogType);
-        alertDialog.setTitleText(context.getString(titleText));
-        alertDialog.setContentText(context.getString(contextText));
+        alertDialog.setTitleText(titleText);
+        alertDialog.setContentText(contextText);
         alertDialog.show();
     }
 }

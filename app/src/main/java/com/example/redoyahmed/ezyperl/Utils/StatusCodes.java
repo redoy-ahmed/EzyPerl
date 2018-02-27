@@ -7,4 +7,5 @@ package com.example.redoyahmed.ezyperl.Utils;
 public class StatusCodes {
 
     public static final int OK = 200;
+    public static final int PERMISSION_REQUEST_CODE = 200;
 }
