@@ -10,4 +10,16 @@
     <dimen name="icon_text">22dp</dimen>
     <dimen name="timestamp">12dp</dimen>
 
+    <dimen name="_8sdp">8dp</dimen>
+    <dimen name="_12sdp">12dp</dimen>
+    <dimen name="_9sdp">9dp</dimen>
+    <dimen name="_4sdp">4dp</dimen>
+
+    <dimen name="_18sdp">18dp</dimen>
+    <dimen name="_1sdp">1dp</dimen>
+    <dimen name="_6sdp">6dp</dimen>
+    <dimen name="_2sdp">2dp</dimen>
+    <dimen name="_11sdp">11dp</dimen>
+    <dimen name="_14sdp">14dp</dimen>
+
 </resources>

@@ -15,6 +15,9 @@
     <color name="from">#000000</color>
     <color name="subject">#111111</color>
 
+    <color name="colorDarker">#727272</color>
+    <color name="colorLightDark">#c8c4c4</color>
+
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>
