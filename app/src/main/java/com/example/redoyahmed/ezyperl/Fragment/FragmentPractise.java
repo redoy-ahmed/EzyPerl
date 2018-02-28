@@ -296,8 +296,11 @@ public class FragmentPractise extends Fragment {
     }
 
     private void proceedAfterPermission() {
-        //Toast.makeText(getActivity(), "We got All Permissions", Toast.LENGTH_LONG).show();
-        runCode();
+        if (ConnectionStatus.getInstance(rootView.getContext()).isOnline()) {
+            runCode();
+        } else {
+            Toast.makeText(rootView.getContext(), "There is no Internet Connection", Toast.LENGTH_LONG).show();
+        }
     }
 }
 
