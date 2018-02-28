@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
@@ -29,8 +29,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center|left"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_weight="2.0"
+            android:gravity="center|left"
             android:orientation="vertical">
 
             <TextView
@@ -39,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:text="Array"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/msg_text_secondary"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/quiz_subject_score"
@@ -47,20 +50,21 @@
                 android:layout_height="wrap_content"
                 android:text="5"
                 android:textColor="@color/colorDarker"
-                android:textSize="@dimen/_9sdp" />
+                android:textSize="@dimen/msg_text_secondary"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2.0"
-            android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:gravity="center|left"
             android:orientation="vertical"
             android:padding="@dimen/_4sdp">
 
             <ProgressBar
                 android:id="@+id/quiz_score_indicator"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progress="80" />

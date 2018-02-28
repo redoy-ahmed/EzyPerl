@@ -36,7 +36,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewHolderTutorial onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_tutorial, parent, false);
         RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial rcv = new RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial(layoutView, fragmentManager);

@@ -57,6 +57,7 @@ public class FragmentQuiz extends Fragment {
         PerformanceObject three = new PerformanceObject("Array", "1");
         PerformanceObject four = new PerformanceObject("List", "3");
         PerformanceObject five = new PerformanceObject("Custom", "5");
+        PerformanceObject six = new PerformanceObject("Class", "70");
 
 
         List<PerformanceObject> returnedScores = new ArrayList<>();
@@ -65,6 +66,7 @@ public class FragmentQuiz extends Fragment {
         returnedScores.add(three);
         returnedScores.add(four);
         returnedScores.add(five);
+        returnedScores.add(six);
 
         performanceRecyclerView.setAdapter(new RecyclerViewAdapterProfile(getActivity(), returnedScores));
     }

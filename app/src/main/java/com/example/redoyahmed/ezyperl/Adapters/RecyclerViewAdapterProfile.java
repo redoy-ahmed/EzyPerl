@@ -1,6 +1,7 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Activity.LinkDetailsActivity;
+import com.example.redoyahmed.ezyperl.Activity.StartQuizActivity;
 import com.example.redoyahmed.ezyperl.Model.PerformanceObject;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerViewAdapterProfile.ProfileViewHolder> {
     private Context context;
@@ -22,11 +28,15 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
         this.performanceObjectList = performanceObjectList;
     }
 
+    @Override
     public ProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ProfileViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_profile, parent, false));
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_profile, parent, false);
+        RecyclerViewAdapterProfile.ProfileViewHolder rcv = new RecyclerViewAdapterProfile.ProfileViewHolder(layoutView, context);
+        return rcv;
     }
 
-    public void onBindViewHolder(ProfileViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(RecyclerViewAdapterProfile.ProfileViewHolder holder, int position) {
         PerformanceObject performanceObject = this.performanceObjectList.get(position);
         holder.quizCategory.setText(performanceObject.getName());
         holder.quizCategoryScore.setText(String.format("%s%% in all quiz attempts", new Object[]{performanceObject.getValue()}));
@@ -37,17 +47,30 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
         return this.performanceObjectList.size();
     }
 
-    public class ProfileViewHolder extends RecyclerView.ViewHolder {
+    public static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.quiz_subject)
         public TextView quizCategory;
+
+        @BindView(R.id.quiz_subject_score)
         public TextView quizCategoryScore;
+
+        @BindView(R.id.quiz_score_indicator)
         public ProgressBar scoreIndicator;
 
-        public ProfileViewHolder(View itemView) {
+        public ProfileViewHolder(final View itemView, final Context context) {
             super(itemView);
-            this.quizCategory = itemView.findViewById(R.id.quiz_subject);
-            this.quizCategoryScore = itemView.findViewById(R.id.quiz_subject_score);
-            this.scoreIndicator = itemView.findViewById(R.id.quiz_score_indicator);
+            ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, StartQuizActivity.class);
+                    /*intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
+                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -82,7 +82,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
                         mFragment = new FragmentTutorial();
                     } else if (getAdapterPosition() == 1) {
                         mFragment = new FragmentPractise();
-                    } else if (getAdapterPosition() == 1) {
+                    } else if (getAdapterPosition() == 2) {
                         mFragment = new FragmentQuiz();
                     } else {
                         mFragment = new FragmentLinks();
