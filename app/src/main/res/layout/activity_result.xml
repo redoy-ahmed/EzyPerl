@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_24sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congratulations"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/winner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_weight="1.0"
+            android:text="YOUR QUIZ SCORE IS"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <com.github.pavlospt.CircleView
+            android:id="@+id/your_score"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:layout_weight="1.0"
+            app:cv_backgroundColorValue="@color/colorPrimaryDark"
+            app:cv_fillColor="@color/md_white_1000"
+            app:cv_strokeColorValue="@color/colorPrimaryDark"
+            app:cv_subtitleSize="@dimen/_12sdp"
+            app:cv_subtitleText=""
+            app:cv_titleColor="@color/colorAccent"
+            app:cv_titleSize="@dimen/_14sdp"
+            app:cv_titleSubtitleSpace="20.0"
+            app:cv_titleText="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.0"
+            android:background="#e4e4e4"
+            android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:orientation="vertical"
+            android:padding="@dimen/_8sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Summary"
+                android:textColor="@color/md_black_1000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.0"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_4sdp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/_4sdp"
+                        android:text="This is a concise summary of your result and the area you need to perform well to improve your future quiz results. Check out the result analysis to get more insight."
+                        android:textColor="@color/colorDarker"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/result_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@color/colorPrimaryDark"
+                        android:padding="@dimen/_8sdp"
+                        android:text="View Result Analysis"
+                        android:textAllCaps="false"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:orientation="vertical"
+                    android:paddingRight="@dimen/_4sdp">
+
+                    <TextView
+                        android:id="@+id/correct_answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/md_green_600"
+                        android:padding="@dimen/_8sdp"
+                        android:text="10 correct answers"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/wrong_answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:background="@color/colorAccent"
+                        android:padding="@dimen/_8sdp"
+                        android:text="6 wrong answers"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/bottom_layer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/main_menu_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Main Menu"
+                    android:textAllCaps="false"
+                    android:textColor="@color/md_white_1000" />
+
+                <Button
+                    android:id="@+id/play_again_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:layout_weight="1.0"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Play again"
+                    android:textAllCaps="false"
+                    android:textColor="@color/md_white_1000" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

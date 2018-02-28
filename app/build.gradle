@@ -48,4 +48,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:' + rootProject.gsonVersion
     implementation 'com.github.f0ris.sweetalert:library:' + rootProject.sweetAlertVersion
     implementation 'com.vistrav:ask:2.5'
+    implementation 'com.github.pavlospt:circleview:1.3'
 }
