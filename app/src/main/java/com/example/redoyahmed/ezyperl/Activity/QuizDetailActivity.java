@@ -15,11 +15,11 @@ import android.widget.TextView;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
 import com.example.redoyahmed.ezyperl.Utils.Constants;
 import com.example.redoyahmed.ezyperl.Utils.PlayAudio;
 import com.example.redoyahmed.ezyperl.Utils.PlaySound;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +123,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
     private void loadData() {
 
-        GsonBuilder builder = new GsonBuilder();
-        gson = builder.create();
+        gson = EzyPerlApplication.getGsonObject();
 
         QuestionItem question1 = new QuestionItem(1, "Math", "Sum of 1+1 is", "1", "2", "3", "4", "2");
         QuestionItem question2 = new QuestionItem(2, "Math", "Sum of 10+10 is", "10", "20", "30", "40", "2");

@@ -6,9 +6,9 @@ import android.util.Log;
 
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
 import com.example.redoyahmed.ezyperl.Utils.Constants;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,8 +27,7 @@ public class ResultActivity extends AppCompatActivity {
 
         mResult = getIntent().getExtras().getString(Constants.QUIZ_RESULT);
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+        Gson gson = EzyPerlApplication.getGsonObject();
 
         List<ResultItem> submittedResult = arrayToListObject(gson.fromJson(mResult, ResultItem[].class));
 
