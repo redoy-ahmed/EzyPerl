@@ -1,10 +1,10 @@
 package com.example.redoyahmed.ezyperl.Model;
 
-public class PerformanceObject {
+public class PerformanceItem {
     private String name;
     private String value;
 
-    public PerformanceObject(String name, String value) {
+    public PerformanceItem(String name, String value) {
         this.name = name;
         this.value = value;
     }

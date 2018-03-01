@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterProfile;
-import com.example.redoyahmed.ezyperl.Model.PerformanceObject;
+import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -52,15 +52,15 @@ public class FragmentQuiz extends Fragment {
 
 
     private void initializeData() {
-        PerformanceObject one = new PerformanceObject("Data Type", "2");
-        PerformanceObject two = new PerformanceObject("String", "0");
-        PerformanceObject three = new PerformanceObject("Array", "1");
-        PerformanceObject four = new PerformanceObject("List", "3");
-        PerformanceObject five = new PerformanceObject("Custom", "5");
-        PerformanceObject six = new PerformanceObject("Class", "70");
+        PerformanceItem one = new PerformanceItem("Data Type", "2");
+        PerformanceItem two = new PerformanceItem("String", "0");
+        PerformanceItem three = new PerformanceItem("Array", "1");
+        PerformanceItem four = new PerformanceItem("List", "3");
+        PerformanceItem five = new PerformanceItem("Custom", "5");
+        PerformanceItem six = new PerformanceItem("Class", "70");
 
 
-        List<PerformanceObject> returnedScores = new ArrayList<>();
+        List<PerformanceItem> returnedScores = new ArrayList<>();
         returnedScores.add(one);
         returnedScores.add(two);
         returnedScores.add(three);

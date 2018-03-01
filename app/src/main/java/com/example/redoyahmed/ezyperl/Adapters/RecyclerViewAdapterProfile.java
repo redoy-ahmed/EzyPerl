@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.redoyahmed.ezyperl.Activity.LinkDetailsActivity;
 import com.example.redoyahmed.ezyperl.Activity.StartQuizActivity;
-import com.example.redoyahmed.ezyperl.Model.PerformanceObject;
+import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.List;
@@ -21,9 +20,9 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerViewAdapterProfile.ProfileViewHolder> {
     private Context context;
-    private List<PerformanceObject> performanceObjectList;
+    private List<PerformanceItem> performanceObjectList;
 
-    public RecyclerViewAdapterProfile(Context context, List<PerformanceObject> performanceObjectList) {
+    public RecyclerViewAdapterProfile(Context context, List<PerformanceItem> performanceObjectList) {
         this.context = context;
         this.performanceObjectList = performanceObjectList;
     }
@@ -37,7 +36,7 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapterProfile.ProfileViewHolder holder, int position) {
-        PerformanceObject performanceObject = this.performanceObjectList.get(position);
+        PerformanceItem performanceObject = this.performanceObjectList.get(position);
         holder.quizCategory.setText(performanceObject.getName());
         holder.quizCategoryScore.setText(String.format("%s%% in all quiz attempts", new Object[]{performanceObject.getValue()}));
         holder.scoreIndicator.setProgress(Integer.parseInt(performanceObject.getValue()));
