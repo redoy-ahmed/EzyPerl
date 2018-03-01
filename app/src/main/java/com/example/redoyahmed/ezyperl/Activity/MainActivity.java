@@ -18,6 +18,7 @@ import com.example.redoyahmed.ezyperl.Fragment.FragmentHome;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
+import com.example.redoyahmed.ezyperl.Fragment.FragmentSettings;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
 import com.example.redoyahmed.ezyperl.R;
 
@@ -27,7 +28,7 @@ import angtrim.com.fivestarslibrary.ReviewListener;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements NegativeReviewListener, ReviewListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FloatingActionButton fabPractiseButton;
     public static NavigationView navigationView;
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -119,11 +119,9 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
             mFragment = new FragmentQuiz();
         } else if (id == R.id.nav_links) {
             mFragment = new FragmentLinks();
-        } else if (id == R.id.nav_rate_us) {
-            showRatingDialog();
-            onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_home));
+        } else if(id==R.id.nav_settings){
+            mFragment = new FragmentSettings();
         }
-
         if (mFragment != null) {
             mFragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
         }
@@ -131,27 +129,6 @@ public class MainActivity extends AppCompatActivity implements NegativeReviewLis
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void showRatingDialog() {
-        FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this, "redoyahmed@gmail.com");
-        fiveStarsDialog.setRateText("How is Ezy Perl?")
-                .setTitle("Rate US")
-                .setForceMode(false)
-                .setUpperBound(2)
-                .setNegativeReviewListener(MainActivity.this)
-                .setReviewListener(this)
-                .showAfter(0);
-    }
-
-    @Override
-    public void onNegativeReview(int i) {
-
-    }
-
-    @Override
-    public void onReview(int i) {
-
     }
 
     public void showFloatingActionButton() {

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_12sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_weight="1.0"
+            android:text="Sound"
+            android:textColor="@color/md_black_1000"
+            android:textSize="@dimen/msg_text_secondary" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_weight="1.0"
+            android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_12sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_weight="1.0"
+            android:text="Music"
+            android:textColor="@color/md_black_1000"
+            android:textSize="@dimen/msg_text_secondary" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_weight="1.0"
+            android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_12sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_weight="1.0"
+            android:text="Language"
+            android:textColor="@color/md_black_1000"
+            android:textSize="@dimen/msg_text_secondary" />
+
+        <Spinner
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/custom_spinner_background"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_12sdp"
+        android:text="More"
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/msg_text_secondary" />
+
+    <TextView
+        android:id="@+id/terms_of_usage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:padding="@dimen/_12sdp"
+        android:text="Terms of usage"
+        android:textColor="@color/md_black_1000"
+        android:textSize="@dimen/msg_text_secondary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <TextView
+        android:id="@+id/privacy_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:padding="@dimen/_12sdp"
+        android:text="Privacy policy"
+        android:textColor="@color/md_black_1000"
+        android:textSize="@dimen/msg_text_secondary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <TextView
+        android:id="@+id/third_party_licenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:padding="@dimen/_12sdp"
+        android:text="Third party licenses"
+        android:textColor="@color/md_black_1000"
+        android:textSize="@dimen/msg_text_secondary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+
+    <TextView
+        android:id="@+id/rate_the_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+        android:padding="@dimen/_12sdp"
+        android:text="Rate the app"
+        android:textColor="@color/md_black_1000"
+        android:textSize="@dimen/msg_text_secondary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorLightDark" />
+</LinearLayout>
