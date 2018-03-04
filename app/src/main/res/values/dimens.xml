@@ -29,4 +29,7 @@
     <dimen name="_16sdp">16dp</dimen>
     <dimen name="_13sdp">13dp</dimen>
 
+
+    <dimen name="_32sdp">32dp</dimen>
+
 </resources>

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
@@ -125,18 +126,13 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
         gson = EzyPerlApplication.getGsonObject();
 
-        QuestionItem question1 = new QuestionItem(1, "Math", "Sum of 1+1 is", "1", "2", "3", "4", "2");
-        QuestionItem question2 = new QuestionItem(2, "Math", "Sum of 10+10 is", "10", "20", "30", "40", "2");
-        QuestionItem question3 = new QuestionItem(3, "Math", "Result of 10*10 is", "100", "200", "300", "400", "1");
-
-        questions = new ArrayList<>();
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
+        DbHelper db = new DbHelper(this);
+        questions = db.getAllQuestions();
 
         currentQuestion = questions.get(questionIndex);
         questionNumber = questionIndex + 1;
         totalQuestion = questions.size();
+
         displayCurrentQuestion();
         updateCounter();
     }
@@ -192,13 +188,13 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
             public void onFinish() {
                 playMusic.playSound(false, R.raw.wrong);
-                int correctAnswer = Integer.parseInt(currentQuestion.getAnswer());
+                int correctAnswer = currentQuestion.getAnswer();
                 Button answerButton = getButtonIdWithPosition(correctAnswer);
                 String correctAnswerInText = correctAnswerInText(correctAnswer);
                 if ($assertionsDisabled || answerButton != null) {
                     answerButton.setBackgroundColor(getResources().getColor(R.color.main_green_color));
                     disableOptionButtons();
-                    resultList.add(new ResultItem("" + questionIndex + 1, currentQuestion.getQuestion(), correctAnswerInText, "", 0));
+                    resultList.add(new ResultItem("" + (questionIndex + 1), currentQuestion.getQuestion(), correctAnswerInText, "", 0));
                     counter = 0;
                     questionIndex = questionIndex + 1;
                     if (questionIndex >= totalQuestion) {
@@ -272,7 +268,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         Button clickedButton = (Button) v;
         String answerInText = clickedButton.getText().toString();
         int answerNumber = getButtonNumberClicked(clickedButton.getId());
-        int correctAnswer = Integer.parseInt(currentQuestion.getAnswer());
+        int correctAnswer = currentQuestion.getAnswer();
         String correctAnswerInText = correctAnswerInText(correctAnswer);
         if (countDownTimer != null) {
             counter = 0;
@@ -285,14 +281,14 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
             }
             clickedButton.setBackgroundColor(getResources().getColor(R.color.green_primary));
             disableOptionButtons();
-            resultList.add(new ResultItem("" + questionIndex + 1, currentQuestion.getQuestion(), correctAnswerInText, answerInText, 1));
+            resultList.add(new ResultItem("" + (questionIndex + 1), currentQuestion.getQuestion(), correctAnswerInText, answerInText, 1));
         } else {
             if (isSoundActive) {
                 playMusic.playSound(false, R.raw.wrong);
             }
             clickedButton.setBackgroundColor(getResources().getColor(R.color.red_primary));
             Button correctButton = getButtonIdWithPosition(correctAnswer);
-            resultList.add(new ResultItem("" + questionIndex + 1, currentQuestion.getQuestion(), correctAnswerInText, answerInText, 0));
+            resultList.add(new ResultItem("" + (questionIndex + 1), currentQuestion.getQuestion(), correctAnswerInText, answerInText, 0));
             if ($assertionsDisabled || correctButton != null) {
                 correctButton.setBackgroundColor(getResources().getColor(R.color.main_green_color));
             } else {
