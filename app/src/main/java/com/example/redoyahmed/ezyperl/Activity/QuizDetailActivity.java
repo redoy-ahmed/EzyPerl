@@ -52,7 +52,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
     public PlaySound playMusic;
     public int questionIndex = 0;
     public int questionNumber;
-    static final /* synthetic */ boolean $assertionsDisabled = (!QuizDetailActivity.class.desiredAssertionStatus());
+    static final boolean $assertionsDisabled = (!QuizDetailActivity.class.desiredAssertionStatus());
 
     @BindView(R.id.quiz_question_number)
     public TextView question_num;
@@ -283,14 +283,14 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
             if (isSoundActive) {
                 playMusic.playSound(false, R.raw.correct);
             }
-            clickedButton.setBackgroundColor(getResources().getColor(R.color.main_green_color));
+            clickedButton.setBackgroundColor(getResources().getColor(R.color.green_primary));
             disableOptionButtons();
             resultList.add(new ResultItem("" + questionIndex + 1, currentQuestion.getQuestion(), correctAnswerInText, answerInText, 1));
         } else {
             if (isSoundActive) {
                 playMusic.playSound(false, R.raw.wrong);
             }
-            clickedButton.setBackgroundColor(getResources().getColor(R.color.red_btn_bg_color));
+            clickedButton.setBackgroundColor(getResources().getColor(R.color.red_primary));
             Button correctButton = getButtonIdWithPosition(correctAnswer);
             resultList.add(new ResultItem("" + questionIndex + 1, currentQuestion.getQuestion(), correctAnswerInText, answerInText, 0));
             if ($assertionsDisabled || correctButton != null) {

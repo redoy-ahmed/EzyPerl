@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:foreground="@color/colorAccent"
+            android:foreground="@color/red_primary"
             android:progress="100" />
 
         <TextView
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:background="@color/md_green_500"
+                android:background="@color/green_primary"
                 android:padding="@dimen/_12sdp"
                 android:text="Play"
                 android:textColor="@color/md_white_1000"

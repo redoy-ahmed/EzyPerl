@@ -29,7 +29,8 @@
         <activity android:name=".Activity.LinkDetailsActivity" />
         <activity android:name=".Activity.StartQuizActivity" />
         <activity android:name=".Activity.QuizDetailActivity" />
-        <activity android:name=".Activity.ResultActivity"></activity>
+        <activity android:name=".Activity.ResultActivity" />
+        <activity android:name=".Activity.AnalysisActivity"></activity>
     </application>
 
 </manifest>

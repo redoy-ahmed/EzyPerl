@@ -1,5 +1,6 @@
 package com.example.redoyahmed.ezyperl.Activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,9 +24,6 @@ import com.example.redoyahmed.ezyperl.Fragment.FragmentSettings;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorial;
 import com.example.redoyahmed.ezyperl.R;
 
-import angtrim.com.fivestarslibrary.FiveStarsDialog;
-import angtrim.com.fivestarslibrary.NegativeReviewListener;
-import angtrim.com.fivestarslibrary.ReviewListener;
 import butterknife.ButterKnife;
 
 
@@ -75,7 +74,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            new AlertDialog.Builder(this)
+                    .setTitle("Exit App")
+                    .setMessage("Are you sure you want to close the App?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
         }
     }
 
@@ -119,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mFragment = new FragmentQuiz();
         } else if (id == R.id.nav_links) {
             mFragment = new FragmentLinks();
-        } else if(id==R.id.nav_settings){
+        } else if (id == R.id.nav_settings) {
             mFragment = new FragmentSettings();
         }
         if (mFragment != null) {

@@ -18,6 +18,9 @@
     <color name="colorDarker">#727272</color>
     <color name="colorLightDark">#c8c4c4</color>
 
+    <color name="green_primary">#73b729</color>
+    <color name="red_primary">#f44538</color>
+
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>

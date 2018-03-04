@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/_24sdp">
+        android:padding="@dimen/_28sdp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal">
 
         <TextView
@@ -74,38 +74,30 @@
             android:background="#e4e4e4"
             android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
             android:orientation="vertical"
-            android:padding="@dimen/_8sdp">
+            android:padding="@dimen/_10sdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Summary"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@color/md_black_1000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="232dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.0"
                     android:orientation="vertical"
                     android:padding="@dimen/_4sdp">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="@dimen/_4sdp"
-                        android:text="This is a concise summary of your result and the area you need to perform well to improve your future quiz results. Check out the result analysis to get more insight."
-                        android:textColor="@color/colorDarker"
-                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/result_button"
@@ -113,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:background="@color/colorPrimaryDark"
-                        android:padding="@dimen/_8sdp"
+                        android:padding="5dp"
                         android:text="View Result Analysis"
                         android:textAllCaps="false"
                         android:textColor="@color/md_white_1000"
@@ -121,7 +113,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
@@ -131,23 +123,25 @@
                     <TextView
                         android:id="@+id/correct_answer"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/md_green_600"
+                        android:layout_height="40dp"
+                        android:background="@color/green_primary"
+                        android:gravity="center"
                         android:padding="@dimen/_8sdp"
                         android:text="10 correct answers"
                         android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/_9sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/wrong_answer"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@color/colorAccent"
+                        android:background="@color/red_primary"
+                        android:gravity="center"
                         android:padding="@dimen/_8sdp"
                         android:text="6 wrong answers"
                         android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/_9sdp" />
+                        android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -156,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <LinearLayout
