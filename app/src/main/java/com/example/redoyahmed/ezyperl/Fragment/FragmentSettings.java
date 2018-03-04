@@ -7,12 +7,15 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.CustomSpinnerAdapter;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Services.CustomSharedPreference;
+import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
 
 import java.util.ArrayList;
 
@@ -30,8 +33,9 @@ public class FragmentSettings extends Fragment implements NegativeReviewListener
 
     View rootView;
 
-    public boolean isMusicOn;
-    public boolean isSoundOn;
+    private boolean isMusicOn;
+    private boolean isSoundOn;
+    private CustomSharedPreference shared;
 
     @BindView(R.id.language)
     public Spinner languageSpinner;
@@ -58,18 +62,14 @@ public class FragmentSettings extends Fragment implements NegativeReviewListener
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-
         ButterKnife.bind(this, rootView);
 
         initializeWidgets();
         initializeData();
 
-        rateTheApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showRatingDialog();
-            }
-        });
+        soundSwitch.setOnCheckedChangeListener(new ChangeSound());
+        musicSwitch.setOnCheckedChangeListener(new ChangeMusic());
+        rateTheApp.setOnClickListener(new Rating());
 
         return rootView;
     }
@@ -81,9 +81,24 @@ public class FragmentSettings extends Fragment implements NegativeReviewListener
     }
 
     private void initializeData() {
+
+        shared = EzyPerlApplication.getShared(rootView.getContext());
+
         ArrayList<String> languages = new ArrayList();
         languages.add("English");
         languageSpinner.setAdapter(new CustomSpinnerAdapter(getActivity(), languages));
+
+        if (shared.getSavedSound()) {
+            soundSwitch.setChecked(true);
+        } else {
+            soundSwitch.setChecked(false);
+        }
+
+        if (shared.getSavedMusic()) {
+            musicSwitch.setChecked(true);
+        } else {
+            musicSwitch.setChecked(false);
+        }
     }
 
     private void showRatingDialog() {
@@ -106,4 +121,40 @@ public class FragmentSettings extends Fragment implements NegativeReviewListener
     public void onReview(int i) {
 
     }
+
+    private class Rating implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            showRatingDialog();
+        }
+    }
+
+    class ChangeMusic implements CompoundButton.OnCheckedChangeListener {
+        ChangeMusic() {
+        }
+
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            isMusicOn = isChecked;
+            if (isChecked) {
+                shared.saveMusic(true);
+            } else {
+                shared.saveMusic(false);
+            }
+        }
+    }
+
+    class ChangeSound implements CompoundButton.OnCheckedChangeListener {
+        ChangeSound() {
+        }
+
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            isSoundOn = isChecked;
+            if (isChecked) {
+                shared.saveSound(true);
+            } else {
+                shared.saveSound(false);
+            }
+        }
+    }
+
 }
