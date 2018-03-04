@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.kbiakov.codeview.CodeView;
 
 public class QuizDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -71,6 +73,9 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
     @BindView(R.id.quiz_timer)
     public ProgressBar timeProgress;
+
+    @BindView(R.id.code_view)
+    public CodeView codeView;
 
     private int totalQuestion;
 
@@ -142,6 +147,13 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         int i = questionNumber;
         questionNumber = i + 1;
         question_num.setText(append.append(i).append(" of ").append(totalQuestion).toString());
+
+        if (TextUtils.isEmpty(currentQuestion.getCode())) {
+            codeView.setVisibility(View.GONE);
+        } else {
+            codeView.setVisibility(View.VISIBLE);
+            codeView.setCode(currentQuestion.getCode(), "perl");
+        }
 
         quiz_question.setText(currentQuestion.getQuestion());
         answerOneButton.setText(currentQuestion.getOption_one());

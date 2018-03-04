@@ -9,6 +9,7 @@ public class QuestionItem {
     private String option_three;
     private String option_two;
     private int answer;
+    private String code;
 
     public QuestionItem() {
         id = 0;
@@ -19,9 +20,10 @@ public class QuestionItem {
         option_three = "";
         option_four = "";
         answer = 0;
+        code = "";
     }
 
-    public QuestionItem(String category, String question, String option_one, String option_two, String option_three, String option_four, int answer) {
+    public QuestionItem(String category, String question, String option_one, String option_two, String option_three, String option_four, int answer, String code) {
         this.category = category;
         this.question = question;
         this.option_one = option_one;
@@ -29,6 +31,7 @@ public class QuestionItem {
         this.option_three = option_three;
         this.option_four = option_four;
         this.answer = answer;
+        this.code = code;
     }
 
     public void setId(int id) {
@@ -63,6 +66,10 @@ public class QuestionItem {
         this.answer = answer;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -93,5 +100,9 @@ public class QuestionItem {
 
     public int getAnswer() {
         return this.answer;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

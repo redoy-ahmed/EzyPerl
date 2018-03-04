@@ -18,12 +18,9 @@ import java.util.List;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    // Database Name
     private static final String DATABASE_NAME = "ezyPerl";
-    // tasks table name
     private static final String QUESTION_ANSWER = "QuestionAnswer";
 
-    // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_QUES = "question";
@@ -32,6 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTTWO = "option_two";
     private static final String KEY_OPTTHREE = "option_three";
     private static final String KEY_OPTFOUR = "option_four";
+    private static final String KEY_CODE = "code";
     private SQLiteDatabase database;
 
     public DbHelper(Context context) {
@@ -50,19 +48,26 @@ public class DbHelper extends SQLiteOpenHelper {
                 + KEY_OPTTWO + " TEXT, "
                 + KEY_OPTTHREE + " TEXT, "
                 + KEY_OPTFOUR + " TEXT, "
-                + KEY_ANSWER + " INTEGER); ";
+                + KEY_ANSWER + " INTEGER, "
+                + KEY_CODE + " TEXT);";
         db.execSQL(sql);
         addQuestions();
         //db.close();
     }
 
     private void addQuestions() {
-        QuestionItem q1 = new QuestionItem("Math", "Sum of 1+1 is", "1", "2", "3", "4", 2);
-        this.addQuestion(q1);
-        QuestionItem q2 = new QuestionItem("Math", "Sum of 10+10 is", "10", "20", "30", "40", 2);
-        this.addQuestion(q2);
-        QuestionItem q3 = new QuestionItem("Math", "Result of 10*10 is", "100", "200", "300", "400", 1);
-        this.addQuestion(q3);
+        QuestionItem q1 = new QuestionItem("Math", "Sum of 1+1 is", "1", "2", "3", "4", 2, "");
+        addQuestion(q1);
+        QuestionItem q2 = new QuestionItem("Math", "Sum of 10+10 is", "10", "20", "30", "40", 2, "");
+        addQuestion(q2);
+        QuestionItem q3 = new QuestionItem("Math", "Result of 10*10 is", "100", "200", "300", "400", 1, "");
+        addQuestion(q3);
+        QuestionItem q4 = new QuestionItem("Perl", "what will be the output of the follwing program?", "Hello", "Hello, world", "Hello, world!", "Error", 3, "print \"Hello, world!\\n\";");
+        addQuestion(q4);
+        QuestionItem q5 = new QuestionItem("Perl", "what will be the output of the follwing program?", "Greetings, small planet", "Greetings, small", "Greetings", "Greetings, small planet!", 4, "print 'Greetings, small planet!'");
+        addQuestion(q5);
+        QuestionItem q6 = new QuestionItem("Perl", "what will be the output of the follwing program?", "Error!", "What's?", "'What's cooking?'", "What's cooking?", 4, "print What's cooking?;");
+        addQuestion(q6);
     }
 
     @Override
@@ -80,6 +85,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_OPTTHREE, questionItem.getOption_three());
         values.put(KEY_OPTFOUR, questionItem.getOption_four());
         values.put(KEY_ANSWER, questionItem.getAnswer());
+        values.put(KEY_CODE, questionItem.getCode());
 
         database.insert(QUESTION_ANSWER, null, values);
     }
@@ -105,6 +111,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 questionItem.setOption_three(cursor.getString(5));
                 questionItem.setOption_four(cursor.getString(6));
                 questionItem.setAnswer(cursor.getInt(7));
+                questionItem.setCode(cursor.getString(8));
                 quesList.add(questionItem);
             } while (cursor.moveToNext());
         }
