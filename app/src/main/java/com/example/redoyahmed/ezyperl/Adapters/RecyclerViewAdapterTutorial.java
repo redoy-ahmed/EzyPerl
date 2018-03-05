@@ -11,13 +11,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.redoyahmed.ezyperl.Model.TextTutorialItem;
+import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.redoyahmed.ezyperl.Utils.Colors.colors;
 
 /**
  * Created by redoy.ahmed on 20-Feb-2018.
@@ -25,11 +29,11 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial> {
 
-    private ArrayList<TextTutorialItem> itemList;
+    private List<TutorialItems> itemList;
     private Context context;
     private FragmentManager fragmentManager;
 
-    public RecyclerViewAdapterTutorial(Context context, ArrayList<TextTutorialItem> itemList, FragmentManager fragmentManager) {
+    public RecyclerViewAdapterTutorial(Context context, List<TutorialItems> itemList, FragmentManager fragmentManager) {
         this.itemList = itemList;
         this.context = context;
         this.fragmentManager = fragmentManager;
@@ -45,9 +49,9 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial holder, int position) {
-        holder.itemName.setText(itemList.get(position).getName());
-        holder.itemPhoto.setImageResource(itemList.get(position).getPhoto());
-        holder.relativeLayout.setBackgroundColor(Color.parseColor(itemList.get(position).getColor()));
+        holder.itemName.setText(itemList.get(position).getTutorial_name());
+        holder.itemPhoto.setImageResource(R.drawable.tutorial);
+        holder.relativeLayout.setBackgroundColor(Color.parseColor(colors[new Random().nextInt(colors.length)]));
     }
 
     @Override

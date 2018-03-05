@@ -6,7 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.redoyahmed.ezyperl.Model.Category;
+import com.example.redoyahmed.ezyperl.Model.Language;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
+import com.example.redoyahmed.ezyperl.Model.Result;
+import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,21 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ezyPerl";
+
+    private static final String TUTORIAL_LANGUAGE = "TutorialLanguage";
+    private static final String TUTORIAL_CATEGORY = "TutorialCategory";
+    private static final String TUTORIAL_DETAILS = "TutorialDetails";
     private static final String QUESTION_ANSWER = "QuestionAnswer";
+    private static final String TUTORIAL_RESULT = "TutorialResult";
+
+    private static final String KEY_NAME = "name";
+    private static final String KEY_LANGUAGE_ID = "language_id";
+    private static final String KEY_CATEGORY_ID = "category_id";
+    private static final String KEY_TUTORIAL_NAME = "tutorial_name";
+    private static final String KEY_TUTORIAL_DETAILS = "tutorial_details";
+    private static final String KEY_TUTORIAL_CODE = "tutorial_code";
+    private static final String KEY_TOTAL_QUESTION = "total_question";
+    private static final String KEY_CORRECT_ANSWER = "correct_answer";
 
     private static final String KEY_ID = "id";
     private static final String KEY_CATEGORY = "category";
@@ -38,7 +56,32 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         database = db;
-        String sql = "CREATE TABLE IF NOT EXISTS "
+        String sql;
+
+        sql = "CREATE TABLE IF NOT EXISTS "
+                + TUTORIAL_LANGUAGE + " ( "
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_NAME + " TEXT);";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS "
+                + TUTORIAL_CATEGORY + " ( "
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_LANGUAGE_ID + " INTEGER, "
+                + KEY_CATEGORY + " TEXT);";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS "
+                + TUTORIAL_DETAILS + " ( "
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_LANGUAGE_ID + " INTEGER, "
+                + KEY_CATEGORY_ID + " INTEGER, "
+                + KEY_TUTORIAL_NAME + " TEXT, "
+                + KEY_TUTORIAL_DETAILS + " TEXT, "
+                + KEY_TUTORIAL_CODE + " TEXT);";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS "
                 + QUESTION_ANSWER + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_CATEGORY + " TEXT, "
@@ -49,8 +92,72 @@ public class DbHelper extends SQLiteOpenHelper {
                 + KEY_OPTFOUR + " TEXT, "
                 + KEY_ANSWER + " INTEGER);";
         db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS "
+                + TUTORIAL_RESULT + " ( "
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_LANGUAGE_ID + " INTEGER, "
+                + KEY_CATEGORY_ID + " INTEGER, "
+                + KEY_TOTAL_QUESTION + " INTEGER, "
+                + KEY_CORRECT_ANSWER + " INTEGER);";
+        db.execSQL(sql);
+
+        addLanguages();
+        addCategories();
+        addDetails();
         addQuestions();
-        //db.close();
+        addResult();
+    }
+
+    private void addLanguages() {
+        Language l1 = new Language("Perl");
+        addLanguage(l1);
+    }
+
+    private void addLanguage(Language l) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, l.getName());
+        database.insert(TUTORIAL_LANGUAGE, null, values);
+    }
+
+    private void addCategories() {
+        Category c1 = new Category(1, "Array");
+        addCategory(c1);
+        Category c2 = new Category(1, "String");
+        addCategory(c2);
+        Category c3 = new Category(1, "List");
+        addCategory(c3);
+    }
+
+    private void addCategory(Category c) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_LANGUAGE_ID, c.getLanguage_id());
+        values.put(KEY_CATEGORY, c.getCategory());
+        database.insert(TUTORIAL_CATEGORY, null, values);
+    }
+
+    private void addDetails() {
+        TutorialItems details1 = new TutorialItems(1, 1, "Array Declaration", "BLA11 BLA1 BLA1", "Code1 code1 code1");
+        addDetail(details1);
+
+        TutorialItems details2 = new TutorialItems(1, 1, "Array Initialization", "BLA2 BLA2 BLA2", "Code2 code2 code2");
+        addDetail(details2);
+
+        TutorialItems details3 = new TutorialItems(1, 2, "String Usage", "BLA3 BLA3 BLA3", "Code3 code3 code3");
+        addDetail(details3);
+
+        TutorialItems details4 = new TutorialItems(1, 2, "String functions", "BLA4 BLA4 BLA4", "Code4 code4 code4");
+        addDetail(details4);
+    }
+
+    private void addDetail(TutorialItems details) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_LANGUAGE_ID, details.getLanguage_id());
+        values.put(KEY_CATEGORY_ID, details.getCategory_id());
+        values.put(KEY_TUTORIAL_NAME, details.getTutorial_name());
+        values.put(KEY_TUTORIAL_DETAILS, details.getTutorial_details());
+        values.put(KEY_TUTORIAL_CODE, details.getTutorial_code());
+        database.insert(TUTORIAL_DETAILS, null, values);
     }
 
     private void addQuestions() {
@@ -68,13 +175,7 @@ public class DbHelper extends SQLiteOpenHelper {
         addQuestion(q6);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
-        db.execSQL("DROP TABLE IF EXISTS " + QUESTION_ANSWER);
-        onCreate(db);
-    }
-
-    public void addQuestion(QuestionItem questionItem) {
+    private void addQuestion(QuestionItem questionItem) {
         ContentValues values = new ContentValues();
         values.put(KEY_CATEGORY, questionItem.getCategory());
         values.put(KEY_QUES, questionItem.getQuestion());
@@ -85,6 +186,23 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_ANSWER, questionItem.getAnswer());
 
         database.insert(QUESTION_ANSWER, null, values);
+    }
+
+    private void addResult() {
+        Result r1 = new Result(1, 1, 5, 4);
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_LANGUAGE_ID, r1.getLanguage_id());
+        values.put(KEY_CATEGORY_ID, r1.getCategory_id());
+        values.put(KEY_TOTAL_QUESTION, r1.getTotal_question());
+        values.put(KEY_CORRECT_ANSWER, r1.getCorrect_answer());
+        database.insert(TUTORIAL_RESULT, null, values);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
+        db.execSQL("DROP TABLE IF EXISTS " + QUESTION_ANSWER);
+        onCreate(db);
     }
 
     public List<QuestionItem> getAllQuestions() {
@@ -113,6 +231,32 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
         return quesList;
+    }
+
+    public List<TutorialItems> getAllTutorials() {
+
+        List<TutorialItems> tutorialList = new ArrayList<>();
+
+        String selectQuery = "SELECT  * FROM " + TUTORIAL_DETAILS + ";";
+
+        database = this.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                TutorialItems tutorialItems = new TutorialItems();
+                tutorialItems.setId(cursor.getInt(0));
+                tutorialItems.setLanguage_id(cursor.getInt(1));
+                tutorialItems.setCategory_id(cursor.getInt(2));
+                tutorialItems.setTutorial_name(cursor.getString(3));
+                tutorialItems.setTutorial_details(cursor.getString(4));
+                tutorialItems.setTutorial_code(cursor.getString(5));
+                tutorialList.add(tutorialItems);
+            } while (cursor.moveToNext());
+        }
+
+        return tutorialList;
     }
 
     public List<QuestionItem> getQuestionsByCategory(String category) {

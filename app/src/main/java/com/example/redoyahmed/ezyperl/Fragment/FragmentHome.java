@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amitshekhar.DebugDB;
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.AutoFitGridLayoutManager;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterHome;
@@ -49,6 +50,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void initializeData() {
+        DebugDB.getAddressLog();
         ArrayList<HomeItem> rowListItem = getAllItemList();
         RecyclerViewAdapterHome adapterHome = new RecyclerViewAdapterHome(rootView.getContext(), rowListItem, getFragmentManager());
         homeRecyclerView.setAdapter(adapterHome);
