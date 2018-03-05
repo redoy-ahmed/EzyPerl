@@ -43,19 +43,6 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.answer_four)
     public Button answerFourButton;
 
-    public CountDownTimer countDownTimer;
-    public int counter = 0;
-    public QuestionItem currentQuestion;
-    public Gson gson;
-    public Handler handler;
-    public boolean isMusicActive;
-    public boolean isSoundActive;
-    public PlayAudio playAudio;
-    public PlaySound playMusic;
-    public int questionIndex = 0;
-    public int questionNumber;
-    static final boolean $assertionsDisabled = (!QuizDetailActivity.class.desiredAssertionStatus());
-
     @BindView(R.id.quiz_question_number)
     public TextView question_num;
 
@@ -73,11 +60,24 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.quiz_timer)
     public ProgressBar timeProgress;
 
+    public CountDownTimer countDownTimer;
+    public int counter = 0;
+    public QuestionItem currentQuestion;
+    public Gson gson;
+    public Handler handler;
+    public boolean isMusicActive;
+    public boolean isSoundActive;
+    public PlayAudio playAudio;
+    public PlaySound playMusic;
+    public int questionIndex = 0;
+    public int questionNumber;
+    static final boolean $assertionsDisabled = (!QuizDetailActivity.class.desiredAssertionStatus());
+
     private int totalQuestion;
     private CustomSharedPreference shared;
 
-    class Limit implements Runnable {
-        Limit() {
+    class LoadResult implements Runnable {
+        LoadResult() {
         }
 
         public void run() {
@@ -89,8 +89,8 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    class Ahmed implements Runnable {
-        Ahmed() {
+    class LoadNewQuestion implements Runnable {
+        LoadNewQuestion() {
         }
 
         public void run() {
@@ -168,8 +168,8 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         this.countDownTimer = new CountDownTimer(21000, 1000) {
             final /* synthetic */ boolean $assertionsDisabled = (!QuizDetailActivity.class.desiredAssertionStatus());
 
-            class Kona implements Runnable {
-                Kona() {
+            class LoadResultInternal implements Runnable {
+                LoadResultInternal() {
                 }
 
                 public void run() {
@@ -181,8 +181,8 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
                 }
             }
 
-            class Redoy implements Runnable {
-                Redoy() {
+            class LoadNewQuestionInternal implements Runnable {
+                LoadNewQuestionInternal() {
                 }
 
                 public void run() {
@@ -212,11 +212,11 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
                     counter = 0;
                     questionIndex = questionIndex + 1;
                     if (questionIndex >= totalQuestion) {
-                        handler.postDelayed(new Kona(), 2000);
+                        handler.postDelayed(new LoadResultInternal(), 2000);
                         return;
                     }
                     currentQuestion = questions.get(questionIndex);
-                    handler.postDelayed(new Redoy(), 2000);
+                    handler.postDelayed(new LoadNewQuestionInternal(), 2000);
                     return;
                 }
                 throw new AssertionError();
@@ -311,11 +311,11 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         }
         questionIndex++;
         if (questionIndex >= totalQuestion) {
-            handler.postDelayed(new Limit(), 2000);
+            handler.postDelayed(new LoadResult(), 2000);
             return;
         }
         currentQuestion = questions.get(questionIndex);
-        handler.postDelayed(new Ahmed(), 2000);
+        handler.postDelayed(new LoadNewQuestion(), 2000);
     }
 
     private int getButtonNumberClicked(int buttonId) {
