@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +16,7 @@ import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Services.CustomSharedPreference;
 import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
 import com.example.redoyahmed.ezyperl.Utils.Constants;
 import com.example.redoyahmed.ezyperl.Utils.PlayAudio;
@@ -28,7 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.github.kbiakov.codeview.CodeView;
 
 public class QuizDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,10 +73,8 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.quiz_timer)
     public ProgressBar timeProgress;
 
-    @BindView(R.id.code_view)
-    public CodeView codeView;
-
     private int totalQuestion;
+    private CustomSharedPreference shared;
 
     class Limit implements Runnable {
         Limit() {
@@ -109,13 +106,8 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_detail);
         ButterKnife.bind(this);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        handler = new Handler();
-        resultList = new ArrayList();
-        playMusic = new PlaySound(this);
-        playAudio = new PlayAudio(this);
-
+        initializeWidgets();
         loadData();
 
         answerOneButton.setOnClickListener(this);
@@ -125,6 +117,23 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
         quiz_name.setText(selectedQuizName);
         timeProgress.setMax(20);
+    }
+
+    private void initializeWidgets() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        shared = EzyPerlApplication.getShared(getApplicationContext());
+
+        isMusicActive = shared.getSavedMusic();
+        isSoundActive = shared.getSavedSound();
+
+        if (isMusicActive) {
+            playAudio.playSound(R.raw.quizmusic);
+        }
+
+        handler = new Handler();
+        resultList = new ArrayList();
+        playMusic = new PlaySound(this);
+        playAudio = new PlayAudio(this);
     }
 
     private void loadData() {
@@ -147,13 +156,6 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         int i = questionNumber;
         questionNumber = i + 1;
         question_num.setText(append.append(i).append(" of ").append(totalQuestion).toString());
-
-        if (TextUtils.isEmpty(currentQuestion.getCode())) {
-            codeView.setVisibility(View.GONE);
-        } else {
-            codeView.setVisibility(View.VISIBLE);
-            codeView.setCode(currentQuestion.getCode(), "perl");
-        }
 
         quiz_question.setText(currentQuestion.getQuestion());
         answerOneButton.setText(currentQuestion.getOption_one());
