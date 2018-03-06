@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
     private String mResult;
-    private String quizSubcategoryName;
+    private int quizCategoryID;
     private List<ResultItem> submittedResult;
     private Gson gson;
 
@@ -58,6 +58,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     private void loadData() {
         mResult = getIntent().getExtras().getString(Constants.QUIZ_RESULT);
+        quizCategoryID = getIntent().getExtras().getInt(Constants.CATEGORY_ID);
         gson = EzyPerlApplication.getGsonObject();
         submittedResult = arrayToListObject(gson.fromJson(mResult, ResultItem[].class));
     }
@@ -95,10 +96,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String currentQuiz = getApplication().getShared().getCurrentQuiz();
-                Intent selectedIntent = new Intent(ResultActivity.this, QuizDetailActivity.class);
-                //selectedIntent.putExtra(Constants.SUBCATEGORY, currentQuiz);
-                ResultActivity.this.startActivity(selectedIntent);
+                Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
+                intent.putExtra(Constants.CATEGORY_ID, quizCategoryID);
+                startActivity(intent);
             }
         });
 

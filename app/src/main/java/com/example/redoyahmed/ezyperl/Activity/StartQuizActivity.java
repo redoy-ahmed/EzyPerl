@@ -81,8 +81,7 @@ public class StartQuizActivity extends AppCompatActivity {
                     dialog.show();
                 } else if (quizAgreement.isChecked()) {
                     Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
-                    /*intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
-                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    intent.putExtra(Constants.CATEGORY_ID, result.get(0).getCategory_id());
                     startActivity(intent);
                 } else {
                     dialog = customSweetAlertDialog.getAlertDialog(StartQuizActivity.this, SweetAlertDialog.ERROR_TYPE, "Oops...", "You must agree to quiz instruction before you start!");

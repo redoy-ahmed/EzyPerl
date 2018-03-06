@@ -197,7 +197,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addResult() {
-        Result r1 = new Result(1, 1, 2, 5, 4, 1);
+        Result r1 = new Result(1, 1, 2, 3, 1, 1);
 
         ContentValues values = new ContentValues();
         values.put(KEY_LANGUAGE_ID, r1.getLanguage_id());
@@ -301,11 +301,16 @@ public class DbHelper extends SQLiteOpenHelper {
         return categoryList;
     }
 
-    public List<QuestionItem> getQuestionsByCategory(String category) {
+    public List<QuestionItem> getQuestionsByCategory(int category) {
 
         List<QuestionItem> quesList = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM " + QUESTION_ANSWER + "WHERE " + KEY_CATEGORY + " = " + category + ";";
+        String selectQuery = "" +
+                "select\n" +
+                "*\n" +
+                "from \n" +
+                "QuestionAnswer \n" +
+                "where category_id=" + category + ";";
 
         database = this.getReadableDatabase();
 
@@ -315,12 +320,14 @@ public class DbHelper extends SQLiteOpenHelper {
             do {
                 QuestionItem questionItem = new QuestionItem();
                 questionItem.setId(cursor.getInt(0));
-                questionItem.setCategory(cursor.getString(1));
-                questionItem.setQuestion(cursor.getString(2));
-                questionItem.setOption_one(cursor.getString(3));
-                questionItem.setOption_two(cursor.getString(4));
-                questionItem.setOption_three(cursor.getString(5));
-                questionItem.setOption_four(cursor.getString(6));
+                questionItem.setCategoryID(cursor.getInt(1));
+                questionItem.setCategory(cursor.getString(2));
+                questionItem.setQuestion(cursor.getString(3));
+                questionItem.setOption_one(cursor.getString(4));
+                questionItem.setOption_two(cursor.getString(5));
+                questionItem.setOption_three(cursor.getString(6));
+                questionItem.setOption_four(cursor.getString(7));
+                questionItem.setAnswer(cursor.getInt(8));
                 quesList.add(questionItem);
             } while (cursor.moveToNext());
         }
