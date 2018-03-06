@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.redoyahmed.ezyperl.Activity.StartQuizActivity;
 import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Utils.Constants;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
     @Override
     public ProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_profile, parent, false);
-        RecyclerViewAdapterProfile.ProfileViewHolder rcv = new RecyclerViewAdapterProfile.ProfileViewHolder(layoutView, context);
+        RecyclerViewAdapterProfile.ProfileViewHolder rcv = new RecyclerViewAdapterProfile.ProfileViewHolder(layoutView, context, performanceObjectList);
         return rcv;
     }
 
@@ -58,7 +59,7 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
         @BindView(R.id.quiz_score_indicator)
         public ProgressBar scoreIndicator;
 
-        public ProfileViewHolder(final View itemView, final Context context) {
+        public ProfileViewHolder(final View itemView, final Context context, final List<PerformanceItem> performanceObjectList) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -66,16 +67,15 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, StartQuizActivity.class);
-                    /*intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
-                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    intent.putExtra(Constants.CATEGORY_ID, performanceObjectList.get(getAdapterPosition()).getCategoryID());
+                    intent.putExtra(Constants.CATEGORY, performanceObjectList.get(getAdapterPosition()).getCategory());
                     context.startActivity(intent);
                 }
             });
         }
     }
 
-    private int getScorePercent(List<PerformanceItem> performanceItems, int position)
-    {
+    private int getScorePercent(List<PerformanceItem> performanceItems, int position) {
         int totalQuestion = performanceItems.get(position).getTotalQuestion();
         int correctAnswer = performanceItems.get(position).getCorrectAnswer();
 

@@ -2,6 +2,7 @@ package com.example.redoyahmed.ezyperl.Utils;
 
 public class Constants {
     public static final String CATEGORY = "category";
+    public static final String CATEGORY_ID = "category_id";
     public static final String CATEGORY_IMAGE = "category_image";
     public static final String CATEGORY_NAME = "category_name";
     public static final String CHECK_QUIZ = "CHECK_QUIZ";

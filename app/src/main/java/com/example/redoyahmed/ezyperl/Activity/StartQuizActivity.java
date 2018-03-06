@@ -9,27 +9,25 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
+import com.example.redoyahmed.ezyperl.Model.Result;
 import com.example.redoyahmed.ezyperl.R;
-import com.google.gson.Gson;
+import com.example.redoyahmed.ezyperl.Utils.Constants;
+import com.example.redoyahmed.ezyperl.Utils.CustomSweetAlertDialog;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class StartQuizActivity extends AppCompatActivity {
-
-    public List<String> allFollowedQuiz;
 
     @BindView(R.id.best_score)
     public TextView bestScore;
 
-    public Gson gson;
-
     @BindView(R.id.level)
     public TextView level;
-
-    public String mSubcategory;
 
     @BindView(R.id.agree)
     public CheckBox quizAgreement;
@@ -55,7 +53,15 @@ public class StartQuizActivity extends AppCompatActivity {
     @BindView(R.id.play_button)
     public Button playButton;
 
-    public String totalQuizCount;
+    public int totalQuizCount;
+    public String quizCategory;
+    public int quizCategoryID;
+
+    public List<Result> result;
+
+    public CustomSweetAlertDialog customSweetAlertDialog;
+    public SweetAlertDialog dialog;
+    public DbHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +69,46 @@ public class StartQuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_quiz);
         ButterKnife.bind(this);
 
+        loadData();
+        loadDataIntoWidgets();
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
-                /*intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
-                intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
-                startActivity(intent);
+
+                if (totalQuizCount <= 0) {
+                    dialog = customSweetAlertDialog.getAlertDialog(StartQuizActivity.this, SweetAlertDialog.ERROR_TYPE, "Oops...", "No quiz in this quiz group yet!");
+                    dialog.show();
+                } else if (quizAgreement.isChecked()) {
+                    Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
+                    /*intent.putExtra("linkTitle", itemList1.get(getAdapterPosition()).getName());
+                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    startActivity(intent);
+                } else {
+                    dialog = customSweetAlertDialog.getAlertDialog(StartQuizActivity.this, SweetAlertDialog.ERROR_TYPE, "Oops...", "You must agree to quiz instruction before you start!");
+                    dialog.show();
+                }
             }
         });
+    }
 
+    private void loadData() {
+        quizCategoryID = getIntent().getExtras().getInt(Constants.CATEGORY_ID);
+        quizCategory = getIntent().getExtras().getString(Constants.CATEGORY);
+
+        customSweetAlertDialog = new CustomSweetAlertDialog();
+
+        db = new DbHelper(getApplicationContext());
+        result = db.getResultsByCategory(quizCategoryID);
+        totalQuizCount = result.get(0).getTotal_question();
+    }
+
+    private void loadDataIntoWidgets() {
+        quizName.setText(quizCategory);
+        totalQuestion.setText("TOTAL QUESTION IN " + quizCategory);
+        quizCompetedPercentage.setText(result.get(0).getTotal_question() + " QUESTIONS");
+        bestScore.setText(result.get(0).getCorrect_answer() + "");
+        timePlayed.setText(result.get(0).getTimes_played() + "");
+        level.setText(result.get(0).getLevel() + "");
     }
 }

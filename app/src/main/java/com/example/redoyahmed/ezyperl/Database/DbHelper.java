@@ -39,6 +39,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_TUTORIAL_CODE = "tutorial_code";
     private static final String KEY_TOTAL_QUESTION = "total_question";
     private static final String KEY_CORRECT_ANSWER = "correct_answer";
+    private static final String KEY_TIMES_PLAYED = "times_played";
 
     private static final String KEY_ID = "id";
     private static final String KEY_CATEGORY = "category";
@@ -48,6 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTTWO = "option_two";
     private static final String KEY_OPTTHREE = "option_three";
     private static final String KEY_OPTFOUR = "option_four";
+    private static final String KEY_LEVEL = "level";
     private SQLiteDatabase database;
 
     public DbHelper(Context context) {
@@ -69,7 +71,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 + TUTORIAL_CATEGORY + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_LANGUAGE_ID + " INTEGER, "
-                + KEY_CATEGORY + " TEXT);";
+                + KEY_CATEGORY + " TEXT, "
+                + KEY_LEVEL + " INTEGER);";
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS "
@@ -85,6 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sql = "CREATE TABLE IF NOT EXISTS "
                 + QUESTION_ANSWER + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_CATEGORY_ID + " INTEGER, "
                 + KEY_CATEGORY + " TEXT, "
                 + KEY_QUES + " TEXT, "
                 + KEY_OPTONE + " TEXT, "
@@ -99,6 +103,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_LANGUAGE_ID + " INTEGER, "
                 + KEY_CATEGORY_ID + " INTEGER, "
+                + KEY_TIMES_PLAYED + " INTEGER, "
                 + KEY_TOTAL_QUESTION + " INTEGER, "
                 + KEY_CORRECT_ANSWER + " INTEGER);";
         db.execSQL(sql);
@@ -122,11 +127,11 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addCategories() {
-        Category c1 = new Category(1, "Array");
+        Category c1 = new Category(1, "Array", 1);
         addCategory(c1);
-        Category c2 = new Category(1, "String");
+        Category c2 = new Category(1, "String", 2);
         addCategory(c2);
-        Category c3 = new Category(1, "List");
+        Category c3 = new Category(1, "List", 3);
         addCategory(c3);
     }
 
@@ -134,6 +139,7 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_LANGUAGE_ID, c.getLanguage_id());
         values.put(KEY_CATEGORY, c.getCategory());
+        values.put(KEY_LEVEL, c.getLevel());
         database.insert(TUTORIAL_CATEGORY, null, values);
     }
 
@@ -162,22 +168,23 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addQuestions() {
-        QuestionItem q1 = new QuestionItem("Math", "Sum of 1+1 is", "1", "2", "3", "4", 2);
+        QuestionItem q1 = new QuestionItem(1, "Math", "Sum of 1+1 is", "1", "2", "3", "4", 2);
         addQuestion(q1);
-        QuestionItem q2 = new QuestionItem("Math", "Sum of 10+10 is", "10", "20", "30", "40", 2);
+        QuestionItem q2 = new QuestionItem(1, "Math", "Sum of 10+10 is", "10", "20", "30", "40", 2);
         addQuestion(q2);
-        QuestionItem q3 = new QuestionItem("Math", "Result of 10*10 is", "100", "200", "300", "400", 1);
+        QuestionItem q3 = new QuestionItem(1, "Math", "Result of 10*10 is", "100", "200", "300", "400", 1);
         addQuestion(q3);
-        QuestionItem q4 = new QuestionItem("Perl", "what will be the output of the following program? \nprint \"Hello, world!\";", "Hello", "Hello, world", "Hello, world!", "Error", 3);
+        QuestionItem q4 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint \"Hello, world!\";", "Hello", "Hello, world", "Hello, world!", "Error", 3);
         addQuestion(q4);
-        QuestionItem q5 = new QuestionItem("Perl", "what will be the output of the following program? \nprint 'Greetings, small planet!';", "Greetings, small planet", "Greetings, small", "Greetings", "Greetings, small planet!", 4);
+        QuestionItem q5 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint 'Greetings, small planet!';", "Greetings, small planet", "Greetings, small", "Greetings", "Greetings, small planet!", 4);
         addQuestion(q5);
-        QuestionItem q6 = new QuestionItem("Perl", "what will be the output of the following program? \nprint What's cooking?;", "Error!", "What's?", "'What's cooking?'", "What's cooking?", 4);
+        QuestionItem q6 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint What's cooking?;", "Error!", "What's?", "'What's cooking?'", "What's cooking?", 4);
         addQuestion(q6);
     }
 
     private void addQuestion(QuestionItem questionItem) {
         ContentValues values = new ContentValues();
+        values.put(KEY_CATEGORY_ID, questionItem.getCategoryID());
         values.put(KEY_CATEGORY, questionItem.getCategory());
         values.put(KEY_QUES, questionItem.getQuestion());
         values.put(KEY_OPTONE, questionItem.getOption_one());
@@ -190,11 +197,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addResult() {
-        Result r1 = new Result(1, 1, 5, 4);
+        Result r1 = new Result(1, 1, 2, 5, 4, 1);
 
         ContentValues values = new ContentValues();
         values.put(KEY_LANGUAGE_ID, r1.getLanguage_id());
         values.put(KEY_CATEGORY_ID, r1.getCategory_id());
+        values.put(KEY_TIMES_PLAYED, r1.getTimes_played());
         values.put(KEY_TOTAL_QUESTION, r1.getTotal_question());
         values.put(KEY_CORRECT_ANSWER, r1.getCorrect_answer());
         database.insert(TUTORIAL_RESULT, null, values);
@@ -220,13 +228,14 @@ public class DbHelper extends SQLiteOpenHelper {
             do {
                 QuestionItem questionItem = new QuestionItem();
                 questionItem.setId(cursor.getInt(0));
-                questionItem.setCategory(cursor.getString(1));
-                questionItem.setQuestion(cursor.getString(2));
-                questionItem.setOption_one(cursor.getString(3));
-                questionItem.setOption_two(cursor.getString(4));
-                questionItem.setOption_three(cursor.getString(5));
-                questionItem.setOption_four(cursor.getString(6));
-                questionItem.setAnswer(cursor.getInt(7));
+                questionItem.setCategoryID(cursor.getInt(1));
+                questionItem.setCategory(cursor.getString(2));
+                questionItem.setQuestion(cursor.getString(3));
+                questionItem.setOption_one(cursor.getString(4));
+                questionItem.setOption_two(cursor.getString(5));
+                questionItem.setOption_three(cursor.getString(6));
+                questionItem.setOption_four(cursor.getString(7));
+                questionItem.setAnswer(cursor.getInt(8));
                 quesList.add(questionItem);
             } while (cursor.moveToNext());
         }
@@ -265,13 +274,14 @@ public class DbHelper extends SQLiteOpenHelper {
         List<PerformanceItem> categoryList = new ArrayList<>();
 
         String selectQuery = "" +
-                "SELECT TC.category as category,\n" +
-                "COALESCE(TR.total_question, 0) AS totalQuestion, \n" +
+                "SELECT TC.id as categoryID,\n" +
+                "TC.category as category,\n" +
+                "COALESCE(TR.total_question, 0) AS totalQuestion,\n" +
                 "COALESCE(TR.correct_answer, 0) AS correctAnswer \n" +
-                "FROM \n" +
-                "TutorialCategory TC \n" +
-                "LEFT JOIN \n" +
-                "TutorialResult TR \n" +
+                "FROM\n" +
+                "TutorialCategory TC\n" +
+                "LEFT JOIN\n" +
+                "TutorialResult TR\n" +
                 "ON TC.id=TR.category_id;";
 
         database = this.getReadableDatabase();
@@ -281,9 +291,10 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 PerformanceItem performanceItem = new PerformanceItem();
-                performanceItem.setCategory(cursor.getString(0));
-                performanceItem.setTotalQuestion(cursor.getInt(1));
-                performanceItem.setCorrectAnswer(cursor.getInt(2));
+                performanceItem.setCategoryID(cursor.getInt(0));
+                performanceItem.setCategory(cursor.getString(1));
+                performanceItem.setTotalQuestion(cursor.getInt(2));
+                performanceItem.setCorrectAnswer(cursor.getInt(3));
                 categoryList.add(performanceItem);
             } while (cursor.moveToNext());
         }
@@ -315,6 +326,45 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
         return quesList;
+    }
+
+    public List<Result> getResultsByCategory(int category_id) {
+
+        List<Result> resultList = new ArrayList<>();
+
+        String selectQuery = "" +
+                "SELECT TR.id as id,\n" +
+                "TR.language_id as language_id,\n" +
+                "TC.id as categoryID,\n" +
+                "TR.times_played as times_played,\n" +
+                "COALESCE(TR.total_question, 0) AS totalQuestion,\n" +
+                "COALESCE(TR.correct_answer, 0) AS correctAnswer,\n" +
+                "TC.level as level\n" +
+                "FROM\n" +
+                "TutorialCategory TC\n" +
+                "LEFT JOIN\n" +
+                "TutorialResult TR\n" +
+                "ON TC.id=TR.category_id where TC.id=" + category_id + ";";
+
+        database = this.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Result result = new Result();
+                result.setId(cursor.getInt(0));
+                result.setLanguage_id(cursor.getInt(1));
+                result.setCategory_id(cursor.getInt(2));
+                result.setTimes_played(cursor.getInt(3));
+                result.setTotal_question(cursor.getInt(4));
+                result.setCorrect_answer(cursor.getInt(5));
+                result.setLevel(cursor.getInt(6));
+                resultList.add(result);
+            } while (cursor.moveToNext());
+        }
+
+        return resultList;
     }
 
     public int rowcount() {

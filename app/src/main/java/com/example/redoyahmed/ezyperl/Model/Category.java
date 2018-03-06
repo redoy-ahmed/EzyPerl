@@ -8,16 +8,19 @@ public class Category {
     private int id;
     private int language_id;
     private String category;
+    private int level;
 
     public Category() {
         id = 1;
         language_id = 1;
         category = "";
+        level = 1;
     }
 
-    public Category(int language_id, String category) {
+    public Category(int language_id, String category, int level) {
         this.language_id = language_id;
         this.category = category;
+        this.level = level;
     }
 
     public void setId(int id) {
@@ -32,6 +35,10 @@ public class Category {
         this.category = category;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public int getId() {
         return id;
     }
@@ -42,5 +49,9 @@ public class Category {
 
     public String getCategory() {
         return category;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

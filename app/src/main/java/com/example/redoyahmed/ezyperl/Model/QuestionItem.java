@@ -2,6 +2,7 @@ package com.example.redoyahmed.ezyperl.Model;
 
 public class QuestionItem {
     private int id;
+    private int categoryID;
     private String category;
     private String question;
     private String option_four;
@@ -12,6 +13,7 @@ public class QuestionItem {
 
     public QuestionItem() {
         id = 0;
+        categoryID = 0;
         category = "";
         question = "";
         option_one = "";
@@ -21,7 +23,8 @@ public class QuestionItem {
         answer = 0;
     }
 
-    public QuestionItem(String category, String question, String option_one, String option_two, String option_three, String option_four, int answer) {
+    public QuestionItem(int categoryID, String category, String question, String option_one, String option_two, String option_three, String option_four, int answer) {
+        this.categoryID = categoryID;
         this.category = category;
         this.question = question;
         this.option_one = option_one;
@@ -33,6 +36,10 @@ public class QuestionItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
     public void setCategory(String category) {
@@ -65,6 +72,10 @@ public class QuestionItem {
 
     public int getId() {
         return this.id;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
     }
 
     public String getCategory() {
