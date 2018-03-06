@@ -12,7 +12,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
@@ -32,6 +31,7 @@ import com.example.redoyahmed.ezyperl.Model.OutputResponse;
 import com.example.redoyahmed.ezyperl.R;
 import com.example.redoyahmed.ezyperl.Services.ApiClient;
 import com.example.redoyahmed.ezyperl.Services.ApiInterface;
+import com.example.redoyahmed.ezyperl.Services.SaveFiles;
 import com.example.redoyahmed.ezyperl.Utils.ConnectionStatus;
 import com.example.redoyahmed.ezyperl.Utils.CustomSweetAlertDialog;
 import com.example.redoyahmed.ezyperl.Utils.StatusCodes;
@@ -48,7 +48,7 @@ import retrofit2.Response;
  * Created by redoy.ahmed on 11-Feb-2018.
  */
 
-public class FragmentPractise extends Fragment {
+public class FragmentPractise extends Fragment implements SaveFiles.OnBackupListener {
 
     View rootView;
 
@@ -67,19 +67,13 @@ public class FragmentPractise extends Fragment {
 
     private SharedPreferences permissionStatus;
     private boolean sentToSettings = false;
+    private SaveFiles saveFiles;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_practise, container, false);
-
         ButterKnife.bind(this, rootView);
-
-        codeEditText.setText("$x = 10;\n" +
-                "$y = 25;\n" +
-                "$z = $x+$y;\n" +
-                "\n" +
-                "print \"Sum of $x + $y = $z\";\n");
 
         initializeWidgets();
 
@@ -91,6 +85,15 @@ public class FragmentPractise extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Practise");
         MainActivity.navigationView.getMenu().getItem(2).setChecked(true);
+
+        codeEditText.setText("$x = 10;\n" +
+                "$y = 25;\n" +
+                "$z = $x+$y;\n" +
+                "\n" +
+                "print \"Sum of $x + $y = $z\";\n");
+
+        saveFiles = new SaveFiles(rootView.getContext());
+        saveFiles.setOnBackupListener(this);
 
         setHasOptionsMenu(true);
     }
@@ -225,10 +228,82 @@ public class FragmentPractise extends Fragment {
                 return true;
 
             case R.id.action_save:
+                saveFileDialog();
                 return true;
+
+            case R.id.action_open:
+                if (codeEditText.getText().toString().length() > 0)
+                    saveFileDialogBeforeOpen();
+                else
+                    saveFiles.showDialogListFile(codeEditText);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void saveFileDialogBeforeOpen() {
+
+        LayoutInflater li = LayoutInflater.from(rootView.getContext());
+        View promptsView = li.inflate(R.layout.save_dialog, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(rootView.getContext());
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = promptsView.findViewById(R.id.editTextDialogFileName);
+        final String fileName = userInput.getText().toString();
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                if (fileName.length() > 0)
+                                    saveFiles.exportToSD(fileName, codeEditText.getText().toString());
+                                else
+                                    saveFiles.exportToSD("EzyPerl Practise", codeEditText.getText().toString());
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                saveFiles.showDialogListFile(codeEditText);
+                                dialog.cancel();
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void saveFileDialog() {
+        LayoutInflater li = LayoutInflater.from(rootView.getContext());
+        View promptsView = li.inflate(R.layout.save_dialog, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(rootView.getContext());
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = promptsView.findViewById(R.id.editTextDialogFileName);
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                saveFiles.exportToSD(userInput.getText().toString(), codeEditText.getText().toString());
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -301,6 +376,24 @@ public class FragmentPractise extends Fragment {
         } else {
             Toast.makeText(rootView.getContext(), "There is no Internet Connection", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onFinishExport(String error) {
+        String notify = error;
+        if (error == null) {
+            notify = "Save Success";
+        }
+        Toast.makeText(rootView.getContext(), notify, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFinishImport(String error) {
+        String notify = error;
+        if (error == null) {
+            notify = "Open Success";
+        }
+        Toast.makeText(rootView.getContext(), notify, Toast.LENGTH_SHORT).show();
     }
 }
 
