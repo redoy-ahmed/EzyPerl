@@ -37,9 +37,10 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
     @Override
     public void onBindViewHolder(RecyclerViewAdapterProfile.ProfileViewHolder holder, int position) {
         PerformanceItem performanceObject = this.performanceObjectList.get(position);
-        holder.quizCategory.setText(performanceObject.getName());
-        holder.quizCategoryScore.setText(String.format("%s%% in all quiz attempts", new Object[]{performanceObject.getValue()}));
-        holder.scoreIndicator.setProgress(Integer.parseInt(performanceObject.getValue()));
+        holder.quizCategory.setText(performanceObject.getCategory());
+        int scoreInPercentage = getScorePercent(performanceObjectList, position);
+        holder.quizCategoryScore.setText(String.format("%s%% in all quiz attempts", String.valueOf(scoreInPercentage)));
+        holder.scoreIndicator.setProgress(performanceObject.getCorrectAnswer());
     }
 
     public int getItemCount() {
@@ -71,5 +72,16 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
                 }
             });
         }
+    }
+
+    private int getScorePercent(List<PerformanceItem> performanceItems, int position)
+    {
+        int totalQuestion = performanceItems.get(position).getTotalQuestion();
+        int correctAnswer = performanceItems.get(position).getCorrectAnswer();
+
+        if (performanceItems == null || totalQuestion == 0) {
+            return 0;
+        }
+        return (correctAnswer * 100) / totalQuestion;
     }
 }

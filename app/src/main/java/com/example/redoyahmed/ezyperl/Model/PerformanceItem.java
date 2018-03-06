@@ -1,19 +1,43 @@
 package com.example.redoyahmed.ezyperl.Model;
 
 public class PerformanceItem {
-    private String name;
-    private String value;
+    private String category;
+    private int totalQuestion;
+    private int correctAnswer;
 
-    public PerformanceItem(String name, String value) {
-        this.name = name;
-        this.value = value;
+    public PerformanceItem() {
+        category = "";
+        totalQuestion = 0;
+        correctAnswer = 0;
     }
 
-    public String getName() {
-        return this.name;
+    public PerformanceItem(String category, int totalQuestion, int correctAnswer) {
+        this.category = category;
+        this.totalQuestion = totalQuestion;
+        this.correctAnswer = correctAnswer;
     }
 
-    public String getValue() {
-        return this.value;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setTotalQuestion(int totalQuestion) {
+        this.totalQuestion = totalQuestion;
+    }
+
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getTotalQuestion() {
+        return totalQuestion;
+    }
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
     }
 }

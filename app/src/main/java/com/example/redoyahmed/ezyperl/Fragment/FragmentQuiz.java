@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterProfile;
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.R;
 
@@ -32,9 +33,7 @@ public class FragmentQuiz extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         rootView = inflater.inflate(R.layout.fragment_quiz, container, false);
-
         ButterKnife.bind(this, rootView);
 
         initializeWidgets();
@@ -52,22 +51,8 @@ public class FragmentQuiz extends Fragment {
 
 
     private void initializeData() {
-        PerformanceItem one = new PerformanceItem("Data Type", "2");
-        PerformanceItem two = new PerformanceItem("String", "0");
-        PerformanceItem three = new PerformanceItem("Array", "1");
-        PerformanceItem four = new PerformanceItem("List", "3");
-        PerformanceItem five = new PerformanceItem("Custom", "5");
-        PerformanceItem six = new PerformanceItem("Class", "70");
-
-
-        List<PerformanceItem> returnedScores = new ArrayList<>();
-        returnedScores.add(one);
-        returnedScores.add(two);
-        returnedScores.add(three);
-        returnedScores.add(four);
-        returnedScores.add(five);
-        returnedScores.add(six);
-
+        DbHelper db = new DbHelper(rootView.getContext());
+        List<PerformanceItem> returnedScores = db.getAllCategories();
         performanceRecyclerView.setAdapter(new RecyclerViewAdapterProfile(getActivity(), returnedScores));
     }
 }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.Model.Language;
+import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.Result;
 import com.example.redoyahmed.ezyperl.Model.TutorialItems;
@@ -257,6 +258,36 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
         return tutorialList;
+    }
+
+    public List<PerformanceItem> getAllCategories() {
+
+        List<PerformanceItem> categoryList = new ArrayList<>();
+
+        String selectQuery = "" +
+                "SELECT TC.category as category,\n" +
+                "COALESCE(TR.total_question, 0) AS totalQuestion, \n" +
+                "COALESCE(TR.correct_answer, 0) AS correctAnswer \n" +
+                "FROM \n" +
+                "TutorialCategory TC \n" +
+                "LEFT JOIN \n" +
+                "TutorialResult TR \n" +
+                "ON TC.id=TR.category_id;";
+
+        database = this.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                PerformanceItem performanceItem = new PerformanceItem();
+                performanceItem.setCategory(cursor.getString(0));
+                performanceItem.setTotalQuestion(cursor.getInt(1));
+                performanceItem.setCorrectAnswer(cursor.getInt(2));
+                categoryList.add(performanceItem);
+            } while (cursor.moveToNext());
+        }
+        return categoryList;
     }
 
     public List<QuestionItem> getQuestionsByCategory(String category) {
