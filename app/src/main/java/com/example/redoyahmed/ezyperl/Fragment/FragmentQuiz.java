@@ -42,13 +42,11 @@ public class FragmentQuiz extends Fragment {
         return rootView;
     }
 
-
     private void initializeWidgets() {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Quiz");
         MainActivity.navigationView.getMenu().getItem(3).setChecked(true);
         performanceRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-
 
     private void initializeData() {
         DbHelper db = new DbHelper(rootView.getContext());

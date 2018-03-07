@@ -1,6 +1,5 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.redoyahmed.ezyperl.Activity.ResultActivity;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
 

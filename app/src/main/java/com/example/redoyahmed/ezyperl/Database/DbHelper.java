@@ -112,7 +112,6 @@ public class DbHelper extends SQLiteOpenHelper {
         addCategories();
         addDetails();
         addQuestions();
-        addResult();
     }
 
     private void addLanguages() {
@@ -196,15 +195,15 @@ public class DbHelper extends SQLiteOpenHelper {
         database.insert(QUESTION_ANSWER, null, values);
     }
 
-    private void addResult() {
-        Result r1 = new Result(1, 1, 2, 3, 1, 1);
+    public void addResult(Result result) {
+        database.delete(TUTORIAL_RESULT, KEY_CATEGORY_ID + "=?", new String[]{String.valueOf(result.getCategory_id())});
 
         ContentValues values = new ContentValues();
-        values.put(KEY_LANGUAGE_ID, r1.getLanguage_id());
-        values.put(KEY_CATEGORY_ID, r1.getCategory_id());
-        values.put(KEY_TIMES_PLAYED, r1.getTimes_played());
-        values.put(KEY_TOTAL_QUESTION, r1.getTotal_question());
-        values.put(KEY_CORRECT_ANSWER, r1.getCorrect_answer());
+        values.put(KEY_LANGUAGE_ID, result.getLanguage_id());
+        values.put(KEY_CATEGORY_ID, result.getCategory_id());
+        values.put(KEY_TIMES_PLAYED, result.getTimes_played());
+        values.put(KEY_TOTAL_QUESTION, result.getTotal_question());
+        values.put(KEY_CORRECT_ANSWER, result.getCorrect_answer());
         database.insert(TUTORIAL_RESULT, null, values);
     }
 
@@ -274,7 +273,8 @@ public class DbHelper extends SQLiteOpenHelper {
         List<PerformanceItem> categoryList = new ArrayList<>();
 
         String selectQuery = "" +
-                "SELECT TC.id as categoryID,\n" +
+                "SELECT TC.language_id as languageID,\n" +
+                "TC.id as categoryID,\n" +
                 "TC.category as category,\n" +
                 "COALESCE(TR.total_question, 0) AS totalQuestion,\n" +
                 "COALESCE(TR.correct_answer, 0) AS correctAnswer \n" +
@@ -291,10 +291,11 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 PerformanceItem performanceItem = new PerformanceItem();
-                performanceItem.setCategoryID(cursor.getInt(0));
-                performanceItem.setCategory(cursor.getString(1));
-                performanceItem.setTotalQuestion(cursor.getInt(2));
-                performanceItem.setCorrectAnswer(cursor.getInt(3));
+                performanceItem.setLanguageID(cursor.getInt(0));
+                performanceItem.setCategoryID(cursor.getInt(1));
+                performanceItem.setCategory(cursor.getString(2));
+                performanceItem.setTotalQuestion(cursor.getInt(3));
+                performanceItem.setCorrectAnswer(cursor.getInt(4));
                 categoryList.add(performanceItem);
             } while (cursor.moveToNext());
         }
@@ -351,7 +352,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "TutorialCategory TC\n" +
                 "LEFT JOIN\n" +
                 "TutorialResult TR\n" +
-                "ON TC.id=TR.category_id where TC.id=" + category_id + ";";
+                "ON TC.id=TR.category_id where TR.category_id=" + category_id + ";";
 
         database = this.getReadableDatabase();
 
@@ -374,12 +375,13 @@ public class DbHelper extends SQLiteOpenHelper {
         return resultList;
     }
 
-    public int rowcount() {
+    public int questionCount(int category_id) {
         int row;
-        String selectQuery = "SELECT  * FROM " + QUESTION_ANSWER;
-        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "select * from QuestionAnswer where category_id=" + category_id + ";";
+        SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         row = cursor.getCount();
+
         return row;
     }
 }

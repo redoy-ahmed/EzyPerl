@@ -67,6 +67,7 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, StartQuizActivity.class);
+                    intent.putExtra(Constants.LANGUAGE_ID, performanceObjectList.get(getAdapterPosition()).getLanguageID());
                     intent.putExtra(Constants.CATEGORY_ID, performanceObjectList.get(getAdapterPosition()).getCategoryID());
                     intent.putExtra(Constants.CATEGORY, performanceObjectList.get(getAdapterPosition()).getCategory());
                     context.startActivity(intent);

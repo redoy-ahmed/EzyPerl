@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
+import com.example.redoyahmed.ezyperl.Model.Result;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
 import com.example.redoyahmed.ezyperl.R;
 import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
@@ -24,9 +26,11 @@ import butterknife.ButterKnife;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
     private String mResult;
-    private int quizCategoryID;
+    private int quizLanguageID, quizCategoryID;
     private List<ResultItem> submittedResult;
     private Gson gson;
+    public DbHelper db;
+    private List<Result> result;
 
     @BindView(R.id.your_score)
     public CircleView scoreView;
@@ -58,9 +62,29 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     private void loadData() {
         mResult = getIntent().getExtras().getString(Constants.QUIZ_RESULT);
+        quizLanguageID = getIntent().getExtras().getInt(Constants.LANGUAGE_ID);
         quizCategoryID = getIntent().getExtras().getInt(Constants.CATEGORY_ID);
         gson = EzyPerlApplication.getGsonObject();
         submittedResult = arrayToListObject(gson.fromJson(mResult, ResultItem[].class));
+
+        db = new DbHelper(getApplicationContext());
+        result = db.getResultsByCategory(quizCategoryID);
+
+        int totalQuestion = submittedResult.size();
+        int correct = correctCount(submittedResult);
+
+        Result result1;
+
+        if (result.size() > 0) {
+            if (result.get(0).getCorrect_answer() <= correct) {
+                result1 = new Result(quizLanguageID, quizCategoryID, (result.get(0).getTimes_played() + 1), totalQuestion, correct, 1);
+            } else {
+                result1 = new Result(quizLanguageID, quizCategoryID, (result.get(0).getTimes_played() + 1), totalQuestion, result.get(0).getCorrect_answer(), 1);
+            }
+        } else {
+            result1 = new Result(quizLanguageID, quizCategoryID, 1, totalQuestion, correct, 1);
+        }
+        db.addResult(result1);
     }
 
     private List<ResultItem> arrayToListObject(ResultItem[] response) {
@@ -97,6 +121,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
+                intent.putExtra(Constants.LANGUAGE_ID, quizLanguageID);
                 intent.putExtra(Constants.CATEGORY_ID, quizCategoryID);
                 startActivity(intent);
             }
@@ -134,6 +159,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
         return passed ? correct : wrong;
+    }
+
+    private int correctCount(List<ResultItem> result) {
+        int correct = 0;
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).getIsAnswer() == 1) {
+                correct++;
+            }
+        }
+        return correct;
     }
 
     @Override

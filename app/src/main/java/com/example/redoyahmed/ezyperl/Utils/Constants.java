@@ -11,6 +11,7 @@ public class Constants {
     public static final String EMAIL = "email";
     public static final String FOLLOW_QUIZ = "FOLLOW_QUIZ";
     public static final String ID = "id";
+    public static final String LANGUAGE_ID = "language_id";
     public static final String LANGUAGE = "LANGUAGE";
     public static final String MUSIC = "MUSIC";
     public static final int MY_SOCKET_TIMEOUT_MS = 5000;

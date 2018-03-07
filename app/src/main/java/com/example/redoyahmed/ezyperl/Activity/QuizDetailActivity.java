@@ -76,7 +76,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
     private int totalQuestion;
     private CustomSharedPreference shared;
 
-    public int categoryID;
+    public int languageID, categoryID;
 
     class LoadResult implements Runnable {
         LoadResult() {
@@ -86,6 +86,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
             String resultString = gson.toJson(resultList);
             Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
             resultIntent.putExtra(Constants.QUIZ_RESULT, resultString);
+            resultIntent.putExtra(Constants.LANGUAGE_ID, languageID);
             resultIntent.putExtra(Constants.CATEGORY_ID, categoryID);
             startActivity(resultIntent);
         }
@@ -140,6 +141,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
 
     private void loadData() {
 
+        languageID = getIntent().getExtras().getInt(Constants.LANGUAGE_ID);
         categoryID = getIntent().getExtras().getInt(Constants.CATEGORY_ID);
 
         gson = EzyPerlApplication.getGsonObject();
@@ -180,6 +182,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
                     String resultString = gson.toJson(resultList);
                     Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
                     resultIntent.putExtra(Constants.QUIZ_RESULT, resultString);
+                    resultIntent.putExtra(Constants.LANGUAGE_ID, languageID);
                     resultIntent.putExtra(Constants.CATEGORY_ID, categoryID);
                     startActivity(resultIntent);
                 }

@@ -55,6 +55,7 @@ public class StartQuizActivity extends AppCompatActivity {
 
     public int totalQuizCount;
     public String quizCategory;
+    public int languageID;
     public int quizCategoryID;
 
     public List<Result> result;
@@ -81,7 +82,8 @@ public class StartQuizActivity extends AppCompatActivity {
                     dialog.show();
                 } else if (quizAgreement.isChecked()) {
                     Intent intent = new Intent(getApplicationContext(), QuizDetailActivity.class);
-                    intent.putExtra(Constants.CATEGORY_ID, result.get(0).getCategory_id());
+                    intent.putExtra(Constants.LANGUAGE_ID, languageID);
+                    intent.putExtra(Constants.CATEGORY_ID, quizCategoryID);
                     startActivity(intent);
                 } else {
                     dialog = customSweetAlertDialog.getAlertDialog(StartQuizActivity.this, SweetAlertDialog.ERROR_TYPE, "Oops...", "You must agree to quiz instruction before you start!");
@@ -92,6 +94,7 @@ public class StartQuizActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        languageID = getIntent().getExtras().getInt(Constants.LANGUAGE_ID);
         quizCategoryID = getIntent().getExtras().getInt(Constants.CATEGORY_ID);
         quizCategory = getIntent().getExtras().getString(Constants.CATEGORY);
 
@@ -99,15 +102,22 @@ public class StartQuizActivity extends AppCompatActivity {
 
         db = new DbHelper(getApplicationContext());
         result = db.getResultsByCategory(quizCategoryID);
-        totalQuizCount = result.get(0).getTotal_question();
+        totalQuizCount = db.questionCount(quizCategoryID);
     }
 
     private void loadDataIntoWidgets() {
         quizName.setText(quizCategory);
         totalQuestion.setText("TOTAL QUESTION IN " + quizCategory);
-        quizCompetedPercentage.setText(result.get(0).getTotal_question() + " QUESTIONS");
-        bestScore.setText(result.get(0).getCorrect_answer() + "");
-        timePlayed.setText(result.get(0).getTimes_played() + "");
-        level.setText(result.get(0).getLevel() + "");
+        quizCompetedPercentage.setText(totalQuizCount + " QUESTIONS");
+
+        if (result.size() > 0) {
+            bestScore.setText(result.get(0).getCorrect_answer() + "");
+            timePlayed.setText(result.get(0).getTimes_played() + "");
+            level.setText(result.get(0).getLevel() + "");
+        } else {
+            bestScore.setText("0");
+            timePlayed.setText("0");
+            level.setText("1");
+        }
     }
 }
