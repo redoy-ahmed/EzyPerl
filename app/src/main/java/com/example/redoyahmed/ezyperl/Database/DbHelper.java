@@ -131,12 +131,15 @@ public class DbHelper extends SQLiteOpenHelper {
     private void addCategories() {
         String[] category = context.getResources().getStringArray(R.array.category);
         Category c;
+        int changeLevel = 0;
         int level = 1;
         for (int i = 0; i < category.length; i++) {
-            if (i % 5 == 0)
+            changeLevel++;
+            if (changeLevel % 5 == 0) {
                 c = new Category(1, category[i], level++);
-            else
+            } else {
                 c = new Category(1, category[i], level);
+            }
             addCategory(c);
         }
     }
