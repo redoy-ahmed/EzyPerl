@@ -57,6 +57,7 @@ public class StartQuizActivity extends AppCompatActivity {
     public String quizCategory;
     public int languageID;
     public int quizCategoryID;
+    public int quizLevel;
 
     public List<Result> result;
 
@@ -103,6 +104,7 @@ public class StartQuizActivity extends AppCompatActivity {
         db = new DbHelper(getApplicationContext());
         result = db.getResultsByCategory(quizCategoryID);
         totalQuizCount = db.questionCount(quizCategoryID);
+        quizLevel = db.getQuizLevelByCategory(quizCategory);
     }
 
     private void loadDataIntoWidgets() {
@@ -117,7 +119,7 @@ public class StartQuizActivity extends AppCompatActivity {
         } else {
             bestScore.setText("0");
             timePlayed.setText("0");
-            level.setText("1");
+            level.setText(quizLevel + "");
         }
     }
 }

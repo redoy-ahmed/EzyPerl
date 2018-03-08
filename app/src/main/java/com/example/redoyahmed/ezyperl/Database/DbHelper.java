@@ -390,4 +390,18 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return row;
     }
+
+    public int getQuizLevelByCategory(String category) {
+        int level = 0;
+        String selectQuery = "select level from TutorialCategory where category='" + category + "';";
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                level = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return level;
+    }
 }
