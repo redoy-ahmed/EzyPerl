@@ -12,6 +12,7 @@ import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.Result;
 import com.example.redoyahmed.ezyperl.Model.TutorialItems;
+import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,11 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTFOUR = "option_four";
     private static final String KEY_LEVEL = "level";
     private SQLiteDatabase database;
+    private Context context;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -126,12 +129,16 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addCategories() {
-        Category c1 = new Category(1, "Array", 1);
-        addCategory(c1);
-        Category c2 = new Category(1, "String", 2);
-        addCategory(c2);
-        Category c3 = new Category(1, "List", 3);
-        addCategory(c3);
+        String[] category = context.getResources().getStringArray(R.array.category);
+        Category c;
+        int level = 1;
+        for (int i = 0; i < category.length; i++) {
+            if (i % 5 == 0)
+                c = new Category(1, category[i], level++);
+            else
+                c = new Category(1, category[i], level);
+            addCategory(c);
+        }
     }
 
     private void addCategory(Category c) {
@@ -143,17 +150,13 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addDetails() {
-        TutorialItems details1 = new TutorialItems(1, 1, "Array Declaration", "BLA11 BLA1 BLA1", "Code1 code1 code1");
-        addDetail(details1);
+        String[] tutorials = context.getResources().getStringArray(R.array.tutorialDetails);
+        String[] category = context.getResources().getStringArray(R.array.category);
 
-        TutorialItems details2 = new TutorialItems(1, 1, "Array Initialization", "BLA2 BLA2 BLA2", "Code2 code2 code2");
-        addDetail(details2);
-
-        TutorialItems details3 = new TutorialItems(1, 2, "String Usage", "BLA3 BLA3 BLA3", "Code3 code3 code3");
-        addDetail(details3);
-
-        TutorialItems details4 = new TutorialItems(1, 2, "String functions", "BLA4 BLA4 BLA4", "Code4 code4 code4");
-        addDetail(details4);
+        for (int i = 0; i < tutorials.length; i++) {
+            TutorialItems details = new TutorialItems(1, i + 1, category[i], tutorials[i], "Code1 code1 code1");
+            addDetail(details);
+        }
     }
 
     private void addDetail(TutorialItems details) {

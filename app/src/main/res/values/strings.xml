@@ -22,4 +22,67 @@
     <string name="total_question_text">TOTAL QUESTION IN PHOTOSYNTHESIS</string>
     <string name="total_question_number">2 QUESTIONS</string>
 
+    <!--Tutorial Category-->
+    <string-array name="category">
+        <item>Introduction</item>
+        <item>Environment</item>
+        <item>Syntax Overview</item>
+        <item>Data Types</item>
+        <item>Variables</item>
+        <item>Scalars</item>
+        <item>Arrays</item>
+        <item>Hashes</item>
+        <item>IF...ELSE</item>
+        <item>Loops</item>
+        <item>Operators</item>
+        <item>Date and Time</item>
+        <item>Subroutines</item>
+        <item>References</item>
+        <item>Formats</item>
+        <item>File I/O</item>
+        <item>Directories</item>
+        <item>Error Handling</item>
+        <item>Special Variables</item>
+        <item>Coding Standard</item>
+        <item>Regular Expressions</item>
+        <item>Sending Email</item>
+        <item>Socket Programming</item>
+        <item>OOP</item>
+        <item>Database Access</item>
+        <item>CGI Programming</item>
+        <item>Packages &amp; Modules</item>
+        <item>Process Management</item>
+    </string-array>
+
+    <string-array name="tutorialDetails">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+
 </resources>
