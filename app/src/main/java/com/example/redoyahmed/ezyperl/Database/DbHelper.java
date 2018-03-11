@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.Model.Language;
@@ -173,18 +174,65 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void addQuestions() {
-        QuestionItem q1 = new QuestionItem(1, "Math", "Sum of 1+1 is", "1", "2", "3", "4", 2);
-        addQuestion(q1);
-        QuestionItem q2 = new QuestionItem(1, "Math", "Sum of 10+10 is", "10", "20", "30", "40", 2);
-        addQuestion(q2);
-        QuestionItem q3 = new QuestionItem(1, "Math", "Result of 10*10 is", "100", "200", "300", "400", 1);
-        addQuestion(q3);
-        QuestionItem q4 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint \"Hello, world!\";", "Hello", "Hello, world", "Hello, world!", "Error", 3);
-        addQuestion(q4);
-        QuestionItem q5 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint 'Greetings, small planet!';", "Greetings, small planet", "Greetings, small", "Greetings", "Greetings, small planet!", 4);
-        addQuestion(q5);
-        QuestionItem q6 = new QuestionItem(2, "Perl", "what will be the output of the following program? \nprint What's cooking?;", "Error!", "What's?", "'What's cooking?'", "What's cooking?", 4);
-        addQuestion(q6);
+
+        String[] category_id = context.getResources().getStringArray(R.array.tutorialDetails);
+        String[] category = context.getResources().getStringArray(R.array.category);
+
+        String[] introduction_questions = context.getResources().getStringArray(R.array.introduction_questions);
+        String[] introduction_answers = context.getResources().getStringArray(R.array.introduction_answers);
+
+        String[] environment_questions = context.getResources().getStringArray(R.array.environment_questions);
+        String[] environment_answers = context.getResources().getStringArray(R.array.environment_answers);
+
+        String[] syntax_overview_questions = context.getResources().getStringArray(R.array.syntax_overview_questions);
+        String[] syntax_overview_answers = context.getResources().getStringArray(R.array.syntax_overview_answers);
+
+        String[] data_types_questions = context.getResources().getStringArray(R.array.data_types_questions);
+        String[] data_types_answers = context.getResources().getStringArray(R.array.data_types_answers);
+
+
+        /*String[] variables_questions = context.getResources().getStringArray(R.array.variables_questions);
+        String[] scalars_questions = context.getResources().getStringArray(R.array.scalars_questions);
+        String[] arrays_questions = context.getResources().getStringArray(R.array.arrays_questions);
+        String[] hashes_questions = context.getResources().getStringArray(R.array.hashes_questions);
+        String[] if_else_questions = context.getResources().getStringArray(R.array.if_else_questions);
+        String[] loops_questions = context.getResources().getStringArray(R.array.loops_questions);
+        String[] operators_questions = context.getResources().getStringArray(R.array.operators_questions);
+        String[] date_and_time_questions = context.getResources().getStringArray(R.array.date_and_time_questions);
+        String[] subroutines_questions = context.getResources().getStringArray(R.array.subroutines_questions);
+        String[] references_questions = context.getResources().getStringArray(R.array.references_questions);
+        String[] files_questions = context.getResources().getStringArray(R.array.files_questions);
+        String[] directories_questions = context.getResources().getStringArray(R.array.directories_questions);
+        String[] error_handling_questions = context.getResources().getStringArray(R.array.error_handling_questions);
+        String[] regular_expression_questions = context.getResources().getStringArray(R.array.regular_expression_questions);
+        String[] socket_programming_questions = context.getResources().getStringArray(R.array.socket_programming_questions);
+        String[] oop_questions = context.getResources().getStringArray(R.array.oop_questions);
+        String[] database_questions = context.getResources().getStringArray(R.array.database_questions);
+        String[] package_and_modules_questions = context.getResources().getStringArray(R.array.package_and_modules_questions);*/
+
+        for (int i = 0; i < introduction_questions.length; i++) {
+            String[] parts = introduction_answers[i].split(",");
+            QuestionItem introductionQuestions = new QuestionItem(Integer.valueOf(category_id[0]), category[0], introduction_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
+            addQuestion(introductionQuestions);
+        }
+
+        for (int i = 0; i < environment_questions.length; i++) {
+            String[] parts = environment_answers[i].split(",");
+            QuestionItem environmentQuestions = new QuestionItem(Integer.valueOf(category_id[1]), category[1], environment_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
+            addQuestion(environmentQuestions);
+        }
+
+        for (int i = 0; i < syntax_overview_questions.length; i++) {
+            String[] parts = syntax_overview_answers[i].split(",");
+            QuestionItem syntaxOverviewQuestions = new QuestionItem(Integer.valueOf(category_id[2]), category[2], syntax_overview_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
+            addQuestion(syntaxOverviewQuestions);
+        }
+
+        for (int i = 0; i < data_types_questions.length; i++) {
+            String[] parts = data_types_answers[i].split(",");
+            QuestionItem dataTypesQuestions = new QuestionItem(Integer.valueOf(category_id[3]), category[3], data_types_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
+            addQuestion(dataTypesQuestions);
+        }
     }
 
     private void addQuestion(QuestionItem questionItem) {

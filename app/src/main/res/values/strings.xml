@@ -85,4 +85,66 @@
         <item>28</item>
     </string-array>
 
+    <!--quiz Category introduction-->
+    <string-array name="introduction_questions">
+        <item>Who created PERL?</item>
+        <item>PERL stands for?</item>
+        <item>Does PERL support OOP?</item>
+        <item>Is PERL platform independent?</item>
+    </string-array>
+
+    <string-array name="introduction_answers">
+        <item>Larry Wall,Larry Ball,Jacob Thomas,Larry Garry,1</item>
+        <item>Practical Extraction and Report Language,Practice for Exclusive and Report Language,Practical Extraction and Report Learning,Practical Extractions and Report Learning,1</item>
+        <item>Yes,No,Not Fully,Partially,1</item>
+        <item>Yes,No,Not Fully,Partially,1</item>
+    </string-array>
+
+    <!--quiz Category environment-->
+    <string-array name="environment_questions">
+        <item>Which of the following is PERL IDE?</item>
+        <item>PERL is:</item>
+        <item>Perl was first released in:</item>
+        <item>Is PERL platform independent?</item>
+        <item>PERL program can run from Command Line?</item>
+    </string-array>
+
+    <string-array name="environment_answers">
+        <item>Perl Padre,Turbo C,Turbo C++,Text Pad,1</item>
+        <item>A type of interactive web page,A programming language,An application program,A relational database,2</item>
+        <item>1978,1998,Has not yet been released,1988,4</item>
+        <item>Yes,No,Not Fully,Partially,1</item>
+        <item>Yes,No,Not Fully,Partially,1</item>
+    </string-array>
+
+    <!--quiz Category syntax overview-->
+    <string-array name="syntax_overview_questions">
+        <item>$perl -v is command for?</item>
+        <item>PERL file extension is:</item>
+        <item>GUI stands for:</item>
+        <item>Which of the following is NOT a comment line in a Perl program?</item>
+    </string-array>
+
+    <string-array name="syntax_overview_answers">
+        <item>checking perl version,shutdown ide,write a file,access a file,1</item>
+        <item>pl,c,py,ph,1</item>
+        <item>graphical user interface,geo user interface,gui user interface,graphical unary invention,1</item>
+        <item># This is a comment,#/#/#/#/#/#/#/#/#/#/,####################,////////////////////,4</item>
+    </string-array>
+
+    <!--quiz Category data types-->
+    <string-array name="data_types_questions">
+        <item>Which of the following is not PERL data type?</item>
+        <item>Strings are sequences of:</item>
+        <item>String is delimited by?</item>
+        <item>"\n" means,  Print a :</item>
+    </string-array>
+
+    <string-array name="data_types_answers">
+        <item>Scalar,Array,Hashes,Dictionary,4</item>
+        <item>Spaces,Special Symbols,Characters,codes,3</item>
+        <item>single quote,double quote,both single and double quote,none,3</item>
+        <item>Tab,Space,Value,New Line,4</item>
+    </string-array>
+
 </resources>
