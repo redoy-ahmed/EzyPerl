@@ -89,6 +89,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
             resultIntent.putExtra(Constants.LANGUAGE_ID, languageID);
             resultIntent.putExtra(Constants.CATEGORY_ID, categoryID);
             startActivity(resultIntent);
+            finish();
         }
     }
 
@@ -185,6 +186,7 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
                     resultIntent.putExtra(Constants.LANGUAGE_ID, languageID);
                     resultIntent.putExtra(Constants.CATEGORY_ID, categoryID);
                     startActivity(resultIntent);
+                    finish();
                 }
             }
 

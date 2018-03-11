@@ -86,6 +86,7 @@ public class StartQuizActivity extends AppCompatActivity {
                     intent.putExtra(Constants.LANGUAGE_ID, languageID);
                     intent.putExtra(Constants.CATEGORY_ID, quizCategoryID);
                     startActivity(intent);
+                    finish();
                 } else {
                     dialog = customSweetAlertDialog.getAlertDialog(StartQuizActivity.this, SweetAlertDialog.ERROR_TYPE, "Oops...", "You must agree to quiz instruction before you start!");
                     dialog.show();

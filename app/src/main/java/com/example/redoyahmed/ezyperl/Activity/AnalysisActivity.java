@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterAnalysis;
 import com.example.redoyahmed.ezyperl.Model.ResultItem;
@@ -21,6 +23,9 @@ import butterknife.ButterKnife;
 
 public class AnalysisActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
     @BindView(R.id.quiz_result)
     public RecyclerView resultRecyclerView;
 
@@ -30,8 +35,14 @@ public class AnalysisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_analysis);
         ButterKnife.bind(this);
 
+        initializeWidgets();
         loadWidgetsData();
+    }
 
+    private void initializeWidgets() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void loadWidgetsData() {
@@ -47,5 +58,20 @@ public class AnalysisActivity extends AppCompatActivity {
         List<ResultItem> allCategories = new ArrayList();
         Collections.addAll(allCategories, response);
         return allCategories;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

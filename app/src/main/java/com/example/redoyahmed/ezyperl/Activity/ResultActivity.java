@@ -3,6 +3,8 @@ package com.example.redoyahmed.ezyperl.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -114,6 +116,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 Intent analysisIntent = new Intent(ResultActivity.this, AnalysisActivity.class);
                 analysisIntent.putExtra(Constants.QUIZ_RESULT, mResult);
                 startActivity(analysisIntent);
+                finish();
             }
         });
 
@@ -124,6 +127,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra(Constants.LANGUAGE_ID, quizLanguageID);
                 intent.putExtra(Constants.CATEGORY_ID, quizCategoryID);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -131,6 +135,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResultActivity.this, MainActivity.class));
+                finish();
             }
         });
     }
@@ -174,5 +179,10 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
