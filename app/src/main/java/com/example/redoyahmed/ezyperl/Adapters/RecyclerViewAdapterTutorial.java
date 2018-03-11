@@ -1,6 +1,7 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Activity.TutorialDetailsActivity;
 import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 import com.example.redoyahmed.ezyperl.R;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -59,7 +60,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
         return this.itemList.size();
     }
 
-    public static class RecyclerViewHolderTutorial extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolderTutorial extends RecyclerView.ViewHolder {
 
         @BindView(R.id.list_item_textView)
         public TextView itemName;
@@ -74,21 +75,15 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            /*Fragment mFragment;
-
-            if (getAdapterPosition() == 0) {
-                mFragment = new FragmentTutorial();
-            } else if (getAdapterPosition() == 1) {
-                mFragment = new FragmentPractise();
-            } else if (getAdapterPosition() == 1) {
-                mFragment = new FragmentQuiz();
-            } else {
-                mFragment = new FragmentLinks();
-            }
-
-            if (mFragment != null) {
-                fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
-            }*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, TutorialDetailsActivity.class);
+                    /*intent.putExtra("linkTitle", itemList.get(getAdapterPosition()).getName());
+                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
