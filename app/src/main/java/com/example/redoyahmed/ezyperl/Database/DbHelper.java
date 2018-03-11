@@ -190,9 +190,11 @@ public class DbHelper extends SQLiteOpenHelper {
         String[] data_types_questions = context.getResources().getStringArray(R.array.data_types_questions);
         String[] data_types_answers = context.getResources().getStringArray(R.array.data_types_answers);
 
+        String[] variables_questions = context.getResources().getStringArray(R.array.variables_questions);
+        String[] variables_answers = context.getResources().getStringArray(R.array.variables_answers);
 
-        /*String[] variables_questions = context.getResources().getStringArray(R.array.variables_questions);
-        String[] scalars_questions = context.getResources().getStringArray(R.array.scalars_questions);
+
+        /*String[] scalars_questions = context.getResources().getStringArray(R.array.scalars_questions);
         String[] arrays_questions = context.getResources().getStringArray(R.array.arrays_questions);
         String[] hashes_questions = context.getResources().getStringArray(R.array.hashes_questions);
         String[] if_else_questions = context.getResources().getStringArray(R.array.if_else_questions);
@@ -232,6 +234,22 @@ public class DbHelper extends SQLiteOpenHelper {
             String[] parts = data_types_answers[i].split(",");
             QuestionItem dataTypesQuestions = new QuestionItem(Integer.valueOf(category_id[3]), category[3], data_types_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
             addQuestion(dataTypesQuestions);
+        }
+
+        for (int i = 0; i < variables_questions.length; i++) {
+            String[] parts = variables_answers[i].split(",");
+
+            Log.e("category_id",category_id[4]);
+            Log.e("category",category[4]);
+            Log.e("variables_questions",variables_questions[i]);
+            Log.e("1",parts[0]);
+            Log.e("2",parts[1]);
+            Log.e("3",parts[2]);
+            Log.e("4",parts[3]);
+            Log.e("answer",parts[4]);
+
+            QuestionItem variablesQuestions = new QuestionItem(Integer.valueOf(category_id[4]), category[4], variables_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
+            addQuestion(variablesQuestions);
         }
     }
 

@@ -147,4 +147,23 @@
         <item>Tab,Space,Value,New Line,4</item>
     </string-array>
 
+    <!--quiz Category Variables-->
+    <string-array name="variables_questions">
+        <item>There are _____ basic data types in PERL</item>
+        <item>scalar variable will precede by a _____ sign</item>
+        <item>An array variable will precede by sign _____</item>
+        <item>Hash variable will precede by sign _____</item>
+        <item>Which one is correct integer variable assignment?</item>
+        <item>What is the output of the following program?\n$age = 25;\nprint "Age = $age\n";</item>
+    </string-array>
+
+    <string-array name="variables_answers">
+        <item>2,3,4,5,2</item>
+        <item>$,*,@,%,1</item>
+        <item>$,*,@,%,3</item>
+        <item>$,*,#,%,3</item>
+        <item>$age = 25;,$age = 25,$age = 25.5;,$age = 25.0;,1</item>
+        <item>Age = 25,Age = 25.5,Age 25,25,1</item>
+    </string-array>
+
 </resources>
