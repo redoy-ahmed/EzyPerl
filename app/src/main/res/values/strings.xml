@@ -18,7 +18,7 @@
     <string name="nav_item_rate_us">Rate us</string>
 
     <string name="quiz_name">Photosynthesis</string>
-    <string name="quiz_description">Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy that can later be released to fuel the organisms' activities (energy transformation).</string>
+    <string name="quiz_description">Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy that can later be released to fuel the organisms activities (energy transformation).</string>
     <string name="total_question_text">TOTAL QUESTION IN PHOTOSYNTHESIS</string>
     <string name="total_question_number">2 QUESTIONS</string>
 
@@ -123,6 +123,7 @@
         <item>PERL file extension is:</item>
         <item>GUI stands for:</item>
         <item>Which of the following is NOT a comment line in a Perl program?</item>
+        <item>Which of the following enforces strictness in PERL program?</item>
     </string-array>
 
     <string-array name="syntax_overview_answers">
@@ -130,6 +131,7 @@
         <item>pl,c,py,ph,1</item>
         <item>graphical user interface,geo user interface,gui user interface,graphical unary invention,1</item>
         <item># This is a comment,#/#/#/#/#/#/#/#/#/#/,####################,////////////////////,4</item>
+        <item>enforce strict,perform strict,use strict,be strict,3</item>
     </string-array>
 
     <!--quiz Category data types-->
@@ -138,6 +140,9 @@
         <item>Strings are sequences of:</item>
         <item>String is delimited by?</item>
         <item>"\n" means,  Print a :</item>
+        <item>Which of the following data types are preceded by a dollar sign ($) in Perl?</item>
+        <item>The value of #myvar = 5 * 10 is a</item>
+        <item>To interpolate variable values inside a string, do not</item>
     </string-array>
 
     <string-array name="data_types_answers">
@@ -145,6 +150,9 @@
         <item>Spaces,Special Symbols,Characters,codes,3</item>
         <item>single quote,double quote,both single and double quote,none,3</item>
         <item>Tab,Space,Value,New Line,4</item>
+        <item>Scalar,Array,Hashes,All of the above,1</item>
+        <item>scalar value 50,String value “5 * 10”,String value 50,None of the above,4</item>
+        <item>use single quotes to enclose a string,use double quotes to enclose a string,use string concatenation,use scalar variables for interpolation,1</item>
     </string-array>
 
     <!--quiz Category Variables-->
@@ -155,6 +163,7 @@
         <item>Hash variable will precede by sign _____</item>
         <item>Which one is correct integer variable assignment?</item>
         <item>What is the output of the following program?\n$age = 25;\nprint "Age = $age\n";</item>
+        <item>Which of the following special variable represents current package name?</item>
     </string-array>
 
     <string-array name="variables_answers">
@@ -164,6 +173,290 @@
         <item>$,*,#,%,3</item>
         <item>$age = 25;,$age = 25,$age = 25.5;,$age = 25.0;,1</item>
         <item>Age = 25,Age = 25.5,Age 25,25,1</item>
+        <item>_PACKAGE_,Package,PACKAGE,None of the above,1</item>
+    </string-array>
+
+    <!--quiz Category Scalars-->
+    <string-array name="scalars_questions">
+        <item>A scalar is a ______ unit of data.</item>
+        <item>$num = 5 + 10;\nis the example of:</item>
+        <item>When is a scalar a number?</item>
+        <item>Given the line of code below, what is the type of the scalar variable s?\n$s = "78"</item>
+        <item>A scalar variable can hold</item>
+    </string-array>
+
+    <string-array name="scalars_answers">
+        <item>simple,single,multiple,none of above,2</item>
+        <item>Numeric Scalar,String Scalar,Scalar Operation,Multiline String,3</item>
+        <item>When it has no alphabetic characters,When its used in a numeric context,When its used in any context,none of above,2</item>
+        <item>$s is a number,$s is a string,$s is a character,none of above,2</item>
+        <item>256 characters,1024 characters,32768 characters,Depends on system specifications,4</item>
+    </string-array>
+
+    <!--quiz Category Arrays-->
+    <string-array name="arrays_questions">
+        <item>An array is a variable that stores an ordered list of ______ values.</item>
+        <item>Array variables are preceded by an __ sign.</item>
+        <item>Which one Pushes the values of the list onto the end of the array?</item>
+        <item>What will be the value of $size after executing the following code?\nmy @a = (0, 1, 2);\n$#a = 0;\nmy $size = @a;</item>
+        <item>What will be the value of $val?\nmy $str = 'aa bb cccc';\nmy $val = () = $str =~ /\w+/g;</item>
+        <item>What will the @b array consist of?\nmy @a = (10, 5, 1);\nmy @b = sort @a;</item>
+        <item>What gets printed?</item>
+        <item>What is the ouput of the below perl code :\nUsing Arrays:\n@days = ("Monday", "Tuesday", "Wednesday");\nprint @days;</item>
+    </string-array>
+
+    <string-array name="arrays_answers">
+        <item>true,false,scalar,none of above,3</item>
+        <item>#,@,=,!,2</item>
+        <item>push,pop,shift,unshift,1</item>
+        <item>undef,0,1,2,3</item>
+        <item>aa,cccc,0,3,4</item>
+        <item>(1 5 10),(10 5 1),(1 10 5),(5 10 1),3</item>
+        <item>1 2 3,2 3 4,5 6 7,6 7 8,4</item>
+        <item>MondayTuesdayWednesday,Syntax error,Compilation error,MondayWednesdayTuesday,1</item>
+    </string-array>
+
+    <!--quiz Category Hashes-->
+    <string-array name="hashes_questions">
+        <item>A hash is a set of ______ pairs.</item>
+        <item>Hash variables are preceded by a ______ sign.</item>
+        <item>Which keyword is used to delete data from Hash?</item>
+        <item>What will be the value of $keys?\nmy %hash;\n$hash{undef} = undef;\n$hash{''} = '';\nmy $keys = keys(%hash);</item>
+        <item>What will be the value of $count after executing the following code?\nmy %hash = (a => 1, b => 2);\nmy $count = 0;\nwhile (my ($key, $value) = each(%hash)) {\n\t$count++ if $value == keys(%hash)\n}</item>
+        <item>In what order is a hash stored?\nPlease select the best answer.</item>
+        <item>Which of the following erases all entries in the %h hash?</item>
+        <item>How many key-value pairs will the hash contain?\nmy %hash = (\n\t[1, 2] => 1,\n\t[1, 2] => 2\n);</item>
+        <item>Anonymous hashes can be made by using</item>
+        <item>What will be printed by the code below?\nmy $val = {};\nprint ref($val);</item>
+    </string-array>
+
+    <string-array name="hashes_answers">
+        <item>key/value,key/key,value/value,/value/key,1</item>
+        <item>%,@,!,=,1</item>
+        <item>push,pop,delete,none of above,3</item>
+        <item>undef,0,1,2,4</item>
+        <item>1,2,3,he code if ill-formed,4</item>
+        <item>The order defined by the number of values in the hash,The order defined by the internal hashing algorithm,The order in which the values were stored in the hash,none of above,2</item>
+        <item>delete %h;,%h = {};,%h = ();,delete keys(%h);,3</item>
+        <item>1,2,3,4,2</item>
+        <item>[],(),{},None of the above,3</item>
+        <item>empty value,ARRAY,HASH,SCALAR,3</item>
+    </string-array>
+
+    <!--quiz Category Hashes-->
+    <string-array name="if_else_questions">
+        <item>What gets printed?\nmy $a = 123;\nmy $b = 0123;\nif ($a == $b) {\n\tprint "same";\n} else {\n\tprint "different";\n}</item>
+        <item>What gets printed?\nmy $a = 123456;\nmy $b = 123_456;\nif ($a == $b) {\n\tprint "same";\n} else {\n\tprint "different";\n}</item>
+        <item>Which one is conditional operator?</item>
+        <item>Conditional operator is used to replace ______ statements.</item>
+        <item>What will be the output of the following code?\n$name = "Ali";\n$age = 10;\n$status = ($age > 60 )? "A senior citizen" : "Not a senior citizen";\nprint "$name is  - $status\n";</item>
+        <item>When $a = 1 and $b = 2, all of the following statements evaluate to true except,</item>
+    </string-array>
+
+    <string-array name="if_else_answers">
+        <item>same,different,the code is ill-formed,none of above,2</item>
+        <item>same,different,the code is ill-formed,none of above,1</item>
+        <item>!,(,*,?,4</item>
+        <item>scalar,array,class,if...else,4</item>
+        <item>Ali is - Not a senior citizen,Ali is - a senior citizen,the code is ill-formed,none of above,1</item>
+        <item>$a == 1 and $b == 2,$a == 2 or $b == 2,($a == 2 and $b == 1) or $b == 2,$a === 1 or $b ==1,4</item>
+    </string-array>
+
+    <!--quiz Category Loops-->
+    <string-array name="loops_questions">
+        <item>for( ; ; ) {\n\tprintf "This loop will run forever.\n";\n}\nIs the syntax of ______.</item>
+        <item>Which of the following is the numerical boolean expression for Not equal to?</item>
+        <item>To verify if the variable $str contains the word test you would use</item>
+        <item>If $a = “Ape” and $b = 3 the result of $a x $b is</item>
+        <item>Value of $expr = 1 + 2 * 3 – 4 is</item>
+        <item>Next and Last statements are used to</item>
+    </string-array>
+
+    <string-array name="loops_answers">
+        <item>Infinite loop,normal loop,finite loop,none of above,1</item>
+        <item>==,!=,#,?=,2</item>
+        <item>if ($str = ~/test/),if ($str == “test”),if ($str = “test”),if ($str contains “test”),1</item>
+        <item>error,Ape3,ApeApeApe,3Ape,3</item>
+        <item>5,-3,3,None of the above,3</item>
+        <item>Exit conditional blocks,Exit functions,Exit loops,Exit script execution,3</item>
+    </string-array>
+
+    <!--quiz Category Operators-->
+    <string-array name="operators_questions">
+        <item>+ is a _____ operator.</item>
+        <item>== is a _____ operator.</item>
+        <item>+= is a _____ operator.</item>
+        <item>| is a _____ operator.</item>
+        <item>and is a _____ operator.</item>
+        <item>Find the output:\n$a=10;\n$a++;\nprint $a;</item>
+    </string-array>
+
+    <string-array name="operators_answers">
+        <item>Arithmetic Operator,Equality Operator,Logical Operator,Assignment Operator,1</item>
+        <item>Arithmetic Operator,Equality Operator,Logical Operator,Assignment Operator,2</item>
+        <item>Arithmetic Operator,Equality Operator,Logical Operator,Assignment Operator,4</item>
+        <item>Arithmetic Operator,Bitwise Operator,Logical Operator,Assignment Operator,3</item>
+        <item>Arithmetic Operator,Bitwise Operator,Logical Operator,Assignment Operator,3</item>
+        <item>9,10,11,12,3</item>
+    </string-array>
+
+    <!--quiz Category Date and Time-->
+    <string-array name="date_and_time_questions">
+        <item>localtime() function returns</item>
+        <item>gmtime() function returns</item>
+        <item>($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();\Here $year returns</item>
+    </string-array>
+
+    <string-array name="date_and_time_answers">
+        <item>current date,current date and time,current status,current variable,2</item>
+        <item>Greenwich time,current date and time,current status,current variable,1</item>
+        <item>second,minute,day,year,4</item>
+    </string-array>
+
+
+    <!--quiz Category Subroutines-->
+    <string-array name="subroutines_questions">
+        <item>What will be the output?\nsub Hello {\nprint "Hello World!\n";\n}\nHello();</item>
+        <item>A Perl subroutine or function is a group of statements that together performs a _____.</item>
+    </string-array>
+
+    <string-array name="subroutines_answers">
+        <item>Hello World,Hello World!,error,none of above,2</item>
+        <item>task,nothing,error,none of above,1</item>
+    </string-array>
+
+    <!--quiz Category References-->
+    <string-array name="references_questions">
+        <item>Which of the following is used to create a reference to a variable?</item>
+        <item>A Perl reference is a ______ data type</item>
+        <item>Which one is used as prefix of the reference?</item>
+    </string-array>
+
+    <string-array name="references_answers">
+        <item>/,\,_,#,2</item>
+        <item>scalar,hash,list,none of above,1</item>
+        <item>$,-,*,/,1</item>
+    </string-array>
+
+    <!--quiz Category Formats-->
+    <string-array name="formats_questions">
+        <item>Perl uses a writing template called a 'format' to output ______.</item>
+    </string-array>
+
+    <string-array name="formats_answers">
+        <item>reports,code,video,none of above,1</item>
+    </string-array>
+
+    <!--quiz Category Files-->
+    <string-array name="files_questions">
+        <item>Which of the following file test operators can be used to check if a file is a text file?</item>
+        <item>The statement open(file_handle, “file.txt”)</item>
+        <item>Recursing down directories can be done using</item>
+        <item>The statement open (FH,"abc.txt");</item>
+        <item>What is a file handle used for?</item>
+        <item>The getdir command</item>
+        <item>In Perl, which of the following are file handles?</item>
+    </string-array>
+
+    <string-array name="files_answers">
+        <item>–x,–t,–T,–f,3</item>
+        <item>opens a file for reading alone,opens a file for reading and writing,opens a file for overwriting,opens a file for appending,1</item>
+        <item>Find::File,File::Find,Find::Dir,None of the above,2</item>
+        <item>opens the file abc.txt for overwriting,opens the file abc.txt for reading,contains an error so wont compile,opens the file abc.txt for appending,2</item>
+        <item>Reading binary data from a file into a scalar variable,Finding where a file is on the disc,Accessing a disc file or other input or output stream Deleting moving or renaming a file,none of above,1</item>
+        <item>Reads a single file name from an open directory handle,Reads the rest of the file names from an open directory handle,Only works after an opendir command,Is not a perl command,4</item>
+        <item>stdquit,stdend,stdin,cout,3</item>
+    </string-array>
+
+    <!--quiz Category Directories-->
+    <string-array name="directories_questions">
+        <item>opendir DIRHANDLE, EXPR function is used for:</item>
+        <item>readdir DIRHANDLE function is used for:</item>
+        <item>closedir DIRHANDLE function is used for:</item>
+        <item>glob operator is used for:</item>
+        <item>mkdir($dir) function is used for:</item>
+        <item>rmdir($dir) function is used for:</item>
+    </string-array>
+
+    <string-array name="directories_answers">
+        <item>To open a directory, to read a file, to delete a file, to write a file,1</item>
+        <item>To open a directory, to read a directory, to delete a file, to write a file,2</item>
+        <item>To open a directory, to read a directory, to close a directory, to write a file,2</item>
+        <item>To list all file, to read a directory, to close a directory, to write a file,1</item>
+        <item>To list all file, to read a directory, to make a directory, to write a file,3</item>
+        <item>To list all file, to read a directory, to make a directory, to remove a directory,4</item>
+    </string-array>
+
+    <!--quiz Category Error Handling-->
+    <string-array name="error_handling_questions">
+        <item>Unless function is the logical opposite to</item>
+        <item>The warn function just raises a ______.</item>
+        <item>The confess function is like ______.</item>
+    </string-array>
+
+    <string-array name="error_handling_answers">
+        <item>if,while,die,print,1</item>
+        <item>successful message,a message is printed to STDERR,does nothing,crashes the code,2,</item>
+        <item>cluck,clock,module,none of above,1</item>
+    </string-array>
+
+    <!--quiz Category Special Variables-->
+    <string-array name="special_variables_questions">
+        <item>Which one is special variable?</item>
+        <item>What will be the output?\nforeach ('hickory') {\n\tprint $_;\n\tprint "\n";\n}</item>
+        <item>Which one is Global Hash Special Variables?</item>
+        <item>Which one is Global Special Filehandles?</item>
+        <item>Which one is Global Special Constants?</item>
+    </string-array>
+
+    <string-array name="special_variables_answers">
+        <item>1,#,$,?,3</item>
+        <item>hickory,$_hickory,error,none of above,1</item>
+        <item>%INC,$ARGV,$^M,$^H,1</item>
+        <item>%INC,ARGV,$^M,$^H,2</item>
+        <item>%INC,ARGV,__FILE__,$^H,3</item>
+    </string-array>
+
+    <!--quiz Category Regular Expressions-->
+    <string-array name="regular_expression_questions">
+        <item>A regular expression is a string of ______.</item>
+        <item>There are ______ regular expression operators within Perl.</item>
+        <item>Which one is match operator?</item>
+    </string-array>
+
+    <string-array name="regular_expression_answers">
+        <item>characters,files,directories,none of above,1</item>
+        <item>one,two,three,four,3</item>
+        <item>m//,--,++,+=,1</item>
+    </string-array>
+
+    <!--quiz Category Socket Programming-->
+    <string-array name="socket_programming_questions">
+        <item>Socket is a Berkeley ______ mechanism of creating a virtual duplex connection between different processes</item>
+    </string-array>
+
+    <string-array name="socket_programming_answers">
+        <item>UNIX,file,string,cpu,1</item>
+    </string-array>
+
+    <!--quiz Category OOP-->
+    <string-array name="oop_questions">
+        <item>Perl provides a bless() function which returns:</item>
+        <item>$cup = new Cocoa; \nHere $cup is</item>
+    </string-array>
+
+    <string-array name="oop_answers">
+        <item>file,name,object,none of above,3</item>
+        <item>object,file,package,hash,1</item>
+    </string-array>
+
+    <!--quiz Category Database Access-->
+    <string-array name="database_access_questions">
+        <item>DBI stands for</item>
+    </string-array>
+
+    <string-array name="database_access_answers">
+        <item>Database Independent Interface,Database Independent Implementation,Data Independent Interface,none of above,1</item>
     </string-array>
 
 </resources>
