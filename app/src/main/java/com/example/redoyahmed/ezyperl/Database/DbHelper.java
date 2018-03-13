@@ -155,10 +155,11 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private void addDetails() {
         String[] tutorials = context.getResources().getStringArray(R.array.tutorialDetails);
+        String[] code = context.getResources().getStringArray(R.array.tutorialDetailsCode);
         String[] category = context.getResources().getStringArray(R.array.category);
 
         for (int i = 0; i < tutorials.length; i++) {
-            TutorialItems details = new TutorialItems(1, i + 1, category[i], tutorials[i], "Code1 code1 code1");
+            TutorialItems details = new TutorialItems(1, i + 1, category[i], tutorials[i], code[i]);
             addDetail(details);
         }
     }
@@ -340,14 +341,14 @@ public class DbHelper extends SQLiteOpenHelper {
         for (int i = 0; i < files_questions.length; i++) {
             String[] parts = files_answers[i].split(",");
 
-            Log.e("category_id",category_id[15]);
-            Log.e("category",category[15]);
-            Log.e("files_questions",files_questions[i]);
-            Log.e("1",parts[0]);
-            Log.e("2",parts[1]);
-            Log.e("3",parts[2]);
-            Log.e("4",parts[3]);
-            Log.e("answer",parts[4]);
+            Log.e("category_id", category_id[15]);
+            Log.e("category", category[15]);
+            Log.e("files_questions", files_questions[i]);
+            Log.e("1", parts[0]);
+            Log.e("2", parts[1]);
+            Log.e("3", parts[2]);
+            Log.e("4", parts[3]);
+            Log.e("answer", parts[4]);
 
             QuestionItem filesQuestions = new QuestionItem(Integer.valueOf(category_id[15]), category[15], files_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
             addQuestion(filesQuestions);
@@ -462,6 +463,32 @@ public class DbHelper extends SQLiteOpenHelper {
         List<TutorialItems> tutorialList = new ArrayList<>();
 
         String selectQuery = "SELECT  * FROM " + TUTORIAL_DETAILS + ";";
+
+        database = this.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                TutorialItems tutorialItems = new TutorialItems();
+                tutorialItems.setId(cursor.getInt(0));
+                tutorialItems.setLanguage_id(cursor.getInt(1));
+                tutorialItems.setCategory_id(cursor.getInt(2));
+                tutorialItems.setTutorial_name(cursor.getString(3));
+                tutorialItems.setTutorial_details(cursor.getString(4));
+                tutorialItems.setTutorial_code(cursor.getString(5));
+                tutorialList.add(tutorialItems);
+            } while (cursor.moveToNext());
+        }
+
+        return tutorialList;
+    }
+
+    public List<TutorialItems> getTutorialDetailsByCategory(int category_id) {
+
+        List<TutorialItems> tutorialList = new ArrayList<>();
+
+        String selectQuery = "select * from TutorialDetails where category_id=" + category_id + ";";
 
         database = this.getReadableDatabase();
 

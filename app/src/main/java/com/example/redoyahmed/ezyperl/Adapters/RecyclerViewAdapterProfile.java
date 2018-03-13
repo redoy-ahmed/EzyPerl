@@ -41,7 +41,7 @@ public class RecyclerViewAdapterProfile extends RecyclerView.Adapter<RecyclerVie
         holder.quizCategory.setText(performanceObject.getCategory());
         int scoreInPercentage = getScorePercent(performanceObjectList, position);
         holder.quizCategoryScore.setText(String.format("%s%% in all quiz attempts", String.valueOf(scoreInPercentage)));
-        holder.scoreIndicator.setProgress(performanceObject.getCorrectAnswer());
+        holder.scoreIndicator.setProgress(scoreInPercentage);
     }
 
     public int getItemCount() {

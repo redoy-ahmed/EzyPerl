@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorialCode;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorialText;
@@ -30,12 +31,19 @@ public class TutorialDetailsActivity extends AppCompatActivity {
     @BindView(R.id.viewpager)
     public ViewPager viewPager;
 
+    public int category_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_details);
         ButterKnife.bind(this);
+        loadData();
         loadDataIntoWidgets();
+    }
+
+    private void loadData() {
+        category_id = getIntent().getIntExtra("category_id", 1);
     }
 
     private void loadDataIntoWidgets() {
@@ -54,8 +62,8 @@ public class TutorialDetailsActivity extends AppCompatActivity {
 
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new FragmentTutorialText(), "Tutorial");
-        adapter.addFrag(new FragmentTutorialCode(), "Code");
+        adapter.addFrag(new FragmentTutorialText(category_id), "Tutorial");
+        adapter.addFrag(new FragmentTutorialCode(category_id), "Code");
         viewPager.setAdapter(adapter);
     }
 
@@ -86,5 +94,14 @@ public class TutorialDetailsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

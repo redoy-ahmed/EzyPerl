@@ -32,19 +32,17 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
 
     private List<TutorialItems> itemList;
     private Context context;
-    private FragmentManager fragmentManager;
 
-    public RecyclerViewAdapterTutorial(Context context, List<TutorialItems> itemList, FragmentManager fragmentManager) {
+    public RecyclerViewAdapterTutorial(Context context, List<TutorialItems> itemList) {
         this.itemList = itemList;
         this.context = context;
-        this.fragmentManager = fragmentManager;
     }
 
     @Override
     public RecyclerViewHolderTutorial onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_tutorial, parent, false);
-        RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial rcv = new RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial(layoutView, fragmentManager);
+        RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial rcv = new RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial(layoutView);
         return rcv;
     }
 
@@ -71,7 +69,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
         @BindView(R.id.relativeLayout)
         public RelativeLayout relativeLayout;
 
-        public RecyclerViewHolderTutorial(final View itemView, final FragmentManager fragmentManager) {
+        public RecyclerViewHolderTutorial(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -79,8 +77,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, TutorialDetailsActivity.class);
-                    /*intent.putExtra("linkTitle", itemList.get(getAdapterPosition()).getName());
-                    intent.putExtra("url", itemList1.get(getAdapterPosition()).getLink());*/
+                    intent.putExtra("category_id", itemList.get(getAdapterPosition()).getCategory_id());
                     context.startActivity(intent);
                 }
             });

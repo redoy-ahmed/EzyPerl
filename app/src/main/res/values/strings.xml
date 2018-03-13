@@ -85,6 +85,383 @@
         <item>28</item>
     </string-array>
 
+    <string-array name="tutorialDetailsCode">
+        <item>print "Hello, world\n";</item>
+
+        <item>  $a = 10;\n
+                print "Value of a = $a\n";
+                print 'Value of a = $a\n';</item>
+
+        <item>  $result = "This is \"number\"";
+                print "\n$result\n";
+                print "\$result\n";</item>
+
+        <item>  $str = "Welcome to my tutorial!\n";
+                print "$str\n";
+
+                $str = "Welcome to my tutorial!\n";
+                print "$str\n";
+
+                $str = "\uwelcome to my tutorial!\n";
+                print "$str\n";
+
+                $str = "\UWelcome to my tutorial!\n";
+                print "$str\n";
+
+                $str = "Welcome to \Umy\Etutorial!\n";
+                print "$str\n";
+
+                $str = "\Qmy tutorial!\n";
+                print "$str\n";</item>
+
+        <item>  %data = ('John Paul', 45, 'Lisa', 30, 'Kumar', 40)\n;
+                print "\$data{'John Paul'} = $data{'John Paul'}\n";
+                print "\$data{'Lisa'} = $data{'Lisa'}\n";
+                print "\$data{'Kumar'} = $data{'Kumar'}\n";</item>
+
+        <item>  $integer = 200;\n
+                $negative = -300;\n
+                $floating = 200.340;\n
+                $bigfloat = -1.2E-23;\n
+
+                $octal = 0377;\n
+                $hexa = 0xff;\n
+
+                print "integer = $integer\n";
+                print "negative = $negative\n";
+                print "floating = $floating\n";
+                print "bigfloat = $bigfloat\n";
+                print "octal = $octal\n";
+                print "hexa = $hexa\n";</item>
+
+        <item>  /@ages = (25, 30, 40);
+                @names = ("John Paul", "Lisa", "Kumar");
+                print "\$ages[0] = $ages[0]\n";
+                print "\$ages[1] = $ages[1]\n";
+                print "\$ages[2] = $ages[2]\n";
+                print "\$names[0] = $names[0]\n";
+                print "\$names[1] = $names[1]\n";
+                print "\$names[2] = $names[2]\n";</item>
+
+        <item>  %data = ('John Paul' => 45, 'Lisa' => 30, 'Kumar' => 40);
+                @keys = keys %data;
+                $size = @keys;
+                print "1 - Hash size:  is $size\n";
+
+                $data{'Ali'} = 55;
+                @keys = keys %data;
+                $size = @keys;
+                print "2 - Hash size:  is $size\n";
+
+                delete $data{'Ali'};
+                @keys = keys %data;
+                $size = @keys;
+                print "3 - Hash size:  is $size\n";</item>
+
+        <item>  $a = 100;
+                if( $a  ==  20 ) {
+                    printf "a has a value which is 20\n";
+                } elsif( $a ==  30 ) {
+                    printf "a has a value which is 30\n";
+                } else {
+                    printf "a has a value which is $a\n";
+                }</item>
+
+        <item>  $a = 10;
+                while( $a != 20 ) {
+                    printf "Value of a: $a\n";
+                    $a = $a + 1;
+                }</item>
+
+        <item>  $a = "abc";
+                $b = "def";
+                print "Value of \$a  = $a and value of \$b = $b\n";
+                $c = $a . $b;
+                print "Value of \$a . \$b = $c\n";
+
+                $c = "-" x 3;
+                print "Value of \"-\" x 3 = $c\n";
+
+                @c = (2..5);
+                print "Value of (2..5) = @c\n";
+
+                $a = 10;
+                $b = 15;
+                print "Value of \$a  = $a and value of \$b = $b\n";
+
+                $a++;
+                $c = $a ;
+                print "Value of \$a after \$a++ = $c\n";
+
+                $b--;
+                $c = $b ;
+                print "Value of \$b after \$b-- = $c\n";</item>
+
+        <item>  /@months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec );
+                @days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
+
+                ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+                print "$mday $months[$mon] $days[$wday]\n";</item>
+
+        <item>  sub Average {
+                $n = scalar(@_);
+                $sum = 0;
+
+                foreach $item (@_) {
+                $sum += $item;
+                }
+                $average = $sum / $n;
+
+                print "Average for the given numbers : $average\n";
+                }
+
+                Average(10, 20, 30);</item>
+
+        <item>  $var = 10;
+
+                $r = \$var;
+
+                print "Value of $var is : ", $$r, "\n";
+
+                @var = (1, 2, 3);
+                $r = \@var;
+                print "Value of @var is : ",  @$r, "\n";
+
+                %var = ('key1' => 10, 'key2' => 20);
+                $r = \%var;
+                print "Value of %var is : ", %$r, "\n";</item>
+
+        <item>  format EMPLOYEE =
+                ===================================
+                $name $age
+                @#####.##
+                $salary
+                ===================================
+                .
+
+                select(STDOUT);
+                $~ = EMPLOYEE;
+
+                @n = ("Ali", "Raza", "Jaffer");
+                @a  = (20,30, 40);
+                @s = (2000.00, 2500.00, 4000.000);
+
+                $i = 0;
+                foreach (@n) {
+                    $name = $_;
+                    $age = $a[$i];
+                    $salary = $s[$i++];
+                    write;
+                }</item>
+
+        <item> </item>
+
+        <item>
+                $dir = "/tmp/*";
+                my @files = glob( $dir );
+
+                foreach (@files ) {
+                    print $_ . "\n";
+                }
+
+                # Display all the C source files in /tmp directory.
+                $dir = "/tmp/*.c";
+                @files = glob( $dir );
+
+                foreach (@files ) {
+                    print $_ . "\n";
+                }
+
+                # Display all the hidden files.
+                $dir = "/tmp/.*";
+                @files = glob( $dir );
+                foreach (@files ) {
+                    print $_ . "\n";
+                }
+
+                # Display all the files from /tmp and /home directories.
+                $dir = "/tmp/* /home/*";
+                @files = glob( $dir );
+
+                foreach (@files ) {
+                    print $_ . "\n";
+                }</item>
+
+        <item> </item>
+
+        <item>  foreach ('hickory','dickory','doc') {
+                print;
+                print "\n";
+                }</item>
+
+        <item> </item>
+
+        <item>  $bar = "This is foo and again foo";
+                if ($bar =~ m[foo]) {
+                    print "First time is matching\n";
+                } else {
+                    print "First time is not matching\n";
+                }
+
+                $bar = "foo";
+                if ($bar =~ m{foo}) {
+                    print "Second time is matching\n";
+                } else {
+                    print "Second time is not matching\n";
+                }</item>
+
+        <item>  use MIME::Lite;
+
+                $to = 'abcd@gmail.com';
+                $cc = 'efgh@mail.com';
+                $from = 'webmaster@yourdomain.com';
+                $subject = 'Test Email';
+                $message = 'This is test email sent by Perl Script';
+
+                $msg = MIME::Lite->new(
+                    From     => $from,
+                    To       => $to,
+                    Cc       => $cc,
+                    Subject  => $subject,
+                    Data     => $message
+                    );
+
+                $msg->send;
+                print "Email Sent Successfully\n";</item>
+
+        <item>  use Socket        # This defines PF_INET and SOCK_STREAM
+
+                $port = 12345;    # The unique port used by the sever to listen requests
+                $server_ip_address = "10.12.12.168";
+                bind( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))
+                or die "Can't bind to port $port! \n";</item>
+
+        <item>  # Following is the implementation of simple Class.
+                package MyClass;
+
+                sub new {
+                    print "MyClass::new called\n";
+                    my $type = shift;            # The package/type name
+                    my $self = {};               # Reference to empty hash
+                    return bless $self, $type;
+                }
+
+                sub DESTROY {
+                    print "MyClass::DESTROY called\n";
+                }
+
+                sub MyMethod {
+                    print "MyClass::MyMethod called!\n";
+                }
+
+
+                # Following is the implemnetation of Inheritance.
+                package MySubClass;
+
+                @ISA = qw( MyClass );
+
+                sub new {
+                    print "MySubClass::new called\n";
+                    my $type = shift;            # The package/type name
+                    my $self = MyClass->new;     # Reference to empty hash
+                    return bless $self, $type;
+                }
+
+                sub DESTROY {
+                    print "MySubClass::DESTROY called\n";
+                }
+
+                sub MyMethod {
+                    my $self = shift;
+                    $self->SUPER::MyMethod();
+                    print "   MySubClass::MyMethod called!\n";
+                }
+
+                # Here is the main program using above classes.
+                package main;
+
+                print "Invoke MyClass method\n";
+
+                $myObject = MyClass->new();
+                $myObject->MyMethod();
+
+                print "Invoke MySubClass method\n";
+
+                $myObject2 = MySubClass->new();
+                $myObject2->MyMethod();
+
+                print "Create a scoped object\n";
+                {
+                    my $myObject2 = MyClass->new();
+                }
+                # Destructor is called automatically here
+
+                print "Create and undef an object\n";
+                $myObject3 = MyClass->new();
+                undef $myObject3;
+
+                print "Fall off the end of the script...\n";
+                # Remaining destructors are called automatically here</item>
+
+        <item>  use DBI
+                use strict;
+
+                my $driver = "mysql";
+                my $database = "TESTDB";
+                my $dsn = "DBI:$driver:database=$database";
+                my $userid = "testuser";
+                my $password = "test123";
+
+                my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;</item>
+
+        <item>  print "Content-type:text/html\r\n\r\n";
+                print '<html>';
+                print '<head>';
+                print '<title>Hello Word - First CGI Program</title>';
+                print '</head>';
+                print '<body>';
+                print '<h2>Hello Word! This is my first CGI program</h2>';
+                print '</body>';
+                print '</html>';
+
+                1;</item>
+
+        <item>  # This is main package
+                $i = 1;
+                print "Package name : " , __PACKAGE__ , " $i\n";
+
+                package Foo;
+                # This is Foo package
+                $i = 10;
+                print "Package name : " , __PACKAGE__ , " $i\n";
+
+                package main;
+                # This is again main package
+                $i = 100;
+                print "Package name : " , __PACKAGE__ , " $i\n";
+                print "Package name : " , __PACKAGE__ ,  " $Foo::i\n";
+
+                1;</item>
+
+        <item>  if(!defined($pid = fork())) {
+                # fork returned undef, so unsuccessful
+                die "Cannot fork a child: $!";
+                } elsif ($pid == 0) {
+                    print "Printed by child process\n";
+                    exec("date") || die "can't exec date: $!";
+
+                } else {
+                    # fork returned 0 nor undef
+                    # so this branch is parent
+                    print "Printed by parent process\n";
+                    $ret = waitpid($pid, 0);
+                    print "Completed process id: $ret\n";
+
+                }
+
+                1;</item>
+    </string-array>
+
     <!--quiz Category introduction-->
     <string-array name="introduction_questions">
         <item>Who created PERL?</item>

@@ -1,31 +1,40 @@
 package com.example.redoyahmed.ezyperl.Fragment;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
+import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 import com.example.redoyahmed.ezyperl.R;
 
+import java.util.List;
+
+import br.tiagohm.codeview.CodeView;
+import br.tiagohm.codeview.Language;
+import br.tiagohm.codeview.Theme;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.github.kbiakov.codeview.CodeView;
 
-public class FragmentTutorialCode extends Fragment {
+@SuppressLint("ValidFragment")
+public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlightListener {
 
-    @BindView(R.id.code_view)
+    @BindView(R.id.codeView)
     public CodeView codeView;
 
-    View rootView;
+    private View rootView;
+    private int category_id;
+    private List<TutorialItems> tutorialItems;
+    private ProgressDialog mProgressDialog;
 
-    public FragmentTutorialCode() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public FragmentTutorialCode(int category_id) {
+        this.category_id = category_id;
     }
 
     @Override
@@ -33,22 +42,56 @@ public class FragmentTutorialCode extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_tutorial_code, container, false);
         ButterKnife.bind(this, rootView);
 
+        loadData(category_id);
         loadDataIntoWidgets();
 
         return rootView;
     }
 
+    private void loadData(int category_id) {
+        DbHelper db = new DbHelper(rootView.getContext());
+        tutorialItems = db.getTutorialDetailsByCategory(category_id);
+    }
+
     private void loadDataIntoWidgets() {
 
-        codeView.setCode("use strict;\n" +
-                "\n" +
-                "my $a = 5;\n" +
-                "while($a > 0) {\n" +
-                "    print \"$a \";\n" +
-                "    $a--;\n" +
-                "}\n" +
-                "print \"\\n\";",
-                "pl");
+        codeView.setOnHighlightListener(this)
+                .setOnHighlightListener(this)
+                .setTheme(Theme.ARDUINO_LIGHT)
+                .setCode(tutorialItems.get(0).getTutorial_code())
+                .setLanguage(Language.PERL)
+                .setWrapLine(true)
+                .setFontSize(14)
+                .setZoomEnabled(true)
+                .setShowLineNumber(true)
+                .setStartLineNumber(1)
+                .apply();
+    }
 
+    @Override
+    public void onStartCodeHighlight() {
+        mProgressDialog = ProgressDialog.show(rootView.getContext(), null, "Carregando...", true);
+    }
+
+    @Override
+    public void onFinishCodeHighlight() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onLanguageDetected(Language language, int relevance) {
+        Toast.makeText(rootView.getContext(), "language: " + language + " relevance: " + relevance, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFontSizeChanged(int sizeInPx) {
+        Log.d("TAG", "font-size: " + sizeInPx + "px");
+    }
+
+    @Override
+    public void onLineClicked(int lineNumber, String content) {
+        Toast.makeText(rootView.getContext(), "line: " + lineNumber + " html: " + content, Toast.LENGTH_SHORT).show();
     }
 }

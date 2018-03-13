@@ -15,7 +15,6 @@ import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 import com.example.redoyahmed.ezyperl.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,7 +54,7 @@ public class FragmentTutorial extends Fragment {
 
         DbHelper db = new DbHelper(rootView.getContext());
         List<TutorialItems> rowListItem = db.getAllTutorials();
-        RecyclerViewAdapterTutorial adapterTutorial = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem, getFragmentManager());
+        RecyclerViewAdapterTutorial adapterTutorial = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem);
         tutorialTextRecyclerView.setAdapter(adapterTutorial);
 
         layoutManager = new AutoFitGridLayoutManager(rootView.getContext(), 500);
