@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.redoyahmed.ezyperl.Database.DbHelper;
@@ -27,6 +28,9 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
 
     @BindView(R.id.codeView)
     public CodeView codeView;
+
+    @BindView(R.id.empty)
+    public TextView empty;
 
     private View rootView;
     private int category_id;
@@ -55,17 +59,22 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
 
     private void loadDataIntoWidgets() {
 
-        codeView.setOnHighlightListener(this)
-                .setOnHighlightListener(this)
-                .setTheme(Theme.ARDUINO_LIGHT)
-                .setCode(tutorialItems.get(0).getTutorial_code())
-                .setLanguage(Language.PERL)
-                .setWrapLine(true)
-                .setFontSize(14)
-                .setZoomEnabled(true)
-                .setShowLineNumber(true)
-                .setStartLineNumber(1)
-                .apply();
+        if (tutorialItems.get(0).getTutorial_code().length() == 0) {
+            codeView.setVisibility(View.INVISIBLE);
+            empty.setVisibility(View.VISIBLE);
+        } else {
+            codeView.setOnHighlightListener(this)
+                    .setOnHighlightListener(this)
+                    .setTheme(Theme.ARDUINO_LIGHT)
+                    .setCode(tutorialItems.get(0).getTutorial_code())
+                    .setLanguage(Language.PERL)
+                    .setWrapLine(true)
+                    .setFontSize(14)
+                    .setZoomEnabled(true)
+                    .setShowLineNumber(true)
+                    .setStartLineNumber(1)
+                    .apply();
+        }
     }
 
     @Override
