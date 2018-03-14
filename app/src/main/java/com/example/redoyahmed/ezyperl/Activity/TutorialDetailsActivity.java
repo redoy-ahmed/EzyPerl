@@ -31,7 +31,7 @@ public class TutorialDetailsActivity extends AppCompatActivity {
     @BindView(R.id.viewpager)
     public ViewPager viewPager;
 
-    public int category_id;
+    public String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class TutorialDetailsActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        category_id = getIntent().getIntExtra("category_id", 1);
+        category = getIntent().getStringExtra("category");
     }
 
     private void loadDataIntoWidgets() {
@@ -62,8 +62,8 @@ public class TutorialDetailsActivity extends AppCompatActivity {
 
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new FragmentTutorialText(category_id), "Tutorial");
-        adapter.addFrag(new FragmentTutorialCode(category_id), "Code");
+        adapter.addFrag(new FragmentTutorialText(category), "Tutorial");
+        adapter.addFrag(new FragmentTutorialCode(category), "Code");
         viewPager.setAdapter(adapter);
     }
 

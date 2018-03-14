@@ -3,7 +3,6 @@ package com.example.redoyahmed.ezyperl.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.redoyahmed.ezyperl.Activity.TutorialDetailsActivity;
-import com.example.redoyahmed.ezyperl.Model.TutorialItems;
+import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.List;
@@ -30,10 +29,10 @@ import static com.example.redoyahmed.ezyperl.Utils.Colors.colors;
 
 public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial> {
 
-    private List<TutorialItems> itemList;
+    private List<Category> itemList;
     private Context context;
 
-    public RecyclerViewAdapterTutorial(Context context, List<TutorialItems> itemList) {
+    public RecyclerViewAdapterTutorial(Context context, List<Category> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
@@ -48,7 +47,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapterTutorial.RecyclerViewHolderTutorial holder, int position) {
-        holder.itemName.setText(itemList.get(position).getTutorial_name());
+        holder.itemName.setText(itemList.get(position).getCategory());
         holder.itemPhoto.setImageResource(R.drawable.tutorial);
         holder.relativeLayout.setBackgroundColor(Color.parseColor(colors[new Random().nextInt(colors.length)]));
     }
@@ -77,7 +76,7 @@ public class RecyclerViewAdapterTutorial extends RecyclerView.Adapter<RecyclerVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, TutorialDetailsActivity.class);
-                    intent.putExtra("category_id", itemList.get(getAdapterPosition()).getCategory_id());
+                    intent.putExtra("category", itemList.get(getAdapterPosition()).getCategory());
                     context.startActivity(intent);
                 }
             });

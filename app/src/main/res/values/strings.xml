@@ -85,7 +85,7 @@
         <item>28</item>
     </string-array>
 
-    <string-array name="tutorialDetailsCode">
+    <string-array name="tutorialCode">
         <item>print "Hello, world\n";</item>
 
         <item>  $a = 10;\n

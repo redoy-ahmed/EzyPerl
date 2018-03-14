@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.redoyahmed.ezyperl.Database.DbHelper;
-import com.example.redoyahmed.ezyperl.Model.TutorialItems;
+import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.List;
@@ -33,12 +33,12 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
     public TextView empty;
 
     private View rootView;
-    private int category_id;
-    private List<TutorialItems> tutorialItems;
+    private String category;
+    private List<Category> tutorialItems;
     private ProgressDialog mProgressDialog;
 
-    public FragmentTutorialCode(int category_id) {
-        this.category_id = category_id;
+    public FragmentTutorialCode(String category) {
+        this.category = category;
     }
 
     @Override
@@ -46,27 +46,27 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
         rootView = inflater.inflate(R.layout.fragment_tutorial_code, container, false);
         ButterKnife.bind(this, rootView);
 
-        loadData(category_id);
+        loadData(category);
         loadDataIntoWidgets();
 
         return rootView;
     }
 
-    private void loadData(int category_id) {
+    private void loadData(String category) {
         DbHelper db = new DbHelper(rootView.getContext());
-        tutorialItems = db.getTutorialDetailsByCategory(category_id);
+        tutorialItems = db.getTutorialDetailsByCategory(category);
     }
 
     private void loadDataIntoWidgets() {
 
-        if (tutorialItems.get(0).getTutorial_code().length() == 0) {
+        if (tutorialItems.get(0).getCode().length() == 0) {
             codeView.setVisibility(View.INVISIBLE);
             empty.setVisibility(View.VISIBLE);
         } else {
             codeView.setOnHighlightListener(this)
                     .setOnHighlightListener(this)
                     .setTheme(Theme.ARDUINO_LIGHT)
-                    .setCode(tutorialItems.get(0).getTutorial_code())
+                    .setCode(tutorialItems.get(0).getCode())
                     .setLanguage(Language.PERL)
                     .setWrapLine(true)
                     .setFontSize(14)

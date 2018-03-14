@@ -12,7 +12,6 @@ import com.example.redoyahmed.ezyperl.Model.Language;
 import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.Result;
-import com.example.redoyahmed.ezyperl.Model.TutorialItems;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.ArrayList;
@@ -29,15 +28,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String TUTORIAL_LANGUAGE = "TutorialLanguage";
     private static final String TUTORIAL_CATEGORY = "TutorialCategory";
-    private static final String TUTORIAL_DETAILS = "TutorialDetails";
     private static final String QUESTION_ANSWER = "QuestionAnswer";
     private static final String TUTORIAL_RESULT = "TutorialResult";
 
     private static final String KEY_NAME = "name";
     private static final String KEY_LANGUAGE_ID = "language_id";
     private static final String KEY_CATEGORY_ID = "category_id";
-    private static final String KEY_TUTORIAL_NAME = "tutorial_name";
-    private static final String KEY_TUTORIAL_DETAILS = "tutorial_details";
     private static final String KEY_TUTORIAL_CODE = "tutorial_code";
     private static final String KEY_TOTAL_QUESTION = "total_question";
     private static final String KEY_CORRECT_ANSWER = "correct_answer";
@@ -76,17 +72,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + KEY_LANGUAGE_ID + " INTEGER, "
                 + KEY_CATEGORY + " TEXT, "
+                + KEY_TUTORIAL_CODE + " TEXT, "
                 + KEY_LEVEL + " INTEGER);";
-        db.execSQL(sql);
-
-        sql = "CREATE TABLE IF NOT EXISTS "
-                + TUTORIAL_DETAILS + " ( "
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + KEY_LANGUAGE_ID + " INTEGER, "
-                + KEY_CATEGORY_ID + " INTEGER, "
-                + KEY_TUTORIAL_NAME + " TEXT, "
-                + KEY_TUTORIAL_DETAILS + " TEXT, "
-                + KEY_TUTORIAL_CODE + " TEXT);";
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS "
@@ -114,7 +101,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         addLanguages();
         addCategories();
-        addDetails();
         addQuestions();
     }
 
@@ -131,15 +117,16 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private void addCategories() {
         String[] category = context.getResources().getStringArray(R.array.category);
+        String[] code = context.getResources().getStringArray(R.array.tutorialCode);
         Category c;
         int changeLevel = 0;
         int level = 1;
         for (int i = 0; i < category.length; i++) {
             changeLevel++;
             if (changeLevel % 5 == 0) {
-                c = new Category(1, category[i], level++);
+                c = new Category(1, category[i], code[i], level++);
             } else {
-                c = new Category(1, category[i], level);
+                c = new Category(1, category[i], code[i], level);
             }
             addCategory(c);
         }
@@ -149,29 +136,9 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_LANGUAGE_ID, c.getLanguage_id());
         values.put(KEY_CATEGORY, c.getCategory());
+        values.put(KEY_TUTORIAL_CODE, c.getCode());
         values.put(KEY_LEVEL, c.getLevel());
         database.insert(TUTORIAL_CATEGORY, null, values);
-    }
-
-    private void addDetails() {
-        String[] tutorials = context.getResources().getStringArray(R.array.tutorialDetails);
-        String[] code = context.getResources().getStringArray(R.array.tutorialDetailsCode);
-        String[] category = context.getResources().getStringArray(R.array.category);
-
-        for (int i = 0; i < tutorials.length; i++) {
-            TutorialItems details = new TutorialItems(1, i + 1, category[i], tutorials[i], code[i]);
-            addDetail(details);
-        }
-    }
-
-    private void addDetail(TutorialItems details) {
-        ContentValues values = new ContentValues();
-        values.put(KEY_LANGUAGE_ID, details.getLanguage_id());
-        values.put(KEY_CATEGORY_ID, details.getCategory_id());
-        values.put(KEY_TUTORIAL_NAME, details.getTutorial_name());
-        values.put(KEY_TUTORIAL_DETAILS, details.getTutorial_details());
-        values.put(KEY_TUTORIAL_CODE, details.getTutorial_code());
-        database.insert(TUTORIAL_DETAILS, null, values);
     }
 
     private void addQuestions() {
@@ -458,11 +425,11 @@ public class DbHelper extends SQLiteOpenHelper {
         return quesList;
     }
 
-    public List<TutorialItems> getAllTutorials() {
+    public List<Category> getAllTutorials() {
 
-        List<TutorialItems> tutorialList = new ArrayList<>();
+        List<Category> tutorialList = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM " + TUTORIAL_DETAILS + ";";
+        String selectQuery = "SELECT  * FROM " + TUTORIAL_CATEGORY + ";";
 
         database = this.getReadableDatabase();
 
@@ -470,25 +437,24 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                TutorialItems tutorialItems = new TutorialItems();
-                tutorialItems.setId(cursor.getInt(0));
-                tutorialItems.setLanguage_id(cursor.getInt(1));
-                tutorialItems.setCategory_id(cursor.getInt(2));
-                tutorialItems.setTutorial_name(cursor.getString(3));
-                tutorialItems.setTutorial_details(cursor.getString(4));
-                tutorialItems.setTutorial_code(cursor.getString(5));
-                tutorialList.add(tutorialItems);
+                Category categoryItems = new Category();
+                categoryItems.setId(cursor.getInt(0));
+                categoryItems.setLanguage_id(cursor.getInt(1));
+                categoryItems.setCategory(cursor.getString(2));
+                categoryItems.setCode(cursor.getString(3));
+                categoryItems.setLevel(cursor.getInt(4));
+                tutorialList.add(categoryItems);
             } while (cursor.moveToNext());
         }
 
         return tutorialList;
     }
 
-    public List<TutorialItems> getTutorialDetailsByCategory(int category_id) {
+    public List<Category> getTutorialDetailsByCategory(String category) {
 
-        List<TutorialItems> tutorialList = new ArrayList<>();
+        List<Category> tutorialList = new ArrayList<>();
 
-        String selectQuery = "select * from TutorialDetails where category_id=" + category_id + ";";
+        String selectQuery = "select * from TutorialCategory where category='" + category + "';";
 
         database = this.getReadableDatabase();
 
@@ -496,14 +462,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                TutorialItems tutorialItems = new TutorialItems();
-                tutorialItems.setId(cursor.getInt(0));
-                tutorialItems.setLanguage_id(cursor.getInt(1));
-                tutorialItems.setCategory_id(cursor.getInt(2));
-                tutorialItems.setTutorial_name(cursor.getString(3));
-                tutorialItems.setTutorial_details(cursor.getString(4));
-                tutorialItems.setTutorial_code(cursor.getString(5));
-                tutorialList.add(tutorialItems);
+                Category categoryItems = new Category();
+                categoryItems.setId(cursor.getInt(0));
+                categoryItems.setLanguage_id(cursor.getInt(1));
+                categoryItems.setCategory(cursor.getString(2));
+                categoryItems.setCode(cursor.getString(3));
+                categoryItems.setLevel(cursor.getInt(4));
+                tutorialList.add(categoryItems);
             } while (cursor.moveToNext());
         }
 

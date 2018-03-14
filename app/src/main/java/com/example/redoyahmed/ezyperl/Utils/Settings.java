@@ -15,6 +15,7 @@ public final class Settings {
         public static final String PYTHON = "python";
         public static final String RUBY = "ruby";
         public static final String SQL = "sql";
+        public static final String PERL = "perl";
     }
 
     public final class MimeType {

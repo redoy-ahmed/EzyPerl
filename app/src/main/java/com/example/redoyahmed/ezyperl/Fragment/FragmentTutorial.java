@@ -12,7 +12,7 @@ import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 import com.example.redoyahmed.ezyperl.Adapters.AutoFitGridLayoutManager;
 import com.example.redoyahmed.ezyperl.Adapters.RecyclerViewAdapterTutorial;
 import com.example.redoyahmed.ezyperl.Database.DbHelper;
-import com.example.redoyahmed.ezyperl.Model.TutorialItems;
+import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.R;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class FragmentTutorial extends Fragment {
     private void initializeData() {
 
         DbHelper db = new DbHelper(rootView.getContext());
-        List<TutorialItems> rowListItem = db.getAllTutorials();
+        List<Category> rowListItem = db.getAllTutorials();
         RecyclerViewAdapterTutorial adapterTutorial = new RecyclerViewAdapterTutorial(rootView.getContext(), rowListItem);
         tutorialTextRecyclerView.setAdapter(adapterTutorial);
 
