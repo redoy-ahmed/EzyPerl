@@ -307,16 +307,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         for (int i = 0; i < files_questions.length; i++) {
             String[] parts = files_answers[i].split(",");
-
-            Log.e("category_id", category_id[15]);
-            Log.e("category", category[15]);
-            Log.e("files_questions", files_questions[i]);
-            Log.e("1", parts[0]);
-            Log.e("2", parts[1]);
-            Log.e("3", parts[2]);
-            Log.e("4", parts[3]);
-            Log.e("answer", parts[4]);
-
             QuestionItem filesQuestions = new QuestionItem(Integer.valueOf(category_id[15]), category[15], files_questions[i], parts[0], parts[1], parts[2], parts[3], Integer.valueOf(parts[4]));
             addQuestion(filesQuestions);
         }

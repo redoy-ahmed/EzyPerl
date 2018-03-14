@@ -222,57 +222,307 @@ public class FragmentTutorialText extends Fragment {
                             "<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[2])) {
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("<h1>Perl - Syntax Overview</h1>\n")
+                    .withHtml("<p>Perl borrows syntax and concepts from many languages: awk, sed, C, Bourne Shell, Smalltalk, Lisp and even English. However, there are some definite differences between the languages. This chapter is designd to quickly get you up to speed on the syntax that is expected in Perl.</p>\n" +
+                            "<p>A Perl program consists of a sequence of declarations and statements, which run from the top to the bottom. Loops, subroutines, and other control structures allow you to jump around within the code. Every simple statement must end with a semicolon (;).</p>\n" +
+                            "<p>Perl is a free-form language: you can format and indent it however you like. Whitespace serves mostly to separate tokens, unlike languages like Python where it is an important part of the syntax, or Fortran where it is immaterial.</p>\n" +
+                            "<h2>First Perl Program</h2>\n" +
+                            "<h3>Interactive Mode Programming</h3>\n" +
+                            "<p>You can use Perl interpreter with <b>-e</b> option at command line, which lets you execute Perl statements from the command line. Let's try something at $ prompt as follows &minus;</p>\n")
+                    .withCode("$perl -e 'print \"Hello World\\n\"'\n")
+                    .withHtml("<p>This execution will produce the following result &minus;</p>\n")
+                    .withCode("Hello, world\n")
+                    .withHtml("<h3>Script Mode Programming</h3>\n" +
+                            "<p>Assuming you are already on $ prompt, let's open a text file hello.pl using vi or vim editor and put the following lines inside your file.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# This will print \"Hello, World\"\n" +
+                            "print \"Hello, world\\n\";\n")
+                    .withHtml("<p>Here <b>/usr/bin/perl</b> is actual the perl interpreter binary. Before you execute your script, be sure to change the mode of the script file and give execution priviledge, generally a setting of 0755 works perfectly and finally you execute the above script as follows &minus;</p>\n")
+                    .withCode("$chmod 0755 hello.pl\n" +
+                            "$./hello.pl\n")
+                    .withHtml("<p>This execution will produce the following result &minus;</p>\n")
+                    .withCode("Hello, world\n")
+                    .withHtml("<p>You can use parentheses for functions arguments or omit them according to your personal taste. They are only required occasionally to clarify the issues of precedence. Following two statements produce the same result.</p>")
+                    .withCode("print(\"Hello, world\\n\");\n" +
+                            "print \"Hello, world\\n\";\n")
+                    .withHtml("<h2>Perl File Extension</h2>\n" +
+                            "<p>A Perl script can be created inside of any normal simple-text editor program. There are several programs available for every type of platform. There are many programs designd for programmers available for download on the web.</p>\n" +
+                            "<p>As a Perl convention, a Perl file must be saved with a .pl or .PL file extension in order to be recognized as a functioning Perl script. File names can contain numbers, symbols, and letters but must not contain a space. Use an underscore (_) in places of spaces.</p>\n" +
+                            "<h2>Comments in Perl</h2>\n" +
+                            "<p>Comments in any programming language are friends of developers. Comments can be used to make program user friendly and they are simply skipped by the interpreter without impacting the code functionality. For example, in the above program, a line starting with hash <b>#</b> is a comment.</p>\n" +
+                            "<p>Simply saying comments in Perl start with a hash symbol and run to the end of the line &minus;</p>")
+                    .withCode("# This is a comment in perl\n")
+                    .withHtml("<p>Lines starting with = are interpreted as the start of a section of embedded documentation (pod), and all subsequent lines until the next =cut are ignored by the compiler. Following is the example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# This is a single line comment\n" +
+                            "print \"Hello, world\\n\";\n" +
+                            "\n" +
+                            "=begin comment\n" +
+                            "This is all part of multiline comment.\n" +
+                            "You can use as many lines as you like\n" +
+                            "These comments will be ignored by the \n" +
+                            "compiler until the next =cut is encountered.\n" +
+                            "=cut\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>")
+                    .withCode("Hello, world\n")
+                    .withHtml("<h2>Whitespaces in Perl</h2>\n" +
+                            "<p>A Perl program does not care about whitespaces. Following program works perfectly fine &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print       \"Hello, world\\n\";\n")
+                    .withHtml("<p>But if spaces are inside the quoted strings, then they would be printed as is. For example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# This would print with a line break in the middle\n" +
+                            "print \"Hello\n" +
+                            "          world\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Hello\n" +
+                            "          world")
+                    .withHtml("<p>All types of whitespace like spaces, tabs, newlines, etc. are equivalent for the interpreter when they are used outside of the quotes. A line containing only whitespace, possibly with a comment, is known as a blank line, and Perl totally ignores it.</p>\n" +
+                            "<h2>Single and Double Quotes in Perl</h2>\n" +
+                            "<p>You can use double quotes or single quotes around literal strings as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print \"Hello, world\\n\";\n" +
+                            "print 'Hello, world\\n';\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Hello, world\n" +
+                            "Hello, world\\n$\n")
+                    .withHtml("<p>There is an important difference in single and double quotes. Only double quotes <b>interpolate</b> variables and special characters such as newlines \\n, whereas single quote does not interpolate any variable or special character. Check below example where we are using $a as a variable to store a value and later printing that value &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$a = 10;\n" +
+                            "print \"Value of a = $a\\n\";\n" +
+                            "print 'Value of a = $a\\n';")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Value of a = 10\n" +
+                            "Value of a = $a\\n$\n")
+                    .withHtml("<h2>\"Here\" Documents</h2>\n" +
+                            "<p>You can store or print multiline text with a great comfort. Even you can make use of variables inside the \"here\" document. Below is a simple syntax, check carefully there must be no space between the &lt;&lt; and the identifier.</p>\n" +
+                            "<p>An identifier may be either a bare word or some quoted text like we used EOF below. If identifier is quoted, the type of quote you use determines the treatment of the text inside the here docoment, just as in regular quoting. An unquoted identifier works like double quotes.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$a = 10;\n" +
+                            "$var = &lt;&lt;\"EOF\";\n" +
+                            "This is the syntax for here document and it will continue\n" +
+                            "until it encounters a EOF in the first line.\n" +
+                            "This is case of double quote so variable value will be \n" +
+                            "interpolated. For example value of a = $a\n" +
+                            "EOF\n" +
+                            "print \"$var\\n\";\n" +
+                            "\n" +
+                            "$var = &lt;&lt;'EOF';\n" +
+                            "This is case of single quote so variable value will not be \n" +
+                            "interpolated. For example value of a = $a\n" +
+                            "EOF\n" +
+                            "print \"$var\\n\";")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("This is the syntax for here document and it will continue\n" +
+                            "until it encounters a EOF in the first line.\n" +
+                            "This is case of double quote so variable value will be\n" +
+                            "interpolated. For example value of a = 10\n" +
+                            "\n" +
+                            "This is case of single quote so variable value will be\n" +
+                            "interpolated. For example value of a = $a\n")
+                    .withHtml("<h2>Escaping Characters</h2>\n" +
+                            "<p>Perl uses the backslash (\\) character to escape any type of character that might interfere with our code. Let's take one example where we want to print double quote and $ sign &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$result = \"This is \\\"number\\\"\";\n" +
+                            "print \"$result\\n\";\n" +
+                            "print \"\\$result\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("This is \"number\"\n" +
+                            "$result\n")
+                    .withHtml("<h2>Perl Identifiers</h2>\n" +
+                            "<p>A Perl identifier is a name used to identify a variable, function, class, module, or other object. A Perl variable name starts with either $, &commat; or % followed by zero or more letters, underscores, and digits (0 to 9).</p>\n" +
+                            "<p>Perl does not allow punctuation characters such as &commat;, $, and % within identifiers. Perl is a <b>case sensitive</b> programming language.  Thus <b>$Manpower</b> and <b>$manpower</b> are two different identifiers in Perl.</p>\n" +
+                            "<hr />\n")
+                    .withCode("")
+                    .into(textView);
 
         } else if (category.equals(categories[3])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[4])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[5])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[6])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[7])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[8])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[9])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[10])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[11])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[12])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[13])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[14])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[15])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[16])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[17])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[18])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[19])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[20])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[21])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[22])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[23])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[24])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[25])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[26])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         } else if (category.equals(categories[27])) {
-
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withHtml("")
+                    .into(textView);
         }
     }
 }

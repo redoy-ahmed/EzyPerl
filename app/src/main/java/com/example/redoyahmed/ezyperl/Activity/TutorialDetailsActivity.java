@@ -52,12 +52,6 @@ public class TutorialDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupViewPager();
         tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
-    }
-
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(R.drawable.tutorial_tab);
-        tabLayout.getTabAt(1).setIcon(R.drawable.code_tab);
     }
 
     private void setupViewPager() {
