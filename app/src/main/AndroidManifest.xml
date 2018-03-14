@@ -19,20 +19,34 @@
         <activity
             android:name=".Activity.WelcomeScreen"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.TutorialDetailsActivity" />
-        <activity android:name=".Activity.LinkDetailsActivity" />
-        <activity android:name=".Activity.StartQuizActivity" />
-        <activity android:name=".Activity.QuizDetailActivity" />
-        <activity android:name=".Activity.ResultActivity" />
-        <activity android:name=".Activity.AnalysisActivity"></activity>
+        <activity
+            android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TutorialDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.LinkDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.StartQuizActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.QuizDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AnalysisActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

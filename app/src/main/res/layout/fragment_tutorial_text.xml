@@ -7,6 +7,5 @@
     <com.example.redoyahmed.ezyperl.Utils.TouchMyWebView
         android:id="@+id/summarytext"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="match_parent"/>
 </RelativeLayout>
