@@ -1120,70 +1120,1966 @@ public class FragmentTutorialText extends Fragment {
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Hashes</h1>\n")
+                    .withHtml("<hr />\n")
+                    .withHtml("<p>A hash is a set of <b>key/value</b> pairs. Hash variables are preceded by a percent (%) sign. To refer to a single element of a hash, you will use the hash variable name preceded by a \"$\" sign and followed by the \"key\" associated with the value in curly brackets..</p>\n" +
+                            "<p>Here is a simple example of using the hash variables &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "%data = ('John Paul', 45, 'Lisa', 30, 'Kumar', 40);\n" +
+                            "\n" +
+                            "print \"\\$data{'John Paul'} = $data{'John Paul'}\\n\";\n" +
+                            "print \"\\$data{'Lisa'} = $data{'Lisa'}\\n\";\n" +
+                            "print \"\\$data{'Kumar'} = $data{'Kumar'}\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("$data{'John Paul'} = 45\n" +
+                            "$data{'Lisa'} = 30\n" +
+                            "$data{'Kumar'} = 40\n")
+                    .withHtml("<h2>Creating Hashes</h2>\n" +
+                            "<p>Hashes are created in one of the two following ways. In the first method, you assign a value to a named key on a one-by-one basis &minus;</p>\n")
+                    .withCode("$data{'John Paul'} = 45;\n" +
+                            "$data{'Lisa'} = 30;\n" +
+                            "$data{'Kumar'} = 40;\n")
+                    .withHtml("<p>In the second case, you use a list, which is converted by taking individual pairs from the list: the first element of the pair is used as the key, and the second, as the value. For example &minus;</p>\n")
+                    .withCode("%data = ('John Paul', 45, 'Lisa', 30, 'Kumar', 40);\n")
+                    .withHtml("<p>For clarity, you can use =&gt; as an alias for , to indicate the key/value pairs as follows &minus;</p>\n")
+                    .withCode("%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n")
+                    .withHtml("<p>Here is one more variant of the above form, have a look at it, here all the keys have been preceded by hyphen (-) and no quotation is required around them &minus;</p>\n")
+                    .withCode("%data = (-JohnPaul =&gt; 45, -Lisa =&gt; 30, -Kumar =&gt; 40);\n")
+                    .withHtml("<p>But it is important to note that there is a single word, i.e., without spaces keys have been used in this form of hash formation and if you build-up your hash this way then keys will be accessed using hyphen only as shown below.</p>\n")
+                    .withCode("$val = %data{-JohnPaul}\n" +
+                            "$val = %data{-Lisa}\n")
+                    .withHtml("<h2>Accessing Hash Elements</h2>\n" +
+                            "<p>When accessing individual elements from a hash, you must prefix the variable with a dollar sign ($) and then append the element key within curly brackets after the name of the variable. For example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "\n" +
+                            "print \"$data{'John Paul'}\\n\";\n" +
+                            "print \"$data{'Lisa'}\\n\";\n" +
+                            "print \"$data{'Kumar'}\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("45\n" +
+                            "30\n" +
+                            "40\n")
+                    .withHtml("<h2>Extracting Slices</h2>\n" +
+                            "<p>You can extract slices of a hash just as you can extract slices from an array. You will need to use &commat; prefix for the variable to store the returned value because they will be a list of values &minus;</p>\n")
+                    .withCode("#!/uer/bin/perl\n" +
+                            "\n" +
+                            "\n" +
+                            "%data = (-JohnPaul =&gt; 45, -Lisa =&gt; 30, -Kumar =&gt; 40);\n" +
+                            "\n" +
+                            "&commat;array = &commat;data{-JohnPaul, -Lisa};\n" +
+                            "\n" +
+                            "print \"Array : &commat;array\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Array : 45 30\n")
+                    .withHtml("<h2>Extracting Keys and Values</h2>\n" +
+                            "<p>You can get a list of all of the keys from a hash by using <b>keys</b> function, which has the following syntax &minus;</p>\n")
+                    .withCode("keys %HASH\n")
+                    .withHtml("<p>This function returns an array of all the keys of the named hash. Following is the example &minus;</p>")
+                    .withCode("#!/usr/bin/perl \n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "\n" +
+                            "&commat;names = keys %data;\n" +
+                            "\n" +
+                            "print \"$names[0]\\n\";\n" +
+                            "print \"$names[1]\\n\";\n" +
+                            "print \"$names[2]\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Lisa\n" +
+                            "John Paul\n" +
+                            "Kumar\n")
+                    .withHtml("<p>Similarly, you can use <b>values</b> function to get a list of all the values. This function has the following syntax &minus;</p>\n")
+                    .withCode("values %HASH\n")
+                    .withHtml("<p>This function returns a normal array consisting of all the values of the named hash. Following is the example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl \n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "\n" +
+                            "&commat;ages = values %data;\n" +
+                            "\n" +
+                            "print \"$ages[0]\\n\";\n" +
+                            "print \"$ages[1]\\n\";\n" +
+                            "print \"$ages[2]\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("30\n" +
+                            "45\n" +
+                            "40\n")
+                    .withHtml("<h2>Checking for Existence</h2>\n" +
+                            "<p>If you try to access a key/value pair from a hash that doesn't exist, you'll normally get the <b>undefined</b> value, and if you have warnings switched on, then you'll get a warning generated at run time. You can get around this by using the <b>exists</b> function, which returns true if the named key exists, irrespective of what its value might be &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "\n" +
+                            "if( exists($data{'Lisa'} ) ) {\n" +
+                            "   print \"Lisa is $data{'Lisa'} years old\\n\";\n" +
+                            "} else {\n" +
+                            "   print \"I don't know age of Lisa\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>Here we have introduced the IF...ELSE statement, which we will study in a separate chapter. For now you just assume that <b>if( condition )</b> part will be executed only when the given condition is true otherwise <b>else</b> part will be executed. So when we execute the above program, it produces the following result because here the given condition <i>exists($data{'Lisa'}</i> returns true &minus;</p>\n")
+                    .withCode("Lisa is 30 years old\n")
+                    .withHtml("<h2>Getting Hash Size</h2>\n" +
+                            "<p>You can get the size - that is, the number of elements from a hash by using the scalar context on either keys or values. Simply saying first you have to get an array of either the keys or values and then you can get the size of array as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "\n" +
+                            "&commat;keys = keys %data;\n" +
+                            "$size = &commat;keys;\n" +
+                            "print \"1 - Hash size:  is $size\\n\";\n" +
+                            "\n" +
+                            "@values = values %data;\n" +
+                            "$size = &commat;values;\n" +
+                            "print \"2 - Hash size:  is $size\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>")
+                    .withCode("1 - Hash size: is 3\n" +
+                            "2 - Hash size: is 3\n")
+                    .withHtml("<h2>Add and Remove Elements in Hashes</h2>\n" +
+                            "<p>Adding a new key/value pair can be done with one line of code using simple assignment operator. But to remove an element from the hash you need to use <b>delete</b> function as shown below in the example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "%data = ('John Paul' =&gt; 45, 'Lisa' =&gt; 30, 'Kumar' =&gt; 40);\n" +
+                            "&commat;keys = keys %data;\n" +
+                            "$size = &commat;keys;\n" +
+                            "print \"1 - Hash size:  is $size\\n\";\n" +
+                            "\n" +
+                            "# adding an element to the hash;\n" +
+                            "$data{'Ali'} = 55;\n" +
+                            "&commat;keys = keys %data;\n" +
+                            "$size = &commat;keys;\n" +
+                            "print \"2 - Hash size:  is $size\\n\";\n" +
+                            "\n" +
+                            "# delete the same element from the hash;\n" +
+                            "delete $data{'Ali'};\n" +
+                            "&commat;keys = keys %data;\n" +
+                            "$size = &commat;keys;\n" +
+                            "print \"3 - Hash size:  is $size\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("1 - Hash size: is 3\n" +
+                            "2 - Hash size: is 4\n" +
+                            "3 - Hash size: is 3\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[8])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl Conditional Statements - IF...ELSE</h1>\n")
+                    .withHtml("<p>Perl conditional statements helps in the decision making, which require that the programmer specifies one or more conditions to be evaluated or tested by the program, along with a statement or statements to be executed if the condition is determined to be true, and optionally, other statements to be executed if the condition is determined to be false.</p>\n")
+                    .withHtml("<p>Following is the general from of a typical decision making structure found in most of the programming languages &minus;</p>\n")
+                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/decision_making.jpg\" alt=\"Decision making statements in Perl\" />\n")
+                    .withHtml("<p>The number 0, the strings '0' and \"\" , the empty list () , and undef are all <b>false</b> in a boolean context and all other values are <b>true</b>. Negation of a true value by <b>!</b> or <b>not</b> returns a special false value.</p>\n" +
+                            "<p>Perl programming language provides the following types of conditional statements.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Statement &amp; Description</th></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td>if statement\n" +
+                            "<p>An <b>if statement</b> consists of a boolean expression followed by one or more statements.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td>if...else statement\n" +
+                            "<p>An <b>if statement</b> can be followed by an optional <b>else statement</b>.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td>if...elsif...else statement\n" +
+                            "<p>An <b>if statement</b> can be followed by an optional <b>elsif statement</b> and then by an optional <b>else statement</b>.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td>unless statement\n" +
+                            "<p>An <b>unless statement</b> consists of a boolean expression followed by one or more statements.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td>unless...else statement\n" +
+                            "<p>An <b>unless statement</b> can be followed by an optional <b>else statement</b>.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td>unless...elsif..else statement\n" +
+                            "<p>An <b>unless statement</b> can be followed by an optional <b>elsif statement</b> and then by an optional <b>else statement</b>.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td>switch statement\n" +
+                            "<p>With the latest versions of Perl, you can make use of the <b>switch</b> statement. which allows a simple way of comparing a variable value against various conditions.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>The ? : Operator</h2>\n" +
+                            "<p>Let's check the <b>conditional operator ? :</b>which can be used to replace <b>if...else</b> statements. It has the following general form &minus;</p>\n" +
+                            "<pre class=\"result notranslate\">\n" +
+                            "Exp1 ? Exp2 : Exp3;\n" +
+                            "</pre>\n" +
+                            "<p>Where Exp1, Exp2, and Exp3 are expressions. Notice the use and placement of the colon.</p>\n" +
+                            "<p>The value of a ? expression is determined like this: Exp1 is evaluated. If it is true, then Exp2 is evaluated and becomes the value of the entire ? expression. If Exp1 is false, then Exp3 is evaluated and its value becomes the value of the expression. Below is a simple example making use of this operator &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "$name = \"Ali\";\n" +
+                            "$age = 10;\n" +
+                            "\n" +
+                            "$status = ($age &gt; 60 )? \"A senior citizen\" : \"Not a senior citizen\";\n" +
+                            "\n" +
+                            "print \"$name is  - $status\\n\";\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>")
+                    .withCode("Ali is - Not a senior citizen\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[9])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Loops</h1>\n")
+                    .withHtml("<p>There may be a situation when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.</p>\n" +
+                            "<p>Programming languages provide various control structures that allow for more complicated execution paths.</p>\n" +
+                            "<p>A loop statement allows us to execute a statement or group of statements multiple times and following is the general form of a loop statement in most of the programming languages &minus;</p>\n")
+                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/loop_architecture.jpg\" alt=\"Loop Architecture in Perl\" />\n")
+                    .withHtml("<p>Perl programming language provides the following types of loop to handle the looping requirements.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Loop Type &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td>while loop\n" +
+                            "<p>Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td>until loop\n" +
+                            "<p>Repeats a statement or group of statements until a given condition becomes true. It tests the condition before executing the loop body.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td>for loop\n" +
+                            "<p>Executes a sequence of statements multiple times and abbreviates the code that manages the loop variable.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td>foreach loop\n" +
+                            "<p>The foreach loop iterates over a normal list value and sets the variable VAR to be each element of the list in turn.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td>do...while loop\n" +
+                            "<p>Like a while statement, except that it tests the condition at the end of the loop body</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td>nested loops\n" +
+                            "<p>You can use one or more loop inside any another while, for or do..while loop.</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<h2>Loop Control Statements</h2>\n" +
+                            "<p>Loop control statements change the execution from its normal sequence. When execution leaves a scope, all automatic objects that were created in that scope are destroyed.</p>\n" +
+                            "<p>Perl supports the following control statements. Click the following links to check their detail.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Control Statement &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td>next statement\n" +
+                            "<p>Causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td>last statement\n" +
+                            "<p>Terminates the loop statement and transfers execution to the statement immediately following the loop.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td>continue statement\n" +
+                            "<p>A continue BLOCK, it is always executed just before the conditional is about to be evaluated again.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td>redo statement\n" +
+                            "<p>The redo command restarts the loop block without evaluating the conditional again. The continue block, if any, is not executed.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td>goto statement\n" +
+                            "<p>Perl supports a goto command with three forms: goto label, goto expr, and goto &amp;name.</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<h2>The Infinite Loop</h2>\n" +
+                            "<p>A loop becomes infinite loop if a condition never becomes false. The <b>for</b> loop is traditionally used for this purpose. Since none of the three expressions that form the <b>for</b> loop are required, you can make an endless loop by leaving the conditional expression empty.</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "for( ; ; ) {\n" +
+                            "   printf \"This loop will run forever.\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>You can terminate the above infinite loop by pressing the Ctrl + C keys.</p>\n" +
+                            "<p>When the conditional expression is absent, it is assumed to be true. You may have an initialization and increment expression, but as a programmer more commonly use the for (;;) construct to signify an infinite loop.</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[10])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Operators</h1>\n")
+                    .withHtml("<h2>What is an Operator?</h2> \n" +
+                            "<p>Simple answer can be given using the expression <i>4 + 5 is equal to 9</i>. Here 4 and 5 are called operands and + is called operator. Perl language supports many operator types, but following is a list of important and most frequently used operators &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li>Arithmetic Operators</li>\n" +
+                            "<li>Equality Operators</li>\n" +
+                            "<li>Logical Operators</li>\n" +
+                            "<li>Assignment Operators</li>\n" +
+                            "<li>Bitwise Operators</li>\n" +
+                            "<li>Logical Operators</li>\n" +
+                            "<li>Quote-like Operators</li>\n" +
+                            "<li>Miscellaneous Operators</li>\n" +
+                            "</ul>\n" +
+                            "<p>Lets have a look at all the operators one by one.</p>\n" +
+                            "<h2>Perl Arithmetic Operators</h2>\n" +
+                            "<p>Assume variable $a holds 10 and variable $b holds 20, then following are the Perl arithmatic operators &minus;</p>\n" +
+                            "<p></p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>+ ( Addition )</b></p>\n" +
+                            "<p>Adds values on either side of the operator</p>\n" +
+                            "<p><b>Example</b> &minus; $a + $b will give 30</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>- (Subtraction)</b></p>\n" +
+                            "<p>Subtracts right hand operand from left hand operand</p>\n" +
+                            "<p><b>Example</b> &minus; $a - $b will give -10</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>* (Multiplication)</b></p>\n" +
+                            "<p>Multiplies values on either side of the operator</p>\n" +
+                            "<p><b>Example</b> &minus; $a * $b will give 200</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>/ (Division)</b></p>\n" +
+                            "<p>Divides left hand operand by right hand operand</p>\n" +
+                            "<p><b>Example</b> &minus; $b / $a will give 2</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>% (Modulus)</b></p>\n" +
+                            "<p>Divides left hand operand by right hand operand and returns remainder</p>\n" +
+                            "<p><b>Example</b> &minus; $b % $a will give 0</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>** (Exponent)</b></p>\n" +
+                            "<p>Performs exponential (power) calculation on operators</p>\n" +
+                            "<p><b>Example</b> &minus; $a**$b will give 10 to the power 20</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Perl Equality Operators</h2>\n" +
+                            "<p>These are also called relational operators. Assume variable $a holds 10 and variable $b holds 20 then, lets check the following numeric equality operators &minus;</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>== (equal to)</b></p>\n" +
+                            "<p>Checks if the value of two operands are equal or not, if yes then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a == $b) is not true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>!= (not equal to)</b></p>\n" +
+                            "<p>Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a != $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>&lt;=&gt;</b></p>\n" +
+                            "<p>Checks if the value of two operands are equal or not, and returns -1, 0, or 1 depending on whether the left argument is numerically less than, equal to, or greater than the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &lt;=&gt; $b) returns -1.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>&gt; (greater than)</b></p>\n" +
+                            "<p>Checks if the value of left operand is greater than the value of right operand, if yes then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &gt; $b) is not true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>&lt; (less than)</b></p>\n" +
+                            "<p>Checks if the value of left operand is less than the value of right operand, if yes then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &lt; $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>&gt;= (greater than or equal to)</b></p>\n" +
+                            "<p>Checks if the value of left operand is greater than or equal to the value of right operand, if yes then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &gt;= $b) is not true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>&lt;= (less than or equal to)</b></p>\n" +
+                            "<p>Checks if the value of left operand is less than or equal to the value of right operand, if yes then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &lt;= $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<p>Below is a list of equity operators. Assume variable $a holds \"abc\" and variable $b holds \"xyz\" then, lets check the following string equality operators &minus;</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>lt</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise less than the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a lt $b) is true.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>gt</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise greater than the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a gt $b) is false.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>le</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise less than or equal to the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a le $b) is true.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>ge</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise greater than or equal to the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a ge $b) is false.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>eq</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise equal to the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a eq $b) is false.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>ne</b></p>\n" +
+                            "<p>Returns true if the left argument is stringwise not equal to the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a ne $b) is true.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>cmp</b></p>\n" +
+                            "<p>Returns -1, 0, or 1 depending on whether the left argument is stringwise less than, equal to, or greater than the right argument.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a cmp $b) is -1.</p>\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Perl Assignment Operators</h2>\n" +
+                            "<p>Assume variable $a holds 10 and variable $b holds 20, then below are the assignment operators available in Perl and their usage &minus;</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>=</b></p>\n" +
+                            "<p>Simple assignment operator, Assigns values from right side operands to left side operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c = $a + $b will assigned value of $a + $b into $c</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>+=</b></p>\n" +
+                            "<p>Add AND assignment operator, It adds right operand to the left operand and assign the result to left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c += $a is equivalent to $c = $c + $a</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>-=</b></p>\n" +
+                            "<p>Subtract AND assignment operator, It subtracts right operand from the left operand and assign the result to left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c -= $a is equivalent to $c = $c - $a</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>*=</b></p>\n" +
+                            "<p>Multiply AND assignment operator, It multiplies right operand with the left operand and assign the result to left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c *= $a is equivalent to $c = $c * $a</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>/=</b></p>\n" +
+                            "<p>Divide AND assignment operator, It divides left operand with the right operand and assign the result to left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c /= $a is equivalent to $c = $c / $a</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>%=</b></p>\n" +
+                            "<p>Modulus AND assignment operator, It takes modulus using two operands and assign the result to left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c %= $a is equivalent to $c = $c % a</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>**=</b></p>\n" +
+                            "<p>Exponent AND assignment operator, Performs exponential (power) calculation on operators and assign value to the left operand</p>\n" +
+                            "<p><b>Example</b> &minus; $c **= $a is equivalent to $c = $c ** $a</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Perl Bitwise Operators</h2>\n" +
+                            "<p>Bitwise operator works on bits and perform bit by bit operation. Assume if $a = 60; and $b = 13; Now in binary format they will be as follows &minus;</p>\n" +
+                            "<p>$a = 0011 1100</p>\n" +
+                            "<p>$b = 0000 1101</p>\n" +
+                            "<p>-----------------</p>\n" +
+                            "<p>$a&amp;$b = 0000 1100</p>\n" +
+                            "<p>$a|$b = 0011 1101</p>\n" +
+                            "<p>$a^$b = 0011 0001</p>\n" +
+                            "<p>~$a&nbsp; = 1100 0011</p>\n" +
+                            "<p>There are following Bitwise operators supported by Perl language, assume if $a = 60; and $b = 13</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>&amp;</b></p>\n" +
+                            "<p>Binary AND Operator copies a bit to the result if it exists in both operands.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &amp; $b) will give 12 which is 0000 1100</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>|</b></p>\n" +
+                            "<p>Binary OR Operator copies a bit if it exists in eather operand.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a | $b) will give 61 which is 0011 1101</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>^</b></p>\n" +
+                            "<p>Binary XOR Operator copies the bit if it is set in one operand but not both.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a ^ $b) will give 49 which is 0011 0001</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>~</b></p>\n" +
+                            "<p>Binary Ones Complement Operator is unary and has the efect of 'flipping' bits.</p>\n" +
+                            "<p><b>Example</b> &minus; (~$a ) will give -61 which is 1100 0011 in 2's complement form due to a signed binary number.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>&lt;&lt;</b></p>\n" +
+                            "<p>Binary Left Shift Operator. The left operands value is moved left by the number of bits specified by the right operand.</p>\n" +
+                            "<p><b>Example</b> &minus; $a &lt;&lt; 2 will give 240 which is 1111 0000</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>&gt;&gt;</b></p>\n" +
+                            "<p>Binary Right Shift Operator. The left operands value is moved right by the number of bits specified by the right operand.</p>\n" +
+                            "<p><b>Example</b> &minus; $a &gt;&gt; 2 will give 15 which is 0000 1111</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Perl Logical Operators</h2>\n" +
+                            "<p>There are following logical operators supported by Perl language. Assume variable $a holds true and variable $b holds false then &minus;</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>and</b></p>\n" +
+                            "<p>Called Logical AND operator. If both the operands are true then then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a and $b) is false.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>&amp;&amp;</b></p>\n" +
+                            "<p>C-style Logical AND operator copies a bit to the result if it exists in both operands.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a &amp;&amp; $b) is false.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>or</b></p>\n" +
+                            "<p>Called Logical OR Operator. If any of the two operands are non zero then then condition becomes true.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a or $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>||</b></p>\n" +
+                            "<p>C-style Logical OR operator copies a bit if it exists in eather operand.</p>\n" +
+                            "<p><b>Example</b> &minus; ($a || $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>not</b></p>\n" +
+                            "<p>Called Logical NOT Operator. Use to reverses the logical state of its operand. If a condition is true then Logical NOT operator will make false.</p>\n" +
+                            "<p><b>Example</b> &minus; not($a and $b) is true.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Quote-like Operators</h2>\n" +
+                            "<p>There are following Quote-like operators supported by Perl language. In the following table, a {} represents any pair of delimiters you choose.</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>q{ }</b></p>\n" +
+                            "<p>Encloses a string with-in single quotes</p>\n" +
+                            "<p><b>Example</b> &minus; q{abcd} gives 'abcd'</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>qq{ }</b></p>\n" +
+                            "<p>Encloses a string with-in double quotes</p>\n" +
+                            "<p><b>Example</b> &minus; qq{abcd} gives \"abcd\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>qx{ }</b></p>\n" +
+                            "<p>Encloses a string with-in invert quotes</p>\n" +
+                            "<p><b>Example</b> &minus; qx{abcd} gives `abcd`</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Miscellaneous Operators</h2>\n" +
+                            "<p>There are following miscellaneous operators supported by Perl language. Assume variable a holds 10 and variable b holds 20 then &minus;</p>\n" +
+                            "<p>Show Example</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>.</b></p>\n" +
+                            "<p>Binary operator dot (.) concatenates two strings.</p>\n" +
+                            "<p><b>Example</b> &minus; If $a = \"abc\", $b = \"def\" then $a.$b will give \"abcdef\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>x</b></p>\n" +
+                            "<p>The repetition operator x returns a string consisting of the left operand repeated the number of times specified by the right operand.</p>\n" +
+                            "<p><b>Example</b> &minus; ('-' x 3) will give ---.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>..</b></p>\n" +
+                            "<p>The range operator .. returns a list of values counting (up by ones) from the left value to the right value</p>\n" +
+                            "<p><b>Example</b> &minus; (2..5) will give (2, 3, 4, 5)</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>++</b></p>\n" +
+                            "<p>Auto Increment operator increases integer value by one</p>\n" +
+                            "<p><b>Example</b> &minus; $a++ will give 11</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>--</b></p>\n" +
+                            "<p>Auto Decrement operator decreases integer value by one</p>\n" +
+                            "<p><b>Example</b> &minus; $a-- will give 9</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>-&gt;</b></p>\n" +
+                            "<p>The arrow operator is mostly used in dereferencing a method or variable from an object or a class name</p>\n" +
+                            "<p><b>Example</b> &minus; $obj-&gt;$a is an example to access variable $a from object $obj.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Perl Operators Precedence</h2>\n" +
+                            "<p>The following table lists all operators from highest precedence to lowest.</p>\n" +
+                            "<p>Show Example</p>\n")
+                    .withCode("left\tterms and list operators (leftward)\n" +
+                            "left\t-&gt;\n" +
+                            "nonassoc\t++ --\n" +
+                            "right\t**\n" +
+                            "right\t! ~ \\ and unary + and -\n" +
+                            "left\t=~ !~\n" +
+                            "left\t* / % x\n" +
+                            "left\t+ - .\n" +
+                            "left\t&lt;&lt; &gt;&gt;\n" +
+                            "nonassoc\tnamed unary operators\n" +
+                            "nonassoc\t&lt; &gt; &lt;= &gt;= lt gt le ge\n" +
+                            "nonassoc\t== != &lt;=&gt; eq ne cmp ~~\n" +
+                            "left\t&amp;\n" +
+                            "left\t| ^\n" +
+                            "left\t&amp;&amp;\n" +
+                            "left\t|| //\n" +
+                            "nonassoc\t..  ...\n" +
+                            "right\t?:\n" +
+                            "right\t= += -= *= etc.\n" +
+                            "left\t, =&gt;\n" +
+                            "nonassoc\tlist operators (rightward)\n" +
+                            "right\tnot\n" +
+                            "left\tand\n" +
+                            "left\tor xor\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[11])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Date and Time</h1>\n")
+                    .withHtml("p>This chapter will give you the basic understanding on how to process and manipulate dates and times in Perl.</p>\n" +
+                            "<h2>Current Date and Time</h2>\n" +
+                            "<p>Let's start with  <b>localtime()</b> function, which returns values for the current date and time if given no arguments. Following is the 9-element list returned by the <b>localtime</b> function while using in list context &minus;</p>\n")
+                    .withCode("sec,     # seconds of minutes from 0 to 61\n" +
+                            "min,     # minutes of hour from 0 to 59\n" +
+                            "hour,    # hours of day from 0 to 24\n" +
+                            "mday,    # day of month from 1 to 31\n" +
+                            "mon,     # month of year from 0 to 11\n" +
+                            "year,    # year since 1900\n" +
+                            "wday,    # days since sunday\n" +
+                            "yday,    # days since January 1st\n" +
+                            "isdst    # hours of daylight savings time\n")
+                    .withHtml("<p>Try the following example to print different elements returned by localtime() function &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "@months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec );\n" +
+                            "@days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);\n" +
+                            "\n" +
+                            "($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();\n" +
+                            "print \"$mday $months[$mon] $days[$wday]\\n\";\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>")
+                    .withCode("16 Feb Sat\n")
+                    .withHtml("<p>If you will use localtime() function in scalar context, then it will return date and time from the current time zone set in the system. Try the following example to print current date and time in full format &minus;</p>")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "$datestring = localtime();\n" +
+                            "print \"Local date and time $datestring\\n\";\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Local date and time Sat Feb 16 06:50:45 2013\n")
+                    .withHtml("<h2>GMT Time</h2>\n" +
+                            "<p>The function <b>gmtime()</b> works just like localtime() function but the returned values are localized for the standard Greenwich time zone. When called in list context, $isdst, the last value returned by gmtime, is always 0. There is no Daylight Saving Time in GMT.</p>\n" +
+                            "<p>You should make a note on the fact that localtime() will return the current local time on the machine that runs the script and gmtime() will return the universal Greenwich Mean Time, or GMT (or UTC).</p>\n" +
+                            "<p>Try the following example to print the current date and time but on GMT scale &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            "\n" +
+                            "$datestring = gmtime();\n" +
+                            "print \"GMT date and time $datestring\\n\";\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("GMT date and time Sat Feb 16 13:50:45 2013\n")
+                    .withHtml("<h2>Format Date and Time</h2>\n" +
+                            "<p>You can use localtime() function to get a list of 9-elements and later you can use the <b>printf()</b> function to format date and time based on your requirements as follows &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();\n" +
+                            "\n" +
+                            "printf(\"Time Format - HH:MM:SS\\n\");\n" +
+                            "printf(\"%02d:%02d:%02d\", $hour, $min, $sec);")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Time Format - HH:MM:SS\n" +
+                            "06:58:52\n")
+                    .withHtml("<h2>Epoch time</h2>\n" +
+                            "<p>You can use the time() function to get epoch time, i.e., the numbers of seconds that have elapsed since a given date, in Unix is January 1, 1970.</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            " \n" +
+                            "$epoc = time();\n" +
+                            "\n" +
+                            "print \"Number of seconds since Jan 1, 1970 - $epoc\\n\";\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>")
+                    .withCode("Number of seconds since Jan 1, 1970 - 1361022130\n")
+                    .withHtml("<p>You can convert a given number of seconds into date and time string as follows &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            "\n" +
+                            "$datestring = localtime();\n" +
+                            "print \"Current date and time $datestring\\n\";\n" +
+                            "\n" +
+                            "$epoc = time();\n" +
+                            "$epoc = $epoc - 12 * 60 * 60;   # one day before of current date.\n" +
+                            "\n" +
+                            "$datestring = localtime($epoc);\n" +
+                            "print \"Yesterday's date and time $datestring\\n\";\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Current date and time Sat Feb 16 07:05:39 2013\n" +
+                            "Yesterday's date and time Fri Feb 15 19:05:39 2013\n")
+                    .withHtml("h2>POSIX Function strftime()</h2>\n" +
+                            "<p>You can use the POSIX function <b>strftime()</b> to format date and time with the help of the following table. Please note that the specifiers marked with an asterisk (*) are locale-dependent.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;\">Specifier</th>\n" +
+                            "<th style=\"text-align:center;\">Replaced by</th>\n" +
+                            "<th style=\"text-align:center;\">Example</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%a</code></td>\n" +
+                            "<td>Abbreviated weekday name *</td>\n" +
+                            "<td class=\"ts\"><code>Thu</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%A</code></td>\n" +
+                            "<td>Full weekday name * </td>\n" +
+                            "<td class=\"ts\"><code>Thursday</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%b</code></td>\n" +
+                            "<td>Abbreviated month name *</td>\n" +
+                            "<td class=\"ts\"><code>Aug</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%B</code></td>\n" +
+                            "<td>Full month name *</td>\n" +
+                            "<td class=\"ts\"><code>August</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%c</code></td>\n" +
+                            "<td>Date and time representation *</td>\n" +
+                            "<td class=\"ts\"><code>Thu Aug 23 14:55:02 2001</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%C</code></td>\n" +
+                            "<td>Year divided by 100 and truncated to integer (<code>00-99</code>)</td>\n" +
+                            "<td class=\"ts\"><code>20</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%d</code></td>\n" +
+                            "<td>Day of the month, zero-padded (<code>01-31</code>)</td>\n" +
+                            "<td class=\"ts\"><code>23</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%D</code></td>\n" +
+                            "<td>Short <code>MM/DD/YY</code> date, equivalent to <code>%m/%d/%y</code></td>\n" +
+                            "<td class=\"ts\"><code>08/23/01</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%e</code></td>\n" +
+                            "<td>Day of the month, space-padded (<code> 1-31</code>)</td>\n" +
+                            "<td class=\"ts\"><code>23</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%F</code></td>\n" +
+                            "<td>Short <code>YYYY-MM-DD</code> date, equivalent to <code>%Y-%m-%d</code></td>\n" +
+                            "<td class=\"ts\"><code>2001-08-23</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%g</code></td>\n" +
+                            "<td>Week-based year, last two digits (<code>00-99</code>)</td>\n" +
+                            "<td class=\"ts\"><code>01</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%G</code></td>\n" +
+                            "<td>Week-based year</td>\n" +
+                            "<td class=\"ts\"><code>2001</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%h</code></td>\n" +
+                            "<td>Abbreviated month name * (same as <code>%b</code>)</td>\n" +
+                            "<td class=\"ts\"><code>Aug</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%H</code></td>\n" +
+                            "<td>Hour in 24h format (<code>00-23</code>)</td>\n" +
+                            "<td class=\"ts\"><code>14</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%I</code></td>\n" +
+                            "<td>Hour in 12h format (<code>01-12</code>)</td>\n" +
+                            "<td class=\"ts\"><code>02</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%j</code></td>\n" +
+                            "<td>Day of the year (<code>001-366</code>)</td>\n" +
+                            "<td class=\"ts\"><code>235</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%m</code></td>\n" +
+                            "<td>Month as a decimal number (<code>01-12</code>)</td>\n" +
+                            "<td class=\"ts\"><code>08</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%M</code></td>\n" +
+                            "<td>Minute (<code>00-59</code>)</td>\n" +
+                            "<td class=\"ts\"><code>55</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%n</code></td>\n" +
+                            "<td>New-line character (<code>'\\n'</code>)</td>\n" +
+                            "<td></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%p</code></td>\n" +
+                            "<td>AM or PM designation</td>\n" +
+                            "<td class=\"ts\"><code>PM</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%r</code></td>\n" +
+                            "<td>12-hour clock time *</td>\n" +
+                            "<td class=\"ts\"><code>02:55:02 pm</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%R</code></td>\n" +
+                            "<td>24-hour <code>HH:MM</code> time, equivalent to <code>%H:%M</code></td>\n" +
+                            "<td class=\"ts\"><code>14:55</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%S</code></td>\n" +
+                            "<td>Second (<code>00-61</code>)</td>\n" +
+                            "<td class=\"ts\"><code>02</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%t</code></td>\n" +
+                            "<td>Horizontal-tab character (<code>'\\t'</code>)</td>\n" +
+                            "<td></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%T</code></td>\n" +
+                            "<td>ISO 8601 time format (<code>HH:MM:SS</code>), equivalent to <code>%H:%M:%S</code></td>\n" +
+                            "<td class=\"ts\"><code>14:55</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%u</code></td>\n" +
+                            "<td>ISO 8601 weekday as number with Monday as <code>1</code> (<code>1-7</code>)</td>\n" +
+                            "<td class=\"ts\"><code>4</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%U</code></td>\n" +
+                            "<td>Week number with the first Sunday as the first day of week one (<code>00-53</code>)</td>\n" +
+                            "<td class=\"ts\"><code>33</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%V</code></td>\n" +
+                            "<td>ISO 8601 week number (<code>00-53</code>)</td>\n" +
+                            "<td class=\"ts\"><code>34</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%w</code></td>\n" +
+                            "<td>Weekday as a decimal number with Sunday as <code>0</code> (<code>0-6</code>)</td>\n" +
+                            "<td class=\"ts\"><code>4</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%W</code></td>\n" +
+                            "<td>Week number with the first Monday as the first day of week one (<code>00-53</code>)</td>\n" +
+                            "<td class=\"ts\"><code>34</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%x</code></td>\n" +
+                            "<td>Date representation *</td>\n" +
+                            "<td class=\"ts\"><code>08/23/01</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%X</code></td>\n" +
+                            "<td>Time representation *</td>\n" +
+                            "<td class=\"ts\"><code>14:55:02</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%y</code></td>\n" +
+                            "<td>Year, last two digits (<code>00-99</code>)</td>\n" +
+                            "<td class=\"ts\"><code>01</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%Y</code></td>\n" +
+                            "<td>Year</td>\n" +
+                            "<td class=\"ts\"><code>2001</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%z</code></td>\n" +
+                            "<td><p>ISO 8601 offset from UTC in timezone (1 minute = 1, 1 hour = 100)</p>\n" +
+                            "<p>If timezone cannot be termined, no characters</p></td>\n" +
+                            "<td class=\"ts\"><code>+100</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%Z</code></td>\n" +
+                            "<td><p>Timezone name or abbreviation *</p>\n" +
+                            "<p>If timezone cannot be termined, no characters</p></td>\n" +
+                            "<td class=\"ts\"><code>CDT</code></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\"><code>%%</code></td>\n" +
+                            "<td>A <code>%</code> sign</td>\n" +
+                            "<td class=\"ts\"><code>%</code></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<p>Let's check the following example to understand the usage &minus;</p>\n")
+                    .withCode("#!/usr/local/bin/perl\n" +
+                            "use POSIX qw(strftime);\n" +
+                            "\n" +
+                            "$datestring = strftime \"%a %b %e %H:%M:%S %Y\", localtime;\n" +
+                            "printf(\"date and time - $datestring\\n\");\n" +
+                            "\n" +
+                            "# or for GMT formatted appropriately for your locale:\n" +
+                            "$datestring = strftime \"%a %b %e %H:%M:%S %Y\", gmtime;\n" +
+                            "printf(\"date and time - $datestring\\n\");\n")
+                    .withHtml("<p>When the above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("date and time - Sat Feb 16 07:10:23 2013\n" +
+                            "date and time - Sat Feb 16 14:10:23 2013\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[12])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Subroutines</h1>\n")
+                    .withHtml("<p>A Perl subroutine or function is a group of statements that together performs a task. You can divide up your code into separate subroutines. How you divide up your code among different subroutines is up to you, but logically the division usually is so each function performs a specific task.</p>\n" +
+                            "<p>Perl uses the terms subroutine, method and function interchangeably.</p>\n" +
+                            "<h2>Define and Call a Subroutine</h2>\n" +
+                            "<p>The general form of a subroutine definition in Perl programming language is as follows &minus;</p>\n")
+                    .withCode("sub subroutine_name {\n" +
+                            "   body of the subroutine\n" +
+                            "}\n")
+                    .withHtml("<p>The typical way of calling that Perl subroutine is as follows &minus;</p>")
+                    .withCode("subroutine_name( list of arguments );\n")
+                    .withHtml("<p>In versions of Perl before 5.0, the syntax for calling subroutines was slightly different as shown below. This still works in the newest versions of Perl, but it is not recommended since it bypasses the subroutine prototypes.</p>\n")
+                    .withCode("&amp;subroutine_name( list of arguments );\n")
+                    .withHtml("<p>Let's have a look into the following example, which defines a simple function and then call it. Because Perl compiles your program before executing it, it doesn't matter where you declare your subroutine.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub Hello {\n" +
+                            "   print \"Hello, World!\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Function call\n" +
+                            "Hello();")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Hello, World!\n")
+                    .withHtml("<h2>Passing Arguments to a Subroutine</h2>\n" +
+                            "<p>You can pass various arguments to a subroutine like you do in any other programming language and they can be acessed inside the function using the special array @_. Thus the first argument to the function is in $_[0], the second is in $_[1], and so on.</p>\n" +
+                            "<p>You can pass arrays and hashes as arguments like any scalar but passing more than one array or hash normally causes them to lose their separate identities. So we will use references ( explained in the next tutorial ) to pass any array or hash.</p> \n" +
+                            "<p>Let's try the following example, which takes a list of numbers and then prints their average &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub Average {\n" +
+                            "   # get total number of arguments passed.\n" +
+                            "   $n = scalar(@_);\n" +
+                            "   $sum = 0;\n" +
+                            "\n" +
+                            "   foreach $item (@_) {\n" +
+                            "      $sum += $item;\n" +
+                            "   }\n" +
+                            "   $average = $sum / $n;\n" +
+                            "\n" +
+                            "   print \"Average for the given numbers : $average\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Function call\n" +
+                            "Average(10, 20, 30);")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Average for the given numbers : 20")
+                    .withHtml("<h2>Passing Lists to Subroutines</h2>\n" +
+                            "<p>Because the @_ variable is an array, it can be used to supply lists to a subroutine. However, because of the way in which Perl accepts and parses lists and arrays, it can be difficult to extract the individual elements from @_. If you have to pass a list along with other scalar arguments, then make list as the last argument as shown below &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub PrintList {\n" +
+                            "   my @list = @_;\n" +
+                            "   print \"Given list is @list\\n\";\n" +
+                            "}\n" +
+                            "$a = 10;\n" +
+                            "@b = (1, 2, 3, 4);\n" +
+                            "\n" +
+                            "# Function call with list parameter\n" +
+                            "PrintList($a, @b);\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Given list is 10 1 2 3 4\n")
+                    .withHtml("<h2>Passing Hashes to Subroutines</h2>\n" +
+                            "<p>When you supply a hash to a subroutine or operator that accepts a list, then hash is automatically translated into a list of key/value pairs. For example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub PrintHash {\n" +
+                            "   my (%hash) = @_;\n" +
+                            "\n" +
+                            "   foreach my $key ( keys %hash ) {\n" +
+                            "      my $value = $hash{$key};\n" +
+                            "      print \"$key : $value\\n\";\n" +
+                            "   }\n" +
+                            "}\n" +
+                            "%hash = ('name' =&gt; 'Tom', 'age' =&gt; 19);\n" +
+                            "\n" +
+                            "# Function call with hash parameter\n" +
+                            "PrintHash(%hash);\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("name : Tom\n" +
+                            "age : 19\n")
+                    .withHtml("<h2>Returning Value from a Subroutine</h2>\n" +
+                            "<p>You can return a value from subroutine like you do in any other programming language. If you are not returning a value from a subroutine then whatever calculation is last performed in a subroutine is automatically also the return value.</p>\n" +
+                            "<p>You can return arrays and hashes from the subroutine like any scalar but returning more than one array or hash normally causes them to lose their separate identities. So we will use references ( explained in the next chapter ) to return any array or hash from a function.</p>\n" +
+                            "<p>Let's try the following example, which takes a list of numbers and then returns their average &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub Average {\n" +
+                            "   # get total number of arguments passed.\n" +
+                            "   $n = scalar(@_);\n" +
+                            "   $sum = 0;\n" +
+                            "\n" +
+                            "   foreach $item (@_) {\n" +
+                            "      $sum += $item;\n" +
+                            "   }\n" +
+                            "   $average = $sum / $n;\n" +
+                            "\n" +
+                            "   return $average;\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Function call\n" +
+                            "$num = Average(10, 20, 30);\n" +
+                            "print \"Average for the given numbers : $num\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Average for the given numbers : 20\n")
+                    .withHtml("<h2>Private Variables in a Subroutine</h2>\n" +
+                            "<p>By default, all variables in Perl are global variables, which means they can be accessed from anywhere in the program. But you can create <b>private</b> variables called <b>lexical variables</b> at any time with the <b>my</b> operator.</p>\n" +
+                            "<p>The <b>my</b> operator confines a variable to a particular region of code in which it can be used and accessed. Outside that region, this variable cannot be used or accessed. This region is called its scope. A lexical scope is usually a block of code with a set of braces around it, such as those defining the body of the subroutine or those marking the code blocks of <i>if, while, for, foreach,</i> and <i>eval</i> statements.</p>\n" +
+                            "<p>Following is an example showing you how to define a single or multiple private variables using <b>my</b> operator &minus;</p>\n")
+                    .withCode("sub somefunc {\n" +
+                            "   my $variable; # $variable is invisible outside somefunc()\n" +
+                            "   my ($another, @an_array, %a_hash); # declaring many variables at once\n" +
+                            "}\n")
+                    .withHtml("<p>Let's check the following example to distinguish between global and private variables &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Global variable\n" +
+                            "$string = \"Hello, World!\";\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub PrintHello {\n" +
+                            "   # Private variable for PrintHello function\n" +
+                            "   my $string;\n" +
+                            "   $string = \"Hello, Perl!\";\n" +
+                            "   print \"Inside the function $string\\n\";\n" +
+                            "}\n" +
+                            "# Function call\n" +
+                            "PrintHello();\n" +
+                            "print \"Outside the function $string\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Inside the function Hello, Perl!\n" +
+                            "Outside the function Hello, World!\n")
+                    .withHtml("<h2>Temporary Values via local()</h2>\n" +
+                            "<p>The <b>local</b> is mostly used when the current value of a variable must be visible to called subroutines. A local just gives temporary values to global (meaning package) variables. This is known as <i>dynamic scoping</i>. Lexical scoping is done with my, which works more like C's auto declarations.</p>\n" +
+                            "<p>If more than one variable or expression is given to local, they must be placed in parentheses. This operator works by saving the current values of those variables in its argument list on a hidden stack and restoring them upon exiting the block, subroutine, or eval.</p>\n" +
+                            "<p>Let's check the following example to distinguish between global and local variables &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Global variable\n" +
+                            "$string = \"Hello, World!\";\n" +
+                            "\n" +
+                            "sub PrintHello {\n" +
+                            "   # Private variable for PrintHello function\n" +
+                            "   local $string;\n" +
+                            "   $string = \"Hello, Perl!\";\n" +
+                            "   PrintMe();\n" +
+                            "   print \"Inside the function PrintHello $string\\n\";\n" +
+                            "}\n" +
+                            "sub PrintMe {\n" +
+                            "   print \"Inside the function PrintMe $string\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Function call\n" +
+                            "PrintHello();\n" +
+                            "print \"Outside the function $string\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Inside the function PrintMe Hello, Perl!\n" +
+                            "Inside the function PrintHello Hello, Perl!\n" +
+                            "Outside the function Hello, World!\n")
+                    .withHtml("<h2>State Variables via state()</h2>\n" +
+                            "<p>There are another type of lexical variables, which are similar to private variables but they maintain their state and they do not get reinitialized upon multiple calls of the subroutines. These variables are defined using the <b>state</b> operator and available starting from Perl 5.9.4.</p>\n" +
+                            "<p>Let's check the following example to demonstrate the use of <b>state</b> variables &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use feature 'state';\n" +
+                            "\n" +
+                            "sub PrintCount {\n" +
+                            "   state $count = 0; # initial value\n" +
+                            "\n" +
+                            "   print \"Value of counter is $count\\n\";\n" +
+                            "   $count++;\n" +
+                            "}\n" +
+                            "\n" +
+                            "for (1..5) {\n" +
+                            "   PrintCount();\n" +
+                            "}\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>")
+                    .withCode("Value of counter is 0\n" +
+                            "Value of counter is 1\n" +
+                            "Value of counter is 2\n" +
+                            "Value of counter is 3\n" +
+                            "Value of counter is 4\n")
+                    .withHtml("<p>Prior to Perl 5.10, you would have to write it like this &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "{\n" +
+                            "   my $count = 0; # initial value\n" +
+                            "\n" +
+                            "   sub PrintCount {\n" +
+                            "      print \"Value of counter is $count\\n\";\n" +
+                            "      $count++;\n" +
+                            "   }\n" +
+                            "}\n" +
+                            "\n" +
+                            "for (1..5) {\n" +
+                            "   PrintCount();\n" +
+                            "}\n")
+                    .withHtml("<h2>Subroutine Call Context</h2>\n" +
+                            "<p>The context of a subroutine or statement is defined as the type of return value that is expected. This allows you to use a single function that returns different values based on what the user is expecting to receive. For example, the following localtime() returns a string when it is called in scalar context, but it returns a list when it is called in list context.</p>\n")
+                    .withCode("my $datestring = localtime( time );")
+                    .withHtml("<p>In this example, the value of $timestr is now a string made up of the current date and time, for example, Thu Nov 30 15:21:33 2000. Conversely &minus;</p>\n")
+                    .withCode("($sec,$min,$hour,$mday,$mon, $year,$wday,$yday,$isdst) = localtime(time);\n")
+                    .withHtml("<p>Now the individual variables contain the corresponding values returned by localtime() subroutine.</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[13])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - References</h1>\n")
+                    .withHtml("<p>A Perl reference is a scalar data type that holds the location of another value which could be scalar, arrays, or hashes. Because of its scalar nature, a reference can be used anywhere, a scalar can be used.</p>\n" +
+                            "<p>You can construct lists containing references to other lists, which can contain references to hashes, and so on. This is how the nested data structures are built in Perl.</p>\n" +
+                            "<h2>Create References</h2>\n" +
+                            "<p>It is easy to create a reference for any variable, subroutine or value by prefixing it with a backslash as follows &minus;</p>\n")
+                    .withCode("$scalarref = \\$foo;\n" +
+                            "$arrayref  = \\@ARGV;\n" +
+                            "$hashref   = \\%ENV;\n" +
+                            "$coderef   = \\&amp;handler;\n" +
+                            "$globref   = \\*foo;\n")
+                    .withHtml("<p>You cannot create a reference on an I/O handle (filehandle or dirhandle) using the backslash operator but a reference to an anonymous array can be created using the square brackets as follows &minus;</p>")
+                    .withCode("$arrayref = [1, 2, ['a', 'b', 'c']];\n")
+                    .withHtml("<p>Similar way you can create a reference to an anonymous hash using the curly brackets as follows &minus;</p>")
+                    .withCode("$hashref = {\n" +
+                            "   'Adam'  =&gt; 'Eve',\n" +
+                            "   'Clyde' =&gt; 'Bonnie',\n" +
+                            "};\n")
+                    .withHtml("<p>A reference to an anonymous subroutine can be created by using sub without a subname as follows &minus;</p>\n")
+                    .withCode("$coderef = sub { print \"Boink!\\n\" };\n")
+                    .withHtml("<h2>Dereferencing</h2>\n" +
+                            "<p>Dereferencing returns the value from a reference point to the location. To dereference a reference simply use $, @ or % as prefix of the reference variable depending on whether the reference is pointing to a scalar, array, or hash. Following is the example to explain the concept &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$var = 10;\n" +
+                            "\n" +
+                            "# Now $r has reference to $var scalar.\n" +
+                            "$r = \\$var;\n" +
+                            "\n" +
+                            "# Print value available at the location stored in $r.\n" +
+                            "print \"Value of $var is : \", $$r, \"\\n\";\n" +
+                            "\n" +
+                            "@var = (1, 2, 3);\n" +
+                            "# Now $r has reference to @var array.\n" +
+                            "$r = \\@var;\n" +
+                            "# Print values available at the location stored in $r.\n" +
+                            "print \"Value of @var is : \",  @$r, \"\\n\";\n" +
+                            "\n" +
+                            "%var = ('key1' =&gt; 10, 'key2' =&gt; 20);\n" +
+                            "# Now $r has reference to %var hash.\n" +
+                            "$r = \\%var;\n" +
+                            "# Print values available at the location stored in $r.\n" +
+                            "print \"Value of %var is : \", %$r, \"\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>")
+                    .withCode("Value of 10 is : 10\n" +
+                            "Value of 1 2 3 is : 123\n" +
+                            "Value of %var is : key220key110\n")
+                    .withHtml("<p>If you are not sure about a variable type, then its easy to know its type using <b>ref</b>, which returns one of the following strings if its argument is a reference. Otherwise, it returns false &minus;</p>\n")
+                    .withCode("SCALAR\n" +
+                            "ARRAY\n" +
+                            "HASH\n" +
+                            "CODE\n" +
+                            "GLOB\n" +
+                            "REF\n")
+                    .withHtml("<p>Let's try the following example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$var = 10;\n" +
+                            "$r = \\$var;\n" +
+                            "print \"Reference type in r : \", ref($r), \"\\n\";\n" +
+                            "\n" +
+                            "@var = (1, 2, 3);\n" +
+                            "$r = \\@var;\n" +
+                            "print \"Reference type in r : \", ref($r), \"\\n\";\n" +
+                            "\n" +
+                            "%var = ('key1' =&gt; 10, 'key2' =&gt; 20);\n" +
+                            "$r = \\%var;\n" +
+                            "print \"Reference type in r : \", ref($r), \"\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Reference type in r : SCALAR\n" +
+                            "Reference type in r : ARRAY\n" +
+                            "Reference type in r : HASH\n")
+                    .withHtml("<h2>Circular References</h2>\n" +
+                            "<p>A circular reference occurs when two references contain a reference to each other. You have to be careful while creating references otherwise a circular reference can lead to memory leaks. Following is an example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            " my $foo = 100;\n" +
+                            " $foo = \\$foo;\n" +
+                            " \n" +
+                            " print \"Value of foo is : \", $$foo, \"\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Value of foo is : REF(0x9aae38)\n")
+                    .withHtml("<h2>References to Functions</h2>\n" +
+                            "<p>This might happen if you need to create a signal handler so you can produce a reference to a function by preceding that function name with \\&amp; and to dereference that reference you simply need to prefix reference variable using ampersand &amp;. Following is an example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Function definition\n" +
+                            "sub PrintHash {\n" +
+                            "   my (%hash) = @_;\n" +
+                            "   \n" +
+                            "   foreach $item (%hash) {\n" +
+                            "      print \"Item : $item\\n\";\n" +
+                            "   }\n" +
+                            "}\n" +
+                            "%hash = ('name' =&gt; 'Tom', 'age' =&gt; 19);\n" +
+                            "\n" +
+                            "# Create a reference to above function.\n" +
+                            "$cref = \\&amp;PrintHash;\n" +
+                            "\n" +
+                            "# Function call using reference.\n" +
+                            "&amp;$cref(%hash);\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Item : name\n" +
+                            "Item : Tom\n" +
+                            "Item : age\n" +
+                            "Item : 19\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[14])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Formats</h1>\n")
+                    .withHtml("<p>Perl uses a writing template called a 'format' to output reports. To use the format feature of Perl, you have to define a format first and then you can use that format to write formatted data.</p>\n" +
+                            "<h2>Define a Format</h2>\n" +
+                            "<p>Following is the syntax to define a Perl format &minus;</p>\n")
+                    .withCode("format FormatName =\n" +
+                            "fieldline\n" +
+                            "value_one, value_two, value_three\n" +
+                            "fieldline\n" +
+                            "value_one, value_two\n" +
+                            ".\n")
+                    .withHtml("<p>Here <b>FormatName</b> represents the name of the format. The <b>fieldline</b> is the specific way, the data should be formatted. The values lines represent the values that will be entered into the field line. You end the format with a single period.</p>\n" +
+                            "<p>Next <b>fieldline</b> can contain any text or fieldholders. The fieldholders hold space for data that will be placed there at a later date. A fieldholder has the format &minus;</p>\n")
+                    .withCode("@&lt;&lt;&lt;&lt;\n")
+                    .withHtml("<p>This fieldholder is left-justified, with a field space of 5. You must count the @ sign and the &lt; signs to know the number of spaces in the field. Other field holders include &minus;</p>\n")
+                    .withCode("@&gt;&gt;&gt;&gt; right-justified\n" +
+                            "@|||| centered\n" +
+                            "@####.## numeric field holder\n" +
+                            "@* multiline field holder\n")
+                    .withHtml("<p>An example format would be &minus;</p>\n")
+                    .withCode("format EMPLOYEE =\n" +
+                            "===================================\n" +
+                            "@&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; @&lt;&lt; \n" +
+                            "$name $age\n" +
+                            "@#####.##\n" +
+                            "$salary\n" +
+                            "===================================\n" +
+                            ".\n")
+                    .withHtml("<p>In this example, $name would be written as left justify within 22 character spaces and after that age will be written in two spaces.</p>\n" +
+                            "<h2>Using the Format</h2>\n" +
+                            "<p>In order to invoke this format declaration, we would use the <b>write</b> keyword &minus;</p>\n")
+                    .withCode("write EMPLOYEE;\n")
+                    .withHtml("<p>The problem is that the format name is usually the name of an open file handle, and the write statement will send the output to this file handle. As we want the data sent to the STDOUT, we must associate EMPLOYEE with the STDOUT filehandle. First, however, we must make sure that that STDOUT is our selected file handle, using the select() function.</p>\n")
+                    .withCode("select(STDOUT);\n")
+                    .withHtml("<p>We would then associate EMPLOYEE with STDOUT by setting the new format name with STDOUT, using the special variable $~ or $FORMAT_NAME as follows &minus;</p>\n")
+                    .withCode("$~ = \"EMPLOYEE\";\n")
+                    .withHtml("<p>When we now do a write(), the data would be sent to STDOUT. Remember: if you are going to write your report in any other file handle instead of STDOUT then you can use select() function to select that file handle and rest of the logic will remain the same.</p>\n" +
+                            "<p>Let's take the following example. Here we have hard coded values just for showing the usage. In actual usage you will read values from a file or database to generate actual reports and you may need to write final report again into a file.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "format EMPLOYEE =\n" +
+                            "===================================\n" +
+                            "@&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; @&lt;&lt; \n" +
+                            "$name $age\n" +
+                            "@#####.##\n" +
+                            "$salary\n" +
+                            "===================================\n" +
+                            ".\n" +
+                            "\n" +
+                            "select(STDOUT);\n" +
+                            "$~ = EMPLOYEE;\n" +
+                            "\n" +
+                            "@n = (\"Ali\", \"Raza\", \"Jaffer\");\n" +
+                            "@a  = (20,30, 40);\n" +
+                            "@s = (2000.00, 2500.00, 4000.000);\n" +
+                            "\n" +
+                            "$i = 0;\n" +
+                            "foreach (@n) {\n" +
+                            "   $name = $_;\n" +
+                            "   $age = $a[$i];\n" +
+                            "   $salary = $s[$i++];\n" +
+                            "   write;\n" +
+                            "}\n")
+                    .withHtml("<p>When executed, this will produce the following result &minus;</p>\n")
+                    .withCode("===================================\n" +
+                            "Ali                     20\n" +
+                            "  2000.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Raza                    30\n" +
+                            "  2500.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Jaffer                  40\n" +
+                            "  4000.00\n" +
+                            "===================================\n")
+                    .withHtml("<h2>Define a Report Header</h2>\n" +
+                            "<p>Everything looks fine. But you would be interested in adding a header to your report. This header will be printed on top of each page. It is very simple to do this. Apart from defining a template you would have to define a header and assign it to $^ or $FORMAT_TOP_NAME variable &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "format EMPLOYEE =\n" +
+                            "===================================\n" +
+                            "@&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; @&lt;&lt; \n" +
+                            "$name $age\n" +
+                            "@#####.##\n" +
+                            "$salary\n" +
+                            "===================================\n" +
+                            ".\n" +
+                            "\n" +
+                            "format EMPLOYEE_TOP =\n" +
+                            "===================================\n" +
+                            "Name                    Age\n" +
+                            "===================================\n" +
+                            ".\n" +
+                            "\n" +
+                            "select(STDOUT);\n" +
+                            "$~ = EMPLOYEE;\n" +
+                            "$^ = EMPLOYEE_TOP;\n" +
+                            "\n" +
+                            "@n = (\"Ali\", \"Raza\", \"Jaffer\");\n" +
+                            "@a  = (20,30, 40);\n" +
+                            "@s = (2000.00, 2500.00, 4000.000);\n" +
+                            "\n" +
+                            "$i = 0;\n" +
+                            "foreach (@n) {\n" +
+                            "   $name = $_;\n" +
+                            "   $age = $a[$i];\n" +
+                            "   $salary = $s[$i++];\n" +
+                            "   write;\n" +
+                            "}\n" +
+                            "</pre>\n" +
+                            "<p>Now your report will look like &minus;</p>\n" +
+                            "<pre class=\"result notranslate\">\n" +
+                            "===================================\n" +
+                            "Name                    Age\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Ali                     20\n" +
+                            "  2000.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Raza                    30\n" +
+                            "  2500.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Jaffer                  40\n" +
+                            "  4000.00\n" +
+                            "===================================\n")
+                    .withHtml("<h2>Define a Pagination</h2>\n" +
+                            "<p>What about if your report is taking more than one page? You have a solution for that, simply use <b>$%</b> or $FORMAT_PAGE_NUMBER vairable along with header as follows &minus;</p>\n")
+                    .withCode("format EMPLOYEE_TOP =\n" +
+                            "===================================\n" +
+                            "Name                    Age Page @&lt;\n" +
+                            "                                 $%\n" +
+                            "===================================                               \n" +
+                            ".\n")
+                    .withHtml("<p>Now your output will look like as follows &minus;</p>\n")
+                    .withCode("===================================\n" +
+                            "Name                    Age Page 1\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Ali                     20\n" +
+                            "  2000.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Raza                    30\n" +
+                            "  2500.00\n" +
+                            "===================================\n" +
+                            "===================================\n" +
+                            "Jaffer                  40\n" +
+                            "  4000.00\n" +
+                            "===================================\n")
+                    .withHtml("<h2>Number of Lines on a Page</h2>\n" +
+                            "<p>You can set the number of lines per page using special variable <b>$=</b> ( or $FORMAT_LINES_PER_PAGE ), By default $= will be 60.</p>\n" +
+                            "<h2>Define a Report Footer</h2>\n" +
+                            "<p>While $^ or $FORMAT_TOP_NAME contains the name of the current header format, there is no corresponding mechanism to automatically do the same thing for a footer. If you have a fixed-size footer, you can get footers by checking variable $- or $FORMAT_LINES_LEFT before each write() and print the footer yourself if necessary using another format defined as follows &minus;</p>\n")
+                    .withCode("format EMPLOYEE_BOTTOM =\n" +
+                            "End of Page @&lt;\n" +
+                            "            $%\n" +
+                            ".\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[15])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - File I/O</h1>\n")
+                    .withHtml("<p>The basics of handling files are simple: you associate a <b>filehandle</b> with an external entity (usually a file) and then use a variety of operators and functions within Perl to read and update the data stored within the data stream associated with the filehandle.</p>\n" +
+                            "<p>A filehandle is a named internal Perl structure that associates a physical file with a name. All filehandles are capable of read/write access, so you can read from and update any file or device associated with a filehandle. However, when you associate a filehandle, you can specify the mode in which the filehandle is opened.</p>\n" +
+                            "<p>Three basic file handles are - <b>STDIN</b>, <b>STDOUT</b>, and <b>STDERR,</b> which represent standard input, standard output and standard error devices respectively.</p>\n" +
+                            "<h2>Opening and Closing Files</h2>\n" +
+                            "<p>There are following two functions with multiple forms, which can be used to open any new or existing file in Perl.</p>\n")
+                    .withCode("open FILEHANDLE, EXPR\n" +
+                            "open FILEHANDLE\n" +
+                            "\n" +
+                            "sysopen FILEHANDLE, FILENAME, MODE, PERMS\n" +
+                            "sysopen FILEHANDLE, FILENAME, MODE\n")
+                    .withHtml("<p>Here FILEHANDLE is the file handle returned by the <b>open</b> function and EXPR is the expression having file name and mode of opening the file.</p>\n" +
+                            "<h2>Open Function</h2>\n" +
+                            "<p>Following is the syntax to open <b>file.txt</b> in read-only mode. Here less than &lt; sign indicates that file has to be opend in read-only mode.</p>\n")
+                    .withCode("open(DATA, \"&lt;file.txt\");\n")
+                    .withHtml("<p>Here DATA is the file handle, which will be used to read the file. Here is the example, which will open a file and will print its content over the screen.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "open(DATA, \"&lt;file.txt\") or die \"Couldn't open file file.txt, $!\";\n" +
+                            "\n" +
+                            "while(&lt;DATA&gt;) {\n" +
+                            "   print \"$_\";\n" +
+                            "}\n")
+                    .withHtml("<p>Following is the syntax to open file.txt in writing mode. Here less than &gt; sign indicates that file has to be opend in the writing mode.</p>\n")
+                    .withCode("open(DATA, \"&gt;file.txt\") or die \"Couldn't open file file.txt, $!\";\n")
+                    .withHtml("<p>This example actually truncates (empties) the file before opening it for writing, which may not be the desired effect. If you want to open a file for reading and writing, you can put a plus sign before the &gt; or &lt; characters.</p>\n" +
+                            "<p>For example, to open a file for updating without truncating it &minus;</p>\n")
+                    .withCode("open(DATA, \"+&lt;file.txt\"); or die \"Couldn't open file file.txt, $!\";")
+                    .withHtml("<p>To truncate the file first &minus;</p>\n")
+                    .withCode("open DATA, \"+&gt;file.txt\" or die \"Couldn't open file file.txt, $!\";\n")
+                    .withHtml("<p>You can open a file in the append mode. In this mode, writing point will be set to the end of the file.</p>")
+                    .withCode("open(DATA,\"&gt;&gt;file.txt\") || die \"Couldn't open file file.txt, $!\";")
+                    .withHtml("<p>A double &gt;&gt; opens the file for appending, placing the file pointer at the end, so that you can immediately start appending information. However, you can't read from it unless you also place a plus sign in front of it &minus;</p>\n")
+                    .withCode("open(DATA,\"+&gt;&gt;file.txt\") || die \"Couldn't open file file.txt, $!\";\n")
+                    .withHtml("<p>Following is the table, which gives the possible values of different modes</p>\n")
+                    .withHtml("<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:10%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Entities &amp; Definition</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>&lt; or r</b></p>\n" +
+                            "<p>Read Only Access</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>&gt; or w</b></p>\n" +
+                            "<p>Creates, Writes, and Truncates</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>&gt;&gt; or a</b></p>\n" +
+                            "<p>Writes, Appends, and Creates</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>+&lt; or r+</b></p>\n" +
+                            "<p>Reads and Writes</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>+&gt; or w+</b></p>\n" +
+                            "<p>Reads, Writes, Creates, and Truncates</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>+&gt;&gt; or a+</b></p>\n" +
+                            "<p>Reads, Writes, Appends, and Creates</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Sysopen Function</h2>\n" +
+                            "<p>The <b>sysopen</b> function is similar to the main open function, except that it uses the system <b>open()</b> function, using the parameters supplied to it as the parameters for the system function &minus;</p>\n" +
+                            "<p>For example, to open a file for updating, emulating the <b>+&lt;filename</b> format from open &minus;</p>\n")
+                    .withCode("sysopen(DATA, \"file.txt\", O_RDWR);")
+                    .withHtml("<p>Or to truncate the file before updating &minus;</p>\n")
+                    .withCode("sysopen(DATA, \"file.txt\", O_RDWR|O_TRUNC );\n")
+                    .withHtml("<p>You can use O_CREAT to create a new file and O_WRONLY- to open file in write only mode and O_RDONLY - to open file in read only mode.</p>\n" +
+                            "<p>The <b>PERMS</b> argument specifies the file permissions for the file specified, if it has to be created. By default it takes <b>0x666</b>.</p>\n" +
+                            "<p>Following is the table, which gives the possible values of MODE.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Entities &amp; Definition</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>O_RDWR</b></p>\n" +
+                            "<p>Read and Write</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>O_RDONLY</b></p>\n" +
+                            "<p>Read Only</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>O_WRONLY</b></p>\n" +
+                            "<p>Write Only</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>O_CREAT</b></p>\n" +
+                            "<p>Create the file</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>O_APPEND</b></p>\n" +
+                            "<p>Append the file</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>O_TRUNC</b></p>\n" +
+                            "<p>Truncate the file</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>O_EXCL</b></p>\n" +
+                            "<p>Stops if file already exists</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">8</td>\n" +
+                            "<td><p><b>O_NONBLOCK</b></p>\n" +
+                            "<p>Non-Blocking usability</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Close Function</h2>\n" +
+                            "<p>To close a filehandle, and therefore disassociate the filehandle from the corresponding file, you use the <b>close</b> function. This flushes the filehandle's buffers and closes the system's file descriptor.</p>\n")
+                    .withCode("close FILEHANDLE\n" +
+                            "close\n")
+                    .withHtml("<p>If no FILEHANDLE is specified, then it closes the currently selected filehandle. It returns true only if it could successfully flush the buffers and close the file.</P>\n")
+                    .withCode("close(DATA) || die \"Couldn't close file properly\";\n")
+                    .withHtml("<h2>Reading and Writing Files</h2>\n" +
+                            "<p>Once you have an open filehandle, you need to be able to read and write information. There are a number of different ways of reading and writing data into the file.</p>\n" +
+                            "<h2>The &lt;FILEHANDL&gt; Operator</h2>\n" +
+                            "<p>The main method of reading the information from an open filehandle is the &lt;FILEHANDLE&gt; operator. In a scalar context, it returns a single line from the filehandle. For example &minus;</P>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print \"What is your name?\\n\";\n" +
+                            "$name = &lt;STDIN&gt;;\n" +
+                            "print \"Hello $name\\n\";\n")
+                    .withHtml("<p>When you use the &lt;FILEHANDLE&gt; operator in a list context, it returns a list of lines from the specified filehandle. For example, to import all the lines from a file into an array &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "open(DATA,\"&lt;import.txt\") or die \"Can't open data\";\n" +
+                            "@lines = &lt;DATA&gt;;\n" +
+                            "close(DATA);\n")
+                    .withHtml("<h2>getc Function</h2>\n" +
+                            "<p>The getc function returns a single character from the specified FILEHANDLE, or STDIN if none is specified &minus;</p>\n")
+                    .withCode("getc FILEHANDLE\n" +
+                            "getc")
+                    .withHtml("<p>If there was an error, or the filehandle is at end of file, then undef is returned instead.</p>\n" +
+                            "<h2>read Function</h2>\n" +
+                            "<p>The read function reads a block of information from the buffered filehandle: This function is used to read binary data from the file.</p>\n")
+                    .withCode("read FILEHANDLE, SCALAR, LENGTH, OFFSET\n" +
+                            "read FILEHANDLE, SCALAR, LENGTH\n")
+                    .withHtml("<p>The length of the data read is defined by LENGTH, and the data is placed at the start of SCALAR if no OFFSET is specified. Otherwise data is placed after OFFSET bytes in SCALAR. The function returns the number of bytes read on success, zero at end of file, or undef if there was an error.</p>\n" +
+                            "<h2>print Function</h2>\n" +
+                            "<p>For all the different methods used for reading information from filehandles, the main function for writing information back is the print function.</p>\n")
+                    .withCode("print FILEHANDLE LIST\n" +
+                            "print LIST\n" +
+                            "print\n")
+                    .withHtml("<p>The print function prints the evaluated value of LIST to FILEHANDLE, or to the current output filehandle (STDOUT by default). For example &minus;</p>\n")
+                    .withCode("print \"Hello World!\\n\";\n")
+                    .withHtml("<h2>Copying Files</h2>\n" +
+                            "<p>Here is the example, which opens an existing file file1.txt and read it line by line and generate another copy file file2.txt.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Open file to read\n" +
+                            "open(DATA1, \"&lt;file1.txt\");\n" +
+                            "\n" +
+                            "# Open new file to write\n" +
+                            "open(DATA2, \"&gt;file2.txt\");\n" +
+                            "\n" +
+                            "# Copy data from one file to another.\n" +
+                            "while(&lt;DATA1&gt;) {\n" +
+                            "   print DATA2 $_;\n" +
+                            "}\n" +
+                            "close( DATA1 );\n" +
+                            "close( DATA2 );\n")
+                    .withHtml("<h2>Renaming a file</h2>\n" +
+                            "<p>Here is an example, which shows how we can rename a file file1.txt to file2.txt. Assuming file is available in /usr/test directory.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "rename (\"/usr/test/file1.txt\", \"/usr/test/file2.txt\" );\n")
+                    .withHtml("<p>This function <b>renames</b> takes two arguments and it just renames the existing file.</p>\n" +
+                            "<h2>Deleting an Existing File</h2>\n" +
+                            "<p>Here is an example, which shows how to delete a file file1.txt using the <b>unlink</b> function.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "unlink (\"/usr/test/file1.txt\");\n" +
+                            "</pre>\n")
+                    .withHtml("<h2>Positioning inside a File</h2>\n" +
+                            "<p>You can use to <b>tell</b> function to know the current position of a file and <b>seek</b> function to point a particular position inside the file.</p>\n" +
+                            "<h3>tell Function</h3>\n" +
+                            "<p>The first requirement is to find your position within a file, which you do using the tell function &minus;</p>\n")
+                    .withCode("tell FILEHANDLE\n" +
+                            "tell\n")
+                    .withHtml("<p>This returns the position of the file pointer, in bytes, within FILEHANDLE if specified, or the current default selected filehandle if none is specified.</p>\n" +
+                            "<h3>seek Function</h3>\n" +
+                            "<p>The seek function positions the file pointer to the specified number of bytes within a file &minus;</p>\n")
+                    .withCode("seek FILEHANDLE, POSITION, WHENCE\n")
+                    .withHtml("<p>The function uses the fseek system function, and you have the same ability to position relative to three different points: the start, the end, and the current position. You do this by specifying a value for WHENCE.</p>\n" +
+                            "<p>Zero sets the positioning relative to the start of the file. For example, the line sets the file pointer to the 256th byte in the file.</p>\n")
+                    .withCode("seek DATA, 256, 0;\n")
+                    .withHtml("<h2>File Information</h2>\n" +
+                            "<p>You can test certain features very quickly within Perl using a series of test operators known collectively as -X tests. For example, to perform a quick test of the various permissions on a file, you might use a script like this &minus;</p>\n")
+                    .withCode("#/usr/bin/perl\n" +
+                            "\n" +
+                            "my $file = \"/usr/test/file1.txt\";\n" +
+                            "my (@description, $size);\n" +
+                            "if (-e $file) {\n" +
+                            "   push @description, 'binary' if (-B _);\n" +
+                            "   push @description, 'a socket' if (-S _);\n" +
+                            "   push @description, 'a text file' if (-T _);\n" +
+                            "   push @description, 'a block special file' if (-b _);\n" +
+                            "   push @description, 'a character special file' if (-c _);\n" +
+                            "   push @description, 'a directory' if (-d _);\n" +
+                            "   push @description, 'executable' if (-x _);\n" +
+                            "   push @description, (($size = -s _)) ? \"$size bytes\" : 'empty';\n" +
+                            "   print \"$file is \", join(', ',@description),\"\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>Here is the list of features, which you can check for a file or directory &minus;</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Operator &amp; Definition</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>-A</b></p>\n" +
+                            "<p>Script start time minus file last access time, in days.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>-B</b></p>\n" +
+                            "<p>Is it a binary file?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>-C</b></p>\n" +
+                            "<p>Script start time minus file last inode change time, in days.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>-M</b></p>\n" +
+                            "<p>Script start time minus file modification time, in days.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>-O</b></p>\n" +
+                            "<p>Is the file owned by the real user ID?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>-R</b></p>\n" +
+                            "<p>Is the file readable by the real user ID or real group?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>-S</b></p>\n" +
+                            "<p>Is the file a socket?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>-T</b></p>\n" +
+                            "<p>Is it a text file?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">8</td>\n" +
+                            "<td><p><b>-W</b></p>\n" +
+                            "<p>Is the file writable by the real user ID or real group?</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">9</td>\n" +
+                            "<td><p><b>-X</b></p>\n" +
+                            "<p>Is the file executable by the real user ID or real group?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">10</td>\n" +
+                            "<td><p><b>-b</b></p>\n" +
+                            "<p>Is it a block special file?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">11</td>\n" +
+                            "<td><p><b>-c</b></p>\n" +
+                            "<p>Is it a character special file?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">12</td>\n" +
+                            "<td><p><b>-d</b></p>\n" +
+                            "<p>Is the file a directory?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">13</td>\n" +
+                            "<td><p><b>-e</b></p>\n" +
+                            "<p>Does the file exist?</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">14</td>\n" +
+                            "<td><p><b>-f</b></p>\n" +
+                            "<p>Is it a plain file?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">15</td>\n" +
+                            "<td><p><b>-g</b></p>\n" +
+                            "<p>Does the file have the setgid bit set?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">16</td>\n" +
+                            "<td><p><b>-k</b></p>\n" +
+                            "<p>Does the file have the sticky bit set?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">17</td>\n" +
+                            "<td><p><b>-l</b></p>\n" +
+                            "<p>Is the file a symbolic link?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">18</td>\n" +
+                            "<td><p><b>-o</b></p>\n" +
+                            "<p>Is the file owned by the effective user ID?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">19</td>\n" +
+                            "<td><p><b>-p</b></p>\n" +
+                            "<p>Is the file a named pipe?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">20</td>\n" +
+                            "<td><p><b>-r</b></p>\n" +
+                            "<p>Is the file readable by the effective user or group ID?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">21</td>\n" +
+                            "<td><p><b>-s</b></p>\n" +
+                            "<p>Returns the size of the file, zero size = empty file.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">22</td>\n" +
+                            "<td><p><b>-t</b></p>\n" +
+                            "<p>Is the filehandle opened by a TTY (terminal)?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">23</td>\n" +
+                            "<td><p><b>-u</b></p>\n" +
+                            "<p>Does the file have the setuid bit set?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">24</td>\n" +
+                            "<td><p><b>-w</b></p>\n" +
+                            "<p>Is the file writable by the effective user or group ID?</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">25</td>\n" +
+                            "<td><p><b>-x</b></p>\n" +
+                            "<p>Is the file executable by the effective user or group ID?</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">26</td>\n" +
+                            "<td><p><b>-z</b></p>\n" +
+                            "<p>Is the file size zero?</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[16])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Directories</h1>\n")
+                    .withHtml("<p>Following are the standard functions used to play with directories.</p>\n")
+                    .withCode("opendir DIRHANDLE, EXPR  # To open a directory\n" +
+                            "readdir DIRHANDLE        # To read a directory\n" +
+                            "rewinddir DIRHANDLE      # Positioning pointer to the begining\n" +
+                            "telldir DIRHANDLE        # Returns current position of the dir\n" +
+                            "seekdir DIRHANDLE, POS   # Pointing pointer to POS inside dir\n" +
+                            "closedir DIRHANDLE       # Closing a directory.\n")
+                    .withHtml("<h2>Display all the Files</h2>\n" +
+                            "<p>There are various ways to list down all the files available in a particular directory. First let's use the simple way to get and list down all the files using the <b>glob</b> operator &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Display all the files in /tmp directory.\n" +
+                            "$dir = \"/tmp/*\";\n" +
+                            "my @files = glob( $dir );\n" +
+                            "\n" +
+                            "foreach (@files ) {\n" +
+                            "   print $_ . \"\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Display all the C source files in /tmp directory.\n" +
+                            "$dir = \"/tmp/*.c\";\n" +
+                            "@files = glob( $dir );\n" +
+                            "\n" +
+                            "foreach (@files ) {\n" +
+                            "   print $_ . \"\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Display all the hidden files.\n" +
+                            "$dir = \"/tmp/.*\";\n" +
+                            "@files = glob( $dir );\n" +
+                            "foreach (@files ) {\n" +
+                            "   print $_ . \"\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Display all the files from /tmp and /home directories.\n" +
+                            "$dir = \"/tmp/* /home/*\";\n" +
+                            "@files = glob( $dir );\n" +
+                            "\n" +
+                            "foreach (@files ) {\n" +
+                            "   print $_ . \"\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>Here is another example, which opens a directory and list out all the files available inside this directory.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "opendir (DIR, '.') or die \"Couldn't open directory, $!\";\n" +
+                            "while ($file = readdir DIR) {\n" +
+                            "   print \"$file\\n\";\n" +
+                            "}\n" +
+                            "closedir DIR;\n")
+                    .withHtml("<p>One more example to print the list of C source files you might use is &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "opendir(DIR, '.') or die \"Couldn't open directory, $!\";\n" +
+                            "foreach (sort grep(/^.*\\.c$/,readdir(DIR))) {\n" +
+                            "   print \"$_\\n\";\n" +
+                            "}\n" +
+                            "closedir DIR;\n")
+                    .withHtml("<h2>Create new Directory</h2>\n" +
+                            "<p>You can use <b>mkdir</b> function to create a new directory. You will need to have the required permission to create a directory.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$dir = \"/tmp/perl\";\n" +
+                            "\n" +
+                            "# This creates perl directory in /tmp directory.\n" +
+                            "mkdir( $dir ) or die \"Couldn't create $dir directory, $!\";\n" +
+                            "print \"Directory created successfully\\n\";\n")
+                    .withHtml("<h2>Remove a directory</h2>\n" +
+                            "<p>You can use <b>rmdir</b> function to remove a directory. You will need to have the required permission to remove a directory. Additionally this directory should be empty before you try to remove it.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$dir = \"/tmp/perl\";\n" +
+                            "\n" +
+                            "# This removes perl directory from /tmp directory.\n" +
+                            "rmdir( $dir ) or die \"Couldn't remove $dir directory, $!\";\n" +
+                            "print \"Directory removed successfully\\n\";\n")
+                    .withHtml("<h2>Change a Directory</h2>\n" +
+                            "<p>You can use <b>chdir</b> function to change a directory and go to a new location. You will need to have the required permission to change a directory and go inside the new directory.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$dir = \"/home\";\n" +
+                            "\n" +
+                            "# This changes perl directory  and moves you inside /home directory.\n" +
+                            "chdir( $dir ) or die \"Couldn't go inside $dir directory, $!\";\n" +
+                            "print \"Your new location is $dir\\n\";\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[17])) {
             Codeview.with(getContext())
