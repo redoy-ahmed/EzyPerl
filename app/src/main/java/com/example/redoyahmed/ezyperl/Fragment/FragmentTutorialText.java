@@ -1271,7 +1271,7 @@ public class FragmentTutorialText extends Fragment {
                     .withHtml("<h1>Perl Conditional Statements - IF...ELSE</h1>\n")
                     .withHtml("<p>Perl conditional statements helps in the decision making, which require that the programmer specifies one or more conditions to be evaluated or tested by the program, along with a statement or statements to be executed if the condition is determined to be true, and optionally, other statements to be executed if the condition is determined to be false.</p>\n")
                     .withHtml("<p>Following is the general from of a typical decision making structure found in most of the programming languages &minus;</p>\n")
-                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/decision_making.jpg\" alt=\"Decision making statements in Perl\" />\n")
+                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/decision_making.jpg\" alt=\"Decision making statements in Perl\" /></center>\n")
                     .withHtml("<p>The number 0, the strings '0' and \"\" , the empty list () , and undef are all <b>false</b> in a boolean context and all other values are <b>true</b>. Negation of a true value by <b>!</b> or <b>not</b> returns a special false value.</p>\n" +
                             "<p>Perl programming language provides the following types of conditional statements.</p>\n" +
                             "<table class=\"table table-bordered\">\n" +
@@ -1343,7 +1343,7 @@ public class FragmentTutorialText extends Fragment {
                     .withHtml("<p>There may be a situation when you need to execute a block of code several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.</p>\n" +
                             "<p>Programming languages provide various control structures that allow for more complicated execution paths.</p>\n" +
                             "<p>A loop statement allows us to execute a statement or group of statements multiple times and following is the general form of a loop statement in most of the programming languages &minus;</p>\n")
-                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/loop_architecture.jpg\" alt=\"Loop Architecture in Perl\" />\n")
+                    .withHtml("<center><img src=\"https://www.tutorialspoint.com/perl/images/loop_architecture.jpg\" alt=\"Loop Architecture in Perl\" /><center>\n")
                     .withHtml("<p>Perl programming language provides the following types of loop to handle the looping requirements.</p>\n" +
                             "<table class=\"table table-bordered\">\n" +
                             "<tr>\n" +
@@ -3739,56 +3739,2213 @@ public class FragmentTutorialText extends Fragment {
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Regular Expressions</h1>\n")
+                    .withHtml("<p>A regular expression is a string of characters that defines the pattern or patterns you are viewing. The syntax of regular expressions in Perl is very similar to what you will find within other regular expression.supporting programs, such as <b>sed</b>, <b>grep</b>, and <b>awk</b>.</p>\n" +
+                            "<p>The basic method for applying a regular expression is to use the pattern binding operators =~ and <b>!</b>~. The first operator is a test and assignment operator.</P>\n" +
+                            "<p>There are three regular expression operators within Perl.</p>\n" +
+                            "<ul class=\"list\"> \n" +
+                            "<li>Match Regular Expression - m//</li>\n" +
+                            "<li>Substitute Regular Expression - s///</li>\n" +
+                            "<li>Transliterate Regular Expression - tr///</li>\n" +
+                            "</ul>\n" +
+                            "<p>The forward slashes in each case act as delimiters for the regular expression (regex) that you are specifying. If you are comfortable with any other delimiter, then you can use in place of forward slash.</P>\n" +
+                            "<h2>The Match Operator</h2>\n" +
+                            "<p>The match operator, m//, is used to match a string or statement to a regular expression. For example, to match the character sequence \"foo\" against the scalar $bar, you might use a statement like this &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$bar = \"This is foo and again foo\";\n" +
+                            "if ($bar =~ /foo/) {\n" +
+                            "   print \"First time is matching\\n\";\n" +
+                            "} else {\n" +
+                            "   print \"First time is not matching\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "$bar = \"foo\";\n" +
+                            "if ($bar =~ /foo/) {\n" +
+                            "   print \"Second time is matching\\n\";\n" +
+                            "} else {\n" +
+                            "   print \"Second time is not matching\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("First time is matching\n" +
+                            "Second time is matching\n")
+                    .withHtml("<p>The m// actually works in the same fashion as the q// operator series.you can use any combination of naturally matching characters to act as delimiters for the expression. For example, m{}, m(), and m&gt;&lt; are all valid. So above example can be re-written as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$bar = \"This is foo and again foo\";\n" +
+                            "if ($bar =~ m[foo]) {\n" +
+                            "   print \"First time is matching\\n\";\n" +
+                            "} else {\n" +
+                            "   print \"First time is not matching\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "$bar = \"foo\";\n" +
+                            "if ($bar =~ m{foo}) {\n" +
+                            "   print \"Second time is matching\\n\";\n" +
+                            "} else {\n" +
+                            "   print \"Second time is not matching\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>You can omit m from m// if the delimiters are forward slashes, but for all other delimiters you must use the m prefix.</p>\n" +
+                            "<p>Note that the entire match expression, that is the expression on the left of =~ or !~ and the match operator, returns true (in a scalar context) if the expression matches. Therefore the statement &minus;</p>\n")
+                    .withCode("$true = ($foo =~ m/foo/);\n")
+                    .withHtml("<p>will set $true to 1 if $foo matches the regex, or 0 if the match fails. In a list context, the match returns the contents of any grouped expressions. For example, when extracting the hours, minutes, and seconds from a time string, we can use &minus;</p>\n")
+                    .withCode("my ($hours, $minutes, $seconds) = ($time =~ m/(\\d+):(\\d+):(\\d+)/);\n")
+                    .withHtml("<h2>Match Operator Modifiers</h2>\n" +
+                            "<p>The match operator supports its own set of modifiers. The /g modifier allows for global matching. The /i modifier will make the match case insensitive. Here is the complete list of modifiers</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Modifier &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>i</b></p>\n" +
+                            "<p>Makes the match case insensitive.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>m</b></p>\n" +
+                            "<p>Specifies that if the string has newline or carriage return characters, the ^ and $ operators will now match against a newline boundary, instead of a string boundary.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>o</b></p>\n" +
+                            "<p>Evaluates the expression only once.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>s</b></p>\n" +
+                            "<p>Allows use of . to match a newline character.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>x</b></p>\n" +
+                            "<p>Allows you to use white space in the expression for clarity.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>g</b></p>\n" +
+                            "<p>Globally finds all matches.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>cg</b></p>\n" +
+                            "<p>Allows the search to continue even after a global match fails.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Matching Only Once</h2>\n" +
+                            "<p>There is also a simpler version of the match operator - the ?PATTERN? operator. This is basically identical to the m// operator except that it only matches once within the string you are searching between each call to reset.</p>\n" +
+                            "<p>For example, you can use this to get the first and last elements within a list &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "@list = qw/food foosball subeo footnote terfoot canic footbrdige/;\n" +
+                            "\n" +
+                            "foreach (@list) {\n" +
+                            "   $first = $1 if /(foo.*?)/;\n" +
+                            "   $last = $1 if /(foo.*)/;\n" +
+                            "}\n" +
+                            "print \"First: $first, Last: $last\\n\";")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("First: food, Last: footbrdige\n")
+                    .withHtml("<h2>Regular Expression Variables</h2>\n" +
+                            "<p>Regular expression variables include <b>$</b>, which contains whatever the last grouping match matched; <b>$&amp;</b>, which contains the entire matched string; <b>$`</b>, which contains everything before the matched string; and <b>$'</b>, which contains everything after the matched string. Following code demonstrates the result &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$string = \"The food is in the salad bar\";\n" +
+                            "$string =~ m/foo/;\n" +
+                            "print \"Before: $`\\n\";\n" +
+                            "print \"Matched: $&amp;\\n\";\n" +
+                            "print \"After: $'\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Before: The\n" +
+                            "Matched: foo\n" +
+                            "After: d is in the salad bar\n")
+                    .withHtml("<h2>The Substitution Operator</h2>\n" +
+                            "<p>The substitution operator, s///, is really just an extension of the match operator that allows you to replace the text matched with some new text. The basic form of the operator is &minus;</p>\n")
+                    .withCode("s/PATTERN/REPLACEMENT/;\n")
+                    .withHtml("<p>The PATTERN is the regular expression for the text that we are looking for. The REPLACEMENT is a specification for the text or regular expression that we want to use to replace the found text with. For example, we can replace all occurrences of <b>dog</b> with <b>cat</b> using the following regular expression &minus;</p>\n")
+                    .withCode("#/user/bin/perl\n" +
+                            "\n" +
+                            "$string = \"The cat sat on the mat\";\n" +
+                            "$string =~ s/cat/dog/;\n" +
+                            "\n" +
+                            "print \"$string\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("The dog sat on the mat\n")
+                    .withHtml("<h2>Substitution Operator Modifiers</h2>\n" +
+                            "<p>Here is the list of all the modifiers used with substitution operator.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:10%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Modifier &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>i</b></p>\n" +
+                            "<p>Makes the match case insensitive.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>m</b></p>\n" +
+                            "<p>Specifies that if the string has newline or carriage return characters, the ^ and $ operators will now match against a newline boundary, instead of a string boundary.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>o</b></p>\n" +
+                            "<p>Evaluates the expression only once.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>s</b></p>\n" +
+                            "<p>Allows use of . to match a newline character.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>x</b></p>\n" +
+                            "<p>Allows you to use white space in the expression for clarity.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>g</b></p>\n" +
+                            "<p>Replaces all occurrences of the found expression with the replacement text.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>e</b></p>\n" +
+                            "<p>Evaluates the replacement as if it were a Perl statement, and uses its return value as the replacement text.</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<h2>The Translation Operator</h2>\n" +
+                            "<p>Translation is similar, but not identical, to the principles of substitution, but unlike substitution, translation (or transliteration) does not use regular expressions for its search on replacement values. The translation operators are &minus;</p>")
+                    .withCode("tr/SEARCHLIST/REPLACEMENTLIST/cds\n" +
+                            "y/SEARCHLIST/REPLACEMENTLIST/cds\n")
+                    .withHtml("<p>The translation replaces all occurrences of the characters in SEARCHLIST with the corresponding characters in REPLACEMENTLIST. For example, using the \"The cat sat on the mat.\" string we have been using in this tutorial &minus;</p>\n")
+                    .withCode("#/user/bin/perl\n" +
+                            "\n" +
+                            "$string = 'The cat sat on the mat';\n" +
+                            "$string =~ tr/a/o/;\n" +
+                            "\n" +
+                            "print \"$string\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("The cot sot on the mot.\n")
+                    .withHtml("<p>Standard Perl ranges can also be used, allowing you to specify ranges of characters either by letter or numerical value. To change the case of the string, you might use the following syntax in place of the <b>uc</b> function.</p>\n")
+                    .withCode("$string =~ tr/a-z/A-Z/;")
+                    .withHtml("<h2>Translation Operator Modifiers</h2>\n" +
+                            "<p>Following is the list of operators related to translation.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Modifier &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>c</b></p>\n" +
+                            "<p>Complements SEARCHLIST.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>d</b></p>\n" +
+                            "<p>Deletes found but unreplaced characters.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>s</b></p>\n" +
+                            "<p>Squashes duplicate replaced characters.</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<p>The /d modifier deletes the characters matching SEARCHLIST that do not have a corresponding entry in REPLACEMENTLIST. For example &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl \n" +
+                            "\n" +
+                            "$string = 'the cat sat on the mat.';\n" +
+                            "$string =~ tr/a-z/b/d;\n" +
+                            "\n" +
+                            "print \"$string\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("b b   b.\n")
+                    .withHtml("<p>The last modifier, /s, removes the duplicate sequences of characters that were replaced, so &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$string = 'food';\n" +
+                            "$string = 'food';\n" +
+                            "$string =~ tr/a-z/a-z/s;\n" +
+                            "\n" +
+                            "print \"$string\\n\";")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("fod\n")
+                    .withHtml("<h2>More Complex Regular Expressions</h2>\n" +
+                            "<p>You don't just have to match on fixed strings. In fact, you can match on just about anything you could dream of by using more complex regular expressions. Here's a quick cheat sheet &minus;</p>\n" +
+                            "<p>Following table lists the regular expression syntax that is available in Python.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Pattern &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>^</b></p>\n" +
+                            "<p>Matches beginning of line.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>$</b></p>\n" +
+                            "<p>Matches end of line.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>.</b></p>\n" +
+                            "<p>Matches any single character except newline. Using m option allows it to match newline as well.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>[...]</b></p>\n" +
+                            "<p>Matches any single character in brackets.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>[^...]</b></p>\n" +
+                            "<p>Matches any single character not in brackets.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>*</b></p>\n" +
+                            "<p>Matches 0 or more occurrences of preceding expression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>+</b></p>\n" +
+                            "<p>Matches 1 or more occurrence of preceding expression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">8</td>\n" +
+                            "<td><p><b>?</b></p>\n" +
+                            "<p>Matches 0 or 1 occurrence of preceding expression.</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">9</td>\n" +
+                            "<td><p><b>{ n}</b></p>\n" +
+                            "<p>Matches exactly n number of occurrences of preceding expression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">10</td>\n" +
+                            "<td><p><b>{ n,}</b></p>\n" +
+                            "<p>Matches n or more occurrences of preceding expression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">11</td>\n" +
+                            "<td><p><b>{ n, m}</b></p>\n" +
+                            "<p>Matches at least n and at most m occurrences of preceding expression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">12</td>\n" +
+                            "<td><p><b>a| b</b></p>\n" +
+                            "<p>Matches either a or b.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">13</td>\n" +
+                            "<td><p><b>\\w</b></p>\n" +
+                            "<p>Matches word characters.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">14</td>\n" +
+                            "<td><p><b>\\W</b></p>\n" +
+                            "<p>Matches nonword characters.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">15</td>\n" +
+                            "<td><p><b>\\s</b></p>\n" +
+                            "<p>Matches whitespace. Equivalent to [\\t\\n\\r\\f].</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">16</td>\n" +
+                            "<td><p><b>\\S</b></p>\n" +
+                            "<p>Matches nonwhitespace.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">17</td>\n" +
+                            "<td><p><b>\\d</b></p>\n" +
+                            "<p>Matches digits. Equivalent to [0-9].</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">18</td>\n" +
+                            "<td><p><b>\\D</b></p>\n" +
+                            "<p>Matches nondigits.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">19</td>\n" +
+                            "<td><p><b>\\A</b></p>\n" +
+                            "<p>Matches beginning of string.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">20</td>\n" +
+                            "<td><p><b>\\Z</b></p>\n" +
+                            "<p>Matches end of string. If a newline exists, it matches just before newline.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">21</td>\n" +
+                            "<td><p><b>\\z</b></p>\n" +
+                            "<p>Matches end of string.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">22</td>\n" +
+                            "<td><p><b>\\G</b></p>\n" +
+                            "<p>Matches point where last match finished.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">23</td>\n" +
+                            "<td><p><b>\\b</b></p>\n" +
+                            "<p>Matches word boundaries when outside brackets. Matches backspace (0x08) when inside brackets.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">24</td>\n" +
+                            "<td><p><b>\\B</b></p>\n" +
+                            "<p>Matches nonword boundaries.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">25</td>\n" +
+                            "<td><p><b>\\n, \\t, etc.</b></p>\n" +
+                            "<p>Matches newlines, carriage returns, tabs, etc.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">26</td>\n" +
+                            "<td><p><b>\\1...\\9</b></p>\n" +
+                            "<p>Matches nth grouped subexpression.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">27</td>\n" +
+                            "<td><p><b>\\10</b></p>\n" +
+                            "<p>Matches nth grouped subexpression if it matched already. Otherwise refers to the octal representation of a character code.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">28</td>\n" +
+                            "<td><p><b>[aeiou]</b></p>\n" +
+                            "<p>Matches a single character in the given set</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">29</td>\n" +
+                            "<td><p><b>[^aeiou]</b></p>\n" +
+                            "<p>Matches a single character outside the given set</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<p>The ^ metacharacter matches the beginning of the string and the $ metasymbol matches the end of the string. Here are some brief examples.</p>\n")
+                    .withCode("# nothing in the string (start and end are adjacent)\n" +
+                            "/^$/   \n" +
+                            "\n" +
+                            "# a three digits, each followed by a whitespace\n" +
+                            "# character (eg \"3 4 5 \")\n" +
+                            "/(\\d\\s) {3}/  \n" +
+                            "\n" +
+                            "# matches a string in which every\n" +
+                            "# odd-numbered letter is a (eg \"abacadaf\")\n" +
+                            "/(a.)+/  \n" +
+                            "\n" +
+                            "# string starts with one or more digits\n" +
+                            "/^\\d+/\n" +
+                            "\n" +
+                            "# string that ends with one or more digits\n" +
+                            "/\\d+$/\n")
+                    .withHtml("<p>Lets have a look at another example.</p>")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$string = \"Cats go Catatonic\\nWhen given Catnip\";\n" +
+                            "($start) = ($string =~ /\\A(.*?) /);\n" +
+                            "@lines = $string =~ /^(.*?) /gm;\n" +
+                            "print \"First word: $start\\n\",\"Line starts: @lines\\n\";")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("First word: Cats\n" +
+                            "Line starts: Cats When\n")
+                    .withHtml("<h2>Matching Boundaries</h2>\n" +
+                            "<p>The <b>\\b</b> matches at any word boundary, as defined by the difference between the \\w class and the \\W class. Because \\w includes the characters for a word, and \\W the opposite, this normally means the termination of a word. The <b>\\B</b> assertion matches any position that is not a word boundary. For example &minus;</p>\n")
+                    .withCode("/\\bcat\\b/ # Matches 'the cat sat' but not 'cat on the mat'\n" +
+                            "/\\Bcat\\B/ # Matches 'verification' but not 'the cat on the mat'\n" +
+                            "/\\bcat\\B/ # Matches 'catatonic' but not 'polecat'\n" +
+                            "/\\Bcat\\b/ # Matches 'polecat' but not 'catatonic'\n")
+                    .withHtml("<h2>Selecting Alternatives</h2>\n" +
+                            "<p>The | character is just like the standard or bitwise OR within Perl. It specifies alternate matches within a regular expression or group. For example, to match \"cat\" or \"dog\" in an expression, you might use this &minus;</p>\n")
+                    .withCode("if ($string =~ /cat|dog/)\n")
+                    .withHtml("<p>You can group individual elements of an expression together in order to support complex matches. Searching for two people’s names could be achieved with two separate tests, like this &minus;</p>\n")
+                    .withCode("if (($string =~ /Martin Brown/) ||  ($string =~ /Sharon Brown/))\n" +
+                            "\n" +
+                            "This could be written as follows\n" +
+                            "\n" +
+                            "if ($string =~ /(Martin|Sharon) Brown/)")
+                    .withHtml("<h2>Grouping Matching</h2>\n" +
+                            "<p>From a regular-expression point of view, there is no difference between except, perhaps, that the former is slightly clearer.</p>\n")
+                    .withCode("$string =~ /(\\S+)\\s+(\\S+)/;\n" +
+                            "\n" +
+                            "and \n" +
+                            "\n" +
+                            "$string =~ /\\S+\\s+\\S+/;\n")
+                    .withHtml("<p>However, the benefit of grouping is that it allows us to extract a sequence from a regular expression. Groupings are returned as a list in the order in which they appear in the original. For example, in the following fragment we have pulled out the hours, minutes, and seconds from a string.</p>\n")
+                    .withCode("my ($hours, $minutes, $seconds) = ($time =~ m/(\\d+):(\\d+):(\\d+)/);\n")
+                    .withHtml("<p>As well as this direct method, matched groups are also available within the special $x variables, where x is the number of the group within the regular expression. We could therefore rewrite the preceding example as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$time = \"12:05:30\";\n" +
+                            "\n" +
+                            "$time =~ m/(\\d+):(\\d+):(\\d+)/;\n" +
+                            "my ($hours, $minutes, $seconds) = ($1, $2, $3);\n" +
+                            "\n" +
+                            "print \"Hours : $hours, Minutes: $minutes, Second: $seconds\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Hours : 12, Minutes: 05, Second: 30\n")
+                    .withHtml("<p>When groups are used in substitution expressions, the $x syntax can be used in the replacement text. Thus, we could reformat a date string using this &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$date = '03/26/1999';\n" +
+                            "$date =~ s#(\\d+)/(\\d+)/(\\d+)#$3/$1/$2#;\n" +
+                            "\n" +
+                            "print \"$date\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("1999/03/26\n")
+                    .withHtml("<h2>The \\G Assertion</h2>\n" +
+                            "<p>The \\G assertion allows you to continue searching from the point where the last match occurred. For example, in the following code, we have used \\G so that we can search to the correct position and then extract some information, without having to create a more complex, single regular expression &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$string = \"The time is: 12:31:02 on 4/12/00\";\n" +
+                            "\n" +
+                            "$string =~ /:\\s+/g;\n" +
+                            "($time) = ($string =~ /\\G(\\d+:\\d+:\\d+)/);\n" +
+                            "$string =~ /.+\\s+/g;\n" +
+                            "($date) = ($string =~ m{\\G(\\d+/\\d+/\\d+)});\n" +
+                            "\n" +
+                            "print \"Time: $time, Date: $date\\n\";\n")
+                    .withHtml("<p>When above program is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Time: 12:31:02, Date: 4/12/00\n")
+                    .withHtml("<p>The \\G assertion is actually just the metasymbol equivalent of the pos function, so between regular expression calls you can continue to use pos, and even modify the value of pos (and therefore \\G) by using pos as an lvalue subroutine.</p>\n" +
+                            "<h2>Regular-expression Examples</h2>\n" +
+                            "<h3>Literal Characters</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>Perl</b></p>\n" +
+                            "<p>Match \"Perl\".</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Character Classes</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>[Pp]ython</b></p>\n" +
+                            "<p>Matches \"Python\" or \"python\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>rub[ye]</b></p>\n" +
+                            "<p>Matches \"ruby\" or \"rube\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>[aeiou]</b></p>\n" +
+                            "<p>Matches any one lowercase vowel</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>[0-9]</b></p>\n" +
+                            "<p>Matches any digit; same as [0123456789]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>[a-z]</b></p>\n" +
+                            "<p>Matches any lowercase ASCII letter</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>[A-Z]</b></p>\n" +
+                            "<p>Matches any uppercase ASCII letter</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>[a-zA-Z0-9]</b></p>\n" +
+                            "<p>Matches any of the above</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">8</td>\n" +
+                            "<td><p><b>[^aeiou]</b></p>\n" +
+                            "<p>Matches anything other than a lowercase vowel</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">9</td>\n" +
+                            "<td><p><b>[^0-9]</b></p>\n" +
+                            "<p>Matches anything other than a digit</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Special Character Classes</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr><th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>.</b></p>\n" +
+                            "<p>Matches any character except newline</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>\\d</b></p>\n" +
+                            "<p>Matches a digit: [0-9]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>\\D</b></p>\n" +
+                            "<p>Matches a nondigit: [^0-9]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>\\s</b></p>\n" +
+                            "<p>Matches a whitespace character: [ \\t\\r\\n\\f]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>\\S</b></p>\n" +
+                            "<p>Matches nonwhitespace: [^ \\t\\r\\n\\f]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>\\w</b></p>\n" +
+                            "<p>Matches a single word character: [A-Za-z0-9_]</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>\\W</b></p>\n" +
+                            "<p>Matches a nonword character: [^A-Za-z0-9_]</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Repetition Cases</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>ruby?</b></p>\n" +
+                            "<p>Matches \"rub\" or \"ruby\": the y is optional</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>ruby*</b></p>\n" +
+                            "<p>Matches \"rub\" plus 0 or more ys</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>ruby+</b></p>\n" +
+                            "<p>Matches \"rub\" plus 1 or more ys</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>\\d{3}</b></p>\n" +
+                            "<p>Matches exactly 3 digits</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>\\d{3,}</b></p>\n" +
+                            "<p>Matches 3 or more digits</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6.</td>\n" +
+                            "<td><p><b>\\d{3,5}</b></p>\n" +
+                            "<p>Matches 3, 4, or 5 digits</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Nongreedy Repetition</h3>\n" +
+                            "<p>This matches the smallest number of repetitions &minus;</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr><th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>&lt;.*&gt;</b></p>\n" +
+                            "<p>Greedy repetition: matches \"&lt;python&gt;perl&gt;\"</p></td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>&lt;.*?&gt;</b></p>\n" +
+                            "<p>Nongreedy: matches \"&lt;python&gt;\" in \"&lt;python&gt;perl&gt;\"</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<h3>Grouping with Parentheses</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr><th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>\\D\\d+</b></p>\n" +
+                            "<p>No group: + repeats \\d</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>(\\D\\d)+</b></p>\n" +
+                            "<p>Grouped: + repeats \\D\\d pair</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>([Pp]ython(, )?)+</b></p>\n" +
+                            "<p>Match \"Python\", \"Python, python, python\", etc.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Backreferences</h3>\n" +
+                            "<p>This matches a previously matched group again &minus;</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>([Pp])ython&amp;\\1ails</b></p>\n" +
+                            "<p>Matches python&pails or Python&amp;Pails</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>(['\"])[^\\1]*\\1</b></p>\n" +
+                            "<p>Single or double-quoted string. \\1 matches whatever the 1st group matched. \\2 matches whatever the 2nd group matched, etc.</p></td></tr>\n" +
+                            "</table>\n" +
+                            "<h3>Alternatives</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr><th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>python|perl</b></p>\n" +
+                            "<p>Matches \"python\" or \"perl\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>rub(y|le))</b></p>\n" +
+                            "<p>Matches \"ruby\" or \"ruble\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>Python(!+|\\?)</b></p>\n" +
+                            "<p>\"Python\" followed by one or more ! or one ?</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Anchors</h3>\n" +
+                            "<p>This need to specify match positions.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>^Python</b></p>\n" +
+                            "<p>Matches \"Python\" at the start of a string or internal line</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>Python$</b></p>\n" +
+                            "<p>Matches \"Python\" at the end of a string or line</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>\\APython</b></p>\n" +
+                            "<p>Matches \"Python\" at the start of a string</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>Python\\Z</b></p>\n" +
+                            "<p>Matches \"Python\" at the end of a string</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>\\bPython\\b</b></p>\n" +
+                            "<p>Matches \"Python\" at a word boundary</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>\\brub\\B</b></p>\n" +
+                            "<p>\\B is nonword boundary: match \"rub\" in \"rube\" and \"ruby\" but not alone</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>Python(?=!)</b></p>\n" +
+                            "<p>Matches \"Python\", if followed by an exclamation point</p></td></tr>\n" +
+                            "<tr><td class=\"ts\">8</td>\n" +
+                            "<td><p><b>Python(?!!)</b></p>\n" +
+                            "<p>Matches \"Python\", if not followed by an exclamation point</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h3>Special Syntax with Parentheses</h3>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr><th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Example &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>R(?#comment)</b></p>\n" +
+                            "<p>Matches \"R\". All the rest is a comment</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>R(?i)uby</b></p>\n" +
+                            "<p>Case-insensitive while matching \"uby\"</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>R(?i:uby)</b></p>\n" +
+                            "<p>Same as above</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>rub(?:y|le))</b></p>\n" +
+                            "<p>Group only without creating \\1 backreference</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[21])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Sending Email</h1>\n")
+                    .withHtml("<h2>Using sendmail Utility</h2>\n" +
+                            "<h3>Sending a Plain Message</h3>\n" +
+                            "<p>If you are working on Linux/Unix machine then you can simply use <b>sendmail</b> utility inside your Perl program to send email. Here is a sample script that can send an email to a given email ID. Just make sure the given path for sendmail utility is correct. This may be different for your Linux/Unix machine.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            " \n" +
+                            "$to = 'abcd@gmail.com';\n" +
+                            "$from = 'webmaster@yourdomain.com';\n" +
+                            "$subject = 'Test Email';\n" +
+                            "$message = 'This is test email sent by Perl Script';\n" +
+                            " \n" +
+                            "open(MAIL, \"|/usr/sbin/sendmail -t\");\n" +
+                            " \n" +
+                            "# Email Header\n" +
+                            "print MAIL \"To: $to\\n\";\n" +
+                            "print MAIL \"From: $from\\n\";\n" +
+                            "print MAIL \"Subject: $subject\\n\\n\";\n" +
+                            "# Email Body\n" +
+                            "print MAIL $message;\n" +
+                            "\n" +
+                            "close(MAIL);\n" +
+                            "print \"Email Sent Successfully\\n\";\n")
+                    .withHtml("<p>Actually, the above script is a client email script, which will draft email and submit to the server running locally on your Linux/Unix machine. This script will not be responsible for sending email to actual destination. So you have to make sure email server is properly configured and running on your machine to send email to the given email ID.</p>\n" +
+                            "<h3>Sending an HTML Message</h3>\n" +
+                            "<p>If you want to send HTML formatted email using sendmail, then you simply need to add <b>Content-type: text/html\\n</b> in the header part of the email as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            " \n" +
+                            "$to = 'abcd@gmail.com';\n" +
+                            "$from = 'webmaster@yourdomain.com';\n" +
+                            "$subject = 'Test Email';\n" +
+                            "$message = '&lt;h1&gt;This is test email sent by Perl Script&lt;/h1&gt;';\n" +
+                            " \n" +
+                            "open(MAIL, \"|/usr/sbin/sendmail -t\");\n" +
+                            " \n" +
+                            "# Email Header\n" +
+                            "print MAIL \"To: $to\\n\";\n" +
+                            "print MAIL \"From: $from\\n\";\n" +
+                            "print MAIL \"Subject: $subject\\n\\n\";\n" +
+                            "print MAIL \"Content-type: text/html\\n\";\n" +
+                            "# Email Body\n" +
+                            "print MAIL $message;\n" +
+                            "\n" +
+                            "close(MAIL);\n" +
+                            "print \"Email Sent Successfully\\n\";")
+                    .withHtml("<h2>Using MIME::Lite Module</h2>\n" +
+                            "<p>If you are working on windows machine, then you will not have access on sendmail utility. But you have alternate to write your own email client using MIME:Lite perl module. You can download this module from <a href=\"http://search.cpan.org/CPAN/authors/id/Y/YV/YVES/MIME-Lite-3.01.tar.gz\" rel=\"nofollow\"\" target=\"_blank\">MIME-Lite-3.01.tar.gz</a> and install it on your either machine Windows or Linux/Unix. To install it follow the simple steps &minus;</p>\n")
+                    .withCode("$tar xvfz MIME-Lite-3.01.tar.gz\n" +
+                            "$cd MIME-Lite-3.01\n" +
+                            "$perl Makefile.PL\n" +
+                            "$make\n" +
+                            "$make install\n")
+                    .withHtml("<p>That's it and you will have MIME::Lite module installed on your machine. Now you are ready to send your email with simple scripts explained below.</p>\n" +
+                            "<h3>Sending a Plain Message</h3>\n" +
+                            "<p>Now following is a script which will take care of sending email to the given email ID &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "use MIME::Lite;\n" +
+                            " \n" +
+                            "$to = 'abcd@gmail.com';\n" +
+                            "$cc = 'efgh@mail.com';\n" +
+                            "$from = 'webmaster@yourdomain.com';\n" +
+                            "$subject = 'Test Email';\n" +
+                            "$message = 'This is test email sent by Perl Script';\n" +
+                            "\n" +
+                            "$msg = MIME::Lite-&gt;new(\n" +
+                            "                 From     =&gt; $from,\n" +
+                            "                 To       =&gt; $to,\n" +
+                            "                 Cc       =&gt; $cc,\n" +
+                            "                 Subject  =&gt; $subject,\n" +
+                            "                 Data     =&gt; $message\n" +
+                            "                 );\n" +
+                            "                 \n" +
+                            "$msg-&gt;send;\n" +
+                            "print \"Email Sent Successfully\\n\";\n")
+                    .withHtml("<h3>Sending an HTML Message</h3>\n" +
+                            "<p>If you want to send HTML formatted email using sendmail, then you simply need to add <b>Content-type: text/html\\n</b> in the header part of the email. Following is the script, which will take care of sending HTML formatted email &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "use MIME::Lite;\n" +
+                            " \n" +
+                            "$to = 'abcd@gmail.com';\n" +
+                            "$cc = 'efgh@mail.com';\n" +
+                            "$from = 'webmaster@yourdomain.com';\n" +
+                            "$subject = 'Test Email';\n" +
+                            "$message = '&lt;h1&gt;This is test email sent by Perl Script&lt;/h1&gt;';\n" +
+                            "\n" +
+                            "$msg = MIME::Lite-&gt;new(\n" +
+                            "                 From     =&gt; $from,\n" +
+                            "                 To       =&gt; $to,\n" +
+                            "                 Cc       =&gt; $cc,\n" +
+                            "                 Subject  =&gt; $subject,\n" +
+                            "                 Data     =&gt; $message\n" +
+                            "                 );\n" +
+                            "                 \n" +
+                            "$msg-&gt;attr(\"content-type\" =&gt; \"text/html\");         \n" +
+                            "$msg-&gt;send;\n" +
+                            "print \"Email Sent Successfully\\n\";\n")
+                    .withHtml("<h3>Sending an Attachment</h3>\n" +
+                            "<p>If you want to send an attachment, then following script serves the purpose &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "use MIME::Lite;\n" +
+                            " \n" +
+                            "$to = 'abcd@gmail.com';\n" +
+                            "$cc = 'efgh@mail.com';\n" +
+                            "$from = 'webmaster@yourdomain.com';\n" +
+                            "$subject = 'Test Email';\n" +
+                            "$message = 'This is test email sent by Perl Script';\n" +
+                            "\n" +
+                            "$msg = MIME::Lite-=&gt;new(\n" +
+                            "                 From     =&gt; $from,\n" +
+                            "                 To       =&gt; $to,\n" +
+                            "                 Cc       =&gt; $cc,\n" +
+                            "                 Subject  =&gt; $subject,\n" +
+                            "                 Type     =&gt; 'multipart/mixed'\n" +
+                            "                 );\n" +
+                            "                 \n" +
+                            "# Add your text message.\n" +
+                            "$msg-&gt;attach(Type         =&gt; 'text',\n" +
+                            "             Data         =&gt; $message\n" +
+                            "             );\n" +
+                            "            \n" +
+                            "# Specify your file as attachement.\n" +
+                            "$msg-&gt;attach(Type         =&gt; 'image/gif',\n" +
+                            "             Path         =&gt; '/tmp/logo.gif',\n" +
+                            "             Filename     =&gt; 'logo.gif',\n" +
+                            "             Disposition  =&gt; 'attachment'\n" +
+                            "            );       \n" +
+                            "$msg-&gt;send;\n" +
+                            "print \"Email Sent Successfully\\n\";\n")
+                    .withHtml("<p>You can attach as many files as you like in your email using attach() method.</p>\n" +
+                            "<h2>Using SMTP Server</h2>\n" +
+                            "<p>If your machine is not running an email server then you can use any other email server available at the remote location. But to use any other email server you will need to have an id, its password, URL, etc. Once you have all the required information, you simple need to provide that information in <b>send()</b> method as follows &minus;</p>\n")
+                    .withCode("$msg-&gt;send('smtp', \"smtp.myisp.net\", AuthUser=&gt;\"id\", AuthPass=&gt;\"password\" );\n")
+                    .withHtml("<p>You can contact your email server administrator to have the above used information and if a user id and password is not already available then your administrator can create it in minutes.</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[22])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Socket Programming</h1>\n")
+                    .withHtml("<h2>What is a Socket?</h2>\n" +
+                            "<p>Socket is a Berkeley UNIX mechanism of creating a virtual duplex connection between different processes. This was later ported on to every known OS enabling communication between systems across geographical location running on different OS software. If not for the socket, most of the network communication between systems would never ever have happened.</p>\n" +
+                            "<p>Taking a closer look; a typical computer system on a network receives and sends information as desired by the various applications running on it. This information is routed to the system, since a unique IP address is designated to it. On the system, this information is given to the relevant applications, which listen on different ports. For example an internet browser listens on port 80 for information received from the web server. Also we can write our custom applications which may listen and send/receive information on a specific port number.</p>\n" +
+                            "<p>For now, let's sum up that a socket is an IP address and a port, enabling connection to send and recieve data over a network.</p>\n" +
+                            "<p>To explain above mentioned socket concept we will take an example of Client - Server Programming using Perl. To complete a client server architecture we would have to go through the following steps &minus;</p>\n" +
+                            "<h2>To Create a Server</h2>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Create a socket using <b>socket</b> call.</p></li>\n" +
+                            "<li><p>Bind the socket to a port address using <b>bind</b> call.</p></li>\n" +
+                            "<li><p>Listen to the socket at the port address using <b>listen</b> call. </p></li>\n" +
+                            "<li><p>Accept client connections using <b>accept</b> call.</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>To Create a Client</h2>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Create a socket with <b>socket</b> call.</p></li>\n" +
+                            "<li><p>Connect (the socket) to the server using <b>connect</b> call.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>Following diagram shows the complete sequence of the calls used by Client and Server to communicate with each other &minus;</p>\n" +
+                            "<center><img src=\"https://www.tutorialspoint.com/perl/images/perl_socket.jpg\" alt=\"Perl Socket\" /></center>\n" +
+                            "<h2>Server Side Socket Calls</h2>\n" +
+                            "<h3>The socket() call</h3>\n" +
+                            "<p>The <b>socket()</b> call is the first call in establishing a network connection is creating a socket. This call has the following syntax &minus;</p>\n")
+                    .withCode("socket( SOCKET, DOMAIN, TYPE, PROTOCOL );\n")
+                    .withHtml("<p>The above call creates a SOCKET and other three arguments are integers which should have the following values for TCP/IP connections.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p><b>DOMAIN</b> should be PF_INET. It's probable 2 on your computer.</p></li>\n" +
+                            "<li><p><b>TYPE</b> should be SOCK_STREAM for TCP/IP connection.</p></li>\n" +
+                            "<li><p><b>PROTOCOL</b> should be <b>(getprotobyname('tcp'))[2]</b>. It is the particular protocol such as TCP to be spoken over the socket.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>So socket function call issued by the server will be something like this &minus;</p>\n")
+                    .withCode("use Socket     # This defines PF_INET and SOCK_STREAM\n" +
+                            "\n" +
+                            "socket(SOCKET,PF_INET,SOCK_STREAM,(getprotobyname('tcp'))[2]);\n")
+                    .withHtml("<h3>The bind() call</h3>\n" +
+                            "<p>The sockets created by socket() call are useless until they are bound to a hostname and a port number. Server uses the following <b>bind()</b> function to specify the port at which they will be accepting connections from the clients.</p>\n")
+                    .withCode("bind( SOCKET, ADDRESS );\n")
+                    .withHtml("<p>Here SOCKET is the descriptor returned by socket() call and ADDRESS is a socket address ( for TCP/IP ) containing three elements &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>The address family (For TCP/IP, that's AF_INET, probably 2 on your system).</p></li>\n" +
+                            "<li><p>The port number (for example 21).</p></li>\n" +
+                            "<li><p>The internet address of the computer (for example 10.12.12.168).</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>As the bind() is used by a server, which does not need to know its own address so the argument list looks like this &minus;</p>\n")
+                    .withCode("use Socket        # This defines PF_INET and SOCK_STREAM\n" +
+                            "\n" +
+                            "$port = 12345;    # The unique port used by the sever to listen requests\n" +
+                            "$server_ip_address = \"10.12.12.168\";\n" +
+                            "bind( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))\n" +
+                            "   or die \"Can't bind to port $port! \\n\";\n")
+                    .withHtml("<p>The <b>or die</b> clause is very important because if a server dies without outstanding connections, the port won't be immediately reusable unless you use the option SO_REUSEADDR using <b>setsockopt()</b> function. Here <b>pack_sockaddr_in()</b> function is being used to pack the Port and IP address into binary format.</p>\n" +
+                            "<h3>The listen() call</h3>\n" +
+                            "<p>If this is a server program, then it is required to issue a call to <b>listen()</b> on the specified port to listen, i.e., wait for the incoming requests. This call has the following syntax &minus;</p>\n")
+                    .withCode("listen( SOCKET, QUEUESIZE );")
+                    .withHtml("<p>The above call uses SOCKET descriptor returned by socket() call and QUEUESIZE is the maximum number of outstanding connection request allowed simultaneously.</p>\n" +
+                            "<h3>The accept() call</h3>\n" +
+                            "<p>If this is a server program then it is required to issue a call to the <b>access()</b> function to accept the incoming connections. This call has the following syntax &minus;</p>\n")
+                    .withCode("accept( NEW_SOCKET, SOCKET );\n")
+                    .withHtml("<p>The accept call receive SOCKET descriptor returned by socket() function and upon successful completion, a new socket descriptor NEW_SOCKET is returned for all future communication between the client and the server. If access() call fails, then it returns FLASE which is defined in Socket module which we have used initially.</p>\n" +
+                            "<p>Generally, accept() is used in an infinite loop. As soon as one connection arrives the server either creates a child process to deal with it or serves it himself and then goes back to listen for more connections.</p>\n")
+                    .withCode("while(1) {\n" +
+                            "   accept( NEW_SOCKET, SOCKT );\n" +
+                            "   .......\n" +
+                            "}\n")
+                    .withHtml("<p>Now all the calls related to server are over and let us see a call which will be required by the client.</p>\n" +
+                            "<h2>Client Side Socket Calls</h2>\n" +
+                            "<h3>The connect() call</h3>\n" +
+                            "<p>If you are going to prepare client program, then first you will use <b>socket()</b> call to create a socket and then you would have to use <b>connect()</b> call to connect to the server. You already have seen socket() call syntax and it will remain similar to server socket() call, but here is the syntax for <b>connect()</b> call &minus;</p>\n")
+                    .withCode("connect( SOCKET, ADDRESS );\n")
+                    .withHtml("<p>Here SCOKET is the socket descriptor returned by socket() call issued by the client and ADDRESS is a socket address similar to <i>bind</i> call, except that it contains the IP address of the remote server.</p>\n")
+                    .withCode("$port = 21;    # For example, the ftp port\n" +
+                            "$server_ip_address = \"10.12.12.168\";\n" +
+                            "connect( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))\n" +
+                            "   or die \"Can't connect to port $port! \\n\";\n")
+                    .withHtml("<p>If you connect to the server successfully, then you can start sending your commands to the server using SOCKET descriptor, otherwise your client will come out by giving an error message.</p>\n" +
+                            "<h2>Client - Server Example</h2>\n" +
+                            "<p>Following is a Perl code to implement a simple client-server program using Perl socket. Here server listens for incoming requests and once connection is established, it simply replies <i>Smile from the server</i>. The client reads that message and print on the screen. Let's see how it has been done, assuming we have our server and client on the same machine.</p>\n" +
+                            "<h3>Script to Create a Server</h3>")
+                    .withCode("#!/usr/bin/perl -w\n" +
+                            "# Filename : server.pl\n" +
+                            "\n" +
+                            "use strict;\n" +
+                            "use Socket;\n" +
+                            "\n" +
+                            "# use port 7890 as default\n" +
+                            "my $port = shift || 7890;\n" +
+                            "my $proto = getprotobyname('tcp');\n" +
+                            "my $server = \"localhost\";  # Host IP running the server\n" +
+                            "\n" +
+                            "# create a socket, make it reusable\n" +
+                            "socket(SOCKET, PF_INET, SOCK_STREAM, $proto)\n" +
+                            "   or die \"Can't open socket $!\\n\";\n" +
+                            "setsockopt(SOCKET, SOL_SOCKET, SO_REUSEADDR, 1)\n" +
+                            "   or die \"Can't set socket option to SO_REUSEADDR $!\\n\";\n" +
+                            "\n" +
+                            "# bind to a port, then listen\n" +
+                            "bind( SOCKET, pack_sockaddr_in($port, inet_aton($server)))\n" +
+                            "   or die \"Can't bind to port $port! \\n\";\n" +
+                            "\n" +
+                            "listen(SOCKET, 5) or die \"listen: $!\";\n" +
+                            "print \"SERVER started on port $port\\n\";\n" +
+                            "\n" +
+                            "# accepting a connection\n" +
+                            "my $client_addr;\n" +
+                            "while ($client_addr = accept(NEW_SOCKET, SOCKET)) {\n" +
+                            "   # send them a message, close connection\n" +
+                            "   my $name = gethostbyaddr($client_addr, AF_INET );\n" +
+                            "   print NEW_SOCKET \"Smile from the server\";\n" +
+                            "   print \"Connection recieved from $name\\n\";\n" +
+                            "   close NEW_SOCKET;\n" +
+                            "}\n")
+                    .withHtml("<p>To run the server in background mode issue the following command on Unix prompt &minus;</p>\n")
+                    .withCode("$perl sever.pl&amp;\n")
+                    .withHtml("<h3>Script to Create a Client</h3>\n")
+                    .withCode("!/usr/bin/perl -w\n" +
+                            "# Filename : client.pl\n" +
+                            "\n" +
+                            "use strict;\n" +
+                            "use Socket;\n" +
+                            "\n" +
+                            "# initialize host and port\n" +
+                            "my $host = shift || 'localhost';\n" +
+                            "my $port = shift || 7890;\n" +
+                            "my $server = \"localhost\";  # Host IP running the server\n" +
+                            "\n" +
+                            "# create the socket, connect to the port\n" +
+                            "socket(SOCKET,PF_INET,SOCK_STREAM,(getprotobyname('tcp'))[2])\n" +
+                            "   or die \"Can't create a socket $!\\n\";\n" +
+                            "connect( SOCKET, pack_sockaddr_in($port, inet_aton($server)))\n" +
+                            "   or die \"Can't connect to port $port! \\n\";\n" +
+                            "\n" +
+                            "my $line;\n" +
+                            "while ($line = &lt;SOCKET&gt;) {\n" +
+                            "   print \"$line\\n\";\n" +
+                            "}\n" +
+                            "close SOCKET or die \"close: $!\";\n")
+                    .withHtml("<p>Now let's start our client at the command prompt, which will connect to the server and read message sent by the server and displays the same on the screen as follows &minus;</p>\n")
+                    .withCode("$perl client.pl\n" +
+                            "Smile from the server\n")
+                    .withHtml("<p><b>NOTE</b> &minus; If you are giving the actual IP address in dot notation, then it is recommended to provide IP address in the same format in both client as well as server to avoid any confusion.</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[23])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Object Oriented Programming in PERL</h1>\n")
+                    .withHtml("<p>We have already studied references in Perl and Perl anonymous arrays and hashes. Object Oriented concept in Perl is very much based on references and anonymous array and hashes. Let's start learning basic concepts of Object Oriented Perl.</p>\n" +
+                            "<h2>Object Basics</h2>\n" +
+                            "<p>There are three main terms, explained from the point of view of how Perl handles objects. The terms are object, class, and method.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>An <b>object</b> within Perl is merely a reference to a data type that knows what class it belongs to. The object is stored as a reference in a scalar variable. Because a scalar only contains a reference to the object, the same scalar can hold different objects in different classes.</p></li>\n" +
+                            "<li><p>A <b>class</b> within Perl is a package that contains the corresponding methods required to create and manipulate objects.</p></li>\n" +
+                            "<li><p>A <b>method</b> within Perl is a subroutine, defined with the package. The first argument to the method is an object reference or a package name, depending on whether the method affects the current object or the class.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>Perl provides a <b>bless()</b> function, which is used to return a reference which ultimately becomes an object.</p>\n" +
+                            "<h2>Defining a Class</h2>\n" +
+                            "<p>It is very simple to define a class in Perl. A class is corresponding to a Perl Package in its simplest form. To create a class in Perl, we first build a package.</p>\n" +
+                            "<p>A package is a self-contained unit of user-defined variables and subroutines, which can be re-used over and over again.</p>\n" +
+                            "<p>Perl Packages provide a separate namespace within a Perl program which keeps subroutines and variables independent from conflicting with those in other packages.</p>\n" +
+                            "<p>To declare a class named Person in Perl we do &minus;</p>\n" +
+                            "<pre class=\"prettyprint notranslate\">\n" +
+                            "package Person;\n" +
+                            "</pre>\n" +
+                            "<p>The scope of the package definition extends to the end of the file, or until another package keyword is encountered.</p>\n" +
+                            "<h2>Creating and Using Objects</h2>\n" +
+                            "<p>To create an instance of a class (an object) we need an object constructor. This constructor is a method defined within the package. Most programmers choose to name this object constructor method new, but in Perl you can use any name.</p>\n" +
+                            "<p>You can use any kind of Perl variable as an object in Perl. Most Perl programmers choose either references to arrays or hashes.</p>\n" +
+                            "<p>Let's create our constructor for our Person class using a Perl hash reference. When creating an object, you need to supply a constructor, which is a subroutine within a package that returns an object reference. The object reference is created by blessing a reference to the package's class. For example &minus;</p>\n")
+                    .withCode("package Person;\n" +
+                            "sub new {\n" +
+                            "   my $class = shift;\n" +
+                            "   my $self = {\n" +
+                            "      _firstName =&gt; shift,\n" +
+                            "      _lastName  =&gt; shift,\n" +
+                            "      _ssn       =&gt; shift,\n" +
+                            "   };\n" +
+                            "   # Print all the values just for clarification.\n" +
+                            "   print \"First Name is $self-&gt;{_firstName}\\n\";\n" +
+                            "   print \"Last Name is $self-&gt;{_lastName}\\n\";\n" +
+                            "   print \"SSN is $self-&gt;{_ssn}\\n\";\n" +
+                            "   bless $self, $class;\n" +
+                            "   return $self;\n" +
+                            "}\n")
+                    .withHtml("<p>Now Let us see how to create an Object.</p>")
+                    .withCode("$object = new Person( \"Mohammad\", \"Saleem\", 23234345);")
+                    .withHtml("<p>You can use simple hash in your consturctor if you don't want to assign any value to any class variable. For example &minus;</P>\n")
+                    .withCode("package Person;\n" +
+                            "sub new {\n" +
+                            "   my $class = shift;\n" +
+                            "   my $self = {};\n" +
+                            "   bless $self, $class;\n" +
+                            "   return $self;\n" +
+                            "}\n")
+                    .withHtml("<h2>Defining Methods</h2>\n" +
+                            "<p>Other object-oriented languages have the concept of security of data to prevent a programmer from changing an object data directly and they provide accessor methods to modify object data. Perl does not have private variables but we can still use the concept of helper methods to manipulate object data.</p>\n" +
+                            "<p>Lets define a helper method to get person’s first name &minus;</p>\n")
+                    .withCode("sub getFirstName {\n" +
+                            "   return $self-&gt;{_firstName};\n" +
+                            "}")
+                    .withHtml("<p>Another helper function to set person’s first name &minus;</p>\n")
+                    .withCode("sub setFirstName {\n" +
+                            "   my ( $self, $firstName ) = @_;\n" +
+                            "   $self-&gt;{_firstName} = $firstName if defined($firstName);\n" +
+                            "   return $self-&gt;{_firstName};\n" +
+                            "}\n")
+                    .withHtml("<p>Now lets have a look into complete example: Keep Person package and helper functions into Person.pm file.</p>\n")
+                    .withCode("#!/usr/bin/perl \n" +
+                            "\n" +
+                            "package Person;\n" +
+                            "\n" +
+                            "sub new {\n" +
+                            "   my $class = shift;\n" +
+                            "   my $self = {\n" +
+                            "      _firstName =&gt; shift,\n" +
+                            "      _lastName  =&gt; shift,\n" +
+                            "      _ssn       =&gt; shift,\n" +
+                            "   };\n" +
+                            "   # Print all the values just for clarification.\n" +
+                            "   print \"First Name is $self-&gt;{_firstName}\\n\";\n" +
+                            "   print \"Last Name is $self-&gt;{_lastName}\\n\";\n" +
+                            "   print \"SSN is $self-&gt;{_ssn}\\n\";\n" +
+                            "   bless $self, $class;\n" +
+                            "   return $self;\n" +
+                            "}\n" +
+                            "sub setFirstName {\n" +
+                            "   my ( $self, $firstName ) = @_;\n" +
+                            "   $self-&gt;{_firstName} = $firstName if defined($firstName);\n" +
+                            "   return $self-&gt;{_firstName};\n" +
+                            "}\n" +
+                            "\n" +
+                            "sub getFirstName {\n" +
+                            "   my( $self ) = @_;\n" +
+                            "   return $self-&gt;{_firstName};\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>Now let's make use of Person object in employee.pl file as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use Person;\n" +
+                            "\n" +
+                            "$object = new Person( \"Mohammad\", \"Saleem\", 23234345);\n" +
+                            "# Get first name which is set using constructor.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "\n" +
+                            "print \"Before Setting First Name is : $firstName\\n\";\n" +
+                            "\n" +
+                            "# Now Set first name using helper function.\n" +
+                            "$object-&gt;setFirstName( \"Mohd.\" );\n" +
+                            "\n" +
+                            "# Now get first name set by helper function.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "print \"Before Setting First Name is : $firstName\\n\";\n")
+                    .withHtml("<p>When we execute above program, it produces the following result &minus;</p>\n")
+                    .withCode("First Name is Mohammad\n" +
+                            "Last Name is Saleem\n" +
+                            "SSN is 23234345\n" +
+                            "Before Setting First Name is : Mohammad\n" +
+                            "Before Setting First Name is : Mohd.\n")
+                    .withHtml("<h2>Inheritance</h2>\n" +
+                            "<p>Object-oriented programming has very good and useful concept called inheritance. Inheritance simply means that properties and methods of a parent class will be available to the child classes. So you don't have to write the same code again and again, you can just inherit a parent class.</p>\n" +
+                            "<p>For example, we can have a class Employee, which inherits from Person. This is referred to as an \"isa\" relationship because an employee is a person. Perl has a special variable, @ISA, to help with this. @ISA governs (method) inheritance.</p>\n" +
+                            "<p>Following are the important points to be considered while using inheritance &minus;</P>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Perl searches the class of the specified object for the given method or attribute, i.e., variable.</p></li>\n" +
+                            "<li><p>Perl searches the classes defined in the object class's @ISA array.</p></li>\n" +
+                            "<li><p>If no method is found in steps 1 or 2, then Perl uses an AUTOLOAD subroutine, if one is found in the @ISA tree.</p></li>\n" +
+                            "<li><p>If a matching method still cannot be found, then Perl searches for the method within the UNIVERSAL class (package) that comes as part of the standard Perl library.</p></li>\n" +
+                            "<li><p>If the method still has not found, then Perl gives up and raises a runtime exception.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>So to create a new Employee class that will inherit methods and attributes from our Person class, we simply code as follows: Keep this code into Employee.pm.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "package Employee;\n" +
+                            "use Person;\n" +
+                            "use strict;\n" +
+                            "our @ISA = qw(Person);    # inherits from Person\n")
+                    .withHtml("<p>Now Employee Class has all the methods and attributes inherited from Person class and you can use them as follows: Use main.pl file to test it &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use Employee;\n" +
+                            "\n" +
+                            "$object = new Employee( \"Mohammad\", \"Saleem\", 23234345);\n" +
+                            "# Get first name which is set using constructor.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "\n" +
+                            "print \"Before Setting First Name is : $firstName\\n\";\n" +
+                            "\n" +
+                            "# Now Set first name using helper function.\n" +
+                            "$object-&gt;setFirstName( \"Mohd.\" );\n" +
+                            "\n" +
+                            "# Now get first name set by helper function.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "print \"After Setting First Name is : $firstName\\n\";\n")
+                    .withHtml("<p>When we execute above program, it produces the following result &minus;</p>")
+                    .withCode("First Name is Mohammad\n" +
+                            "Last Name is Saleem\n" +
+                            "SSN is 23234345\n" +
+                            "Before Setting First Name is : Mohammad\n" +
+                            "Before Setting First Name is : Mohd.\n")
+                    .withHtml("<h2>Method Overriding</h2>\n" +
+                            "<p>The child class Employee inherits all the methods from the parent class Person. But if you would like to override those methods in your child class then you can do it by giving your own implementation. You can add your additional functions in child class or you can add or modify the functionality of an existing methods in its parent class. It can be done as follows: modify Employee.pm file.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "package Employee;\n" +
+                            "use Person;\n" +
+                            "use strict;\n" +
+                            "our @ISA = qw(Person);    # inherits from Person\n" +
+                            "\n" +
+                            "# Override constructor\n" +
+                            "sub new {\n" +
+                            "   my ($class) = @_;\n" +
+                            "\n" +
+                            "   # Call the constructor of the parent class, Person.\n" +
+                            "   my $self = $class-&gt;SUPER::new( $_[1], $_[2], $_[3] );\n" +
+                            "   # Add few more attributes\n" +
+                            "   $self-&gt;{_id}   = undef;\n" +
+                            "   $self-&gt;{_title} = undef;\n" +
+                            "   bless $self, $class;\n" +
+                            "   return $self;\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Override helper function\n" +
+                            "sub getFirstName {\n" +
+                            "   my( $self ) = @_;\n" +
+                            "   # This is child class function.\n" +
+                            "   print \"This is child class helper function\\n\";\n" +
+                            "   return $self-&gt;{_firstName};\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Add more methods\n" +
+                            "sub setLastName{\n" +
+                            "   my ( $self, $lastName ) = @_;\n" +
+                            "   $self-&gt;{_lastName} = $lastName if defined($lastName);\n" +
+                            "   return $self-&gt;{_lastName};\n" +
+                            "}\n" +
+                            "\n" +
+                            "sub getLastName {\n" +
+                            "   my( $self ) = @_;\n" +
+                            "   return $self-&gt;{_lastName};\n" +
+                            "}\n" +
+                            "\n" +
+                            "1;\n")
+                    .withHtml("<p>Now let's again try to use Employee object in our main.pl file and execute it.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use Employee;\n" +
+                            "\n" +
+                            "$object = new Employee( \"Mohammad\", \"Saleem\", 23234345);\n" +
+                            "# Get first name which is set using constructor.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "\n" +
+                            "print \"Before Setting First Name is : $firstName\\n\";\n" +
+                            "\n" +
+                            "# Now Set first name using helper function.\n" +
+                            "$object-&gt;setFirstName( \"Mohd.\" );\n" +
+                            "\n" +
+                            "# Now get first name set by helper function.\n" +
+                            "$firstName = $object-&gt;getFirstName();\n" +
+                            "print \"After Setting First Name is : $firstName\\n\";")
+                    .withHtml("<p>When we execute above program, it produces the following result &minus;</p>\n")
+                    .withCode("First Name is Mohammad\n" +
+                            "Last Name is Saleem\n" +
+                            "SSN is 23234345\n" +
+                            "This is child class helper function\n" +
+                            "Before Setting First Name is : Mohammad\n" +
+                            "This is child class helper function\n" +
+                            "After Setting First Name is : Mohd.\n")
+                    .withHtml("<h2>Default Autoloading</h2>\n" +
+                            "<p>Perl offers a feature which you would not find in any other programming languages: a default subroutine. Which means, if you define a function called <b>AUTOLOAD(),</b> then any calls to undefined subroutines will call AUTOLOAD() function automatically. The name of the missing subroutine is accessible within this subroutine as $AUTOLOAD.</p>\n" +
+                            "<p>Default autoloading functionality is very useful for error handling. Here is an example to implement AUTOLOAD, you can implement this function in your own way.</p>\n")
+                    .withCode("sub AUTOLOAD {\n" +
+                            "   my $self = shift;\n" +
+                            "   my $type = ref ($self) || croak \"$self is not an object\";\n" +
+                            "   my $field = $AUTOLOAD;\n" +
+                            "   $field =~ s/.*://;\n" +
+                            "   unless (exists $self->{$field}) {\n" +
+                            "      croak \"$field does not exist in object/class $type\";\n" +
+                            "   }\n" +
+                            "   if (@_) {\n" +
+                            "      return $self-&gt;($name) = shift;\n" +
+                            "   } else {\n" +
+                            "      return $self-&gt;($name);\n" +
+                            "   }\n" +
+                            "}\n")
+                    .withHtml("<h2>Destructors and Garbage Collection</h2>\n" +
+                            "<p>If you have programmed using object oriented programming before, then you will be aware of the need to create a <b>destructor</b> to free the memory allocated to the object when you have finished using it. Perl does this automatically for you as soon as the object goes out of scope.</p> \n" +
+                            "<p>In case you want to implement your destructor, which should take care of closing files or doing some extra processing then you need to define a special method called <b>DESTROY</b>. This method will be called on the object just before Perl frees the memory allocated to it. In all other respects, the DESTROY method is just like any other method, and you can implement whatever logic you want inside this method.</p>\n" +
+                            "<p>A destructor method is simply a member function (subroutine) named DESTROY, which will be called automatically in following cases &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li>When the object reference's variable goes out of scope.</li>\n" +
+                            "<li>When the object reference's variable is undef-ed.</li>\n" +
+                            "<li>When the script terminates</li>\n" +
+                            "<li>When the perl interpreter terminates</li>\n" +
+                            "</ul>\n" +
+                            "<p>For Example, you can simply put the following method DESTROY in your class &minus;</p>\n")
+                    .withCode("package MyClass;\n" +
+                            "...\n" +
+                            "sub DESTROY {\n" +
+                            "   print \"MyClass::DESTROY called\\n\";\n")
+                    .withHtml("<h2>Object Oriented Perl Example</h2>\n" +
+                            "<p>Here is another nice example, which will help you to understand Object Oriented Concepts of Perl. Put this source code into any perl file and execute it.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# Following is the implementation of simple Class.\n" +
+                            "package MyClass;\n" +
+                            "\n" +
+                            "sub new {\n" +
+                            "   print \"MyClass::new called\\n\";\n" +
+                            "   my $type = shift;            # The package/type name\n" +
+                            "   my $self = {};               # Reference to empty hash\n" +
+                            "   return bless $self, $type;   \n" +
+                            "}\n" +
+                            "\n" +
+                            "sub DESTROY {\n" +
+                            "   print \"MyClass::DESTROY called\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "sub MyMethod {\n" +
+                            "   print \"MyClass::MyMethod called!\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "\n" +
+                            "# Following is the implemnetation of Inheritance.\n" +
+                            "package MySubClass;\n" +
+                            "\n" +
+                            "@ISA = qw( MyClass );\n" +
+                            "\n" +
+                            "sub new {\n" +
+                            "   print \"MySubClass::new called\\n\";\n" +
+                            "   my $type = shift;            # The package/type name\n" +
+                            "   my $self = MyClass-&gt;new;     # Reference to empty hash\n" +
+                            "   return bless $self, $type;  \n" +
+                            "}\n" +
+                            "\n" +
+                            "sub DESTROY {\n" +
+                            "   print \"MySubClass::DESTROY called\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "sub MyMethod {\n" +
+                            "   my $self = shift;\n" +
+                            "   $self-&gt;SUPER::MyMethod();\n" +
+                            "   print \"   MySubClass::MyMethod called!\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "# Here is the main program using above classes.\n" +
+                            "package main;\n" +
+                            "\n" +
+                            "print \"Invoke MyClass method\\n\";\n" +
+                            "\n" +
+                            "$myObject = MyClass-&gt;new();\n" +
+                            "$myObject-&gt;MyMethod();\n" +
+                            "\n" +
+                            "print \"Invoke MySubClass method\\n\";\n" +
+                            "\n" +
+                            "$myObject2 = MySubClass-&gt;new();\n" +
+                            "$myObject2-&gt;MyMethod();\n" +
+                            "\n" +
+                            "print \"Create a scoped object\\n\";\n" +
+                            "{\n" +
+                            "   my $myObject2 = MyClass-&gt;new();\n" +
+                            "}\n" +
+                            "# Destructor is called automatically here\n" +
+                            "\n" +
+                            "print \"Create and undef an object\\n\";\n" +
+                            "$myObject3 = MyClass-&gt;new();\n" +
+                            "undef $myObject3;\n" +
+                            "\n" +
+                            "print \"Fall off the end of the script...\\n\";\n" +
+                            "# Remaining destructors are called automatically here\n")
+                    .withHtml("<p>When we execute above program, it produces the following result &minus;</p>\n")
+                    .withCode("Invoke MyClass method\n" +
+                            "MyClass::new called\n" +
+                            "MyClass::MyMethod called!\n" +
+                            "Invoke MySubClass method\n" +
+                            "MySubClass::new called\n" +
+                            "MyClass::new called\n" +
+                            "MyClass::MyMethod called!\n" +
+                            "MySubClass::MyMethod called!\n" +
+                            "Create a scoped object\n" +
+                            "MyClass::new called\n" +
+                            "MyClass::DESTROY called\n" +
+                            "Create and undef an object\n" +
+                            "MyClass::new called\n" +
+                            "MyClass::DESTROY called\n" +
+                            "Fall off the end of the script...\n" +
+                            "MyClass::DESTROY called\n" +
+                            "MySubClass::DESTROY called\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[24])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Database Access</h1>")
+                    .withHtml("<p>This chapter teaches you how to access a database inside your Perl script. Starting from Perl 5 has become very easy to write database applications using <b>DBI</b> module. DBI stands for <b>Database Independent Interface</b> for Perl, which means DBI provides an abstraction layer between the Perl code and the underlying database, allowing you to switch database implementations really easily.</p>\n" +
+                            "<p>The DBI is a database access module for the Perl programming language. It provides a set of methods, variables, and conventions that provide a consistent database interface, independent of the actual database being used.</p>\n" +
+                            "<h2>Architecture of a DBI Application</h2>\n" +
+                            "<p>DBI is independent of any database available in backend. You can use DBI whether you are working with Oracle, MySQL or Informix, etc.</p>\n")
+                    .withHtml("<p>Here DBI is responsible of taking all SQL commands through the API, (i.e., Application Programming Interface) and to dispatch them to the appropriate driver for actual execution. And finally, DBI is responsible of taking results from the driver and giving back it to the calling scritp.</p>\n" +
+                            "<h2>Notation and Conventions</h2>\n" +
+                            "<p>Throughout this chapter following notations will be used and it is recommended that you should also follow the same convention.</p>\n")
+                    .withCode("$dsn    Database source name\n" +
+                            "$dbh    Database handle object\n" +
+                            "$sth    Statement handle object\n" +
+                            "$h      Any of the handle types above ($dbh, $sth, or $drh)\n" +
+                            "$rc     General Return Code  (boolean: true=ok, false=error)\n" +
+                            "$rv     General Return Value (typically an integer)\n" +
+                            "@ary    List of values returned from the database.\n" +
+                            "$rows   Number of rows processed (if available, else -1)\n" +
+                            "$fh     A filehandle\n" +
+                            "undef   NULL values are represented by undefined values in Perl\n" +
+                            "\\%attr  Reference to a hash of attribute values passed to methods\n")
+                    .withHtml("<h2>Database Connection</h2>\n" +
+                            "<p>Assuming we are going to work with MySQL database. Before connecting to a database make sure of the followings. You can take help of our MySQL tutorial in case you are not aware about how to create database and tables in MySQL database.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>You have created a database with a name TESTDB.</p></li>\n" +
+                            "<li><p>You have created a table with a name TEST_TABLE in TESTDB.</p></li>\n" +
+                            "<li><p>This table is having fields FIRST_NAME, LAST_NAME, AGE, SEX and INCOME.</p></li>\n" +
+                            "<li><p>User ID \"testuser\" and password \"test123\" are set to access TESTDB.</p></li>\n" +
+                            "<li><p>Perl Module DBI is installed properly on your machine.</p></li>\n" +
+                            "<li><p>You have gone through MySQL tutorial to understand MySQL Basics.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>Following is the example of connecting with MySQL database \"TESTDB\" &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use DBI\n" +
+                            "use strict;\n" +
+                            "\n" +
+                            "my $driver = \"mysql\"; \n" +
+                            "my $database = \"TESTDB\";\n" +
+                            "my $dsn = \"DBI:$driver:database=$database\";\n" +
+                            "my $userid = \"testuser\";\n" +
+                            "my $password = \"test123\";\n" +
+                            "\n" +
+                            "my $dbh = DBI-&gt;connect($dsn, $userid, $password ) or die $DBI::errstr;\n")
+                    .withHtml("<p>If a connection is established with the datasource then a Database Handle is returned and saved into $dbh for further use otherwise $dbh is set to <i>undef</i> value and $DBI::errstr returns an error string.</p>\n" +
+                            "<h2>INSERT Operation</h2>\n" +
+                            "<p>INSERT operation is required when you want to create some records into a table. Here we are using table TEST_TABLE to create our records. So once our database connection is established, we are ready to create records into TEST_TABLE. Following is the procedure to create single record into TEST_TABLE. You can create as many as records you like using the same concept.</p>\n" +
+                            "<p>Record creation takes the following steps &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Preparing SQL statement with INSERT statement. This will be done using <b>prepare()</b> API.</p></li>\n" +
+                            "<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>\n" +
+                            "<li><p>Releasing Statement handle. This will be done using <b>finish()</b> API</b>.</p></li>\n" +
+                            "<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction. Commit and Rollback are explained in next sections.</p></li>\n" +
+                            "</ul>\n")
+                    .withCode("my $sth = $dbh-&gt;prepare(\"INSERT INTO TEST_TABLE\n" +
+                            "                       (FIRST_NAME, LAST_NAME, SEX, AGE, INCOME )\n" +
+                            "                         values\n" +
+                            "                       ('john', 'poul', 'M', 30, 13000)\");\n" +
+                            "$sth-&gt;execute() or die $DBI::errstr;\n" +
+                            "$sth-&gt;finish();" +
+                            "$dbh-&gt;commit or die $DBI::errstr;\n\n")
+                    .withHtml("<h2>Using Bind Values</h2>\n" +
+                            "<p>There may be a case when values to be entered is not given in advance. So you can use bind variables which will take the required values at run time. Perl DBI modules make use of a question mark in place of actual value and then actual values are passed through execute() API at the run time. Following is the example &minus;</p>\n")
+                    .withCode("my $first_name = \"john\";\n" +
+                            "my $last_name = \"poul\";\n" +
+                            "my $sex = \"M\";\n" +
+                            "my $income = 13000;\n" +
+                            "my $age = 30;\n" +
+                            "my $sth = $dbh-&gt;prepare(\"INSERT INTO TEST_TABLE\n" +
+                            "                        (FIRST_NAME, LAST_NAME, SEX, AGE, INCOME )\n" +
+                            "                          values\n" +
+                            "                        (?,?,?,?)\");\n" +
+                            "$sth-&gt;execute($first_name,$last_name,$sex, $age, $income) \n" +
+                            "          or die $DBI::errstr;\n" +
+                            "$sth-&gt;finish();\n" +
+                            "$dbh-&gt;commit or die $DBI::errstr;")
+                    .withHtml("<h2>READ Operation</h2>\n" +
+                            "<p>READ Operation on any database means to fetch some useful information from the database, i.e., one or more records from one or more tables. So once our database connection is established, we are ready to make a query into this database. Following is the procedure to query all the records having AGE greater than 20. This will take four steps &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Preparing SQL SELECT query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>\n" +
+                            "<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>\n" +
+                            "<li><p>Fetching all the results one by one and printing those results.This will be done using <b>fetchrow_array()</b> API.</p></li>\n" +
+                            "<li><p>Releasing Statement handle. This will be done using <b>finish()</b> API.</p></li>\n" +
+                            "</ul>\n")
+                    .withCode("my $sth = $dbh-&gt;prepare(\"SELECT FIRST_NAME, LAST_NAME\n" +
+                            "                        FROM TEST_TABLE \n" +
+                            "                        WHERE AGE &gt; 20\");\n" +
+                            "$sth-&gt;execute() or die $DBI::errstr;\n" +
+                            "print \"Number of rows found :\" + $sth-&gt;rows;\n" +
+                            "while (my @row = $sth-&gt;fetchrow_array()) {\n" +
+                            "   my ($first_name, $last_name ) = @row;\n" +
+                            "   print \"First Name = $first_name, Last Name = $last_name\\n\";\n" +
+                            "}\n" +
+                            "$sth-&gt;finish();\n")
+                    .withHtml("<h2>Using Bind Values</h2>\n" +
+                            "<p>There may be a case when condition is not given in advance. So you can use bind variables, which will take the required values at run time. Perl DBI modules makes use of a question mark in place of actual value and then the actual values are passed through execute() API at the run time. Following is the example &minus;</p>\n")
+                    .withCode("$age = 20;\n" +
+                            "my $sth = $dbh-&gt;prepare(\"SELECT FIRST_NAME, LAST_NAME\n" +
+                            "                        FROM TEST_TABLE\n" +
+                            "                        WHERE AGE &gt; ?\");\n" +
+                            "$sth-&gt;execute( $age ) or die $DBI::errstr;\n" +
+                            "print \"Number of rows found :\" + $sth-&gt;rows;\n" +
+                            "while (my @row = $sth-&gt;fetchrow_array()) {\n" +
+                            "   my ($first_name, $last_name ) = @row;\n" +
+                            "   print \"First Name = $first_name, Last Name = $last_name\\n\";\n" +
+                            "}\n" +
+                            "$sth-&gt;finish();\n")
+                    .withHtml("<h2>UPDATE Operation</h2>\n" +
+                            "<p>UPDATE Operation on any database means to update one or more records already available in the database tables. Following is the procedure to update all the records having SEX as 'M'. Here we will increase AGE of all the males by one year. This will take three steps &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Preparing SQL query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>\n" +
+                            "<li><p>Executing SQL query to select all the results from the database. This will be done using <b>execute()</b> API.</p></li>\n" +
+                            "<li><p>Releasing Statement handle. This will be done using <b>finish()</b> API.</p></li>\n" +
+                            "<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction. See next section for commit and rollback APIs.</p></li>\n" +
+                            "</ul>\n")
+                    .withCode("my $sth = $dbh-&gt;prepare(\"UPDATE TEST_TABLE\n" +
+                            "                        SET   AGE = AGE + 1 \n" +
+                            "                        WHERE SEX = 'M'\");\n" +
+                            "$sth-&gt;execute() or die $DBI::errstr;\n" +
+                            "print \"Number of rows updated :\" + $sth-&gt;rows;\n" +
+                            "$sth-&gt;finish();\n" +
+                            "$dbh-&gt;commit or die $DBI::errstr;\n")
+                    .withHtml("<h2>Using Bind Values</h2>\n" +
+                            "<p>There may be a case when condition is not given in advance. So you can use bind variables, which will take required values at run time. Perl DBI modules make use of a question mark in place of actual value and then the actual values are passed through execute() API at the run time. Following is the example &minus;</p>\n")
+                    .withCode("$sex = 'M';\n" +
+                            "my $sth = $dbh-&gt;prepare(\"UPDATE TEST_TABLE\n" +
+                            "                        SET   AGE = AGE + 1\n" +
+                            "                        WHERE SEX = ?\");\n" +
+                            "$sth-&gt;execute('$sex') or die $DBI::errstr;\n" +
+                            "print \"Number of rows updated :\" + $sth-&gt;rows;\n" +
+                            "$sth-&gt;finish();\n" +
+                            "$dbh-&gt;commit or die $DBI::errstr;\n")
+                    .withCode("<p>In some case you would like to set a value, which is not given in advance so you can use binding value as follows. In this example income of all males will be set to 10000.</p>\n")
+                    .withHtml("$sex = 'M';\n" +
+                            "$income = 10000;\n" +
+                            "my $sth = $dbh-&gt;prepare(\"UPDATE TEST_TABLE\n" +
+                            "                        SET   INCOME = ?\n" +
+                            "                        WHERE SEX = ?\");\n" +
+                            "$sth-&gt;execute( $income, '$sex') or die $DBI::errstr;\n" +
+                            "print \"Number of rows updated :\" + $sth-&gt;rows;\n" +
+                            "$sth-&gt;finish();\n")
+                    .withCode("<h2>DELETE Operation</h2>\n" +
+                            "<p>DELETE operation is required when you want to delete some records from your database. Following is the procedure to delete all the records from TEST_TABLE where AGE is equal to 30. This operation will take the following steps.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Preparing SQL query based on required conditions. This will be done using <b>prepare()</b> API.</p></li>\n" +
+                            "<li><p>Executing SQL query to delete required records from the database. This will be done using <b>execute()</b> API.</p></li>\n" +
+                            "<li><p>Releasing Statement handle. This will be done using <b>finish()</b> API.</p></li>\n" +
+                            "<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> complete transaction.</p></li>\n" +
+                            "</ul>\n")
+                    .withCode("$age = 30;\n" +
+                            "my $sth = $dbh-&gt;prepare(\"DELETE FROM TEST_TABLE\n" +
+                            "                         WHERE AGE = ?\");\n" +
+                            "$sth-&gt;execute( $age ) or die $DBI::errstr;\n" +
+                            "print \"Number of rows deleted :\" + $sth-&gt;rows;\n" +
+                            "$sth-&gt;finish();\n" +
+                            "$dbh-&gt;commit or die $DBI::errstr;\n")
+                    .withHtml("<h2>Using do Statement</h2>\n" +
+                            "<p>If you're doing an UPDATE, INSERT, or DELETE there is no data that comes back from the database, so there is a short cut to perform this operation. You can use <b>do</b> statement to execute any of the command as follows.</p>")
+                    .withCode("$dbh-&gt;do('DELETE FROM TEST_TABLE WHERE age =30');\n")
+                    .withHtml("<p><b>do</b> returns a true value if it succeeded, and a false value if it failed. Actually, if it succeeds it returns the number of affected rows. In the example it would return the number of rows that were actually deleted.</p>\n" +
+                            "<h2>COMMIT Operation</h2>\n" +
+                            "<p>Commit is the operation which gives a green signal to database to finalize the changes and after this operation no change can be reverted to its orignal position.</p>\n" +
+                            "<p>Here is a simple example to call <b>commit</b> API.</p>\n")
+                    .withCode("$dbh-&gt;commit or die $dbh-&gt;errstr;\n")
+                    .withHtml("<h2>ROLLBACK Operation</h2>\n" +
+                            "<p>If you are not satisfied with all the changes or you encounter an error in between of any operation , you can revert those changes to use <b>rollback</b> API.</p>\n" +
+                            "<p>Here is a simple example to call <b>rollback</b> API.</p>\n")
+                    .withCode("$dbh-&gt;rollback or die $dbh-&gt;errstr;\n")
+                    .withHtml("<h2>Begin Transaction</h2>\n" +
+                            "<p>Many databases support transactions. This means that you can make a whole bunch of queries which would modify the databases, but none of the changes are actually made. Then at the end, you issue the special SQL query <b>COMMIT</b>, and all the changes are made simultaneously. Alternatively, you can issue the query ROLLBACK, in which case all the changes are thrown away and database remains unchanged.</p>\n" +
+                            "<p>Perl DBI module provided <b>begin_work</b> API, which enables transactions (by turning AutoCommit off) until the next call to commit or rollback. After the next commit or rollback, AutoCommit will automatically be turned on again.</p>\n")
+                    .withCode("$rc  = $dbh-&gt;begin_work  or die $dbh-&gt;errstr;")
+                    .withHtml("<h2>AutoCommit Option</h2>\n" +
+                            "<p>If your transactions are simple, you can save yourself the trouble of having to issue a lot of commits. When you make the connect call, you can specify an <b>AutoCommit</b> option which will perform an automatic commit operation after every successful query. Here's what it looks like &minus;</p>\n")
+                    .withCode("my $dbh = DBI-&gt;connect($dsn, $userid, $password,\n" +
+                            "              {AutoCommit =&gt; 1}) \n" +
+                            "              or die $DBI::errstr;\n")
+                    .withHtml("<p>Here AutoCommit can take value 1 or 0, where 1 means AutoCommit is on and 0 means AutoCommit is off.</p>\n" +
+                            "<h2>Automatic Error Handling</h2>\n" +
+                            "<p>When you make the connect call, you can specify a RaiseErrors option that handles errors for you automatically. When an error occurs, DBI will abort your program instead of returning a failure code. If all you want is to abort the program on an error, this can be convenient. Here's what it looks like &minus;</p>\n")
+                    .withCode("my $dbh = DBI-&gt;connect($dsn, $userid, $password,\n" +
+                            "              {RaiseError =&gt; 1})\n" +
+                            "              or die $DBI::errstr;\n")
+                    .withHtml("<p>Here RaiseError can take value 1 or 0.</p>\n" +
+                            "<h2>Disconnecting Database</h2>\n" +
+                            "<p>To disconnect Database connection, use <b>disconnect</b> API as follows &minus;</p>\n")
+                    .withCode("$rc = $dbh-&gt;disconnect  or warn $dbh-&gt;errstr;\n")
+                    .withHtml("<p>The transaction behaviour of the disconnect method is, sadly, undefined. Some database systems (such as Oracle and Ingres) will automatically commit any outstanding changes, but others (such as Informix) will rollback any outstanding changes. Applications not using AutoCommit should explicitly call commit or rollback before calling disconnect.</p>\n" +
+                            "<h2>Using NULL Values</h2>\n" +
+                            "<p>Undefined values, or undef, are used to indicate NULL values. You can insert and update columns with a NULL value as you would a non-NULL value. These examples insert and update the column age with a NULL value &minus;</p>\n")
+                    .withCode("$sth = $dbh-&gt;prepare(qq {\n" +
+                            "         INSERT INTO TEST_TABLE (FIRST_NAME, AGE) VALUES (?, ?)\n" +
+                            "       });\n" +
+                            "$sth-&gt;execute(\"Joe\", undef);")
+                    .withHtml("<p>Here <b>qq{}</b> is used to return a quoted string to <b>prepare</b> API. However, care must be taken when trying to use NULL values in a WHERE clause. Consider &minus;</p>\n")
+                    .withCode("SELECT FIRST_NAME FROM TEST_TABLE WHERE age = ?\n")
+                    .withHtml("<p>Binding an undef (NULL) to the placeholder will not select rows, which have a NULL age! At least for database engines that conform to the SQL standard. Refer to the SQL manual for your database engine or any SQL book for the reasons for this. To explicitly select NULLs you have to say \"WHERE age IS NULL\".</p>\n" +
+                            "<p>A common issue is to have a code fragment handle a value that could be either defined or undef (non-NULL or NULL) at runtime. A simple technique is to prepare the appropriate statement as needed, and substitute the placeholder for non-NULL cases &minus;</p>\n")
+                    .withCode("$sql_clause = defined $age? \"age = ?\" : \"age IS NULL\";\n" +
+                            "$sth = $dbh-&gt;prepare(qq {\n" +
+                            "         SELECT FIRST_NAME FROM TEST_TABLE WHERE $sql_clause\n" +
+                            "       });\n" +
+                            "$sth-&gt;execute(defined $age ? $age : ());\n")
+                    .withHtml("<h2>Some Other DBI Functions</h2>\n" +
+                            "<h3>available_drivers</h3>\n")
+                    .withCode("@ary = DBI-&gt;available_drivers;\n" +
+                            "@ary = DBI-&gt;available_drivers($quiet);")
+                    .withHtml("<p>Returns a list of all available drivers by searching for DBD::* modules through the directories in @INC. By default, a warning is given if some drivers are hidden by others of the same name in earlier directories. Passing a true value for $quiet will inhibit the warning.</p>\n" +
+                            "<h3>installed_drivers</h3>")
+                    .withCode("%drivers = DBI-&gt;installed_drivers();\n")
+                    .withHtml("<p>Returns a list of driver name and driver handle pairs for all drivers 'installed' (loaded) into the current process. The driver name does not include the 'DBD::' prefix.</p>\n" +
+                            "<h3>data_sources</h3>\n")
+                    .withCode("@ary = DBI-&gt;data_sources($driver);\n")
+                    .withHtml("<p>Returns a list of data sources (databases) available via the named driver. If $driver is empty or undef, then the value of the DBI_DRIVER environment variable is used.</p>\n" +
+                            "<h3>quote</h3>\n")
+                    .withCode("$sql = $dbh-&gt;quote($value);\n" +
+                            "$sql = $dbh-&gt;quote($value, $data_type);")
+                    .withHtml("<p>Quote a string literal for use as a literal value in an SQL statement, by escaping any special characters (such as quotation marks) contained within the string and adding the required type of outer quotation marks.</p>\n")
+                    .withCode("$sql = sprintf \"SELECT foo FROM bar WHERE baz = %s\",\n" +
+                            "                $dbh-&gt;quote(\"Don't\");\n")
+                    .withHtml("<p>For most database types, quote would return 'Don''t' (including the outer quotation marks). It is valid for the quote() method to return an SQL expression that evaluates to the desired string. For example &minus;</p>\n")
+                    .withCode("$quoted = $dbh-&gt;quote(\"one\\ntwo\\0three\")\n" +
+                            "\n" +
+                            "may produce results which will be equivalent to\n" +
+                            "\n" +
+                            "CONCAT('one', CHAR(12), 'two', CHAR(0), 'three')\n")
+                    .withHtml("<h2>Methods Common to All Handles</h2>\n" +
+                            "<h3>err</h3>\n")
+                    .withCode("$rv = $h-&gt;err;\n" +
+                            "or\n" +
+                            "$rv = $DBI::err\n" +
+                            "or\n" +
+                            "$rv = $h-&gt;err\n")
+                    .withHtml("<p>Returns the native database engine error code from the last driver method called. The code is typically an integer but you should not assume that. This is equivalent to $DBI::err or $h-&gt;err.</p>\n" +
+                            "<h3>errstr</h3>")
+                    .withCode("$str = $h-&gt;errstr;\n" +
+                            "or\n" +
+                            "$str = $DBI::errstr\n" +
+                            "or\n" +
+                            "$str = $h-&gt;errstr\n")
+                    .withHtml("<p>Returns the native database engine error message from the last DBI method called. This has the same lifespan issues as the \"err\" method described above. This is equivalent to $DBI::errstr or $h-&gt;errstr.</p>\n" +
+                            "<h3>rows</h3>\n")
+                    .withCode("$rv = $h-&gt;rows;\n" +
+                            "or\n" +
+                            "$rv = $DBI::rows\n")
+                    .withHtml("<p>This returns the number of rows effected by previous SQL statement and equivalent to $DBI::rows.</p>\n" +
+                            "<h3>trace</h3>\n")
+                    .withCode("$h-&gt;trace($trace_settings);\n")
+                    .withHtml("<p>DBI sports an extremely useful ability to generate runtime tracing information of what it's doing, which can be a huge time-saver when trying to track down strange problems in your DBI programs. You can use different values to set trace level. These values varies from 0 to 4. The value 0 means disable trace and 4 means generate complete trace.</p>\n" +
+                            "<h2>Interpolated Statements are Prohibited</h2>\n" +
+                            "<p>It is highly recommended not to use interpolated statements as follows &minus;</p>\n")
+                    .withCode("while ($first_name = &lt;&gt;) {\n" +
+                            "   my $sth = $dbh-&gt;prepare(\"SELECT * \n" +
+                            "                          FROM TEST_TABLE \n" +
+                            "                          WHERE FIRST_NAME = '$first_name'\");\n" +
+                            "   $sth-&gt;execute();\n" +
+                            "   # and so on ...\n" +
+                            "}\n")
+                    .withHtml("<p>Thus don't use interpolated statement instead use <b>bind value</b> to prepare dynamic SQL statement.</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[25])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - CGI Programming</h1>")
+                    .withHtml("<h2>What is CGI ?</h2>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>A Common Gateway Interface, or CGI, is a set of standards that defines how information is exchanged between the web server and a custom script.</p></li>\n" +
+                            "<li><p>The CGI specs are currently maintained by the NCSA and NCSA defines CGI is as follows &minus;</p></li>\n" +
+                            "<li><p><i>The Common Gateway Interface, or CGI, is a standard for external gateway programs to interface with information servers such as HTTP servers.</i></p></li> \n" +
+                            "<li><p>The current version is CGI/1.1 and CGI/1.2 is under progress.</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>Web Browsing</h2>\n" +
+                            "<p>To understand the concept of CGI, lets see what happens when we click a hyper link available on a web page to browse a particular web page or URL.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Your browser contacts web server using HTTP protocol and demands for the URL, i.e., web page filename.</p></li>\n" +
+                            "<li><p>Web Server will check the URL and will look for the filename requested. If web server finds that file then it sends the file back to the browser without any further execution otherwise sends an error message indicating that you have requested a wrong file.</p></li>\n" +
+                            "<li><p>Web browser takes response from web server and displays either the received file content or an error message in case file is not found.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>However, it is possible to set up HTTP server in such a way so that whenever a file in a certain directory is requested that file is not sent back; instead it is executed as a program, and whatever that program outputs as a result, that is sent back for your browser to display. This can be done by using a special functionality available in the web server and it is called <b>Common Gateway Interface</b> or CGI and such programs which are executed by the server to produce final result, are called CGI scripts. These CGI programs can be a PERL Script, Shell Script, C or C++ program, etc.</p>\n" +
+                            "<p>Before you proceed with CGI Programming, make sure that your Web Server supports CGI functionality and it is configured to handle CGI programs. All the CGI programs to be executed by the web server are kept in a pre-configured directory. This directory is called CGI directory and by convention it is named as /cgi-bin. By convention Perl CGI files will have extention as <b>.cgi</b>.</p>\n" +
+                            "<h2>First CGI Program</h2>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print \"Content-type:text/html\\r\\n\\r\\n\";\n" +
+                            "print '&lt;html&gt;';\n" +
+                            "print '&lt;head&gt;';\n" +
+                            "print '&lt;title&gt;Hello Word - First CGI Program&lt;/title&gt;';\n" +
+                            "print '&lt;/head&gt;';\n" +
+                            "print '&lt;body&gt;';\n" +
+                            "print '&lt;h2&gt;Hello Word! This is my first CGI program&lt;/h2&gt;';\n" +
+                            "print '&lt;/body&gt;';\n" +
+                            "print '&lt;/html&gt;';\n" +
+                            "\n" +
+                            "1;\n")
+                    .withHtml("<p>Now if you click <b>hello.cgi</b> link then request goes to web server who search for hello.cgi in /cgi-bin directory, execute it and whatever result got generated, web server sends that result back to the web browser, which is as follows &minus;</p>\n" +
+                            "<pre class=\"prettyprint notranslate\">\n" +
+                            "<h3>Hello Word! This is my first CGI program</h3>\n" +
+                            "</pre>\n" +
+                            "<p>This hello.cgi script is a simple Perl script which is writing its output on STDOUT file, i.e., screen. There is one important and extra feature available which is first line to be printed <b>Content-type:text/html\\r\\n\\r\\n</b>. This line is sent back to the browser and specifies the content type to be displayed on the browser screen. Now you must have undertood basic concept of CGI and you can write many complicated CGI programs using Perl. This script can interact with any other exertnal system also to exchange information such as a database, web services, or any other complex interfaces.</p>\n" +
+                            "<h2>Understanding HTTP Header</h2>\n" +
+                            "<p>The very first line <b>Content-type:text/html\\r\\n\\r\\n</b> is a part of HTTP header, which is sent to the browser so that browser can understand the incoming content from server side. All the HTTP header will be in the following form &minus;</p>\n")
+                    .withCode("HTTP Field Name: Field Content\n")
+                    .withHtml("<p>For Example &minus;</p>\n")
+                    .withCode("<font color=Red>Content-type:</font><font color=blue>text/html\\r\\n\\r\\n</font>\n")
+                    .withHtml("<p>There are few other important HTTP headers, which you will use frequently in your CGI Programming.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Header &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>Content-type: String</b></p>\n" +
+                            "<p>A MIME string defining the format of the content being returned. Example is Content-type:text/html</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>Expires: Date String</b></p>\n" +
+                            "<p>The date when the information becomes invalid. This should be used by the browser to decide when a page needs to be refreshed. A valid date string should be in the format 01 Jan 1998 12:00:00 GMT.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>Location: URL String</b></p>\n" +
+                            "<p>The URL that should be returned instead of the URL requested. You can use this filed to redirect a request to any other location.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>Last-modified: String</b></p>\n" +
+                            "<p>The date of last modification of the file.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>Content-length: String</b></p>\n" +
+                            "<p>The length, in bytes, of the data being returned. The browser uses this value to report the estimated download time for a file.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>Set-Cookie: String</b></p>\n" +
+                            "<p>Set the cookie passed through the <i>string</i></p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>CGI Environment Variables</h2>\n" +
+                            "<p>All the CGI program will have access to the following environment variables. These variables play an important role while writing any CGI program.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<th style=\"text-align:center;width:5%\">Sr.No.</th>\n" +
+                            "<th style=\"text-align:center;\">Variables Names &amp; Description</th>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">1</td>\n" +
+                            "<td><p><b>CONTENT_TYPE</b></p>\n" +
+                            "<p>The data type of the content. Used when the client is sending attached content to the server. For example file upload, etc.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">2</td>\n" +
+                            "<td><p><b>CONTENT_LENGTH</b></p>\n" +
+                            "<p>The length of the query information. It's available only for POST requests</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">3</td>\n" +
+                            "<td><p><b>HTTP_COOKIE</b></p>\n" +
+                            "<p>Returns the set cookies in the form of key &amp; value pair.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">4</td>\n" +
+                            "<td><p><b>HTTP_USER_AGENT</b></p>\n" +
+                            "<p>The User-Agent request-header field contains information about the user agent originating the request. Its name of the web browser.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">5</td>\n" +
+                            "<td><p><b>PATH_INFO</b></p>\n" +
+                            "<p>The path for the CGI script.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">6</td>\n" +
+                            "<td><p><b>QUERY_STRING</b></p>\n" +
+                            "<p>The URL-encoded information that is sent with GET method request.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">7</td>\n" +
+                            "<td><p><b>REMOTE_ADDR</b></p>\n" +
+                            "<p>The IP address of the remote host making the request. This can be useful for logging or for authentication purpose.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">8</td>\n" +
+                            "<td><p><b>REMOTE_HOST</b></p>\n" +
+                            "<p>The fully qualified name of the host making the request. If this information is not available then REMOTE_ADDR can be used to get IR address.</p></td> \n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">9</td>\n" +
+                            "<td><p><b>REQUEST_METHOD</b></p>\n" +
+                            "<p>The method used to make the request. The most common methods are GET and POST.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">10</td>\n" +
+                            "<td><p><b>SCRIPT_FILENAME</b></p>\n" +
+                            "<p>The full path to the CGI script.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">11</td>\n" +
+                            "<td><p><b>SCRIPT_NAME</b></p>\n" +
+                            "<p>The name of the CGI script.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">12</td>\n" +
+                            "<td><p><b>SERVER_NAME</b></p>\n" +
+                            "<p>The server's hostname or IP Address.</p></td>\n" +
+                            "</tr>\n" +
+                            "<tr> \n" +
+                            "<td class=\"ts\">13</td>\n" +
+                            "<td><p><b>SERVER_SOFTWARE</b></p>\n" +
+                            "<p>The name and version of the software the server is running.</p></td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<p>Here is a small CGI program to list down all the CGI variables supported by your Web server. Click this link to see the result <a href=\"https://www.tutorialspoint.com/cgi-bin/get_env.cgi\" target=\"_blank\">Get Environment</a></p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print \"Content-type: text/html\\n\\n\";\n" +
+                            "print \"&lt;font size=+1&gt;Environment&lt;/font&gt;\\n\";\n" +
+                            "foreach (sort keys %ENV) {\n" +
+                            "   print \"&lt;b&gt;$_&lt;/b&gt;: $ENV{$_}&lt;br&gt;\\n\";\n" +
+                            "}\n" +
+                            "\n" +
+                            "1;\n")
+                    .withHtml("<h2>Raise a \"File Download\" Dialog Box?</h2>\n" +
+                            "<p>Sometime it is desired that you want to give option where a user will click a link and it will pop up a \"File Download\" dialogue box to the user instead of displaying actual content. This is very easy and will be achived through HTTP header.</p>\n" +
+                            "<p>This HTTP header will be different from the header mentioned in previous section. For example, if you want to make a <b>FileName</b> file downloadable from a given link then it's syntax will be as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# HTTP Header\n" +
+                            "print \"Content-Type:application/octet-stream; name = \\\"FileName\\\"\\r\\n\";\n" +
+                            "print \"Content-Disposition: attachment; filename = \\\"FileName\\\"\\r\\n\\n\";\n" +
+                            "\n" +
+                            "# Actual File Content will go hear.\n" +
+                            "open( FILE, \"&lt;FileName\" );\n" +
+                            "while(read(FILE, $buffer, 100) ) {\n" +
+                            "   print(\"$buffer\");\n" +
+                            "}\n")
+                    .withHtml("<h2>GET and POST Methods</h2>\n" +
+                            "<p>You must have come across many situations when you need to pass some information from your browser to the web server and ultimately to your CGI Program handling your requests. Most frequently browser uses two methods to pass this information to the web server. These methods are <b>GET</b> Method and <b>POST</b> Method. Let's check them one by one.</p>\n" +
+                            "<h2>Passing Information using GET Method</h2>\n" +
+                            "<p>The GET method sends the encoded user information appended to the page URL itself. The page and the encoded information are separated by the ? character as follows &minus;</p>\n")
+                    .withCode("http://www.test.com/cgi-bin/hello.cgi?key1=value1&amp;key2=value2\n")
+                    .withHtml("<p>The GET method is the defualt method to pass information from a browser to the web server and it produces a long string that appears in your browser's Location:box. You should never use GET method if you have password or other sensitive information to pass to the server. The GET method has size limitation: only 1024 characters can be passed in a request string.</p>\n" +
+                            "<p>This information is passed using <b>QUERY_STRING</b> header and will be accessible in your CGI Program through QUERY_STRING environment variable which you can parse and use in your CGI program.</p>\n" +
+                            "<p>You can pass information by simply concatenating key and value pairs alongwith any URL or you can use HTML &lt;FORM&gt; tags to pass information using GET method.</p>\n" +
+                            "<h2>Simple URL Example: Get Method</h2>\n" +
+                            "<p>Here is a simple URL which will pass two values to hello_get.cgi program using GET method.</p>\n" +
+                            "<a style=\"text-decoration:none;\" href=\"/cgi-bin/hello_get.cgi?first_name=ZARA&last_name=ALI\" target=\"_blank\">http://www.tutorialspoint.com/cgi-bin/hello_get.cgi?first_name=ZARA&last_name=ALI</a>\n" +
+                            "<p>Below is <b>hello_get.cgi</b> script to handle input given by web browser.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "local ($buffer, @pairs, $pair, $name, $value, %FORM);\n" +
+                            "# Read in text\n" +
+                            "$ENV{'REQUEST_METHOD'} =~ tr/a-z/A-Z/;\n" +
+                            "if ($ENV{'REQUEST_METHOD'} eq \"GET\") {\n" +
+                            "   $buffer = $ENV{'QUERY_STRING'};\n" +
+                            "}\n" +
+                            "# Split information into name/value pairs\n" +
+                            "@pairs = split(/&/, $buffer);\n" +
+                            "foreach $pair (@pairs) {\n" +
+                            "   ($name, $value) = split(/=/, $pair);\n" +
+                            "   $value =~ tr/+/ /;\n" +
+                            "   $value =~ s/%(..)/pack(\"C\", hex($1))/eg;\n" +
+                            "   $FORM{$name} = $value;\n" +
+                            "}\n" +
+                            "$first_name = $FORM{first_name};\n" +
+                            "$last_name  = $FORM{last_name};\n" +
+                            "\n" +
+                            "print \"Content-type:text/html\\r\\n\\r\\n\";\n" +
+                            "print \"&lt;html&gt;\";\n" +
+                            "print \"&lt;head&gt;\";\n" +
+                            "print \"&lt;title&gt;Hello - Second CGI Program&lt;/title&gt;\";\n" +
+                            "print \"&lt;/head&gt;\";\n" +
+                            "print \"&lt;body&gt;\";\n" +
+                            "print \"&lt;h2&gt;Hello $first_name $last_name - Second CGI Program&lt;/h2&gt;\";\n" +
+                            "print \"&lt;/body&gt;\";\n" +
+                            "print \"&lt;/html&gt;\";\n" +
+                            "\n" +
+                            "1;\n")
+                    .withHtml("<h2>Simple FORM Example: GET Method</h2>\n" +
+                            "<p>Here is a simple example, which passes two values using HTML FORM and submit button. We are going to use the same CGI script hello_get.cgi to handle this input.</p>\n")
+                    .withCode("&lt;FORM action = \"/cgi-bin/hello_get.cgi\" method = \"GET\"&gt;\n" +
+                            "First Name: &lt;input type = \"text\" name = \"first_name\"&gt;  &lt;br&gt;\n" +
+                            "\n" +
+                            "Last Name: &lt;input type = \"text\" name = \"last_name\"&gt;\n" +
+                            "&lt;input type = \"submit\" value = \"Submit\"&gt;\n" +
+                            "&lt;/FORM&gt;\n")
+                    .withHtml("<h2>Using Cookies in CGI</h2>\n" +
+                            "<p>HTTP protocol is a stateless protocol. But for a commercial website it is required to maintain session information among different pages. For example one user registration ends after transactions which spans through many pages. But how to maintain user's session information across all the web pages?</p>\n" +
+                            "<p>In many situations, using cookies is the most efficient method of remembering and tracking preferences, purchases, commissions, and other information required for better visitor experience or site statistics.</p>\n" +
+                            "<h2>How It Works</h2>\n" +
+                            "<p>Your server sends some data to the visitor's browser in the form of a cookie. The browser may accept the cookie. If it does, it is stored as a plain text record on the visitor's hard drive. Now, when the visitor arrives at another page on your site, the cookie is available for retrieval. Once retrieved, your server knows/remembers what was stored.</p>\n" +
+                            "<p>Cookies are a plain text data record of 5 variable-length fields &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p><b>Expires</b> &minus; The date the cookie will expire. If this is blank, the cookie will expire when the visitor quits the browser.</p></li>\n" +
+                            "<li><p><b>Domain</b> &minus; The domain name of your site.</p></li>\n" +
+                            "<li><p><b>Path</b> &minus; The path to the directory or web page that set the cookie. This may be blank if you want to retrieve the cookie from any directory or page.</p></li>\n" +
+                            "<li><p><b>Secure</b> &minus; If this field contains the word \"secure\" then the cookie may only be retrieved with a secure server. If this field is blank, no such restriction exists.</p></li>\n" +
+                            "<li><p><b>Name = Value</b> &minus; Cookies are set and retrviewed in the form of key and value pairs.</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>Setting up Cookies</h2>\n" +
+                            "<p>It is very easy to send cookies to browser. These cookies will be sent along with the HTTP Header. Assuming you want to set UserID and Password as cookies. So it will be done as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "print \"Set-Cookie:UserID = XYZ;\\n\";\n" +
+                            "print \"Set-Cookie:Password = XYZ123;\\n\";\n" +
+                            "print \"Set-Cookie:Expires = Tuesday, 31-Dec-2007 23:12:40 GMT\";\\n\";\n" +
+                            "print \"Set-Cookie:Domain = www.tutorialspoint.com;\\n\";\n" +
+                            "print \"Set-Cookie:Path = /perl;\\n\";\n" +
+                            "print \"Content-type:text/html\\r\\n\\r\\n\";\n" +
+                            "...........Rest of the HTML Content goes here....\n")
+                    .withHtml("<p>Here we used <b>Set-Cookie</b> HTTP header to set cookies. It is optional to set cookies attributes like Expires, Domain, and Path. It is important to note that cookies are set before sending magic line <b>\"Content-type:text/html\\r\\n\\r\\n</b>.</p>\n" +
+                            "<h2>Retrieving Cookies</h2>\n" +
+                            "<p>It is very easy to retrieve all the set cookies. Cookies are stored in CGI environment variable HTTP_COOKIE and they will have following form.</p>\n")
+                    .withCode("key1 = value1;key2 = value2;key3 = value3....\n")
+                    .withHtml("<p>Here is an example of how to retrieve cookies.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "$rcvd_cookies = $ENV{'HTTP_COOKIE'};\n" +
+                            "@cookies = split /;/, $rcvd_cookies;\n" +
+                            "foreach $cookie ( @cookies ) {\n" +
+                            "   ($key, $val) = split(/=/, $cookie); # splits on the first =.\n" +
+                            "   $key =~ s/^\\s+//;\n" +
+                            "   $val =~ s/^\\s+//;\n" +
+                            "   $key =~ s/\\s+$//;\n" +
+                            "   $val =~ s/\\s+$//;\n" +
+                            "   if( $key eq \"UserID\" ) {\n" +
+                            "      $user_id = $val;\n" +
+                            "   } elsif($key eq \"Password\") {\n" +
+                            "      $password = $val;\n" +
+                            "   }\n" +
+                            "}\n" +
+                            "print \"User ID  = $user_id\\n\";\n" +
+                            "print \"Password = $password\\n\";\n")
+                    .withHtml("<p>This will produce the following result, provided above cookies have been set before calling retrieval cookies script.</p>\n")
+                    .withCode("User ID = XYZ\n" +
+                            "Password = XYZ123\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[26])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h2>What are Packages?</h2>\n" +
+                            "<p>The <b>package</b> statement switches the current naming context to a specified namespace (symbol table). Thus &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>A package is a collection of code which lives in its own namespace.</p></li>\n" +
+                            "<li><p>A namespace is a named collection of unique variable names (also called a symbol table).</p></li>\n" +
+                            "<li><p>Namespaces prevent variable name collisions between packages.</p></li>\n" +
+                            "<li><p>Packages enable the construction of modules which, when used, won't clobber variables and functions outside of the modules's own namespace.</p></li>\n" +
+                            "<li><p>The package stays in effect until either another package statement is invoked, or until the end of the current block or file.</p></li>\n" +
+                            "<li><p>You can explicitly refer to variables within a package using the <b>::</b> package qualifier.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>Following is an example having main and Foo packages in a file. Here special variable __PACKAGE__ has been used to print the package name.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "# This is main package\n" +
+                            "$i = 1; \n" +
+                            "print \"Package name : \" , __PACKAGE__ , \" $i\\n\"; \n" +
+                            "\n" +
+                            "package Foo;\n" +
+                            "# This is Foo package\n" +
+                            "$i = 10; \n" +
+                            "print \"Package name : \" , __PACKAGE__ , \" $i\\n\"; \n" +
+                            "\n" +
+                            "package main;\n" +
+                            "# This is again main package\n" +
+                            "$i = 100; \n" +
+                            "print \"Package name : \" , __PACKAGE__ , \" $i\\n\"; \n" +
+                            "print \"Package name : \" , __PACKAGE__ ,  \" $Foo::i\\n\"; \n" +
+                            "\n")
+                    .withHtml("<p>When above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Package name : main 1\n" +
+                            "Package name : Foo 10\n" +
+                            "Package name : main 100\n" +
+                            "Package name : main 10\n")
+                    .withHtml("<h2>BEGIN and END Blocks</h2>\n" +
+                            "<p>You may define any number of code blocks named BEGIN and END, which act as constructors and destructors respectively.</P>\n")
+                    .withCode("BEGIN { ... }\n" +
+                            "END { ... }\n" +
+                            "BEGIN { ... }\n" +
+                            "END { ... }\n")
+                    .withHtml("<ul class=\"list\">\n" +
+                            "<li><p>Every <b>BEGIN</b> block is executed after the perl script is loaded and compiled but before any other statement is executed.</p></li>\n" +
+                            "<li><p>Every END block is executed just before the perl interpreter exits.</p></li>\n" +
+                            "<li><p>The BEGIN and END blocks are particularly useful when creating Perl modules.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>Following example shows its usage &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "package Foo;\n" +
+                            "print \"Begin and Block Demo\\n\";\n" +
+                            "\n" +
+                            "BEGIN { \n" +
+                            "   print \"This is BEGIN Block\\n\" \n" +
+                            "}\n" +
+                            "\n" +
+                            "END { \n" +
+                            "   print \"This is END Block\\n\" \n" +
+                            "}\n" +
+                            "\n")
+                    .withHtml("<p>When above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("This is BEGIN Block\n" +
+                            "Begin and Block Demo\n" +
+                            "This is END Block\n")
+                    .withHtml("<h2>What are Perl Modules?</h2>\n" +
+                            "<p>A Perl module is a reusable package defined in a library file whose name is the same as the name of the package with a .pm as extension.</p>\n" +
+                            "<p>A Perl module file called <b>Foo.pm</b> might contain statements like this.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "package Foo;\n" +
+                            "sub bar { \n" +
+                            "   print \"Hello $_[0]\\n\" \n" +
+                            "}\n" +
+                            "\n" +
+                            "sub blat { \n" +
+                            "   print \"World $_[0]\\n\" \n" +
+                            "}\n")
+                    .withHtml("<p>Few important points about Perl modules</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>The functions <b>require</b> and <b>use</b> will load a module.</p></li>\n" +
+                            "<li><p>Both use the list of search paths in <b>@INC</b> to find the module.</p></li>\n" +
+                            "<li><p>Both functions <b>require</b> and <b>use</b> call the <b>eval</b> function to process the code.</p></li>\n" +
+                            "<li><p>The <b>1;</b> at the bottom causes eval to evaluate to TRUE (and thus not fail).</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>The Require Function</h2>\n" +
+                            "<p>A module can be loaded by calling the <b>require</b> function as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "require Foo;\n" +
+                            "\n" +
+                            "Foo::bar( \"a\" );\n" +
+                            "Foo::blat( \"b\" );\n")
+                    .withHtml("<p>You must have noticed that the subroutine names must be fully qualified to call them. It would be nice to enable the subroutine <b>bar</b> and <b>blat</b> to be imported into our own namespace so we wouldn't have to use the Foo:: qualifier.</p>\n" +
+                            "<h2>The Use Function</h2>\n" +
+                            "<p>A module can be loaded by calling the <b>use</b> function.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "use Foo;\n" +
+                            "\n" +
+                            "bar( \"a\" );\n" +
+                            "blat( \"b\" );\n")
+                    .withHtml("<p>Notice that we didn't have to fully qualify the package's function names. The <b>use</b> function will export a list of symbols from a module given a few added statements inside a module.</p>\n")
+                    .withCode("require Exporter;\n" +
+                            "@ISA = qw(Exporter);\n")
+                    .withHtml("<p>Then, provide a list of symbols (scalars, lists, hashes, subroutines, etc) by filling the list variable named <b>@EXPORT</b>: For Example &minus;</p>\n")
+                    .withCode("package Module;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw(Exporter);\n" +
+                            "@EXPORT = qw(bar blat);\n" +
+                            "\n" +
+                            "sub bar { print \"Hello $_[0]\\n\" }\n" +
+                            "sub blat { print \"World $_[0]\\n\" }\n" +
+                            "sub splat { print \"Not $_[0]\\n\" }  # Not exported!\n")
+                    .withHtml("<h2>Create the Perl Module Tree</h2>\n" +
+                            "<p>When you are ready to ship your Perl module, then there is standard way of creating a Perl Module Tree. This is done using <b>h2xs</b> utility. This utility comes along with Perl. Here is the syntax to use h2xs &minus;</p>\n")
+                    .withCode("$h2xs -AX -n  ModuleName\n")
+                    .withHtml("<p>For example, if your module is available in <b>Person.pm</b> file, then simply issue the following command &minus;</p>\n")
+                    .withCode("$h2xs -AX -n Person\n")
+                    .withHtml("<p>This will produce the following result &minus;</p>\n")
+                    .withCode("Writing Person/lib/Person.pm\n" +
+                            "Writing Person/Makefile.PL\n" +
+                            "Writing Person/README\n" +
+                            "Writing Person/t/Person.t\n" +
+                            "Writing Person/Changes\n" +
+                            "Writing Person/MANIFEST")
+                    .withHtml("<p>Here is the descritpion of these options &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p><b>-A</b> omits the Autoloader code (best used by modules that define a large number of infrequently used subroutines).</p></li>\n" +
+                            "<li><p><b>-X</b> omits XS elements (eXternal Subroutine, where eXternal means external to Perl, i.e., C).</p></li>\n" +
+                            "<li><p><b>-n</b> specifies the name of the module.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>So above command creates the following structure inside Person directory. Actual result is shown above.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li>Changes</li>\n" +
+                            "<li>Makefile.PL</li>\n" +
+                            "<li>MANIFEST (contains the list of all files in the package)</li>\n" +
+                            "<li>README</li>\n" +
+                            "<li>t/ (test files)</li>\n" +
+                            "<li>lib/ ( Actual source code goes here</lI>\n" +
+                            "</ul>\n" +
+                            "<p>So finally, you <b>tar</b> this directory structure into a file Person.tar.gz and you can ship it. You will have to update README file with the proper instructions. You can also provide some test examples files in t directory.</p>\n" +
+                            "<h2>Installing Perl Module</h2>\n" +
+                            "<p>Download a Perl module in the form tar.gz file. Use the following sequence to install any Perl Module <b>Person.pm</b> which has been downloaded in as <b>Person.tar.gz</b> file.</p>\n")
+                    .withCode("tar xvfz Person.tar.gz\n" +
+                            "cd Person\n" +
+                            "perl Makefile.PL\n" +
+                            "make\n" +
+                            "make install")
+                    .withHtml("<p>The Perl interpreter has a list of directories in which it searches for modules (global array @INC).</p>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[27])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Process Management</h1>\n")
+                    .withHtml("<p>You can use Perl in various ways to create new processes as per your requirements. This tutorial will list down few important and most frequently used methods of creating and managing Perl processes.</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>You can use special variables <b>$$</b> or <b>$PROCESS_ID</b> to get current process ID.</p></li>\n" +
+                            "<li><p>Every process created using any of the mentioned methods, maintains its own virtual environment with-in <b>%ENV</b> variable.</p></li>\n" +
+                            "<li><p>The <b>exit()</b> function always exits just the child process which executes this function and the main process as a whole will not exit unless all running child-processes have exited.</p></li>\n" +
+                            "<li><p>All open handles are dup()-ed in child-processes, so that closing any handles in one process does not affect the others.</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>Backstick Operator</h2>\n" +
+                            "<p>This simplest way of executing any Unix command is by using backstick operator. You simply put your command inside the backstick operator, which will result in execution of the command and returns its result which can be stored as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "@files = `ls -l`;\n" +
+                            "\n" +
+                            "foreach $file (@files) {\n" +
+                            "   print $file;\n" +
+                            "}\n")
+                    .withHtml("<p>When the above code is executed, it lists down all the files and directories available in the current directory &minus;</p>\n")
+                    .withCode("drwxr-xr-x 3 root root 4096 Sep 14 06:46 9-14\n" +
+                            "drwxr-xr-x 4 root root 4096 Sep 13 07:54 android\n" +
+                            "-rw-r--r-- 1 root root  574 Sep 17 15:16 index.htm\n" +
+                            "drwxr-xr-x 3  544  401 4096 Jul  6 16:49 MIME-Lite-3.01\n" +
+                            "-rw-r--r-- 1 root root   71 Sep 17 15:16 test.pl\n" +
+                            "drwx------ 2 root root 4096 Sep 17 15:11 vAtrJdy\n")
+                    .withHtml("<h2>The system() Function</h2>\n" +
+                            "<p>You can also use <b>system()</b> function to execute any Unix command, whose output will go to the output of the perl script. By default, it is the screen, i.e., STDOUT, but you can redirect it to any file by using redirection operator &gt; &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "system( \"ls -l\")")
+                    .withHtml("<p>When above code is executed, it lists down all the files and directories available in the current directory &minus;</p>\n")
+                    .withCode("drwxr-xr-x 3 root root 4096 Sep 14 06:46 9-14\n" +
+                            "drwxr-xr-x 4 root root 4096 Sep 13 07:54 android\n" +
+                            "-rw-r--r-- 1 root root  574 Sep 17 15:16 index.htm\n" +
+                            "drwxr-xr-x 3  544  401 4096 Jul  6 16:49 MIME-Lite-3.01\n" +
+                            "-rw-r--r-- 1 root root   71 Sep 17 15:16 test.pl\n" +
+                            "drwx------ 2 root root 4096 Sep 17 15:11 vAtrJdy\n")
+                    .withHtml("<p>Be careful when your command contains shell environmental variables like $PATH or $HOME. Try following three scenarios &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "$PATH = \"I am Perl Variable\";\n" +
+                            "\n" +
+                            "system('echo $PATH');  # Treats $PATH as shell variable\n" +
+                            "system(\"echo $PATH\");  # Treats $PATH as Perl variable\n" +
+                            "system(\"echo \\$PATH\"); # Escaping $ works.\n")
+                    .withHtml("<p>When above code is executed, it produces the following result depending on what is set in shell variable $PATH.</p>\n")
+                    .withCode("/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin\n" +
+                            "I am Perl Variable\n" +
+                            "/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin\n")
+                    .withHtml("<h2>The fork() Function</h2>\n" +
+                            "<p>Perl provides a <b>fork()</b> function that corresponds to the Unix system call of the same name. On most Unix-like platforms where the fork() system call is available, Perl's fork() simply calls it. On some platforms such as Windows where the fork() system call is not available, Perl can be built to emulate fork() at the interpreter level.</p>\n" +
+                            "<p>The fork() function is used to clone a current process. This call create a new process running the same program at the same point. It returns the child pid to the parent process, 0 to the child process, or undef if the fork is unsuccessful.</p>\n" +
+                            "<p>You can use <b>exec()</b> function within a process to launch the requested executable, which will be executed in a separate process area and exec() will wait for it to complete before exiting with the same exit status as that process.</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "if(!defined($pid = fork())) {\n" +
+                            "   # fork returned undef, so unsuccessful\n" +
+                            "   die \"Cannot fork a child: $!\";\n" +
+                            "} elsif ($pid == 0) {\n" +
+                            "   print \"Printed by child process\\n\";\n" +
+                            "   exec(\"date\") || die \"can't exec date: $!\";\n" +
+                            "  \n" +
+                            "} else {\n" +
+                            "   # fork returned 0 nor undef\n" +
+                            "   # so this branch is parent\n" +
+                            "   print \"Printed by parent process\\n\";\n" +
+                            "   $ret = waitpid($pid, 0);\n" +
+                            "   print \"Completed process id: $ret\\n\";\n" +
+                            "\n" +
+                            "}\n")
+                    .withHtml("<p>When above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Printed by parent process\n" +
+                            "Printed by child process\n" +
+                            "Tue Sep 17 15:41:08 CDT 2013\n" +
+                            "Completed process id: 17777\n")
+                    .withHtml("<p>The <b>wait()</b> and <b>waitpid()</b> can be passed as a pseudo-process ID returned by fork(). These calls will properly wait for the termination of the pseudo-process and return its status. If you fork without ever waiting on your children using <b>waitpid()</b> function, you will accumulate zombies. On Unix systems, you can avoid this by setting $SIG{CHLD} to \"IGNORE\" as follows &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "local $SIG{CHLD} = \"IGNORE\";\n" +
+                            " \n" +
+                            "if(!defined($pid = fork())) {\n" +
+                            "   # fork returned undef, so unsuccessful\n" +
+                            "   die \"Cannot fork a child: $!\";\n" +
+                            "} elsif ($pid == 0) {\n" +
+                            "   print \"Printed by child process\\n\";\n" +
+                            "   exec(\"date\") || die \"can't exec date: $!\";\n" +
+                            "  \n" +
+                            "} else {\n" +
+                            "   # fork returned 0 nor undef\n" +
+                            "   # so this branch is parent\n" +
+                            "   print \"Printed by parent process\\n\";\n" +
+                            "   $ret = waitpid($pid, 0);\n" +
+                            "   print \"Completed process id: $ret\\n\";\n" +
+                            "\n" +
+                            "}\n")
+                    .withHtml("<p>When above code is executed, it produces the following result &minus;</p>\n")
+                    .withCode("Printed by parent process\n" +
+                            "Printed by child process\n" +
+                            "Tue Sep 17 15:44:07 CDT 2013\n" +
+                            "Completed process id: -1\n")
+                    .withHtml("<h2>The kill() Function</h2>\n" +
+                            "<p>Perl <b>kill('KILL', (Process List))</b> function can be used to terminate a pseudo-process by passing it the ID returned by fork().</p>\n" +
+                            "<p>Note that using kill('KILL', (Process List)) on a pseudo-process() may typically cause memory leaks, because the thread that implements the pseudo-process does not get a chance to clean up its resources.</p>\n" +
+                            "<p>You can use <b>kill()</b> function to send any other signal to target processes, for example following will send SIGINT to a process IDs 104 and 102 &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "kill('INT', 104, 102);\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         }
     }
