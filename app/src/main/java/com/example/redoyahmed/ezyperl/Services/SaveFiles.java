@@ -59,7 +59,7 @@ public class SaveFiles {
             View convertView = inflater.inflate(R.layout.list_backup_file, null);
             final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
             builder.setView(convertView);
-            builder.setTitle("Select File").setIcon(R.mipmap.ic_launcher);
+            builder.setTitle("Select File").setIcon(R.mipmap.app_logo);
             final AlertDialog alert = builder.create();
 
             ListView lv = convertView.findViewById(R.id.lv_backup);
@@ -95,7 +95,7 @@ public class SaveFiles {
             alert.show();
         } else {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
-            builder.setTitle("Delete").setIcon(R.mipmap.ic_launcher)
+            builder.setTitle("Delete").setIcon(R.mipmap.app_logo)
                     .setMessage("Empty");
             builder.show();
         }

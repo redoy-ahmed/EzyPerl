@@ -14,12 +14,15 @@ import android.widget.Toast;
 import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Utils.Code;
+import com.example.redoyahmed.ezyperl.Utils.Codeview;
+import com.example.redoyahmed.ezyperl.Utils.Settings;
+import com.example.redoyahmed.ezyperl.Utils.TouchMyWebView;
 
 import java.util.List;
 
 import br.tiagohm.codeview.CodeView;
 import br.tiagohm.codeview.Language;
-import br.tiagohm.codeview.Theme;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,7 +30,7 @@ import butterknife.ButterKnife;
 public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlightListener {
 
     @BindView(R.id.codeView)
-    public CodeView codeView;
+    public TouchMyWebView codeView;
 
     @BindView(R.id.empty)
     public TextView empty;
@@ -45,36 +48,30 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_tutorial_code, container, false);
         ButterKnife.bind(this, rootView);
-
-        loadData(category);
         loadDataIntoWidgets();
-
         return rootView;
     }
 
-    private void loadData(String category) {
-        DbHelper db = new DbHelper(rootView.getContext());
-        tutorialItems = db.getTutorialDetailsByCategory(category);
-    }
-
     private void loadDataIntoWidgets() {
+        loadData(category);
 
         if (tutorialItems.get(0).getCode().length() == 0) {
             codeView.setVisibility(View.INVISIBLE);
             empty.setVisibility(View.VISIBLE);
         } else {
-            codeView.setOnHighlightListener(this)
-                    .setOnHighlightListener(this)
-                    .setTheme(Theme.ARDUINO_LIGHT)
-                    .setCode(tutorialItems.get(0).getCode())
-                    .setLanguage(Language.PERL)
-                    .setWrapLine(true)
-                    .setFontSize(14)
-                    .setZoomEnabled(true)
-                    .setShowLineNumber(true)
-                    .setStartLineNumber(1)
-                    .apply();
+            Codeview.with(getContext())
+                    .setStyle(Code.DEFAULT_STYLE)
+                    .setAutoWrap(Code.autoWrap)
+                    .setLang(Settings.Lang.PERL)
+                    .withCode(tutorialItems.get(0).getCode())
+                    .into(codeView);
         }
+    }
+
+
+    private void loadData(String category) {
+        DbHelper db = new DbHelper(rootView.getContext());
+        tutorialItems = db.getTutorialDetailsByCategory(category);
     }
 
     @Override

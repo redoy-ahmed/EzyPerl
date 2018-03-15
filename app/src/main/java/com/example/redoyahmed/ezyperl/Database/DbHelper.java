@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.Model.Language;
@@ -13,6 +12,7 @@ import com.example.redoyahmed.ezyperl.Model.PerformanceItem;
 import com.example.redoyahmed.ezyperl.Model.QuestionItem;
 import com.example.redoyahmed.ezyperl.Model.Result;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Utils.PractiseCodes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +117,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private void addCategories() {
         String[] category = context.getResources().getStringArray(R.array.category);
-        String[] code = context.getResources().getStringArray(R.array.tutorialCode);
+        String[] code = PractiseCodes.allCodes;
         Category c;
         int changeLevel = 0;
         int level = 1;

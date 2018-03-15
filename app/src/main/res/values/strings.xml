@@ -85,34 +85,30 @@
         <item>28</item>
     </string-array>
 
-    <string-array name="tutorialCode">
-        <item>print "Hello, world\n";</item>
+    <!--<string-array name="tutorialCode">
+        <item>print "Hello, world";</item>
 
-        <item>  $a = 10;\n
-                print "Value of a = $a\n";
-                print 'Value of a = $a\n';</item>
+        <item>  $a = 10;\nprint "Value of a = $a";\nprint 'Value of a = $a';</item>
 
-        <item>  $result = "This is \"number\"";
-                print "\n$result\n";
-                print "\$result\n";</item>
+        <item>  $result = "This is \"number\"";\nprint "\n$result";\nprint "\$result";</item>
 
-        <item>  $str = "Welcome to my tutorial!\n";
-                print "$str\n";
+        <item>  $str = "Welcome to my tutorial!";
+                print "$str";
 
-                $str = "Welcome to my tutorial!\n";
-                print "$str\n";
+                $str = "Welcome to my tutorial!";
+                print "$str";
 
-                $str = "\uwelcome to my tutorial!\n";
-                print "$str\n";
+                $str = "\uwelcome to my tutorial!";
+                print "$str";
 
-                $str = "\UWelcome to my tutorial!\n";
-                print "$str\n";
+                $str = "\UWelcome to my tutorial!";
+                print "$str";
 
-                $str = "Welcome to \Umy\Etutorial!\n";
-                print "$str\n";
+                $str = "Welcome to \Umy\Etutorial!";
+                print "$str";
 
-                $str = "\Qmy tutorial!\n";
-                print "$str\n";</item>
+                $str = "\Qmy tutorial!";
+                print "$str";</item>
 
         <item>  %data = ('John Paul', 45, 'Lisa', 30, 'Kumar', 40)\n;
                 print "\$data{'John Paul'} = $data{'John Paul'}\n";
@@ -193,9 +189,9 @@
                 $c = $a ;
                 print "Value of \$a after \$a++ = $c\n";
 
-                $b--;
+                $b&#45;&#45;;
                 $c = $b ;
-                print "Value of \$b after \$b-- = $c\n";</item>
+                print "Value of \$b after \$b&#45;&#45; = $c\n";</item>
 
         <item>  /@months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec );
                 @days = qw(Sun Mon Tue Wed Thu Fri Sat Sun);
@@ -460,7 +456,7 @@
                 }
 
                 1;</item>
-    </string-array>
+    </string-array>-->
 
     <!--quiz Category introduction-->
     <string-array name="introduction_questions">
