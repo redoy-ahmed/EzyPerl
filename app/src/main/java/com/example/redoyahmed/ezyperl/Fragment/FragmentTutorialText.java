@@ -3086,21 +3086,653 @@ public class FragmentTutorialText extends Fragment {
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Error Handling</h1>\n")
+                    .withHtml("<p>The execution and the errors always go together. If you are opening a file which does not exist. then if you did not handle this situation properly then your program is considered to be of bad quality.</p>\n" +
+                            "<p>The program stops if an error occurs. So a proper error handling is used to handle various type of errors, which may occur during a program execution and take appropriate action instead of halting program completely.</p>\n" +
+                            "<p>You can identify and trap an error in a number of different ways. Its very easy to trap errors in Perl and then handling them properly. Here are few methods which can be used.</p>\n" +
+                            "<h2>The if statement</h2>\n" +
+                            "<p>The <b>if statement</b> is the obvious choice when you need to check the return value from a statement; for example &minus;</p>\n")
+                    .withCode("if(open(DATA, $file)) {\n" +
+                            "   ...\n" +
+                            "} else {\n" +
+                            "   die \"Error: Couldn't open the file - $!\";\n" +
+                            "}\n")
+                    .withHtml("<p>Here variable $! returns the actual error message. Alternatively, we can reduce the statement to one line in situations where it makes sense to do so; for example &minus;</p>\n")
+                    .withCode("open(DATA, $file) || die \"Error: Couldn't open the file $!\";")
+                    .withHtml("<h2>The unless Function</h2>\n" +
+                            "<p>The <b>unless</b> function is the logical opposite to if: statements can completely bypass the success status and only be executed if the expression returns false. For example &minus;</p>\n")
+                    .withCode("unless(chdir(\"/etc\")) {\n" +
+                            "   die \"Error: Can't change directory - $!\";\n" +
+                            "}\n")
+                    .withHtml("<p>The <b>unless</b> statement is best used when you want to raise an error or alternative only if the expression fails. The statement also makes sense when used in a single-line statement &minus;</p>\n")
+                    .withCode("die \"Error: Can't change directory!: $!\" unless(chdir(\"/etc\"));\n")
+                    .withHtml("<p>Here we die only if the chdir operation fails, and it reads nicely.</p>\n" +
+                            "<h2>The ternary Operator</h2>\n" +
+                            "<p>For very short tests, you can use the conditional operator <b>?:</b></p>\n")
+                    .withCode("print(exists($hash{value}) ? 'There' : 'Missing',\"\\n\");")
+                    .withHtml("<p>It's not quite so clear here what we are trying to achieve, but the effect is the same as using an <b>if</b> or <b>unless</b> statement. The conditional operator is best used when you want to quickly return one of the two values within an expression or statement.</p>\n" +
+                            "<h2>The warn Function</h2>\n" +
+                            "<p>The warn function just raises a warning, a message is printed to STDERR, but no further action is taken. So it is more useful if you just want to print a warning for the user and proceed with rest of the operation &minus;</P>\n")
+                    .withCode("chdir('/etc') or warn \"Can't change directory\";\n")
+                    .withHtml("<h2>The die Function</h2>\n" +
+                            "<p>The die function works just like warn, except that it also calls exit. Within a normal script, this function has the effect of immediately terminating execution. You should use this function in case it is useless to proceed if there is an error in the program &minus;</p>\n")
+                    .withCode("chdir('/etc') or die \"Can't change directory\";\n")
+                    .withHtml("<h2>Errors within Modules</h2>\n" +
+                            "<p>There are two different situations we should be able to handle &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Reporting an error in a module that quotes the module's filename and line number - this is useful when debugging a module, or when you specifically want to raise a module-related, rather than script-related, error.</p></li>\n" +
+                            "<li><p>Reporting an error within a module that quotes the caller's information so that you can debug the line within the script that caused the error. Errors raised in this fashion are useful to the end-user, because they highlight the error in relation to the calling script's origination line.</p></li>\n" +
+                            "</ul>\n" +
+                            "<p>The <b>warn</b> and <b>die</b> functions work slightly differently than you would expect when called from within a module. For example, the simple module &minus;</p>\n")
+                    .withCode("package T;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw/Exporter/;\n" +
+                            "@EXPORT = qw/function/;\n" +
+                            "use Carp;\n" +
+                            "\n" +
+                            "sub function {\n" +
+                            "   warn \"Error in module!\";\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>When called from a script like below &minus;</p>\n")
+                    .withCode("use T;\n" +
+                            "function();")
+                    .withHtml("<p>It will produce the following result &minus;</p>\n")
+                    .withCode("Error in module! at T.pm line 9.\n")
+                    .withHtml("<p>This is more or less what you might expected, but not necessarily what you want. From a module programmer's perspective, the information is useful because it helps to point to a bug within the module itself. For an end-user, the information provided is fairly useless, and for all but the hardened programmer, it is completely pointless.</p>\n" +
+                            "<p>The solution for such problems is the Carp module, which provides a simplified method for reporting errors within modules that return information about the calling script. The Carp module provides four functions: carp, cluck, croak, and confess. These functions are discussed below.</p>\n" +
+                            "<h2>The carp Function</h2>\n" +
+                            "<p>The carp function is the basic equivalent of warn and prints the message to STDERR without actually exiting the script and printing the script name.</p>\n")
+                    .withCode("package T;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw/Exporter/;\n" +
+                            "@EXPORT = qw/function/;\n" +
+                            "use Carp;\n" +
+                            "\n" +
+                            "sub function {\n" +
+                            "   carp \"Error in module!\";\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>When called from a script like below &minus;</p>\n")
+                    .withCode("use T;\n" +
+                            "function();")
+                    .withHtml("<p>It will produce the following result &minus;</p>\n")
+                    .withCode("Error in module! at test.pl line 4\n")
+                    .withHtml("<h2>The cluck Function</h2>\n" +
+                            "<p>The cluck function is a sort of supercharged carp, it follows the same basic principle but also prints a stack trace of all the modules that led to the function being called, including the information on the original script.</p>\n")
+                    .withCode("package T;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw/Exporter/;\n" +
+                            "@EXPORT = qw/function/;\n" +
+                            "use Carp qw(cluck);\n" +
+                            "\n" +
+                            "sub function {\n" +
+                            "   cluck \"Error in module!\";\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>When called from a script like below &minus;</p>\n")
+                    .withCode("use T;\n" +
+                            "function();\n")
+                    .withHtml("<p>It will produce the following result &minus;</p>\n")
+                    .withCode("Error in module! at T.pm line 9\n" +
+                            "   T::function() called at test.pl line 4\n")
+                    .withHtml("<h2>The croak Function</h2>\n" +
+                            "<p>The <b>croak</b> function is equivalent to <b>die</b>, except that it reports the caller one level up. Like die, this function also exits the script after reporting the error to STDERR &minus;</p>\n")
+                    .withCode("package T;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw/Exporter/;\n" +
+                            "@EXPORT = qw/function/;\n" +
+                            "use Carp;\n" +
+                            "\n" +
+                            "sub function {\n" +
+                            "   croak \"Error in module!\";\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>When called from a script like below &minus;</p>\n")
+                    .withCode("use T;\n" +
+                            "function();\n")
+                    .withHtml("<p>It will produce the following result &minus;</p>\n")
+                    .withCode("Error in module! at test.pl line 4\n")
+                    .withHtml("<p>As with carp, the same basic rules apply regarding the including of line and file information according to the warn and die functions.</p>\n" +
+                            "<h2>The confess Function</h2>\n" +
+                            "<p>The <b>confess</b> function is like <b>cluck</b>; it calls die and then prints a stack trace all the way up to the origination script.</p>\n")
+                    .withHtml("package T;\n" +
+                            "\n" +
+                            "require Exporter;\n" +
+                            "@ISA = qw/Exporter/;\n" +
+                            "@EXPORT = qw/function/;\n" +
+                            "use Carp;\n" +
+                            "\n" +
+                            "sub function {\n" +
+                            "   confess \"Error in module!\";\n" +
+                            "}\n" +
+                            "1;\n")
+                    .withHtml("<p>When called from a script like below &minus;</p>\n")
+                    .withHtml("use T;\n" +
+                            "function();\n")
+                    .withHtml("<p>It will produce the following result &minus;</p>\n")
+                    .withHtml("Error in module! at T.pm line 9\n" +
+                            "   T::function() called at test.pl line 4\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[18])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Special Variables</h1>\n")
+                    .withHtml("<p>There are some variables which have a predefined and special meaning in Perl. They are the variables that use punctuation characters after the usual variable indicator ($, @, or %), such as $_ ( explained below ).</p>\n" +
+                            "<p>Most of the special variables have an english like long name, e.g., Operating System Error variable $! can be written as $OS_ERROR. But if you are going to use english like names, then you would have to put one line <b>use English;</b> at the top of your program file. This guides the interpreter to pickup exact meaning of the variable.</p>\n" +
+                            "<p>The most commonly used special variable is $_, which contains the default input and pattern-searching string. For example, in the following lines &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "foreach ('hickory','dickory','doc') {\n" +
+                            "   print $_;\n" +
+                            "   print \"\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>When executed, this will produce the following result &minus;</p>\n")
+                    .withCode("hickory\n" +
+                            "dickory\n" +
+                            "doc\n")
+                    .withHtml("<p>Again, let's check the same example without using $_ variable explicitly &minus;</p>\n")
+                    .withCode("#!/usr/bin/perl\n" +
+                            "\n" +
+                            "foreach ('hickory','dickory','doc') {\n" +
+                            "   print;\n" +
+                            "   print \"\\n\";\n" +
+                            "}\n")
+                    .withHtml("<p>When executed, this will also produce the following result &minus;</p>\n")
+                    .withCode("hickory\n" +
+                            "dickory\n" +
+                            "doc\n")
+                    .withHtml("<p>The first time the loop is executed, \"hickory\" is printed. The second time around, \"dickory\" is printed, and the third time, \"doc\" is printed. That's because in each iteration of the loop, the current string is placed in $_, and is used by default by print. Here are the places where Perl will assume $_ even if you don't specify it &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Various unary functions, including functions like ord and int, as well as the all file tests (-f, -d) except for -t, which defaults to STDIN.</p></li>\n" +
+                            "<li><p>Various list functions like print and unlink.</p></li>\n" +
+                            "<li><p>The pattern-matching operations m//, s///, and tr/// when used without an =~ operator.</p></li>\n" +
+                            "<li><p>The default iterator variable in a foreach loop if no other variable is supplied.</p></li>\n" +
+                            "<li><p>The implicit iterator variable in the grep and map functions.</p></li>\n" +
+                            "<li><p>The default place to put an input record when a line-input operation's result is tested by itself as the sole criterion of a while test (i.e., ). Note that outside of a while test, this will not happen.</p></li>\n" +
+                            "</ul>\n" +
+                            "<h2>Special Variable Types</h2>\n" +
+                            "<p>Based on the usage and nature of special variables, we can categorize them in the following categories &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li>Global Scalar Special Variables.</li>\n" +
+                            "<li>Global Array Special Variables.</li>\n" +
+                            "<li>Global Hash Special Variables.</li>\n" +
+                            "<li>Global Special Filehandles.</li>\n" +
+                            "<li>Global Special Constants.</li>\n" +
+                            "<li>Regular Expression Special Variables.</li>\n" +
+                            "<li>Filehandle Special Variables.</li>\n" +
+                            "</ul>\n" +
+                            "<h2>Global Scalar Special Variables</h2>\n" +
+                            "<p>Here is the list of all the scalar special variables. We have listed corresponding english like names along with the symbolic names.</p>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$_</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The default input and pattern-searching space.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$ARG</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$.</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current input line number of the last filehandle that was read. An explicit close on the filehandle resets the line number.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$NR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$/</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The input record separator; newline by default. If set to the null string, it treats blank lines as delimiters.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$RS</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$,</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The output field separator for the print operator.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$OFS</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$\\</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The output record separator for the print operator.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$ORS</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$\"</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">Like \"$,\" except that it applies to list values interpolated into a double-quoted string (or similar interpreted string). Default is a space.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$LIST_SEPARATOR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$;</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The subscript separator for multidimensional array emulation. Default is \"\\034\".</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$SUBSCRIPT_SEPARATOR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^L</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">What a format outputs to perform a formfeed. Default is \"\\f\".\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_FORMFEED</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$:</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current set of characters after which a string may be broken to fill continuation fields (starting with ^) in a format. Default is \"\\n\"\".</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_LINE_BREAK_CHARACTERS</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^A</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current value of the write accumulator for format lines.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$ACCUMULATOR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$#</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">Contains the output format for printed numbers (deprecated).</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$OFMT</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$?</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The status returned by the last pipe close, backtick (``) command, or system operator.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$CHILD_ERROR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$!</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">If used in a numeric context, yields the current value of the errno variable, identifying the last system call error. If used in a string context, yields the corresponding system error string.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$OS_ERROR or $ERRNO</td></tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$@</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The Perl syntax error message from the last eval command.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$EVAL_ERROR\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$$</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The pid of the Perl process running this script.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$PROCESS_ID or $PID</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$&lt;</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The real user ID (uid) of this process.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$REAL_USER_ID or $UID</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$&gt;</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The effective user ID of this process.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$EFFECTIVE_USER_ID or $EUID</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$(</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The real group ID (gid) of this process.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$REAL_GROUP_ID or $GID</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$)</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The effective gid of this process.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$EFFECTIVE_GROUP_ID or $EGID</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$0</td>\n" +
+                            "<td>Contains the name of the file containing the Perl script being executed.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$PROGRAM_NAME</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$[</td>\n" +
+                            "<td>The index of the first element in an array and of the first character in a substring. Default is 0.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$]</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">Returns the version plus patchlevel divided by 1000.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$PERL_VERSION</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^D</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current value of the debugging flags.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$DEBUGGING</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^E</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">Extended error message on some platforms.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$EXTENDED_OS_ERROR</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^F</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The maximum system file descriptor, ordinarily 2.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$SYSTEM_FD_MAX</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^H</td>\n" +
+                            "<td>Contains internal compiler hints enabled by certain pragmatic modules.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^I</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current value of the inplace-edit extension. Use undef to disable inplace editing.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$INPLACE_EDIT</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^M</td>\n" +
+                            "<td>The contents of $M can be used as an emergency memory pool in case Perl dies with an out-of-memory error. Use of $M requires a special compilation of Perl. See the INSTALL document for more information.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^O</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">Contains the name of the operating system that the current Perl binary was compiled for.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$OSNAME</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^P</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The internal flag that the debugger clears so that it doesn't debug itself.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$PERLDB</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^T</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The time at which the script began running, in seconds since the epoch.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$BASETIME</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^W</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current value of the warning switch, either true or false.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$WARNING</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^X</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The name that the Perl binary itself was executed as.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$EXECUTABLE_NAME</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$ARGV</td>\n" +
+                            "<td>Contains the name of the current file when reading from &lt;ARGV&gt;.\n" +
+                            "</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Global Array Special Variables</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">@ARGV</td>\n" +
+                            "<td width=\"70%\">The array containing the command-line arguments intended for the script.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">@INC</td>\n" +
+                            "<td>The array containing the list of places to look for Perl scripts to be evaluated by the do, require, or use constructs.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">@F</td>\n" +
+                            "<td>The array into which the input lines are split when the -a command-line switch is given.</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Global Hash Special Variables</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">%INC</td>\n" +
+                            "<td width=\"70%\">The hash containing entries for the filename of each file that has been included via do or require.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">%ENV</td>\n" +
+                            "<td>The hash containing your current environment.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">%SIG</td>\n" +
+                            "<td>The hash used to set signal handlers for various signals.</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Global Special Filehandles</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">ARGV</td>\n" +
+                            "<td>The special filehandle that iterates over command line filenames in @ARGV. Usually written as the null filehandle in &lt;&gt;.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">STDERR</td>\n" +
+                            "<td>The special filehandle for standard error in any package.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">STDIN</td>\n" +
+                            "<td>The special filehandle for standard input in any package.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">STDOUT</td>\n" +
+                            "<td>The special filehandle for standard output in any package.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">DATA</td>\n" +
+                            "<td>The special filehandle that refers to anything following the __END__ token in the file containing the script. Or, the special filehandle for anything following the __DATA__ token in a required file, as long as you're reading data in the same package __DATA__ was found in.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">_ (underscore)</td>\n" +
+                            "<td>The special filehandle used to cache the information from the last stat, lstat, or file test operator.</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Global Special Constants</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">__END__</td>\n" +
+                            "<td width=\"70%\">Indicates the logical end of your program. Any following text is ignored, but may be read via the DATA filehandle.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">__FILE__</td>\n" +
+                            "<td>Represents the filename at the point in your program where it's used. Not interpolated into strings.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">__LINE__</td>\n" +
+                            "<td>Represents the current line number. Not interpolated into strings.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">__PACKAGE__</td>\n" +
+                            "<td>Represents the current package name at compile time, or undefined if there is no current package. Not interpolated into strings.</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Regular Expression Special Variables</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$digit</td>\n" +
+                            "<td width=\"70%\">Contains the text matched by the corresponding set of parentheses in the last pattern matched. For example, $1 matches whatever was contained in the first set of parentheses in the previous regular expression.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$&amp;</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The string matched by the last successful pattern match.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$MATCH</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$`</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The string preceding whatever was matched by the last successful pattern match.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$PREMATCH</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$'</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The string following whatever was matched by the last successful pattern match.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$POSTMATCH</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$+</td>\n" +
+                            "<td rowspan=\"2\">The last bracket matched by the last search pattern. This is useful if you don't know which of a set of alternative patterns was matched. For example : /Version: (.*)|Revision: (.*)/ &amp;&amp; ($rev = $+);</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$LAST_PAREN_MATCH</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n" +
+                            "<h2>Filehandle Special Variables</h2>\n" +
+                            "<table class=\"table table-bordered\">\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$|</td>\n" +
+                            "<td style=\"vertical-align:middle;width:70%\" rowspan=\"2\">If set to nonzero, forces an fflush(3) after every write or print on the currently selected output channel.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$OUTPUT_AUTOFLUSH</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$%</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The current page number of the currently selected output channel.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_PAGE_NUMBER</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$=</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">\n" +
+                            "The current page length (printable lines) of the currently selected output channel. Default is 60.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_LINES_PER_PAGE</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$-</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The number of lines left on the page of the currently selected output channel.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_LINES_LEFT</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$~</td>\n" +
+                            "<td style=\"vertical-align:middle;\" rowspan=\"2\">The name of the current report format for the currently selected output channel. Default is the name of the filehandle.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_NAME</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$^</td>\n" +
+                            "<td rowspan=\"2\">The name of the current top-of-page format for the currently selected output channel. Default is the name of the filehandle with _TOP appended.</td>\n" +
+                            "</tr>\n" +
+                            "<tr>\n" +
+                            "<td class=\"ts\">$FORMAT_TOP_NAME</td>\n" +
+                            "</tr>\n" +
+                            "</table>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[19])) {
             Codeview.with(getContext())
                     .setStyle(Code.DEFAULT_STYLE)
                     .setAutoWrap(Code.autoWrap)
                     .setLang(Settings.Lang.PERL)
-                    .withHtml("")
+                    .withHtml("<h1>Perl - Coding Standard</h1>\n")
+                    .withHtml("<p>Each programmer will, of course, have his or her own preferences in regards to formatting, but there are some general guidelines that will make your programs easier to read, understand, and maintain.</p>\n" +
+                            "<p>The most important thing is to run your programs under the -w flag at all times. You may turn it off explicitly for particular portions of code via the no warnings pragma or the $^W variable if you must. You should also always run under use strict or know the reason why not. The use sigtrap and even use diagnostics pragmas may also prove useful.</p>\n" +
+                            "<p>Regarding aesthetics of code lay out, about the only thing Larry cares strongly about is that the closing curly bracket of a multi-line BLOCK should line up with the keyword that started the construct. Beyond that, he has other preferences that aren't so strong &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li>4-column indent.</li>\n" +
+                            "<li>Opening curly on same line as keyword, if possible, otherwise line up.</li>\n" +
+                            "<li>Space before the opening curly of a multi-line BLOCK.</li>\n" +
+                            "<li>One-line BLOCK may be put on one line, including curlies.</li>\n" +
+                            "<li>No space before the semicolon.</li>\n" +
+                            "<li>Semicolon omitted in \"short\" one-line BLOCK.</li>\n" +
+                            "<li>Space around most operators.</li>\n" +
+                            "<li>Space around a \"complex\" subscript (inside brackets).</li>\n" +
+                            "<li>Blank lines between chunks that do different things.</li>\n" +
+                            "<li>Uncuddled elses.</li>\n" +
+                            "<li>No space between function name and its opening parenthesis.</li>\n" +
+                            "<li>Space after each comma.</li>\n" +
+                            "<li>Long lines broken after an operator (except and and or).</li>\n" +
+                            "<li>Space after last parenthesis matching on current line.</li>\n" +
+                            "<li>Line up corresponding items vertically.</li>\n" +
+                            "<li>Omit redundant punctuation as long as clarity doesn't suffer.</li>\n" +
+                            "</ul>\n" +
+                            "<p>Here are some other more substantive style issues to think about: Just because you CAN do something a particular way doesn't mean that you SHOULD do it that way. Perl is designed to give you several ways to do anything, so consider picking the most readable one. For instance &minus;</p>\n")
+                    .withCode("open(FOO,$foo) || die \"Can't open $foo: $!\";\n")
+                    .withHtml("<p>Is better than &minus;</p>\n")
+                    .withCode("die \"Can't open $foo: $!\" unless open(FOO,$foo);\n")
+                    .withHtml("<p>Because the second way hides the main point of the statement in a modifier. On the other hand,</p>\n")
+                    .withCode("print \"Starting analysis\\n\" if $verbose;\n")
+                    .withHtml("<p>Is better than &minus;</p>\n")
+                    .withCode("$verbose &amp;&amp; print \"Starting analysis\\n\";\n")
+                    .withHtml("<p>Because the main point isn't whether the user typed -v or not.</p>\n" +
+                            "<p>Don't go through silly contortions to exit a loop at the top or the bottom, when Perl provides the last operator so you can exit in the middle. Just \"outdent\" it a little to make it more visible &minus;</p>\n")
+                    .withCode("LINE:\n" +
+                            "for (;;) {\n" +
+                            "   statements;\n" +
+                            "   last LINE if $foo;\n" +
+                            "   next LINE if /^#/;\n" +
+                            "   statements;\n" +
+                            "}\n")
+                    .withHtml("<p>Let's see few more important points &minus;</p>\n" +
+                            "<ul class=\"list\">\n" +
+                            "<li><p>Don't be afraid to use loop labels--they're there to enhance readability as well as to allow multilevel loop breaks. See the previous example.</p></li>\n" +
+                            "<li><p>Avoid using grep() (or map()) or `backticks` in a void context, that is, when you just throw away their return values. Those functions all have return values, so use them. Otherwise use a foreach() loop or the system() function instead.</p></li>\n" +
+                            "<li><p>For portability, when using features that may not be implemented on every machine, test the construct in an eval to see if it fails. If you know what version or patchlevel a particular feature was implemented, you can test $] ($PERL_VERSION in English) to see if it will be there. The Config module will also let you interrogate values determined by the Configure program when Perl was installed.</p></li>\n" +
+                            "<li><p>Choose mnemonic identifiers. If you can't remember what mnemonic means, you've got a problem.</p></li>\n" +
+                            "<li><p>While short identifiers like $gotit are probably ok, use underscores to separate words in longer identifiers. It is generally easier to read $var_names_like_this than $VarNamesLikeThis, especially for non-native speakers of English. It's also a simple rule that works consistently with VAR_NAMES_LIKE_THIS.</p></li>\n" +
+                            "<li><p>Package names are sometimes an exception to this rule. Perl informally reserves lowercase module names for \"pragma\" modules like integer and strict. Other modules should begin with a capital letter and use mixed case, but probably without underscores due to limitations in primitive file systems' representations of module names as files that must fit into a few sparse bytes.</p></li>\n" +
+                            "<li><p>If you have a really hairy regular expression, use the /x modifier and put in some whitespace to make it look a little less like line noise. Don't use slash as a delimiter when your regexp has slashes or backslashes.</p></li>\n" +
+                            "<li><p>Always check the return codes of system calls. Good error messages should go to STDERR, include which program caused the problem, what the failed system call and arguments were, and (VERY IMPORTANT) should contain the standard system error message for what went wrong. Here's a simple but sufficient example &minus; </li></p>\n" +
+                            "</ul>\n")
+                    .withCode("opendir(D, $dir) or die \"can't opendir $dir: $!\";\n")
+                    .withHtml("<ul class=\"list\">\n" +
+                            "<li><p>Think about reusability. Why waste brainpower on a one-shot when you might want to do something like it again? Consider generalizing your code. Consider writing a module or object class. Consider making your code run cleanly with use strict and use warnings (or -w) in effect. Consider giving away your code. Consider changing your whole world view. Consider... oh, never mind.</p></li>\n" +
+                            "<li><p>Be consistent.</p></li>\n" +
+                            "<li><p>Be nice.</p></li>\n" +
+                            "</ul>\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
+                    .withHtml("\n\n<hr />\n<hr />\n<hr />\n")
                     .into(textView);
         } else if (category.equals(categories[20])) {
             Codeview.with(getContext())
