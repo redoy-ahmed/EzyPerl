@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.redoyahmed.ezyperl.Activity.MainActivity;
@@ -32,9 +31,12 @@ import com.example.redoyahmed.ezyperl.R;
 import com.example.redoyahmed.ezyperl.Services.ApiClient;
 import com.example.redoyahmed.ezyperl.Services.ApiInterface;
 import com.example.redoyahmed.ezyperl.Services.SaveFiles;
+import com.example.redoyahmed.ezyperl.Utils.Code;
+import com.example.redoyahmed.ezyperl.Utils.Codeview;
 import com.example.redoyahmed.ezyperl.Utils.ConnectionStatus;
 import com.example.redoyahmed.ezyperl.Utils.CustomSweetAlertDialog;
 import com.example.redoyahmed.ezyperl.Utils.StatusCodes;
+import com.example.redoyahmed.ezyperl.Utils.TouchMyWebView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,8 +57,8 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
     @BindView(R.id.codeEditText)
     public EditText codeEditText;
 
-    @BindView(R.id.outputTextView)
-    public TextView outputTextView;
+    @BindView(R.id.outputCodeView)
+    public TouchMyWebView outputCodeView;
 
     public String codeString;
 
@@ -129,7 +131,12 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
                         public void run() {
                             if (outputResponse.getStatusCode().equals(String.valueOf(StatusCodes.OK))) {
                                 dialog.dismiss();
-                                outputTextView.setText(outputResponse.getOutput());
+                                Codeview.with(getContext())
+                                        .setStyle(Code.DEFAULT_STYLE)
+                                        .setAutoWrap(Code.autoWrap)
+                                        .setLang(com.example.redoyahmed.ezyperl.Utils.Settings.Lang.PERL)
+                                        .withCode(outputResponse.getOutput())
+                                        .into(outputCodeView);
                                 handler.removeCallbacksAndMessages(true);
                             } else {
                                 handler.postDelayed(this, 100);

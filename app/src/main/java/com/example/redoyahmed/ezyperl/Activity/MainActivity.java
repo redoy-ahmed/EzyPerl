@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.redoyahmed.ezyperl.Fragment.FragmentCodeExamples;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentHome;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
@@ -97,16 +98,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -125,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mFragment = new FragmentTutorial();
         } else if (id == R.id.nav_practise) {
             mFragment = new FragmentPractise();
+        } else if (id == R.id.nav_code) {
+            mFragment = new FragmentCodeExamples();
         } else if (id == R.id.nav_quiz) {
             mFragment = new FragmentQuiz();
         } else if (id == R.id.nav_links) {

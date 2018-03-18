@@ -68,7 +68,6 @@ public class FragmentTutorialCode extends Fragment implements CodeView.OnHighlig
         }
     }
 
-
     private void loadData(String category) {
         DbHelper db = new DbHelper(rootView.getContext());
         tutorialItems = db.getTutorialDetailsByCategory(category);

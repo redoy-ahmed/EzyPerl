@@ -49,14 +49,11 @@
                 android:padding="5dp"
                 android:textColor="@android:color/white" />
 
-            <TextView
-                android:id="@+id/outputTextView"
+            <com.example.redoyahmed.ezyperl.Utils.TouchMyWebView
+                android:id="@+id/outputCodeView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/codeEditText"
-                android:padding="5dp"
-                android:text="Greetings, small planet!\n"
-                android:textColor="@android:color/black" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/codeEditText" />
 
         </RelativeLayout>
 

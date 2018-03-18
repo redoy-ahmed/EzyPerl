@@ -23,27 +23,15 @@
             android:textSize="@dimen/_24sdp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/quiz_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:paddingLeft="@dimen/_12sdp"
-            android:paddingRight="@dimen/_12sdp"
-            android:text="@string/quiz_description"
-            android:textColor="@color/colorDarker"
-            android:textSize="@dimen/_11sdp" />
-
         <ImageView
             android:id="@+id/quiz_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_24sdp"
             android:adjustViewBounds="true"
             android:contentDescription="Description"
-            android:src="@drawable/quiz_category_logo" />
+            android:src="@drawable/quiz" />
 
         <TextView
             android:id="@+id/total_question"

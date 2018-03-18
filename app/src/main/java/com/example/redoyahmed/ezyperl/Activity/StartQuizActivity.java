@@ -35,9 +35,6 @@ public class StartQuizActivity extends AppCompatActivity {
     @BindView(R.id.percentage)
     public TextView quizCompetedPercentage;
 
-    @BindView(R.id.quiz_description)
-    public TextView quizDescription;
-
     @BindView(R.id.quiz_image)
     public ImageView quizImage;
 

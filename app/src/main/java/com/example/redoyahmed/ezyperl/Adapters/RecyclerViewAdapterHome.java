@@ -1,9 +1,9 @@
 package com.example.redoyahmed.ezyperl.Adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.redoyahmed.ezyperl.Fragment.FragmentCodeExamples;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentLinks;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentPractise;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentQuiz;
@@ -83,6 +84,8 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
                     } else if (getAdapterPosition() == 1) {
                         mFragment = new FragmentPractise();
                     } else if (getAdapterPosition() == 2) {
+                        mFragment = new FragmentCodeExamples();
+                    } else if (getAdapterPosition() == 3) {
                         mFragment = new FragmentQuiz();
                     } else {
                         mFragment = new FragmentLinks();
