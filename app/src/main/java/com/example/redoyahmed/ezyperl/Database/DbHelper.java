@@ -508,7 +508,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "*\n" +
                 "from \n" +
                 "QuestionAnswer \n" +
-                "where category_id=" + category + ";";
+                "where category_id=" + category + " order by RANDOM();";
 
         database = this.getReadableDatabase();
 
