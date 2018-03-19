@@ -1,5 +1,6 @@
 package com.example.redoyahmed.ezyperl.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,11 +9,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.redoyahmed.ezyperl.Database.DbHelper;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorialCode;
 import com.example.redoyahmed.ezyperl.Fragment.FragmentTutorialText;
+import com.example.redoyahmed.ezyperl.Model.Category;
 import com.example.redoyahmed.ezyperl.R;
+import com.example.redoyahmed.ezyperl.Utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,9 +97,26 @@ public class TutorialDetailsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_tutorial, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
+            finish();
+        } else if (id == R.id.action_take_quiz) {
+            DbHelper db = new DbHelper(getApplicationContext());
+            List<Category> categories = db.getTutorialDetailsByCategory(category);
+            Intent intent = new Intent(getApplicationContext(), StartQuizActivity.class);
+            intent.putExtra(Constants.LANGUAGE_ID, categories.get(0).getLanguage_id());
+            intent.putExtra(Constants.CATEGORY_ID, categories.get(0).getId());
+            intent.putExtra(Constants.CATEGORY, categories.get(0).getCategory());
+            startActivity(intent);
             finish();
         }
         return super.onOptionsItemSelected(item);
