@@ -127,17 +127,17 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         shared = EzyPerlApplication.getShared(getApplicationContext());
 
+        handler = new Handler();
+        resultList = new ArrayList();
+        playMusic = new PlaySound(this);
+        playAudio = new PlayAudio(this);
+
         isMusicActive = shared.getSavedMusic();
         isSoundActive = shared.getSavedSound();
 
         if (isMusicActive) {
             playAudio.playSound(R.raw.quizmusic);
         }
-
-        handler = new Handler();
-        resultList = new ArrayList();
-        playMusic = new PlaySound(this);
-        playAudio = new PlayAudio(this);
     }
 
     private void loadData() {
