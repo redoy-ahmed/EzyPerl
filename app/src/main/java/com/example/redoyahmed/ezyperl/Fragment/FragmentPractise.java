@@ -88,11 +88,7 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Practise");
         MainActivity.navigationView.getMenu().getItem(2).setChecked(true);
 
-        codeEditText.setText("$x = 10;\n" +
-                "$y = 25;\n" +
-                "$z = $x+$y;\n" +
-                "\n" +
-                "print \"Sum of $x + $y = $z\";\n");
+        codeEditText.setText("print \"Hello World!\";\n");
 
         saveFiles = new SaveFiles(rootView.getContext());
         saveFiles.setOnBackupListener(this);
@@ -176,7 +172,6 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
 
                 if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_NETWORK_STATE)) {
-                        //Show Information about why you need the permission
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setTitle("Need Storage Permission");
                         builder.setMessage("This app needs phone permission.");
@@ -195,8 +190,6 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
                         });
                         builder.show();
                     } else if (permissionStatus.getBoolean(Manifest.permission.ACCESS_NETWORK_STATE, false)) {
-                        //Previously Permission Request was cancelled with 'Dont Ask Again',
-                        // Redirect to Settings after showing Information about why you need the permission
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setTitle("Need Storage Permission");
                         builder.setMessage("This app needs storage permission.");
@@ -220,7 +213,6 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
                         });
                         builder.show();
                     } else {
-                        //just request the permission
                         requestPermissions(new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, PERMISSION_CALLBACK_CONSTANT);
                     }
 
@@ -228,10 +220,8 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
                     editor.putBoolean(Manifest.permission.ACCESS_NETWORK_STATE, true);
                     editor.commit();
                 } else {
-                    //You already have the permission, just go ahead.
                     proceedAfterPermission();
                 }
-
                 return true;
 
             case R.id.action_save:
@@ -239,10 +229,26 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
                 return true;
 
             case R.id.action_open:
-                if (codeEditText.getText().toString().length() > 0)
-                    saveFileDialogBeforeOpen();
-                else
+                if (!codeEditText.getText().toString().equals("print \"Hello World!\";\n") && codeEditText.getText().toString().length() > 0) {
+                    new AlertDialog.Builder(rootView.getContext())
+                            .setTitle("Save Code")
+                            .setMessage("Do you want to save this code?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveFileDialogBeforeOpen();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveFiles.showDialogListFile(codeEditText);
+                                }
+                            })
+                            .show();
+                } else {
                     saveFiles.showDialogListFile(codeEditText);
+                }
                 return true;
 
             default:
@@ -251,6 +257,7 @@ public class FragmentPractise extends Fragment implements SaveFiles.OnBackupList
     }
 
     private void saveFileDialogBeforeOpen() {
+
 
         LayoutInflater li = LayoutInflater.from(rootView.getContext());
         View promptsView = li.inflate(R.layout.save_dialog, null);
