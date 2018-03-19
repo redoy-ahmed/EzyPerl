@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:text="Redoy Ahmed"
+                        android:text="Ezy Perl"
                         android:textColor="@color/md_black_1000"
                         android:textSize="@dimen/msg_text_secondary"
                         android:textStyle="bold" />
