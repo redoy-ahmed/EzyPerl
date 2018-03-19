@@ -46,7 +46,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                 .setAutoWrap(Code.autoWrap)
                 .setLang(Settings.Lang.PERL)
                 .withHtml("</br> </br>")
-                .withHtml("<h1>1.Print Something</h1>")
+                .withHtml("<h2>1.Print Something</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -56,7 +56,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         " print $s, \"\\n\";\n")
                 .withHtml("output:")
                 .withCode("something")
-                .withHtml("<h1>2.Declare a variable</h1>")
+                .withHtml("<h2>2.Declare a variable</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -68,7 +68,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "my $y= 2;\n;")
                 .withHtml("output:")
                 .withCode("hello world!\n")
-                .withHtml("<h1>3.If/else condition</h1>")
+                .withHtml("<h2>3.If/else condition</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "use warnings;\n" +
@@ -90,7 +90,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                 .withHtml("output:")
                 .withCode("10 is less than 11\n" +
                         "no")
-                .withHtml("<h1>4.Average of three numbers</h1>")
+                .withHtml("<h2>4.Average of three numbers</h2>")
                 .withHtml("code:")
                 .withCode("#! usr/bin/perl\n" +
                         "\n" +
@@ -103,7 +103,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "print \"average of $x, $y and $z is $avg \\n\";")
                 .withHtml("output:")
                 .withCode("average of 4, 6 and 2 is 4\n")
-                .withHtml("<h1>5.Print even numbers in a range</h1>")
+                .withHtml("<h2>5.Print even numbers in a range</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -123,7 +123,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "4\n" +
                         "6\n" +
                         "8\n")
-                .withHtml("<h1>6.Factorial of a number</h1>")
+                .withHtml("<h2>6.Factorial of a number</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -138,7 +138,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         " print 2.71828 ** $ln_factorial, \"\\n\";")
                 .withHtml("output:")
                 .withCode("119.999583952976\n")
-                .withHtml("<h1>7.Celsius to Fahrenheit conversion</h1>")
+                .withHtml("<h2>7.Celsius to Fahrenheit conversion</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -152,7 +152,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                 .withHtml("output:")
                 .withCode("the value of celsius temperature is 50\n" +
                         "the value of fahrenheit is 122\n")
-                .withHtml("<h1>8.String comparison in PERL</h1>")
+                .withHtml("<h2>8.String comparison in PERL</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -170,7 +170,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "     }")
                 .withHtml("output:")
                 .withCode("AATTGAACCTAACTT is less than TGCATAGCCGTAGC\n")
-                .withHtml("<h1>9.Math operators</h1>")
+                .withHtml("<h2>9.Math operators</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -192,7 +192,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "4 minus 2 is 2\n" +
                         "4 modulo 2 is 0\n" +
                         "a random integer number up to 4 is 0\n")
-                .withHtml("<h1>10.Power of a number</h1>")
+                .withHtml("<h2>10.Power of a number</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         " \n" +
@@ -204,7 +204,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         " print $x ** $y, \"\\n\";")
                 .withHtml("output:")
                 .withCode("25\n")
-                .withHtml("<h1>11.Circle related code</h1>")
+                .withHtml("<h2>11.Circle related code</h2>")
                 .withHtml("code:")
                 .withCode("# use strict;\n" +
                         "# use warnings;\n" +
@@ -221,7 +221,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         " Diameter: 10\n" +
                         " Circumference: 31.4\n" +
                         " Area: 78.5\n")
-                .withHtml("<h1>12.Prime numbers</h1>")
+                .withHtml("<h2>12.Prime numbers</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl \n" +
                         "\n" +
@@ -248,7 +248,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "3\n" +
                         "5\n" +
                         "7\n")
-                .withHtml("<h1>13.Pyramid</h1>")
+                .withHtml("<h2>13.Pyramid</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -266,7 +266,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "3\n" +
                         "5\n" +
                         "7\n")
-                .withHtml("<h1>14.Another pyramid</h1>")
+                .withHtml("<h2>14.Another pyramid</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -294,7 +294,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "   * * * \n" +
                         "  * * * * \n" +
                         " * * * * * \n")
-                .withHtml("<h1>15.Full Pyramid</h1>")
+                .withHtml("<h2>15.Full Pyramid</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "use strict; \n" +
@@ -332,7 +332,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         " * * * \n" +
                         "  * *\n" +
                         "   *\n")
-                .withHtml("<h1>16.Right Angle pyramid</h1>")
+                .withHtml("<h2>16.Right Angle pyramid</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "use strict; \n" +
@@ -354,7 +354,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "***\n" +
                         "****\n" +
                         "*****\n")
-                .withHtml("<h1>17.Another pyramid</h1>")
+                .withHtml("<h2>17.Another pyramid</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "use strict; \n" +
@@ -382,7 +382,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "***\n" +
                         "**\n" +
                         "*\n")
-                .withHtml("<h1>18.Print ASCI value</h1>")
+                .withHtml("<h2>18.Print ASCI value</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -391,7 +391,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                 .withHtml("output:")
                 .withCode("97\n" +
                         "}\n")
-                .withHtml("<h1>19.Scalar variable</h1>")
+                .withHtml("<h2>19.Scalar variable</h2>")
                 .withHtml("code:")
                 .withCode("#!/usr/bin/perl\n" +
                         "\n" +
@@ -401,7 +401,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                         "print( $z, \"\\n\")")
                 .withHtml("output:")
                 .withCode("7\n")
-                .withHtml("<h1>20.Arrays</h1>")
+                .withHtml("<h2>20.Arrays</h2>")
                 .withHtml("code:")
                 .withCode(" #!/usr/bin/perl\n" +
                         " \n" +
@@ -417,7 +417,7 @@ public class FragmentCodeExamples extends Fragment implements CodeView.OnHighlig
                 .withCode("A cat Meow\n" +
                         "B dog Woof\n" +
                         "C cow Moo\n")
-                .withHtml("<h1>21.Array implementation in PERL</h1>")
+                .withHtml("<h2>21.Array implementation in PERL</h2>")
                 .withHtml("code:")
                 .withCode(" #!/usr/bin/perl\n" +
                         " \n" +
