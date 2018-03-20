@@ -1,7 +1,13 @@
 package com.example.redoyahmed.ezyperl.Utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog.Builder;
+
+import com.example.redoyahmed.ezyperl.Activity.MainActivity;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -27,5 +33,18 @@ public class CustomSweetAlertDialog {
         alertDialog.setContentText(contextText);
         alertDialog.show();
         return alertDialog;
+    }
+
+    public static void showMessageDialog(final Context context, String message) {
+        Builder alertDialogBuilder = new Builder(context);
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setNegativeButton("Close", null);
+        alertDialogBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                context.startActivity(new Intent(context, MainActivity.class));
+                ((Activity) context).finish();
+            }
+        });
+        alertDialogBuilder.create().show();
     }
 }

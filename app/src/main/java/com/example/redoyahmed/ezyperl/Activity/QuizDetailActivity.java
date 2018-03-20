@@ -19,6 +19,7 @@ import com.example.redoyahmed.ezyperl.R;
 import com.example.redoyahmed.ezyperl.Services.CustomSharedPreference;
 import com.example.redoyahmed.ezyperl.Services.EzyPerlApplication;
 import com.example.redoyahmed.ezyperl.Utils.Constants;
+import com.example.redoyahmed.ezyperl.Utils.CustomSweetAlertDialog;
 import com.example.redoyahmed.ezyperl.Utils.PlayAudio;
 import com.example.redoyahmed.ezyperl.Utils.PlaySound;
 import com.google.gson.Gson;
@@ -340,5 +341,10 @@ public class QuizDetailActivity extends AppCompatActivity implements View.OnClic
             default:
                 return 0;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        CustomSweetAlertDialog.showMessageDialog(this, "Are you sure you want to exit quiz?");
     }
 }

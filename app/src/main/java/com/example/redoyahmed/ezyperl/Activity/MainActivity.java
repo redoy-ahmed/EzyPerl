@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finish();
+                            finishAffinity();
                         }
 
                     })
