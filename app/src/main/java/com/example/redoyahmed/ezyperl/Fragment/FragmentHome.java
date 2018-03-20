@@ -64,7 +64,7 @@ public class FragmentHome extends Fragment {
         ArrayList<HomeItem> allItems = new ArrayList<>();
         allItems.add(new HomeItem("Tutorial", R.drawable.tutorial, "#09A9FF"));
         allItems.add(new HomeItem("practise", R.drawable.programming, "#3E51B1"));
-        allItems.add(new HomeItem("code", R.drawable.code_example, "#3E51B1"));
+        allItems.add(new HomeItem("Examples", R.drawable.code_example, "#3E51B1"));
         allItems.add(new HomeItem("Quiz", R.drawable.quiz, "#673BB7"));
         allItems.add(new HomeItem("Links", R.drawable.link, "#4BAA50"));
 

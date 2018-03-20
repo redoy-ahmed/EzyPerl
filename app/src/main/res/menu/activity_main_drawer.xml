@@ -28,7 +28,7 @@
         <item
             android:id="@+id/nav_code"
             android:icon="@drawable/ic_menu_code"
-            android:title="@string/nav_item_code" />
+            android:title="@string/nav_item_example" />
     </group>
 
     <group android:checkableBehavior="single">
