@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.github.pavlospt:circleview:' + rootProject.circleViewVersion
     debugImplementation 'com.amitshekhar.android:debug-db:' + rootProject.debugDbVersion
     implementation 'com.github.tiagohm:CodeView:0.4.0'
+    implementation 'com.ramotion.paperonboarding:paper-onboarding:1.1.1'
 }

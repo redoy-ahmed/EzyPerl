@@ -71,4 +71,12 @@ public class CustomSharedPreference {
     public String getCurrentQuiz() {
         return sharedPref.getString(Constants.CURRENT_QUIZ, "");
     }
+
+    public void saveIsFirstTimeOpening(boolean isFirstTime) {
+        sharedPref.edit().putBoolean(Constants.FIRST_TIME_OPENING, isFirstTime).apply();
+    }
+
+    public boolean getSavedIsFirstTimeOpening() {
+        return sharedPref.getBoolean(Constants.FIRST_TIME_OPENING, true);
+    }
 }

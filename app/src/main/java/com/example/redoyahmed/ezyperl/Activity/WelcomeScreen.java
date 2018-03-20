@@ -23,7 +23,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
             @Override
             public void run() {
-                Intent i = new Intent(WelcomeScreen.this, MainActivity.class);
+                Intent i = new Intent(WelcomeScreen.this, SplashActivity.class);
                 startActivity(i);
                 finish();
             }
